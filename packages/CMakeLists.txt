@@ -158,17 +158,11 @@ list(APPEND ep
     libwebp
     libsdl2
     ffmpeg
-    curl
     mpv
     flac
     opusfile
     libopusenc
     opus-tools
-    termcap
-    readline
-    sqlite
-    libuv
-    libsodium
 )
 foreach(package IN LISTS ep)
     include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
