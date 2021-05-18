@@ -166,7 +166,6 @@ list(APPEND ep
     termcap
     readline
     sqlite
-    libuv
 )
 foreach(package IN LISTS ep)
     include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
