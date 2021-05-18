@@ -167,7 +167,6 @@ list(APPEND ep
     readline
     sqlite
     libuv
-    libsodium
 )
 foreach(package IN LISTS ep)
     include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
