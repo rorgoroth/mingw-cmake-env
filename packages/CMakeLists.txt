@@ -158,7 +158,6 @@ list(APPEND ep
     libwebp
     libsdl2
     ffmpeg
-    curl
     mpv
     flac
     opusfile
