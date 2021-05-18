@@ -12,11 +12,3 @@ ExternalProject_Add(mingw-w64-crt
     INSTALL_COMMAND ${MAKE} install-strip
     LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
-
-ExternalProject_Add_Step(mingw-w64-crt autoreconf
-    DEPENDEES download update patch
-    DEPENDERS configure
-    COMMAND ${EXEC} autoreconf -fi
-    WORKING_DIRECTORY <SOURCE_DIR>/mingw-w64/mingw-w64-crt
-    LOG 1
-)
