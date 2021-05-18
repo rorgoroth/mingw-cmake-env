@@ -1,3 +1,8 @@
 This is a stripped down version of [shinchiro/mpv-winbuild-cmake](https://github.com/shinchiro/mpv-winbuild-cmake).
 
 Leave me alone.
+
+This is only tested on Alpine run on WSL version 2.
+
+Basic build deps: 
+`apk add gcc gmp-dev mpfr-dev mpc1-dev autoconf cmake ninja git gettext-dev nasm yasm meson diffutils`
