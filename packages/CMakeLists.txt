@@ -137,16 +137,10 @@ list(APPEND ep
     vorbis
     opus
     speex
-    libmodplug
     libvpx
     xvidcore
-    game-music-emu
     libpng
     x264
-    x265
-    libdvdcss
-    libdvdread
-    libdvdnav
     libiconv
     luajit
     openal-soft
@@ -155,52 +149,26 @@ list(APPEND ep
     nettle
     libarchive
     freetype2
-    libbluray
     harfbuzz
-    libsoxr
     libzimg
     fontconfig
     libass
     libressl
     libxml2
-    libmfx
-    amf-headers
-    avisynth-headers
-    nvcodec-headers
-    libmysofa
-    aom
-    dav1d
     libwebp
-    vapoursynth
-    libbs2b
-    libssh
     libsdl2
-    libopenmpt
     ffmpeg
-    angle-headers
-    mujs
-    spirv-headers
-    spirv-tools
-    spirv-cross
-    glslang
-    vulkan
-    shaderc
-    libplacebo
     curl
     mpv
-    mpv-stable
-    mpv-packaging
     flac
     opusfile
     libopusenc
     opus-tools
     termcap
     readline
-    cryptopp
     sqlite
     libuv
     libsodium
-    megasdk
 )
 foreach(package IN LISTS ep)
     include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
