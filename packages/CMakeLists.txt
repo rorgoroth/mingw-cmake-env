@@ -159,6 +159,13 @@ list(APPEND ep
     libsdl2
     amf-headers
     ffmpeg
+    spirv-headers
+    spirv-tools
+    spirv-cross
+    glslang
+    vulkan
+    shaderc
+    libplacebo
     mpv
     flac
     opusfile

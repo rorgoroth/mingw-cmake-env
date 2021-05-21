@@ -1,3 +1,4 @@
+
 ExternalProject_Add(mpv
     DEPENDS
         ffmpeg
@@ -13,6 +14,10 @@ ExternalProject_Add(mpv
         uchardet
         openal-soft
         libsdl2
+        vulkan
+        shaderc
+        libplacebo
+        spirv-cross
     GIT_REPOSITORY https://github.com/mpv-player/mpv.git
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ${EXEC}
@@ -29,6 +34,8 @@ ExternalProject_Add(mpv
         --enable-rubberband
         --enable-lcms2
         --enable-openal
+        --enable-spirv-cross
+        --enable-vulkan
         --prefix=${MINGW_INSTALL_PREFIX}
     BUILD_COMMAND ${EXEC} <SOURCE_DIR>/waf
     INSTALL_COMMAND ""
