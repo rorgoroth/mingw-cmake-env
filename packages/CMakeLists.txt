@@ -153,7 +153,6 @@ list(APPEND ep
     libzimg
     fontconfig
     libass
-    libressl
     libxml2
     libwebp
     libsdl2

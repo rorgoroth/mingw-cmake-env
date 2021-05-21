@@ -7,7 +7,6 @@ ExternalProject_Add(ffmpeg
         lame
         libass
         libpng
-        libressl
         libvpx
         libwebp
         libxml2
@@ -38,7 +37,6 @@ ExternalProject_Add(ffmpeg
         --enable-libmp3lame
         --enable-libopus
         --enable-libspeex
-        --enable-libtls
         --enable-libvorbis
         --enable-libvpx
         --enable-libwebp
