@@ -34,7 +34,7 @@ ExternalProject_Add(ffmpeg
         --enable-version3
         --enable-libass
         --enable-libfreetype
-        --enable-libfribidi
+        --disable-libfribidi
         --enable-libmp3lame
         --enable-libopus
         --enable-libspeex
