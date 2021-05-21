@@ -1,5 +1,5 @@
 ExternalProject_Add(xz
-    GIT_REPOSITORY https://gitlab.com/shinchiro/xz.git
+    GIT_REPOSITORY https://github.com/xz-mirror/xz.git
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
