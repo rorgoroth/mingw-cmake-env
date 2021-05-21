@@ -4,18 +4,18 @@ ExternalProject_Add(ffmpeg
         bzip2
         gmp
         lame
-        libressl
         libass
         libpng
+        libressl
         libvpx
         libwebp
+        libxml2
         libzimg
         opus
         speex
         vorbis
         x264
         xvidcore
-        libxml2
     GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
@@ -26,28 +26,28 @@ ExternalProject_Add(ffmpeg
         --target-os=mingw32
         --target-exec=wine
         --pkg-config-flags=--static
+        --enable-amf
         --enable-cross-compile
-        --enable-runtime-cpudetect
+        --enable-gmp
         --enable-gpl
         --enable-version3
-        --enable-nonfree
-        --enable-amf
-        --enable-postproc
-        --enable-gmp
         --enable-libass
         --enable-libfreetype
         --enable-libfribidi
         --enable-libmp3lame
         --enable-libopus
         --enable-libspeex
+        --enable-libtls
         --enable-libvorbis
         --enable-libvpx
         --enable-libwebp
         --enable-libx264
+        --enable-libxml2
         --enable-libxvid
         --enable-libzimg
-        --enable-libtls
-        --enable-libxml2
+        --enable-nonfree
+        --enable-postproc
+        --enable-runtime-cpudetect
     BUILD_COMMAND ${MAKE}
     INSTALL_COMMAND ${MAKE} install
     LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1

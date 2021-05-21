@@ -6,14 +6,14 @@ ExternalProject_Add(flac
     CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
-        --enable-static
-        --disable-shared
         --disable-doxygen-docs
-        --disable-xmms-plugin
-        --disable-thorough-tests
-        --disable-oggtest
         --disable-examples
+        --disable-oggtest
+        --disable-shared
         --disable-stack-smash-protection
+        --disable-thorough-tests
+        --disable-xmms-plugin
+        --enable-static
         CFLAGS='-D_FORTIFY_SOURCE=0'
     BUILD_COMMAND ${MAKE}
     INSTALL_COMMAND ${MAKE} install

@@ -9,9 +9,9 @@ ExternalProject_Add(fribidi
         --cross-file=${MESON_CROSS}
         --buildtype=release
         --default-library=static
+        -Dbin=false
         -Dcpp_args='-DFRIBIDI_LIB_STATIC'
         -Ddocs=false
-        -Dbin=false
         -Dtests=false
     BUILD_COMMAND ${EXEC} ninja -C <BINARY_DIR>
     INSTALL_COMMAND ${EXEC} ninja -C <BINARY_DIR> install

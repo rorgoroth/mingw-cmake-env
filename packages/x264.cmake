@@ -6,13 +6,13 @@ ExternalProject_Add(x264
         --host=${TARGET_ARCH}
         --cross-prefix=${TARGET_ARCH}-
         --prefix=${MINGW_INSTALL_PREFIX}
-        --enable-static
         --disable-cli
-        --disable-swscale
-        --disable-lavf
         --disable-ffms
         --disable-gpac
+        --disable-lavf
         --disable-lsmash
+        --disable-swscale
+        --enable-static
     BUILD_COMMAND ${MAKE}
     INSTALL_COMMAND ${MAKE} install
     LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1

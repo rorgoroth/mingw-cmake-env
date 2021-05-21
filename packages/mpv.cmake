@@ -8,16 +8,16 @@ ExternalProject_Add(mpv
         libass
         libiconv
         libjpeg
-        libpng
-        luajit
-        rubberband
-        uchardet
-        openal-soft
-        libsdl2
-        vulkan
-        shaderc
         libplacebo
+        libpng
+        libsdl2
+        luajit
+        openal-soft
+        rubberband
+        shaderc
         spirv-cross
+        uchardet
+        vulkan
     GIT_REPOSITORY https://github.com/mpv-player/mpv.git
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ${EXEC}
@@ -25,16 +25,16 @@ ExternalProject_Add(mpv
         TARGET=${TARGET_ARCH}
         DEST_OS=win32
         <SOURCE_DIR>/waf configure
-        --enable-static-build
         --disable-manpage-build
-        --enable-lua
-        --enable-sdl2
-        --enable-libarchive
-        --enable-uchardet
-        --enable-rubberband
         --enable-lcms2
+        --enable-libarchive
+        --enable-lua
         --enable-openal
+        --enable-rubberband
+        --enable-sdl2
         --enable-spirv-cross
+        --enable-static-build
+        --enable-uchardet
         --enable-vulkan
         --prefix=${MINGW_INSTALL_PREFIX}
     BUILD_COMMAND ${EXEC} <SOURCE_DIR>/waf
