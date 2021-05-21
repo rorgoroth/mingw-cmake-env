@@ -2,6 +2,7 @@ ExternalProject_Add(ffmpeg
     DEPENDS
         amf-headers
         bzip2
+        fribidi
         gmp
         lame
         libass
