@@ -5,4 +5,4 @@ Leave me alone.
 This is only tested on Alpine run on WSL version 2.
 
 Basic build deps: 
-`apk add gcc gmp-dev mpfr-dev mpc1-dev autoconf cmake ninja git gettext-dev nasm yasm meson diffutils`
+`apk add autoconf cmake diffutils gcc gettext-dev git gmp-dev meson mpc1-dev mpfr-dev nasm ninja py3-mako subversion yasm`
