@@ -1,5 +1,6 @@
 ExternalProject_Add(ffmpeg
     DEPENDS
+        amf-headers
         bzip2
         gmp
         lame
@@ -30,6 +31,7 @@ ExternalProject_Add(ffmpeg
         --enable-gpl
         --enable-version3
         --enable-nonfree
+        --enable-amf
         --enable-postproc
         --enable-gmp
         --enable-libass
