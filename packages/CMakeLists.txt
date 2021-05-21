@@ -157,6 +157,7 @@ list(APPEND ep
     libxml2
     libwebp
     libsdl2
+    amf-headers
     ffmpeg
     mpv
     flac
