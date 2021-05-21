@@ -1,10 +1,10 @@
 ExternalProject_Add(opus-tools
     DEPENDS
+        flac
+        libopusenc
         ogg
         opus
-        flac
         opusfile
-        libopusenc
     GIT_REPOSITORY https://github.com/xiph/opus-tools.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""

@@ -9,9 +9,9 @@ ExternalProject_Add(freetype2
         --build=${HOST_ARCH}
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
+        --with-sysroot=${MINGW_INSTALL_PREFIX}
         --disable-shared
         --without-harfbuzz
-        --with-sysroot=${MINGW_INSTALL_PREFIX}
     BUILD_COMMAND ${MAKE}
     INSTALL_COMMAND ${MAKE} install
     COMMAND ${CMAKE_COMMAND} -E create_symlink ${MINGW_INSTALL_PREFIX}/bin/freetype-config ${CMAKE_INSTALL_PREFIX}/bin/freetype-config

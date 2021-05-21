@@ -1,8 +1,8 @@
 ExternalProject_Add(libplacebo
     DEPENDS
-        vulkan
-        shaderc
         lcms2
+        shaderc
+        vulkan
     GIT_REPOSITORY https://github.com/haasn/libplacebo.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
@@ -12,8 +12,8 @@ ExternalProject_Add(libplacebo
         --cross-file=${MESON_CROSS}
         --buildtype=release
         --default-library=static
-        -Dvulkan-registry='${MINGW_INSTALL_PREFIX}/share/vulkan/registry/vk.xml'
         -Ddemos=false
+        -Dvulkan-registry='${MINGW_INSTALL_PREFIX}/share/vulkan/registry/vk.xml'
     BUILD_COMMAND ${EXEC} ninja -C <BINARY_DIR>
     INSTALL_COMMAND ${EXEC} ninja -C <BINARY_DIR> install
     LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1

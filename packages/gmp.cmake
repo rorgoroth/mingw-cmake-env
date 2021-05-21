@@ -5,8 +5,8 @@ ExternalProject_Add(gmp
         CC_FOR_BUILD=cc
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
-        --enable-static
         --disable-shared
+        --enable-static
     BUILD_COMMAND ${MAKE}
     INSTALL_COMMAND ${MAKE} install
     LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1

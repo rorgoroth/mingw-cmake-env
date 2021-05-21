@@ -1,10 +1,10 @@
 ExternalProject_Add(libass
     DEPENDS
-        harfbuzz
+        fontconfig
         freetype2
         fribidi
+        harfbuzz
         libiconv
-        fontconfig
     GIT_REPOSITORY https://github.com/libass/libass.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
