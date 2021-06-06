@@ -2,7 +2,7 @@ ExternalProject_Add(libwebp
     GIT_REPOSITORY https://chromium.googlesource.com/webm/libwebp.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-shared

@@ -4,7 +4,7 @@ ExternalProject_Add(opusfile
     GIT_REPOSITORY https://github.com/xiph/opusfile.git
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/autogen.sh
-    COMMAND ${EXEC} <SOURCE_DIR>/configure
+    COMMAND ${EXEC} dash <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-doc

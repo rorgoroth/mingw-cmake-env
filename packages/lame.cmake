@@ -2,7 +2,7 @@ ExternalProject_Add(lame
     GIT_REPOSITORY https://salsa.debian.org/multimedia-team/lame.git
     UPDATE_COMMAND ""
     PATCH_COMMAND ${DEBPATCH}
-    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-frontend

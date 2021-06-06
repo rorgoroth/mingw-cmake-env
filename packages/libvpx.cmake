@@ -2,7 +2,7 @@ ExternalProject_Add(libvpx
     GIT_REPOSITORY https://chromium.googlesource.com/webm/libvpx.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${EXEC} CROSS=${TARGET_ARCH}- <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} CROSS=${TARGET_ARCH}- dash <SOURCE_DIR>/configure
         --extra-cflags='-fno-asynchronous-unwind-tables'
         --target=x86_64-win64-gcc
         --prefix=${MINGW_INSTALL_PREFIX}

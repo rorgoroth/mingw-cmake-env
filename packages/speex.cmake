@@ -5,7 +5,7 @@ ExternalProject_Add(speex
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ${EXEC}
         LIBS=-lwinmm
-        <SOURCE_DIR>/configure
+        dash <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-shared
