@@ -3,7 +3,7 @@ ExternalProject_Add(winpthreads
         mingw-w64-crt
     PREFIX mingw-w64-prefix
     SOURCE_DIR mingw-w64-prefix/src
-    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/mingw-w64/mingw-w64-libraries/winpthreads/configure
+    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/mingw-w64/mingw-w64-libraries/winpthreads/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-shared

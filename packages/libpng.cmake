@@ -3,7 +3,7 @@ ExternalProject_Add(libpng
     GIT_REPOSITORY https://github.com/glennrp/libpng.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
         CFLAGS='-fno-asynchronous-unwind-tables'
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}

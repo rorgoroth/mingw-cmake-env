@@ -1,7 +1,7 @@
 ExternalProject_Add(xz
     GIT_REPOSITORY https://github.com/xz-mirror/xz.git
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-doc

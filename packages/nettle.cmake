@@ -3,7 +3,7 @@ ExternalProject_Add(nettle
     GIT_SHALLOW 1
     PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/nettle-*.patch
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-documentation
