@@ -13,8 +13,9 @@ ExternalProject_Add(gcc-base
     STAMP_DIR gcc-prefix/src/gcc-stamp
     SOURCE_DIR gcc-prefix/src/gcc
     BINARY_DIR gcc-prefix/src/gcc-build
-    URL https://mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-10.3.0/gcc-10.3.0.tar.xz
-    CONFIGURE_COMMAND <SOURCE_DIR>/configure
+    URL https://mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-11.1.0/gcc-11.1.0.tar.gz
+    URL_HASH SHA1=7a6652c4c4ae5676cccf5c2eab422f1eba87517f
+    CONFIGURE_COMMAND dash <SOURCE_DIR>/configure
         --target=${TARGET_ARCH}
         --prefix=${CMAKE_INSTALL_PREFIX}
         --libdir=${CMAKE_INSTALL_PREFIX}/lib
