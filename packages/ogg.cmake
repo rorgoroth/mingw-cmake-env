@@ -1,6 +1,6 @@
 ExternalProject_Add(ogg
-    URL https://ftp.osuosl.org/pub/xiph/releases/ogg/libogg-1.3.4.tar.xz
-    URL_HASH SHA256=c163bc12bc300c401b6aa35907ac682671ea376f13ae0969a220f7ddf71893fe
+    URL https://ftp.osuosl.org/pub/xiph/releases/ogg/libogg-1.3.5.tar.xz
+    URL_HASH SHA1=5a368421a636f7faa4c2f662857cb507dffd7c99
     UPDATE_COMMAND ""
     CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
