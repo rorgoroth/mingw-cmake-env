@@ -12,7 +12,6 @@ ExternalProject_Add(mpv
         libpng
         libsdl2
         luajit
-        openal-soft
         rubberband
         shaderc
         spirv-cross
@@ -29,7 +28,6 @@ ExternalProject_Add(mpv
         --enable-lcms2
         --enable-libarchive
         --enable-lua
-        --enable-openal
         --enable-rubberband
         --enable-sdl2
         --enable-spirv-cross

@@ -143,7 +143,6 @@ list(APPEND ep
     x264
     libiconv
     luajit
-    openal-soft
     fribidi
     expat
     nettle
