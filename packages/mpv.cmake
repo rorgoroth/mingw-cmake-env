@@ -10,7 +10,6 @@ ExternalProject_Add(mpv
         libjpeg
         libplacebo
         libpng
-        libsdl2
         luajit
         rubberband
         shaderc
@@ -29,7 +28,6 @@ ExternalProject_Add(mpv
         --enable-libarchive
         --enable-lua
         --enable-rubberband
-        --enable-sdl2
         --enable-spirv-cross
         --enable-static-build
         --enable-uchardet

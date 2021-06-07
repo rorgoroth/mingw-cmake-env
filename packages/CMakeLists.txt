@@ -154,7 +154,6 @@ list(APPEND ep
     libass
     libxml2
     libwebp
-    libsdl2
     amf-headers
     ffmpeg
     spirv-headers
