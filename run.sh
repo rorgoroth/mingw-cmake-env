@@ -2,6 +2,6 @@
 
 pushd build
     ninja update
-    ninja mpv
+    ninja -j1 mpv
     cp -rv packages/mpv-package ../
 popd

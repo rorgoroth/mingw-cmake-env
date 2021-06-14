@@ -26,8 +26,8 @@ if(CPU_COUNT EQUAL 0)
     set(CPU_COUNT 1)
 endif()
 
-set(MAKEJOBS ${CPU_COUNT})
-# set(MAKEJOBS 5) # uncomment this line to manually change no. of cpu
+# set(MAKEJOBS ${CPU_COUNT})
+set(MAKEJOBS 8)
 set(MAKEJOBS ${MAKEJOBS} CACHE STRING "Number of parallel processes to run for each package build")
 
 if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
