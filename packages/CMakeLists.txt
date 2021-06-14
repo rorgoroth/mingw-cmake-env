@@ -165,7 +165,6 @@ list(APPEND ep
     libplacebo
     mpv
     opusfile
-    libopusenc
     opus-tools
 )
 foreach(package IN LISTS ep)
