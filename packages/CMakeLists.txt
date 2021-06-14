@@ -164,7 +164,6 @@ list(APPEND ep
     shaderc
     libplacebo
     mpv
-    flac
     opusfile
     libopusenc
     opus-tools
