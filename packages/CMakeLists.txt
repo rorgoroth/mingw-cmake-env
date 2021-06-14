@@ -164,7 +164,6 @@ list(APPEND ep
     shaderc
     libplacebo
     mpv
-    opus-tools
 )
 foreach(package IN LISTS ep)
     include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
