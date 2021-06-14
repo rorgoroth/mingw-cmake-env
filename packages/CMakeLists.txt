@@ -164,7 +164,6 @@ list(APPEND ep
     shaderc
     libplacebo
     mpv
-    opusfile
     opus-tools
 )
 foreach(package IN LISTS ep)
