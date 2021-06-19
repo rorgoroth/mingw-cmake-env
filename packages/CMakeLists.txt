@@ -148,7 +148,6 @@ list(APPEND ep
     fontconfig
     libass
     libxml2
-    libwebp
     ffmpeg
     spirv-headers
     spirv-tools
