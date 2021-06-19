@@ -4,7 +4,6 @@ ExternalProject_Add(ffmpeg
         bzip2
         fribidi
         gmp
-        lame
         libass
         libpng
         libvpx
@@ -34,7 +33,6 @@ ExternalProject_Add(ffmpeg
         --enable-libass
         --enable-libfreetype
         --enable-libfribidi
-        --enable-libmp3lame
         --enable-libopus
         --enable-libspeex
         --enable-libvorbis

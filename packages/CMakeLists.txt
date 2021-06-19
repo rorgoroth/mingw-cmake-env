@@ -132,7 +132,6 @@ list(APPEND ep
     bzip2
     libjpeg
     lcms2
-    lame
     ogg
     vorbis
     opus
