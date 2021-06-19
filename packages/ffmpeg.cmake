@@ -7,7 +7,6 @@ ExternalProject_Add(ffmpeg
         libpng
         libxml2
         libzimg
-        x264
         xvidcore
     GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
     GIT_SHALLOW 1
@@ -26,7 +25,6 @@ ExternalProject_Add(ffmpeg
         --enable-libass
         --enable-libfreetype
         --enable-libfribidi
-        --enable-libx264
         --enable-libxml2
         --enable-libxvid
         --enable-libzimg
