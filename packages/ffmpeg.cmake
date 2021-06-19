@@ -9,7 +9,6 @@ ExternalProject_Add(ffmpeg
         libwebp
         libxml2
         libzimg
-        vorbis
         x264
         xvidcore
     GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
@@ -29,7 +28,6 @@ ExternalProject_Add(ffmpeg
         --enable-libass
         --enable-libfreetype
         --enable-libfribidi
-        --enable-libvorbis
         --enable-libvpx
         --enable-libwebp
         --enable-libx264
