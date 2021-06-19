@@ -7,7 +7,6 @@ ExternalProject_Add(ffmpeg
         libpng
         libxml2
         libzimg
-        xvidcore
     GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
@@ -26,7 +25,6 @@ ExternalProject_Add(ffmpeg
         --enable-libfreetype
         --enable-libfribidi
         --enable-libxml2
-        --enable-libxvid
         --enable-libzimg
         --enable-nonfree
         --enable-postproc
