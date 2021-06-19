@@ -135,7 +135,6 @@ list(APPEND ep
     ogg
     xvidcore
     libpng
-    x264
     libiconv
     luajit
     fribidi
