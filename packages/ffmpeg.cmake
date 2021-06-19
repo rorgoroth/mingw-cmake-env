@@ -29,6 +29,10 @@ ExternalProject_Add(ffmpeg
         --enable-nonfree
         --enable-postproc
         --enable-runtime-cpudetect
+        --disable-encoders
+        --enable-encoder=png
+        --enable-encoder=jpeg2000
+
     BUILD_COMMAND ${MAKE}
     INSTALL_COMMAND ${MAKE} install
     LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
