@@ -153,7 +153,6 @@ list(APPEND ep
     libass
     libxml2
     libwebp
-    amf-headers
     ffmpeg
     spirv-headers
     spirv-tools

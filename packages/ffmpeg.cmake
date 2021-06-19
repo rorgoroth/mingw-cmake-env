@@ -1,6 +1,5 @@
 ExternalProject_Add(ffmpeg
     DEPENDS
-        amf-headers
         bzip2
         fribidi
         gmp
@@ -25,7 +24,6 @@ ExternalProject_Add(ffmpeg
         --target-os=mingw32
         --target-exec=wine
         --pkg-config-flags=--static
-        --enable-amf
         --enable-cross-compile
         --enable-gmp
         --enable-gpl
