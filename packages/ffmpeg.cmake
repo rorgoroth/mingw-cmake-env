@@ -9,7 +9,6 @@ ExternalProject_Add(ffmpeg
         libwebp
         libxml2
         libzimg
-        opus
         speex
         vorbis
         x264
@@ -31,7 +30,6 @@ ExternalProject_Add(ffmpeg
         --enable-libass
         --enable-libfreetype
         --enable-libfribidi
-        --enable-libopus
         --enable-libspeex
         --enable-libvorbis
         --enable-libvpx

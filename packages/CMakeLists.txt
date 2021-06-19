@@ -134,7 +134,6 @@ list(APPEND ep
     lcms2
     ogg
     vorbis
-    opus
     speex
     libvpx
     xvidcore
