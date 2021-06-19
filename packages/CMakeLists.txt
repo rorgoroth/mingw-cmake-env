@@ -133,7 +133,6 @@ list(APPEND ep
     libjpeg
     lcms2
     ogg
-    xvidcore
     libpng
     libiconv
     luajit
