@@ -68,19 +68,6 @@ function(force_rebuild_git _name)
     endif()
 endfunction()
 
-function(force_rebuild_svn _name)
-    if(ENABLE_VCS_UPDATES)
-        ExternalProject_Add_Step(${_name} force-update
-            DEPENDEES download update
-            DEPENDERS patch build install
-            COMMAND svn revert -R .
-            COMMAND svn up
-            WORKING_DIRECTORY <SOURCE_DIR>
-            LOG 1
-        )
-    endif()
-endfunction()
-
 function(force_rebuild_hg _name)
     if(ENABLE_VCS_UPDATES)
         ExternalProject_Add_Step(${_name} force-update
