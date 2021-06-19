@@ -5,7 +5,6 @@ ExternalProject_Add(ffmpeg
         gmp
         libass
         libpng
-        libwebp
         libxml2
         libzimg
         x264
@@ -27,7 +26,6 @@ ExternalProject_Add(ffmpeg
         --enable-libass
         --enable-libfreetype
         --enable-libfribidi
-        --enable-libwebp
         --enable-libx264
         --enable-libxml2
         --enable-libxvid
