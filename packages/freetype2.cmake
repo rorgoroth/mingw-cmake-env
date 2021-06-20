@@ -5,7 +5,7 @@ ExternalProject_Add(freetype2
     GIT_REPOSITORY https://github.com/freetype/freetype.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/ft2exec dash <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/ft2exec <SOURCE_DIR>/configure
         --build=${HOST_ARCH}
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
