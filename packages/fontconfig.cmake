@@ -8,7 +8,7 @@ ExternalProject_Add(fontconfig
     UPDATE_COMMAND ""
     GIT_SHALLOW 1
     PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
-    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-docs

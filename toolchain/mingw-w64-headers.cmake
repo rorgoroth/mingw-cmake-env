@@ -4,7 +4,7 @@ ExternalProject_Add(mingw-w64-headers
         binutils
     PREFIX mingw-w64-prefix
     SOURCE_DIR mingw-w64-prefix/src
-    CONFIGURE_COMMAND dash <SOURCE_DIR>/mingw-w64/mingw-w64-headers/configure
+    CONFIGURE_COMMAND <SOURCE_DIR>/mingw-w64/mingw-w64-headers/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --enable-sdk=all

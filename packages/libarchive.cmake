@@ -9,7 +9,7 @@ ExternalProject_Add(libarchive
     GIT_REPOSITORY https://github.com/libarchive/libarchive.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ${EXEC} dash <SOURCE_DIR>/configure
+    CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
         --host=${TARGET_ARCH}
         --prefix=${MINGW_INSTALL_PREFIX}
         --disable-bsdcat
