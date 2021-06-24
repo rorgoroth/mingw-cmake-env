@@ -21,6 +21,8 @@ ExternalProject_Add(ffmpeg
         --disable-encoders
         --disable-filters
         --disable-htmlpages
+        --disable-libfreetype
+        --disable-libfribidi
         --disable-manpages
         --disable-muxers
         --disable-podpages
@@ -31,8 +33,6 @@ ExternalProject_Add(ffmpeg
         --enable-gpl
         --enable-version3
         --enable-libass
-        --enable-libfreetype
-        --enable-libfribidi
         --enable-libxml2
         --enable-libzimg
         --enable-nonfree
