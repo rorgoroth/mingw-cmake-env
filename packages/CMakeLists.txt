@@ -119,7 +119,6 @@ list(APPEND ep
     bzip2
     libjpeg
     lcms2
-    ogg
     libpng
     libiconv
     luajit
