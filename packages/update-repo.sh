@@ -8,13 +8,7 @@ main() {
         local stamp_dir=$packages_dir/$name-prefix/src/$name-stamp
 
         if [[ -d "$src_dir/.git" ]] ; then
-            # Skip updating these packages
-            if [[ $name =~ ^(angle|megasdk)$ ]]; then
-                continue
-            fi
-
             gitupdate $name $src_dir $stamp_dir &
-        # TODO: handle hg repo
         fi
     done
     wait
@@ -34,9 +28,8 @@ gitupdate()
 
     if [[ ! "$result" =~ up[-\ ]to[-\ ]date ]] || [[ ! -z $result_module ]]; then
         echo "Deleting stamp files for $name"
-        find $stamp_dir -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete # remove stamp files to force rebuild
+        find $stamp_dir -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
     fi
 }
 
-# Execute
 main
