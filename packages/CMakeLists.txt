@@ -68,19 +68,6 @@ function(force_rebuild_git _name)
     endif()
 endfunction()
 
-function(force_rebuild_hg _name)
-    if(ENABLE_VCS_UPDATES)
-        ExternalProject_Add_Step(${_name} force-update
-            DEPENDEES download update
-            DEPENDERS patch build install
-            COMMAND hg --config "extensions.purge=" purge --all
-            COMMAND hg update -C
-            WORKING_DIRECTORY <SOURCE_DIR>
-            LOG 1
-        )
-    endif()
-endfunction()
-
 function(autogen _name)
     ExternalProject_Add_Step(${_name} autogen
         DEPENDEES download update patch
@@ -147,7 +134,7 @@ foreach(package IN LISTS ep)
     message(STATUS "Parsing package ${package}")
 endforeach()
 
-set(UPDATE_SCRIPT ${CMAKE_SOURCE_DIR}/scripts/update-repo.sh)
+set(UPDATE_SCRIPT ${CMAKE_SOURCE_DIR}/packages/update-repo.sh)
 add_custom_target(update
     USES_TERMINAL
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
