@@ -5,6 +5,8 @@ ExternalProject_Add(fontconfig
         libiconv
         zlib
     GIT_REPOSITORY https://gitlab.freedesktop.org/fontconfig/fontconfig.git
+    GIT_REMOTE_NAME origin
+    GIT_TAG main
     UPDATE_COMMAND ""
     GIT_SHALLOW 1
     PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
