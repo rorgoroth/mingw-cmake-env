@@ -1,8 +1,3 @@
-/release*
 /build*
-/build-*
-/32*
-/64*
-/i686*
-/x86_64*
-/mpv-package*
+/mpv-package/mpv.com
+/mpv-package/mpv.exe
