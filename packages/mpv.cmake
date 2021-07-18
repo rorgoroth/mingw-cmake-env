@@ -49,7 +49,6 @@ ExternalProject_Add_Step(mpv bootstrap
 
 ExternalProject_Add_Step(mpv strip-binary
     DEPENDEES build
-    COMMAND ${EXEC} ${TARGET_ARCH}-objcopy --only-keep-debug <SOURCE_DIR>/build/mpv.exe <SOURCE_DIR>/build/mpv.debug
     COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/mpv.exe
     COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/mpv.com
     COMMENT "Stripping mpv binaries"
