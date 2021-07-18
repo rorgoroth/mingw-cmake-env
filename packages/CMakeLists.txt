@@ -129,6 +129,7 @@ list(APPEND ep
     libplacebo
     mpv
     quake3e
+    quake3e-urt
 )
 foreach(package IN LISTS ep)
     include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
