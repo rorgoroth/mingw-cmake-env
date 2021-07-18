@@ -1,3 +1,4 @@
 /build*
-/mpv-package/mpv.com
-/mpv-package/mpv.exe
+
+/bin/*/*.exe
+/bin/*/*.com
