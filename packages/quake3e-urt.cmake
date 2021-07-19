@@ -13,15 +13,15 @@ ExternalProject_Add(quake3e-urt
 
 ExternalProject_Add_Step(quake3e-urt strip-binary
     DEPENDEES build
-    COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/release-mingw32-x86_64/urbanterror-slim.x64.exe
-    COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/release-mingw32-x86_64/urbanterror-slim.ded.x64.exe
+    COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/release-mingw32-x86_64/quake3e-urt.x64.exe
+    COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/release-mingw32-x86_64/quake3e-urt.ded.x64.exe
     COMMENT "Stripping quake3e-urt binaries"
 )
 
 ExternalProject_Add_Step(quake3e-urt copy-binary
     DEPENDEES strip-binary
-    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/release-mingw32-x86_64/urbanterror-slim.x64.exe ${CMAKE_CURRENT_BINARY_DIR}/quake3e-urt-package/quake3e-urt.exe
-    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/release-mingw32-x86_64/urbanterror-slim.ded.x64.exe ${CMAKE_CURRENT_BINARY_DIR}/quake3e-urt-package/quake3e-urt.ded.exe
+    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/release-mingw32-x86_64/quake3e-urt.x64.exe ${CMAKE_CURRENT_BINARY_DIR}/quake3e-urt-package/quake3e-urt.exe
+    COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/release-mingw32-x86_64/quake3e-urt.ded.x64.exe ${CMAKE_CURRENT_BINARY_DIR}/quake3e-urt-package/quake3e-urt.ded.exe
 )
 
 force_rebuild_git(quake3e-urt)
