@@ -6,7 +6,7 @@ This is only tested on Alpine run on WSL version 2.
 
 Basic build deps:
 ```
-apk add -i autoconf cmake diffutils gcc gettext-dev git gmp-dev meson mpc1-dev mpfr-dev nasm ninja po4a py3-mako yasm
+apk add -i autoconf automake cmake diffutils gcc g++ gettext-dev git gmp-dev gperf libtool meson mpc1-dev mpfr-dev nasm ninja patch po4a py3-mako yasm
 ```
 
 Setup/Build:
