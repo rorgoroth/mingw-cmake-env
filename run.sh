@@ -1,9 +1,11 @@
 #!/bin/bash
 
-pushd build
-    ninja update
-    ninja -j1
-    cp -r packages/mpv-package ../bin/
-    cp -r packages/quake3e-package ../bin/
-    cp -r packages/quake3e-urt-package ../bin/
-popd
+pushd build  >/dev/null 2>&1 || exit
+    ninja update && ninja
+    echo ">> Deleting old binaries.."
+    rm ../bin/*/*.{exe,com}
+    echo ">> ..Done"
+    echo ">> Copying new binaries.."
+    cp -r packages/*-package ../bin
+    echo ">> ..Done"
+popd >/dev/null 2>&1 || exit
