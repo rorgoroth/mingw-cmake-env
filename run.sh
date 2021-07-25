@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd build  >/dev/null 2>&1 || exit
+pushd build >/dev/null 2>&1 || exit
     ninja update && ninja
     echo ">> Deleting old binaries.."
     rm ../bin/*/*.{exe,com}
