@@ -1,7 +1,7 @@
 #!/bin/bash
 
 pushd build >/dev/null 2>&1 || exit
-    ninja update && ninja
+    ninja update && ninja || exit
     echo ">> Deleting old binaries.."
     rm ../bin/*/*.{exe,com}
     echo ">> ..Done"
