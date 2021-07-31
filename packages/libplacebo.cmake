@@ -1,5 +1,6 @@
 ExternalProject_Add(libplacebo
     DEPENDS
+        glslang
         lcms2
         shaderc
         vulkan
