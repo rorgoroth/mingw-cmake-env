@@ -125,7 +125,6 @@ list(APPEND ep
     spirv-cross
     glslang
     shaderc
-    libplacebo
     mpv
     quake3e
     quake3e-urt
