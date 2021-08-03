@@ -124,7 +124,6 @@ list(APPEND ep
     spirv-tools
     spirv-cross
     glslang
-    vulkan
     shaderc
     libplacebo
     mpv
