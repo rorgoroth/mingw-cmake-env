@@ -22,6 +22,7 @@ ExternalProject_Add(mpv
         DEST_OS=win32
         <SOURCE_DIR>/waf configure
         --disable-manpage-build
+        --enable-ffmpeg-strict-abi
         --enable-lcms2
         --enable-libarchive
         --enable-lua
