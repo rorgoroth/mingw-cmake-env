@@ -1,0 +1,46 @@
+From 04c43d2231b3bf9b8a9648d4147a154c3595e33b Mon Sep 17 00:00:00 2001
+From: Ray Griffin <raymond.griffin@protonmail.com>
+Date: Fri, 10 Sep 2021 12:36:53 +0100
+Subject: [PATCH 1/1] Revert "Merge pull request #209 from kloczek/master"
+
+This reverts commit 0d3c45cdbb4563b95be9037ea967aac815caf78f, reversing
+changes made to 6cae8216a6ea19ff3f237af01e54378c1ff81fcd.
+---
+ CMakeLists.txt      | 6 ------
+ SPIRV-Headers.pc.in | 9 ---------
+ 2 files changed, 15 deletions(-)
+ delete mode 100644 SPIRV-Headers.pc.in
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 84e38a2..6f01ef0 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -124,10 +124,4 @@ if (SPIRV_HEADERS_ENABLE_INSTALL)
+         NAMESPACE "${namespace}"
+         DESTINATION "${config_install_dir}"
+     )
+-
+-    configure_file(${CMAKE_SOURCE_DIR}/SPIRV-Headers.pc.in ${CMAKE_BINARY_DIR}/SPIRV-Headers.pc @ONLY)
+-    install(
+-        FILES "${CMAKE_BINARY_DIR}/SPIRV-Headers.pc"
+-        DESTINATION ${CMAKE_INSTALL_DATADIR}/pkgconfig
+-    )
+ endif()
+diff --git a/SPIRV-Headers.pc.in b/SPIRV-Headers.pc.in
+deleted file mode 100644
+index 345f5f8..0000000
+--- a/SPIRV-Headers.pc.in
++++ /dev/null
+@@ -1,9 +0,0 @@
+-prefix=@CMAKE_INSTALL_PREFIX@
+-includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
+-
+-Name: SPIRV-Headers
+-Description: Header files from the SPIR-V registry
+-Version: @CMAKE_PROJECT_VERSION@
+-Requires:
+-Libs:
+-Cflags: -I${includedir}
+-- 
+2.33.0
+
