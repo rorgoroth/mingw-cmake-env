@@ -26,7 +26,7 @@ ExternalProject_Add(gcc-base
         --disable-shared
         --disable-win32-registry
         --with-arch=${gcc_arch}
-        --with-tune=native
+        --with-tune=generic
         --enable-threads=posix
         --without-included-gettext
         --enable-lto
