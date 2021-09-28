@@ -2,8 +2,9 @@
 ExternalProject_Add(quake3e-urt
     DEPENDS
         gcc
-    GIT_REPOSITORY https://github.com/rorgoroth/quake3e-urt.git
+    GIT_REPOSITORY https://github.com/omg-urt/urbanterror-slim.git
     UPDATE_COMMAND ""
+    PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/quake3e-urt*.patch
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ${EXEC} ${MAKE} PLATFORM=mingw32 ARCH=x86_64
     INSTALL_COMMAND ""
