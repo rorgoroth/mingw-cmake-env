@@ -1,0 +1,56 @@
+From b76ce180c9a47dc586c3668a0a65d1e3db9ddaa5 Mon Sep 17 00:00:00 2001
+From: Ray Griffin <raymond.griffin@protonmail.com>
+Date: Tue, 28 Sep 2021 20:13:30 +0100
+Subject: [PATCH] makefile build opts
+
+---
+ Makefile | 26 ++++++++++++--------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 7b874c2..297e863 100644
+--- a/Makefile
++++ b/Makefile
+@@ -23,19 +23,17 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
+   endif
+ endif
+ 
+-BUILD_CLIENT     = 1
+-BUILD_SERVER     = 1
+-
+-USE_SDL          = 1
+-USE_CURL         = 1
+-USE_LOCAL_HEADERS= 0
+-USE_VULKAN       = 1
+-USE_OPENGL       = 1
+-USE_OPENGL2      = 0
+-USE_SYSTEM_JPEG  = 0
+-USE_VULKAN_API   = 1
+-
+-USE_RENDERER_DLOPEN = 1
++BUILD_CLIENT        = 1
++BUILD_SERVER        = 1
++USE_SDL             = 0
++USE_CURL            = 1
++USE_LOCAL_HEADERS   = 0
++USE_VULKAN          = 1
++USE_OPENGL          = 1
++USE_OPENGL2         = 1
++USE_SYSTEM_JPEG     = 0
++USE_VULKAN_API      = 1
++USE_RENDERER_DLOPEN = 0
+ 
+ CNAME            = quake3e
+ DNAME            = quake3e.ded
+@@ -43,7 +41,7 @@ DNAME            = quake3e.ded
+ RENDERER_PREFIX  = $(CNAME)
+ 
+ # valid options: opengl, vulkan, opengl2
+-RENDERER_DEFAULT = opengl
++RENDERER_DEFAULT = vulkan
+ 
+ 
+ ifeq ($(V),1)
+-- 
+2.33.0
+
