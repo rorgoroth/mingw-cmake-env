@@ -1,4 +1,5 @@
 /build*
 
+/bin/*.7z
 /bin/*/*.exe
 /bin/*/*.com
