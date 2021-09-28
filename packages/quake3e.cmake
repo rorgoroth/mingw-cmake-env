@@ -2,8 +2,9 @@
 ExternalProject_Add(quake3e
     DEPENDS
         gcc
-    GIT_REPOSITORY https://github.com/rorgoroth/quake3e.git
+    GIT_REPOSITORY https://github.com/ec-/Quake3e.git
     UPDATE_COMMAND ""
+    PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/quake3e-0*.patch
     CONFIGURE_COMMAND ""
     BUILD_COMMAND ${EXEC} ${MAKE} PLATFORM=mingw32 ARCH=x86_64
     INSTALL_COMMAND ""
