@@ -26,6 +26,6 @@ ExternalProject_Add(libarchive
 )
 
 force_rebuild_git(libarchive)
-extra_step(libarchive)
 autoreconf(libarchive)
+extra_step(libarchive)
 
