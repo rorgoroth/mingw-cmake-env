@@ -1,5 +1,7 @@
 ExternalProject_Add(lcms2
-    DEPENDS libjpeg zlib
+    DEPENDS
+        libjpeg
+        zlib
     GIT_REPOSITORY https://github.com/mm2/Little-CMS.git
     GIT_SHALLOW 1
     UPDATE_COMMAND ""
@@ -13,5 +15,5 @@ ExternalProject_Add(lcms2
 )
 
 force_rebuild_git(lcms2)
-extra_step(lcms2)
 autoreconf(lcms2)
+extra_step(lcms2)
