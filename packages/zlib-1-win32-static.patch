@@ -42,6 +42,6 @@ index e974d1f..f023947 100644
          LDSHARED=${LDSHARED-"$cc -shared"}
          LDSHAREDLIBC=""
          EXE='.exe' ;;
--- 
+--
 2.10.2
 
