@@ -99,7 +99,6 @@ endfunction()
 list(APPEND ep
     gmp
     xz
-    lzo
     uchardet
     rubberband
     zlib
