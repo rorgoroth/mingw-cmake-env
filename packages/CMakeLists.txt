@@ -111,7 +111,6 @@ list(APPEND ep
     luajit
     fribidi
     expat
-    nettle
     freetype2
     harfbuzz
     libzimg
