@@ -4,7 +4,6 @@ ExternalProject_Add(mpv
         ffmpeg
         fribidi
         lcms2
-        libarchive
         libass
         libiconv
         libjpeg
@@ -23,7 +22,6 @@ ExternalProject_Add(mpv
         <SOURCE_DIR>/waf configure
         --disable-manpage-build
         --enable-lcms2
-        --enable-libarchive
         --enable-lua
         --enable-rubberband
         --enable-spirv-cross
