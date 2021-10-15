@@ -1,5 +1,6 @@
 ExternalProject_Add(fontconfig
     DEPENDS
+        bzip2
         expat
         freetype2
         libiconv
