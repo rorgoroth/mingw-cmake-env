@@ -117,10 +117,7 @@ list(APPEND ep
     libass
     libxml2
     ffmpeg
-    spirv-headers
-    spirv-tools
     spirv-cross
-    glslang
     shaderc
     mpv
     quake3e
