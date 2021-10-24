@@ -21,4 +21,3 @@ ExternalProject_Add(libplacebo
 
 force_rebuild_git(libplacebo)
 force_meson_configure(libplacebo)
-extra_step(libplacebo)

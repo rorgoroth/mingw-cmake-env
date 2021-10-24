@@ -26,4 +26,3 @@ ExternalProject_Add_Step(quake3e copy-binary
 )
 
 force_rebuild_git(quake3e)
-extra_step(quake3e)

@@ -15,4 +15,3 @@ ExternalProject_Add(libjpeg
 )
 
 force_rebuild_git(libjpeg)
-extra_step(libjpeg)

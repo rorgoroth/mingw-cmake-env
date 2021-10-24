@@ -16,4 +16,3 @@ ExternalProject_Add(lcms2
 
 force_rebuild_git(lcms2)
 autoreconf(lcms2)
-extra_step(lcms2)

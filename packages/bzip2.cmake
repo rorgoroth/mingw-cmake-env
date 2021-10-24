@@ -22,4 +22,3 @@ ExternalProject_Add_Step(bzip2 symlink
 )
 
 force_rebuild_git(bzip2)
-extra_step(bzip2)
