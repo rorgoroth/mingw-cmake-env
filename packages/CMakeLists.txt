@@ -120,6 +120,7 @@ list(APPEND ep
     spirv-cross
     vulkan
     shaderc
+    libplacebo
     mpv
     quake3e
     quake3e-urt

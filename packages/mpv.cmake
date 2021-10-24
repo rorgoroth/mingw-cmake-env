@@ -7,6 +7,7 @@ ExternalProject_Add(mpv
         libass
         libiconv
         libjpeg
+        libplacebo
         libpng
         luajit
         rubberband
