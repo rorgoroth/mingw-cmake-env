@@ -118,6 +118,7 @@ list(APPEND ep
     libxml2
     ffmpeg
     spirv-cross
+    vulkan
     shaderc
     mpv
     quake3e
