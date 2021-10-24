@@ -50,8 +50,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/meson_cross.txt.in
                ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt @ONLY)
 set(MESON_CROSS ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/exec.in ${CMAKE_CURRENT_BINARY_DIR}/exec @ONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/exec.in
+               ${CMAKE_CURRENT_BINARY_DIR}/exec @ONLY)
 set(EXEC ${CMAKE_CURRENT_BINARY_DIR}/exec)
+
 set(MAKE ${EXEC} make -j${MAKEJOBS})
 
 string(TIMESTAMP BUILDDATE "%Y%m%d" UTC)
