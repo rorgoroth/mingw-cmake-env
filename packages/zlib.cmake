@@ -14,4 +14,3 @@ ExternalProject_Add(zlib
 )
 
 force_rebuild_git(zlib)
-extra_step(zlib)

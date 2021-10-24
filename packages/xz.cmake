@@ -17,4 +17,3 @@ ExternalProject_Add(xz
 
 force_rebuild_git(xz)
 autogen(xz)
-extra_step(xz)

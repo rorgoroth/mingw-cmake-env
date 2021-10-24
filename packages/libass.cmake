@@ -19,4 +19,3 @@ ExternalProject_Add(libass
 
 force_rebuild_git(libass)
 autogen(libass)
-extra_step(libass)

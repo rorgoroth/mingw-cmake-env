@@ -61,4 +61,3 @@ ExternalProject_Add_Step(mpv copy-binary
 )
 
 force_rebuild_git(mpv)
-extra_step(mpv)

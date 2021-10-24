@@ -24,4 +24,3 @@ ExternalProject_Add(fontconfig
 
 force_rebuild_git(fontconfig)
 autogen(fontconfig)
-extra_step(fontconfig)

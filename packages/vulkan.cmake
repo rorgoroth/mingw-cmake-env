@@ -5,14 +5,14 @@ ExternalProject_Add(vulkan-header
   GIT_TAG main
   UPDATE_COMMAND ""
   CMAKE_ARGS
+    -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
   BUILD_COMMAND ""
-  INSTALL_COMMAND ${CMAKE_MAKE_PROGRAM} install
+  INSTALL_COMMAND ninja install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_INSTALL 1
 )
 force_rebuild_git(vulkan-header)
-extra_step(vulkan-header)
 
 ExternalProject_Add(vulkan
   DEPENDS vulkan-header
@@ -21,6 +21,7 @@ ExternalProject_Add(vulkan
   UPDATE_COMMAND ""
   PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-*.patch
   CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
+    -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DVULKAN_HEADERS_INSTALL_DIR=${MINGW_INSTALL_PREFIX}
@@ -29,8 +30,8 @@ ExternalProject_Add(vulkan
     -DENABLE_STATIC_LOADER=ON
     -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -D_WIN32_WINNT=0x0600 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE'
     -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0600'
-  BUILD_COMMAND ${MAKE} -C <BINARY_DIR>
-  INSTALL_COMMAND ${MAKE} -C <BINARY_DIR> install
+  BUILD_COMMAND ninja -C <BINARY_DIR>
+  INSTALL_COMMAND ninja -C <BINARY_DIR> install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
 
@@ -45,4 +46,3 @@ ExternalProject_Add_Step(vulkan copy-wdk-headers
 )
 
 force_rebuild_git(vulkan)
-extra_step(vulkan)

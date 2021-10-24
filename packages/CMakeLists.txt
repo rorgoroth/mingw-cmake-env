@@ -2,57 +2,6 @@ if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.19.0")
   cmake_policy(SET CMP0114 OLD)
 endif()
 
-function(extra_step _name)
-  get_property(
-    _build_in_source
-    TARGET ${_name}
-    PROPERTY _EP_BUILD_IN_SOURCE)
-  get_property(
-    _git_repository
-    TARGET ${_name}
-    PROPERTY _EP_GIT_REPOSITORY)
-  get_property(
-    _url
-    TARGET ${_name}
-    PROPERTY _EP_URL)
-
-  if(_build_in_source)
-    if(_git_repository)
-      set(remove_cmd "git -C <SOURCE_DIR> clean -dfx")
-    elseif(_url)
-      set(remove_cmd "rm -rf <SOURCE_DIR>")
-    endif()
-  else()
-    set(remove_cmd "rm -rf <BINARY_DIR>")
-  endif()
-
-  ExternalProject_Add_Step(
-    ${_name} fullclean
-    COMMAND ${EXEC} find <DOWNLOAD_DIR>/${_name}-stamp -type f " ! -iname '*.cmake' " -size 0c -delete
-    ALWAYS TRUE
-    EXCLUDE_FROM_MAIN TRUE
-    COMMENT "Deleting all stamp files of ${_name} package")
-
-  ExternalProject_Add_Step(
-    ${_name} liteclean
-    COMMAND ${EXEC} rm -f <DOWNLOAD_DIR>/${_name}-stamp/${_name}-build
-            <DOWNLOAD_DIR>/${_name}-stamp/${_name}-install
-    ALWAYS TRUE
-    EXCLUDE_FROM_MAIN TRUE
-    COMMENT "Deleting build, install stamp files of ${_name} package")
-
-  ExternalProject_Add_Step(
-    ${_name} removebuild
-    DEPENDEES fullclean
-    COMMAND ${EXEC} ${remove_cmd}
-    ALWAYS TRUE
-    EXCLUDE_FROM_MAIN TRUE
-    LOG 1
-    COMMENT "Deleting build directory of ${_name} package")
-
-  ExternalProject_Add_StepTargets(${_name} fullclean liteclean removebuild)
-endfunction()
-
 function(force_rebuild_git _name)
   get_property(
     git_tag
