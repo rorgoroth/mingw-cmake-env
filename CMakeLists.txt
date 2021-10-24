@@ -58,9 +58,5 @@ set(MAKE ${EXEC} make -j${MAKEJOBS})
 
 string(TIMESTAMP BUILDDATE "%Y%m%d" UTC)
 
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/publish.in)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/publish.in ${CMAKE_CURRENT_BINARY_DIR}/publish)
-endif()
-
 add_subdirectory(toolchain)
 add_subdirectory(packages)
