@@ -20,15 +20,13 @@ function(force_rebuild_git _name)
     set(pull COMMAND git pull)
   endif()
 
-  if(ENABLE_VCS_UPDATES)
-    ExternalProject_Add_Step(
-      ${_name} force-update
-      DEPENDEES download update
-      DEPENDERS patch build install
-      COMMAND git reset --hard ${git_tag} ${pull}
-      WORKING_DIRECTORY <SOURCE_DIR>
-      LOG 1)
-  endif()
+  ExternalProject_Add_Step(
+    ${_name} force-update
+    DEPENDEES download update
+    DEPENDERS patch build install
+    COMMAND git reset --hard ${git_tag} ${pull}
+    WORKING_DIRECTORY <SOURCE_DIR>
+    LOG 1)
 endfunction()
 
 function(autogen _name)
