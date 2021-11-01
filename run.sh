@@ -2,7 +2,7 @@
 
 build () {
   cd build || exit
-    ninja update && ninja || exit
+    ninja update && ninja -j1 || exit
     rm ../bin/*/*.exe
     rm ../bin/*/*.com
     rm ../bin/*/*.dll
