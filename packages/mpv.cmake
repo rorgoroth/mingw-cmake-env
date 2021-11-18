@@ -1,4 +1,3 @@
-
 ExternalProject_Add(mpv
   DEPENDS
     ffmpeg
@@ -54,9 +53,9 @@ ExternalProject_Add_Step(mpv strip-binary
 
 ExternalProject_Add_Step(mpv copy-binary
   DEPENDEES strip-binary
-  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/mpv.exe 
+  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/mpv.exe
                                     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.exe
-  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/mpv.com 
+  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/mpv.com
                                     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com
 )
 
