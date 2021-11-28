@@ -8,6 +8,8 @@ ExternalProject_Add(mingw-w64-crt
     --host=${TARGET_ARCH}
     --prefix=${MINGW_INSTALL_PREFIX}
     --with-sysroot=${CMAKE_INSTALL_PREFIX}
+    --with-default-msvcrt=ucrt
+    --disable-lib32
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install-strip
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
