@@ -2,6 +2,8 @@ This is a stripped down version of [shinchiro/mpv-winbuild-cmake](https://github
 
 This is only tested on Alpine, ran on WSL version 2.
 
+The build system and produced binaries only support Windows 10+ and 64bit.
+
 Binary Downloads (mpv, q3, etc): [Here](https://drive.google.com/drive/folders/11TdCAm7zYMD_QK7xvkwBo-tb7ezs-cbD)
 
 Basic build deps:
