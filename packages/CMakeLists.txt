@@ -85,8 +85,11 @@ list(
   shaderc
   libplacebo
   mpv
+  curl
   quake3e
-  quake3e-urt)
+  quake3e-urt
+)
+
 foreach(package IN LISTS ep)
   include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
   message(STATUS "Parsing package ${package}")
