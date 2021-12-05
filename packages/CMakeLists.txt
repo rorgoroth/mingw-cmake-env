@@ -83,6 +83,7 @@ list(
   spirv-cross
   vulkan
   shaderc
+  libepoxy
   libplacebo
   mpv
   curl
