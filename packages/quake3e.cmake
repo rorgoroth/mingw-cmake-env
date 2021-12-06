@@ -22,8 +22,10 @@ ExternalProject_Add_Step(quake3e strip-binary
 
 ExternalProject_Add_Step(quake3e copy-binary
   DEPENDEES strip-binary
-  COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/release-mingw64-x86_64/quake3e.x64.exe ${CMAKE_CURRENT_BINARY_DIR}/quake3e-package/quake3e.x64.exe
-  COMMAND ${CMAKE_COMMAND} -E copy <SOURCE_DIR>/build/release-mingw64-x86_64/quake3e.ded.x64.exe ${CMAKE_CURRENT_BINARY_DIR}/quake3e-package/quake3e.ded.x64.exe
+  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/release-mingw64-x86_64/quake3e.x64.exe
+                                    ${CMAKE_CURRENT_BINARY_DIR}/quake3e-package/quake3e.x64.exe
+  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/release-mingw64-x86_64/quake3e.ded.x64.exe
+                                    ${CMAKE_CURRENT_BINARY_DIR}/quake3e-package/quake3e.ded.x64.exe
 )
 
 force_rebuild_git(quake3e)
