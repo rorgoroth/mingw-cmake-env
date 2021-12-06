@@ -3,10 +3,10 @@
 build () {
   cd build || exit
     ninja update && ninja -j1 || exit
-    rm ../bin/*/*.exe
-    rm ../bin/*/*.com
-    rm ../bin/*/*.dll
-    cp -rv packages/*-package ../bin
+    find ../bin/ -type f -name '*.exe' -delete
+    find ../bin/ -type f -name '*.com' -delete
+    find ../bin/ -type f -name '*.dll' -delete
+    cp -r packages/*-package ../bin
   cd .. || exit
 }
 
@@ -16,6 +16,10 @@ package () {
 
   cd mpv-package || exit
   7za a "mpv-$(date +"%Y-%m-%d").7z" -- ./*
+  cd .. || exit
+
+  cd iortcw-package || exit
+  7za a "iortcw-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
   cd quake3e-package || exit
