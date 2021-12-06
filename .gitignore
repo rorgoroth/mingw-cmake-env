@@ -3,3 +3,5 @@
 /bin/*.7z
 /bin/*/*.exe
 /bin/*/*.com
+
+bin/iortcw-package
