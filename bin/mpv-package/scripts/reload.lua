@@ -8,7 +8,7 @@
 --
 -- SETTINGS
 --
--- To override default setting put `lua-settings/reload.conf` file in
+-- To override default setting put the `lua-settings/reload.conf` file in
 -- mpv user folder, on linux it is `~/.config/mpv`.  NOTE: config file
 -- name should match the name of the script.
 --
@@ -54,7 +54,9 @@
 -- DEBUGGING
 --
 -- Debug messages will be printed to stdout with mpv command line option
--- `--msg-level='reload=debug'`
+-- `--msg-level='reload=debug'`. You may also need to add the `--no-msg-color`
+-- option to make the debug logs visible if you are using a dark colorscheme
+-- in terminal.
 
 local msg = require 'mp.msg'
 local options = require 'mp.options'
@@ -278,18 +280,6 @@ function read_settings()
   msg.debug(utils.to_string(settings))
 end
 
-function debug_info(event)
-  msg.debug("event =", utils.to_string(event))
-  msg.debug("path =", mp.get_property("path"))
-  msg.debug("time-pos =", mp.get_property("time-pos"))
-  msg.debug("paused-for-cache =", mp.get_property("paused-for-cache"))
-  msg.debug("stream-path =", mp.get_property("stream-path"))
-  msg.debug("stream-pos =", mp.get_property("stream-pos"))
-  msg.debug("stream-end =", mp.get_property("stream-end"))
-  msg.debug("duration =", mp.get_property("duration"))
-  msg.debug("seekable =", mp.get_property("seekable"))
-end
-
 function reload(path, time_pos)
   msg.debug("reload", path, time_pos)
   if time_pos == nil then
@@ -318,11 +308,18 @@ function reload_resume()
   if reload_duration and reload_duration > 0 then
     msg.info("reloading video from", time_pos, "second")
     reload(path, time_pos)
+  -- VODs get stuck when reload is called without a time_pos
+  -- this is most noticeable in youtube videos whenever download gets stuck in the first frames
+  -- video would stay paused without being actually paused
+  -- issue surfaced in mpv 0.33, afaik
+  elseif reload_duration and reload_duration == 0 then
+    msg.info("reloading video from", time_pos, "second")
+    reload(path, time_pos)
   else
     msg.info("reloading stream")
     reload(path, nil)
   end
-  msg.info("file ", playlist_pos+1, " of ", playlist_count, "in playlist")
+  msg.info("file ", playlist_pos+1, "of", playlist_count, "in playlist")
   for i = 0, playlist_pos-1 do
     mp.commandv("loadfile", playlist[i], "append")
   end
@@ -355,6 +352,32 @@ function reload_eof(property, eof_reached)
       property_time_pos = time_pos
     end
   end
+end
+
+function on_file_loaded(event)
+  local debug_info = {
+    event = event,
+    time_pos = mp.get_property("time-pos"),
+    stream_pos = mp.get_property("stream-pos"),
+    stream_end = mp.get_property("stream-end"),
+    duration = mp.get_property("duration"),
+    seekable = mp.get_property("seekable"),
+    pause = mp.get_property("pause"),
+    paused_for_cache = mp.get_property("paused-for-cache"),
+    cache_buffering_state = mp.get_property("cache-buffering-state"),
+  }
+  msg.debug("debug_info", utils.to_string(debug_info))
+
+  -- When the video is reloaded after being paused for cache, it won't start
+  -- playing again while all properties looks fine:
+  -- `pause=no`, `paused-for-cache=no` and `cache-buffering-state=100`.
+  -- As a workaround, we cycle through the paused state by sending two SPACE
+  -- keypresses.
+  -- What didn't work:
+  -- - Cycling through the `pause` property.
+  -- - Run the `playlist-play-index current` command.
+  mp.commandv("keypress", 'SPACE')
+  mp.commandv("keypress", 'SPACE')
 end
 
 -- main
@@ -392,4 +415,4 @@ if settings.reload_eof_enabled then
   mp.observe_property("eof-reached", "bool", reload_eof)
 end
 
---mp.register_event("file-loaded", debug_info)
+mp.register_event("file-loaded", on_file_loaded)
