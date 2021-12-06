@@ -1,0 +1,127 @@
+From 7aecbbb00c210665f80640938eacc09501abcdc6 Mon Sep 17 00:00:00 2001
+From: Ray Griffin <raymond.griffin@protonmail.com>
+Date: Mon, 6 Dec 2021 16:24:07 +0000
+Subject: [PATCH] Makefile: Update build opts
+
+---
+ MP/Makefile | 18 ++++++++++++++----
+ SP/Makefile | 18 ++++++++++++++----
+ 2 files changed, 28 insertions(+), 8 deletions(-)
+
+diff --git a/MP/Makefile b/MP/Makefile
+index 16d128b7..4e8b6484 100644
+--- a/MP/Makefile
++++ b/MP/Makefile
+@@ -11,6 +11,16 @@ ifeq ($(COMPILE_PLATFORM),sunos)
+   COMPILE_ARCH=$(shell uname -p | sed -e 's/i.86/x86/')
+ endif
+ 
++BUILD_STANDALONE    = 0
++BUILD_CLIENT        = 1
++BUILD_SERVER        = 1
++BUILD_UPDATE_SERVER = 0
++BUILD_GAME_SO       = 1
++BUILD_GAME_QVM      = 1
++BUILD_BASEGAME      = 1
++BUILD_RENDERER_REND2= 0
++BUILD_ARCHIVE       = 0
++
+ ifndef BUILD_STANDALONE
+   BUILD_STANDALONE =
+ endif
+@@ -725,7 +735,7 @@ ifdef MINGW
+ 
+   ifeq ($(COMPILE_PLATFORM),cygwin)
+     TOOLS_BINEXT=.exe
+-    
++
+     # Under cygwin the default of using gcc for TOOLS_CC won't work, so
+     # we need to figure out the appropriate compiler to use, based on the
+     # host architecture that we're running under (as tools run on the host)
+@@ -1968,7 +1978,7 @@ Q3ROBJ = \
+   $(B)/renderer/tr_world.o \
+ 
+ ifeq ($(USE_BLOOM),1)
+-  Q3ROBJ += $(B)/renderer/tr_bloom.o 
++  Q3ROBJ += $(B)/renderer/tr_bloom.o
+ endif
+ 
+   Q3ROBJ += $(B)/renderer/sdl_gamma.o
+@@ -2770,7 +2780,7 @@ $(B)/rend2/glsl/%.c: $(R2DIR)/glsl/%.glsl $(STRINGIFY)
+ 
+ $(B)/rend2/glsl/%.o: $(B)/rend2/glsl/%.c
+ 	$(DO_REF_CC)
+-	
++
+ $(B)/rend2/%.o: $(R2DIR)/%.c
+ 	$(DO_REF_CC)
+ 
+@@ -2932,7 +2942,7 @@ $(B)/$(BASEGAME)/qcommon/%.asm: $(CMDIR)/%.c $(Q3LCC)
+ 
+ OBJ = $(Q3OBJ) $(Q3ROBJ) $(Q3R2OBJ) $(Q3DOBJ) $(JPGOBJ) $(FTOBJ) \
+   $(Q3GOBJ) $(Q3CGOBJ) $(Q3UIOBJ) \
+-  $(Q3GVMOBJ) $(Q3CGVMOBJ) $(Q3UIVMOBJ) 
++  $(Q3GVMOBJ) $(Q3CGVMOBJ) $(Q3UIVMOBJ)
+ TOOLSOBJ = $(LBURGOBJ) $(Q3CPPOBJ) $(Q3RCCOBJ) $(Q3LCCOBJ) $(Q3ASMOBJ)
+ STRINGOBJ = $(Q3R2STRINGOBJ)
+ 
+diff --git a/SP/Makefile b/SP/Makefile
+index 860ab65d..5e23e24d 100644
+--- a/SP/Makefile
++++ b/SP/Makefile
+@@ -11,6 +11,16 @@ ifeq ($(COMPILE_PLATFORM),sunos)
+   COMPILE_ARCH=$(shell uname -p | sed -e 's/i.86/x86/')
+ endif
+ 
++BUILD_STANDALONE    = 0
++BUILD_CLIENT        = 1
++BUILD_SERVER        = 0
++BUILD_GAME_SO       = 1
++BUILD_GAME_QVM      = 1
++BUILD_BASEGAME      = 1
++BUILD_RENDERER_REND2= 0
++BUILD_ARCHIVE       = 0
++
++
+ ifndef BUILD_STANDALONE
+   BUILD_STANDALONE =
+ endif
+@@ -714,7 +724,7 @@ ifdef MINGW
+ 
+   ifeq ($(COMPILE_PLATFORM),cygwin)
+     TOOLS_BINEXT=.exe
+-    
++
+     # Under cygwin the default of using gcc for TOOLS_CC won't work, so
+     # we need to figure out the appropriate compiler to use, based on the
+     # host architecture that we're running under (as tools run on the host)
+@@ -1944,7 +1954,7 @@ Q3ROBJ = \
+   $(B)/renderer/tr_world.o \
+ 
+ ifeq ($(USE_BLOOM),1)
+-  Q3ROBJ += $(B)/renderer/tr_bloom.o 
++  Q3ROBJ += $(B)/renderer/tr_bloom.o
+ endif
+ 
+   Q3ROBJ += $(B)/renderer/sdl_gamma.o
+@@ -2736,7 +2746,7 @@ $(B)/rend2/glsl/%.c: $(R2DIR)/glsl/%.glsl $(STRINGIFY)
+ 
+ $(B)/rend2/glsl/%.o: $(B)/rend2/glsl/%.c
+ 	$(DO_REF_CC)
+-	
++
+ $(B)/rend2/%.o: $(R2DIR)/%.c
+ 	$(DO_REF_CC)
+ 
+@@ -2898,7 +2908,7 @@ $(B)/$(BASEGAME)/qcommon/%.asm: $(CMDIR)/%.c $(Q3LCC)
+ 
+ OBJ = $(Q3OBJ) $(Q3ROBJ) $(Q3R2OBJ) $(Q3DOBJ) $(JPGOBJ) $(FTOBJ) \
+   $(Q3GOBJ) $(Q3CGOBJ) $(Q3UIOBJ) \
+-  $(Q3GVMOBJ) $(Q3CGVMOBJ) $(Q3UIVMOBJ) 
++  $(Q3GVMOBJ) $(Q3CGVMOBJ) $(Q3UIVMOBJ)
+ TOOLSOBJ = $(LBURGOBJ) $(Q3CPPOBJ) $(Q3RCCOBJ) $(Q3LCCOBJ) $(Q3ASMOBJ)
+ STRINGOBJ = $(Q3R2STRINGOBJ)
+ 
+-- 
+2.34.1
+
