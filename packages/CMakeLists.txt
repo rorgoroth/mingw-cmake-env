@@ -87,6 +87,8 @@ list(
   libplacebo
   mpv
   curl
+  iortcw
+  iortcw-mp
   quake3e
   quake3e-urt
 )
