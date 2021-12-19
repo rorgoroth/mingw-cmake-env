@@ -1,6 +1,6 @@
-From 0e1373834c6581354731624d215824002015d703 Mon Sep 17 00:00:00 2001
+From 41992110dc8c8e1e33c631efa4f2441b5c6a5100 Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
-Date: Tue, 28 Sep 2021 20:13:30 +0100
+Date: Sun, 19 Dec 2021 14:33:29 +0000
 Subject: [PATCH] makefile build opts
 
 ---
@@ -8,13 +8,13 @@ Subject: [PATCH] makefile build opts
  1 file changed, 15 insertions(+), 22 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 7b874c2..68de29e 100644
+index e4e4d2d3..0a53f8bd 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,28 +23,21 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
    endif
  endif
-
+ 
 -BUILD_CLIENT     = 1
 -BUILD_SERVER     = 1
 -
@@ -39,22 +39,22 @@ index 7b874c2..68de29e 100644
 -
 +BUILD_CLIENT        = 1
 +BUILD_SERVER        = 1
-+USE_SDL             = 0
 +USE_CURL            = 1
 +USE_LOCAL_HEADERS   = 0
-+USE_VULKAN          = 1
-+USE_OPENGL          = 1
-+USE_OPENGL2         = 1
-+USE_SYSTEM_JPEG     = 0
-+USE_VULKAN_API      = 1
++USE_OPENGL          = 0
++USE_OPENGL2         = 0
 +USE_RENDERER_DLOPEN = 0
++USE_SDL             = 0
++USE_SYSTEM_JPEG     = 0
++USE_VULKAN          = 1
++USE_VULKAN_API      = 1
++RENDERER_DEFAULT    = vulkan
 +CNAME               = quake3e
 +DNAME               = quake3e.ded
 +RENDERER_PREFIX     = $(CNAME)
-+RENDERER_DEFAULT    = vulkan
-
+ 
  ifeq ($(V),1)
  echo_cmd=@:
---
+-- 
 2.34.1
 
