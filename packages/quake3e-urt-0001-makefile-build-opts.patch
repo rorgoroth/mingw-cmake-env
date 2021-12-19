@@ -1,20 +1,20 @@
-From be911d0a5da8f5eb8c248bf253267761099a2f36 Mon Sep 17 00:00:00 2001
+From 79cc02d0be62926fdc90d6a17b828f44353c3911 Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
-Date: Mon, 29 Nov 2021 21:35:53 +0000
-Subject: [PATCH 1/2] makefile build opts
+Date: Sun, 19 Dec 2021 14:26:51 +0000
+Subject: [PATCH] makefile build opts
 
 ---
  Makefile | 42 +++++++++++++++++-------------------------
  1 file changed, 17 insertions(+), 25 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 328de68..3522442 100644
+index 328de685..c922ef33 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,31 +23,23 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
    endif
  endif
-
+ 
 -BUILD_CLIENT     = 1
 -BUILD_SERVER     = 1
 -
@@ -42,24 +42,24 @@ index 328de68..3522442 100644
 -
 +BUILD_CLIENT        = 1
 +BUILD_SERVER        = 1
-+USE_SDL             = 0
 +USE_CURL            = 1
 +USE_LOCAL_HEADERS   = 0
-+USE_VULKAN_API      = 1
++USE_OPENGL          = 0
 +USE_OPENGL2         = 0
-+USE_OPENGL2         = 0
-+USE_SYSTEM_JPEG     = 0
-+USE_VULKAN_API      = 1
 +USE_Q3KEY           = 1
-+USE_URT_DEMO        = 1
 +USE_RENDERER_DLOPEN = 0
++USE_SDL             = 0
++USE_SYSTEM_JPEG     = 0
++USE_URT_DEMO        = 1
++USE_VULKAN          = 1
++USE_VULKAN_API      = 1
++RENDERER_DEFAULT    = vulkan
 +CNAME               = quake3e-urt
 +DNAME               = quake3e-urt.ded
 +RENDERER_PREFIX     = $(CNAME)
-+RENDERER_DEFAULT    = vulkan
-
+ 
  ifeq ($(V),1)
  echo_cmd=@:
---
+-- 
 2.34.1
 
