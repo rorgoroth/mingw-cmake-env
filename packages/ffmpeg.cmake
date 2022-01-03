@@ -7,6 +7,7 @@ ExternalProject_Add(ffmpeg
     libpng
     libxml2
     libzimg
+    vulkan
   GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
@@ -38,6 +39,8 @@ ExternalProject_Add(ffmpeg
     --enable-nonfree
     --enable-postproc
     --enable-runtime-cpudetect
+    --enable-schannel
+    --enable-vulkan
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1

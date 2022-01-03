@@ -79,12 +79,12 @@ list(
   fontconfig
   libass
   libxml2
-  ffmpeg
-  spirv-cross
   vulkan
+  spirv-cross
   shaderc
   libepoxy
   libplacebo
+  ffmpeg
   mpv
   curl
   iortcw
