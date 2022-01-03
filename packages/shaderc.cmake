@@ -1,5 +1,4 @@
 ExternalProject_Add(shaderc
-  DEPENDS
   GIT_REPOSITORY https://github.com/rorgoroth/mpv-shaderc.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
