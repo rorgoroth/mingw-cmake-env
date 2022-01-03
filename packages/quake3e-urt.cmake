@@ -1,7 +1,6 @@
 
 ExternalProject_Add(quake3e-urt
-  DEPENDS
-    gcc
+  DEPENDS gcc
   GIT_REPOSITORY https://github.com/rorgoroth/quake3e-urt.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
