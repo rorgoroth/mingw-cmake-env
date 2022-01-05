@@ -14,7 +14,7 @@ index 328de685..c922ef33 100644
 @@ -23,31 +23,23 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
    endif
  endif
- 
+
 -BUILD_CLIENT     = 1
 -BUILD_SERVER     = 1
 -
@@ -57,9 +57,9 @@ index 328de685..c922ef33 100644
 +CNAME               = quake3e-urt
 +DNAME               = quake3e-urt.ded
 +RENDERER_PREFIX     = $(CNAME)
- 
+
  ifeq ($(V),1)
  echo_cmd=@:
--- 
+--
 2.34.1
 
