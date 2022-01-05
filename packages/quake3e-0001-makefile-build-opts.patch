@@ -14,7 +14,7 @@ index e4e4d2d3..0a53f8bd 100644
 @@ -23,28 +23,21 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
    endif
  endif
- 
+
 -BUILD_CLIENT     = 1
 -BUILD_SERVER     = 1
 -
@@ -52,9 +52,9 @@ index e4e4d2d3..0a53f8bd 100644
 +CNAME               = quake3e
 +DNAME               = quake3e.ded
 +RENDERER_PREFIX     = $(CNAME)
- 
+
  ifeq ($(V),1)
  echo_cmd=@:
--- 
+--
 2.34.1
 
