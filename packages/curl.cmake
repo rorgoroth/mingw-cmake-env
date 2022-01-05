@@ -9,6 +9,8 @@ ExternalProject_Add(curl
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-curldebug
     --disable-debug
+    --disable-ldap
+    --disable-ldaps
     --disable-manual
     --disable-shared
     --disable-verbose
