@@ -1,7 +1,7 @@
 ExternalProject_Add(curl
   DEPENDS gcc
-  URL https://github.com/curl/curl/releases/download/curl-7_80_0/curl-7.80.0.tar.xz
-  URL_HASH MD5=cf9f8553762150ef0ebcd5ee412737f5
+  URL https://github.com/curl/curl/releases/download/curl-7_81_0/curl-7.81.0.tar.bz2
+  URL_HASH MD5=f42ab772edb85374fc985ae65810439e
   PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/curl-001.patch
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
