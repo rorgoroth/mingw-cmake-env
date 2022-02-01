@@ -8,8 +8,8 @@ ExternalProject_Add(mingw-w64-headers
   CONFIGURE_COMMAND <SOURCE_DIR>/mingw-w64/mingw-w64-headers/configure
     --host=${TARGET_ARCH}
     --prefix=${MINGW_INSTALL_PREFIX}
-    --enable-sdk=all
     --enable-idl
+    --enable-sdk=all
     --with-default-msvcrt=msvcrt
     --with-default-win32-winnt=0x0A00
   BUILD_COMMAND ""
