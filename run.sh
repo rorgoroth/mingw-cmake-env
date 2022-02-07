@@ -10,6 +10,18 @@ build () {
   cd .. || exit
 }
 
+fullbuild () {
+  cd build || exit
+    ninja update || exit
+    ninja clean || exit 
+    ninja -j1 || exit
+    find ../bin/ -type f -name '*.exe' -delete
+    find ../bin/ -type f -name '*.com' -delete
+    find ../bin/ -type f -name '*.dll' -delete
+    cp -r packages/*-package ../bin
+  cd .. || exit
+}
+
 clean () {
   rm -rfv build/packages/"$2"-*
 }
@@ -43,6 +55,9 @@ case "$1" in
   "build")
     build
     ;;
+  "fullbuild")
+    fullbuild
+    ;;
   "pkg")
     package
     ;;
@@ -50,7 +65,7 @@ case "$1" in
     clean $@
     ;;
   *)
-    echo "Accepted Args: build | pkg | clean "package""
+    echo "Accepted Args: build | fullbuild | pkg | clean "package""
     exit 1
     ;;
 esac
