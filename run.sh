@@ -10,6 +10,10 @@ build () {
   cd .. || exit
 }
 
+clean () {
+  rm -rfv build/packages/"$2"-*
+}
+
 package () {
   cd bin || exit
   rm -rf ./*.7z
@@ -33,10 +37,6 @@ package () {
   mv -- */*.7z .
 
   cd .. || exit
-}
-
-clean () {
-  rm -rfv build/packages/"$2"-*
 }
 
 case "$1" in
