@@ -8,7 +8,7 @@ Binary Downloads (mpv, q3, iortcw, etc): [Here](https://drive.google.com/drive/f
 
 Basic build deps:
 ```
-apk add -i autoconf automake cmake diffutils gcc g++ gettext-dev git gmp-dev gperf libtool make meson mpc1-dev mpfr-dev nasm ninja p7zip patch po4a py3-mako yasm
+apk add -i autoconf automake cmake diffutils gcc g++ gettext-dev git gmp-dev gperf libtool make meson mpc1-dev mpfr-dev nasm ninja p7zip patch po4a py3-mako texinfo yasm
 ```
 
 Setup/Build:
