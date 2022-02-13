@@ -13,7 +13,7 @@ build () {
 fullbuild () {
   cd build || exit
     ninja update || exit
-    ninja clean || exit 
+    ninja clean || exit
     ninja -j1 || exit
     find ../bin/ -type f -name '*.exe' -delete
     find ../bin/ -type f -name '*.com' -delete
