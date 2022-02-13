@@ -3,8 +3,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/luajit.pc.in ${CMAKE_CURRENT_BINARY_D
 
 ExternalProject_Add(luajit
   DEPENDS libiconv
-  GIT_REPOSITORY https://github.com/LuaJIT/LuaJIT.git
+  GIT_REPOSITORY https://github.com/openresty/luajit2.git
   GIT_SHALLOW 1
+  GIT_REMOTE_NAME origin
+  GIT_TAG v2.1-agentzh
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE} -C <SOURCE_DIR>/src
