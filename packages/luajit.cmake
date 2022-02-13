@@ -5,7 +5,6 @@ ExternalProject_Add(luajit
   DEPENDS libiconv
   GIT_REPOSITORY https://github.com/LuaJIT/LuaJIT.git
   GIT_SHALLOW 1
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/luajit-*.patch
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE} -C <SOURCE_DIR>/src
