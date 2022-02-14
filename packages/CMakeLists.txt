@@ -61,7 +61,6 @@ list(
   APPEND
   ep
   gmp
-  xz
   uchardet
   rubberband
   zlib
