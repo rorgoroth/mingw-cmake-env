@@ -65,7 +65,7 @@ case "$1" in
     clean $@
     ;;
   *)
-    echo "Accepted Args: build | fullbuild | pkg | clean "package""
+    echo "Accepted Args: build | fullbuild | pkg | clean \$package"
     exit 1
     ;;
 esac
