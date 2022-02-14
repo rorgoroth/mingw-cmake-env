@@ -5,7 +5,7 @@ include(ProcessorCount)
 
 if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
   message(
-    WARNING "Generator “${CMAKE_GENERATOR}” is unsupported!\nTry Ninja if you encounter problems.")
+    FATAL_ERROR "Generator “${CMAKE_GENERATOR}” is unsupported!\nTry Ninja if you encounter problems.")
 endif()
 
 set(TARGET_ARCH
@@ -20,8 +20,8 @@ if(TARGET_CPU MATCHES "x86_64")
   set(TARGET_CPU_FAMILY "x86_64")
   set(TARGET_BITS 64)
 else()
-  set(TARGET_CPU_FAMILY "x86")
-  set(TARGET_BITS 32)
+  message(
+    FATAL_ERROR "Only 64bit is supported.")
 endif()
 
 ProcessorCount(CPU_COUNT)
