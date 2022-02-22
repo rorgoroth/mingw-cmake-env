@@ -1,40 +1,40 @@
-From 968be0133f9ce38cf178abc406e584cc1ef9da7e Mon Sep 17 00:00:00 2001
+From d5c95a9a83e125f8bd96dd9cd9cbf2075784ed29 Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
-Date: Mon, 29 Nov 2021 21:36:09 +0000
-Subject: [PATCH 2/2] q3 version
+Date: Tue, 22 Feb 2022 15:43:19 +0000
+Subject: [PATCH] q3 version
 
 ---
- code/qcommon/q_shared.h | 28 +++++++++++++---------------
- 1 file changed, 13 insertions(+), 15 deletions(-)
+ code/qcommon/q_shared.h | 43 +++++++++++++++++++----------------------
+ 1 file changed, 20 insertions(+), 23 deletions(-)
 
 diff --git a/code/qcommon/q_shared.h b/code/qcommon/q_shared.h
-index 954ecc2..d1dfeec 100644
+index 954ecc2d..badf2610 100644
 --- a/code/qcommon/q_shared.h
 +++ b/code/qcommon/q_shared.h
-@@ -26,31 +26,29 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+@@ -26,31 +26,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  // q_shared.h -- included first by ALL program modules.
  // A user mod should never modify this file
 
 -#define Q3_VERSION            "UrtSlim-Q3e"
-+#define Q3_VERSION              "ioQ3 1.35 urt 4.3.4"
++#define Q3_VERSION              "Quake3e Urban Terror 4.3.4"
  #ifndef SVN_VERSION
    #define SVN_VERSION Q3_VERSION
  #endif
 -#define CLIENT_WINDOW_TITLE   "Urban Terror Slim"
 -#define CONSOLE_WINDOW_TITLE  "Urt Console"
 -// 1.32 released 7-10-2002
-+#define CLIENT_WINDOW_TITLE     "Quake3e-UrT"
-+#define CONSOLE_WINDOW_TITLE    "Quake3e-UrT Console"
++#define CLIENT_WINDOW_TITLE     "Quake3e Urban Terror"
++#define CONSOLE_WINDOW_TITLE    "q3e UrT Console"
 
 -//#define DEFAULT_GAME			"edawn"
 -#define DEFAULT_GAME				"q3ut4"
-+#define DEFAULT_GAME            "q3ut4"
-
+-
 -#define BASEGAME				"q3ut4"
 -#define BASEDEMO				"demoq3"
 -#define BASETA					"missionpack"
 -#define STEAMPATH_NAME			"Quake 3 Arena"
 -#define STEAMPATH_APPID			"2200"
++#define DEFAULT_GAME            "q3ut4"
 +#define BASEGAME                "q3ut4"
 +#define BASEDEMO                "demoq3"
 +#define BASETA                  "missionpack"
@@ -42,7 +42,8 @@ index 954ecc2..d1dfeec 100644
 +#define STEAMPATH_APPID         "2200"
 
  #define MAX_TEAMNAME            32
- #define MAX_MASTER_SERVERS      5	// number of supported master servers
+-#define MAX_MASTER_SERVERS      5	// number of supported master servers
++#define MAX_MASTER_SERVERS      5
 
 -#define GAMENAME_FOR_MASTER		"Quake3Arena"
 -#define HEARTBEAT_FOR_MASTER	"QuakeArena-1"
@@ -51,11 +52,11 @@ index 954ecc2..d1dfeec 100644
 
 -#define DEMOEXT	"dm_"			// standard demo extension
 -#define URTDEMOEXT "urtdemo"
-+#define DEMOEXT                 "dm_"			// standard demo extension
++#define DEMOEXT                 "dm_"
 +#define URTDEMOEXT              "urtdemo"
 
  #ifdef _MSC_VER
 
 --
-2.34.1
+2.35.1
 
