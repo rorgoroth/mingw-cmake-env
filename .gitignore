@@ -6,3 +6,5 @@ bin/mpv-package/mpv.com
 bin/mpv-package/mpv.exe
 bin/quake3e-package
 bin/quake3e-urt-package
+
+bin/quake3e-urt-slim-package

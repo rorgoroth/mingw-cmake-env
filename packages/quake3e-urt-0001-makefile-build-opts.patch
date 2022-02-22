@@ -1,20 +1,20 @@
-From 79cc02d0be62926fdc90d6a17b828f44353c3911 Mon Sep 17 00:00:00 2001
+From 85412b5457adfe1a68676a7f8bb9bccaa7abd329 Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
-Date: Sun, 19 Dec 2021 14:26:51 +0000
-Subject: [PATCH] makefile build opts
+Date: Tue, 22 Feb 2022 16:53:31 +0000
+Subject: [PATCH] Makefile Options
 
 ---
- Makefile | 42 +++++++++++++++++-------------------------
- 1 file changed, 17 insertions(+), 25 deletions(-)
+ Makefile | 41 +++++++++++++++++------------------------
+ 1 file changed, 17 insertions(+), 24 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 328de685..c922ef33 100644
+index d124938c..2f53ee03 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -23,31 +23,23 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
+@@ -23,30 +23,23 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
    endif
  endif
-
+ 
 -BUILD_CLIENT     = 1
 -BUILD_SERVER     = 1
 -
@@ -26,40 +26,39 @@ index 328de685..c922ef33 100644
 -USE_OPENGL2      = 0
 -USE_SYSTEM_JPEG  = 0
 -USE_VULKAN_API   = 1
--USE_Q3KEY	 = 1
+-USE_Q3KEY        = 1
 -USE_URT_DEMO     = 1
--
 -
 -USE_RENDERER_DLOPEN = 1
 -
--CNAME            = urbanterror-slim
--DNAME            = urbanterror-slim.ded
+-CNAME            = urbanterror
+-DNAME            = urbanterror-server
 -
 -RENDERER_PREFIX  = $(CNAME)
 -
 -# valid options: opengl, vulkan, opengl2
 -RENDERER_DEFAULT = opengl
 -
-+BUILD_CLIENT        = 1
-+BUILD_SERVER        = 1
-+USE_CURL            = 1
-+USE_LOCAL_HEADERS   = 0
-+USE_OPENGL          = 0
-+USE_OPENGL2         = 0
-+USE_Q3KEY           = 1
-+USE_RENDERER_DLOPEN = 0
-+USE_SDL             = 0
-+USE_SYSTEM_JPEG     = 0
-+USE_URT_DEMO        = 1
-+USE_VULKAN          = 1
-+USE_VULKAN_API      = 1
-+RENDERER_DEFAULT    = vulkan
-+CNAME               = quake3e-urt
-+DNAME               = quake3e-urt.ded
-+RENDERER_PREFIX     = $(CNAME)
-
++BUILD_CLIENT		= 1
++BUILD_SERVER		= 1
++USE_SDL				= 0
++USE_CURL			= 1
++USE_LOCAL_HEADERS	= 1
++USE_VULKAN			= 1
++USE_OPENGL			= 0
++USE_OPENGL2			= 0
++USE_SYSTEM_JPEG		= 0
++USE_VULKAN_API		= 1
++USE_Q3KEY			= 1
++USE_URT_DEMO		= 1
++USE_RENDERER_DLOPEN	= 0
++RENDERER_PREFIX		= $(CNAME)
++RENDERER_DEFAULT	= vulkan
++CNAME				= urbanterror
++DNAME				= urbanterror-server
+ 
  ifeq ($(V),1)
  echo_cmd=@:
---
-2.34.1
+-- 
+2.35.1
 

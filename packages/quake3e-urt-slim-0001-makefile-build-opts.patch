@@ -1,17 +1,17 @@
-From d2edce6b460a905464cc6523a1ea946f86fa86d7 Mon Sep 17 00:00:00 2001
+From 210c2cf48e1e0340d48bcb9a86e4b6d9e1b203f7 Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
-Date: Tue, 22 Feb 2022 16:53:26 +0000
+Date: Tue, 22 Feb 2022 16:53:38 +0000
 Subject: [PATCH] Makefile Options
 
 ---
- Makefile | 36 +++++++++++++++---------------------
- 1 file changed, 15 insertions(+), 21 deletions(-)
+ Makefile | 44 +++++++++++++++++++-------------------------
+ 1 file changed, 19 insertions(+), 25 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 7b874c26..a17e4d98 100644
+index e00363e3..20371929 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -23,27 +23,21 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
+@@ -23,31 +23,25 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
    endif
  endif
  
@@ -26,18 +26,23 @@ index 7b874c26..a17e4d98 100644
 -USE_OPENGL2      = 0
 -USE_SYSTEM_JPEG  = 0
 -USE_VULKAN_API   = 1
+-USE_Q3KEY	 = 1
+-USE_URT_DEMO     = 1
+-
 -
 -USE_RENDERER_DLOPEN = 1
 -
--CNAME            = quake3e
--DNAME            = quake3e.ded
+-CNAME            = urbanterror-slim
+-DNAME            = urbanterror-slim.ded
 -
 -RENDERER_PREFIX  = $(CNAME)
 -
 -# valid options: opengl, vulkan, opengl2
 -RENDERER_DEFAULT = opengl
+-
 +BUILD_CLIENT		= 1
 +BUILD_SERVER		= 1
++
 +USE_SDL				= 0
 +USE_CURL			= 1
 +USE_LOCAL_HEADERS	= 1
@@ -46,14 +51,17 @@ index 7b874c26..a17e4d98 100644
 +USE_OPENGL2			= 0
 +USE_SYSTEM_JPEG		= 0
 +USE_VULKAN_API		= 1
++USE_Q3KEY			= 1
++USE_URT_DEMO		= 1
 +USE_RENDERER_DLOPEN	= 0
-+CNAME				= quake3e
-+DNAME				= quake3e.ded
 +RENDERER_PREFIX		= $(CNAME)
 +RENDERER_DEFAULT	= vulkan
- 
++
++CNAME				= urbanterror-slim
++DNAME				= urbanterror-slim.ded
  
  ifeq ($(V),1)
+ echo_cmd=@:
 -- 
 2.35.1
 
