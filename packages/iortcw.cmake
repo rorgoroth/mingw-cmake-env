@@ -1,6 +1,6 @@
 ExternalProject_Add(iortcw
   DEPENDS gcc
-  GIT_REPOSITORY https://github.com/rorgoroth/iortcw.git
+  GIT_REPOSITORY https://github.com/iortcw/iortcw.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/iortcw-0*.patch
