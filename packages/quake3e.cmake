@@ -1,4 +1,3 @@
-
 ExternalProject_Add(quake3e
   DEPENDS gcc
   GIT_REPOSITORY https://github.com/ec-/Quake3e.git

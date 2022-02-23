@@ -14,7 +14,7 @@ index d124938c..2f53ee03 100644
 @@ -23,30 +23,23 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
    endif
  endif
- 
+
 -BUILD_CLIENT     = 1
 -BUILD_SERVER     = 1
 -
@@ -41,24 +41,24 @@ index d124938c..2f53ee03 100644
 -
 +BUILD_CLIENT		= 1
 +BUILD_SERVER		= 1
-+USE_SDL				= 0
++USE_SDL			= 0
 +USE_CURL			= 1
-+USE_LOCAL_HEADERS	= 1
++USE_LOCAL_HEADERS	= 0
 +USE_VULKAN			= 1
 +USE_OPENGL			= 0
-+USE_OPENGL2			= 0
-+USE_SYSTEM_JPEG		= 0
++USE_OPENGL2		= 0
++USE_SYSTEM_JPEG	= 0
 +USE_VULKAN_API		= 1
 +USE_Q3KEY			= 1
 +USE_URT_DEMO		= 1
-+USE_RENDERER_DLOPEN	= 0
-+RENDERER_PREFIX		= $(CNAME)
++USE_RENDERER_DLOPEN= 0
++RENDERER_PREFIX	= $(CNAME)
 +RENDERER_DEFAULT	= vulkan
 +CNAME				= urbanterror
 +DNAME				= urbanterror-server
- 
+
  ifeq ($(V),1)
  echo_cmd=@:
--- 
+--
 2.35.1
 
