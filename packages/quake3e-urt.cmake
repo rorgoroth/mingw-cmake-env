@@ -1,4 +1,3 @@
-
 ExternalProject_Add(quake3e-urt
   DEPENDS gcc
   GIT_REPOSITORY https://github.com/urbanterror/Quake3e.git

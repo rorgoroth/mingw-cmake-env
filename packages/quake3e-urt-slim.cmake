@@ -1,4 +1,3 @@
-
 ExternalProject_Add(quake3e-urt-slim
   DEPENDS gcc
   GIT_REPOSITORY https://github.com/omg-urt/urbanterror-slim.git
