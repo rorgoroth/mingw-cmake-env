@@ -1,7 +1,7 @@
 ExternalProject_Add(mingw-w64
   PREFIX mingw-w64-prefix
-  URL https://github.com/mingw-w64/mingw-w64/archive/9ed7b8dcfb3186fdfed1be2a374963458af618b1.zip
-  URL_HASH MD5=f076bb629c6d88f7ca593ca819710dcf
+  URL https://github.com/mingw-w64/mingw-w64/archive/99c95def1dcafdd7a2faa671942bdd17cc19864d.zip
+  URL_HASH MD5=6b9ac6ad0098e365ab7b2c8bffa22330
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
