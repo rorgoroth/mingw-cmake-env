@@ -21,6 +21,8 @@ ExternalProject_Add(mpv
     TARGET=${TARGET_ARCH}
     DEST_OS=win32
     <SOURCE_DIR>/waf configure
+    --out=<BINARY_DIR>
+    --top=<SOURCE_DIR>
     --disable-manpage-build
     --enable-lcms2
     --enable-lua
@@ -32,7 +34,6 @@ ExternalProject_Add(mpv
     --prefix=${MINGW_INSTALL_PREFIX}
   BUILD_COMMAND ${EXEC} <SOURCE_DIR>/waf
   INSTALL_COMMAND ""
-  BUILD_IN_SOURCE 1
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
 
@@ -46,16 +47,15 @@ ExternalProject_Add_Step(mpv bootstrap
 
 ExternalProject_Add_Step(mpv strip-binary
   DEPENDEES build
-  COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/mpv.exe
-  COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <SOURCE_DIR>/build/mpv.com
-  COMMENT "Stripping mpv binaries"
+  COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <BINARY_DIR>/mpv.exe
+  COMMAND ${EXEC} ${TARGET_ARCH}-strip -s <BINARY_DIR>/mpv.com
 )
 
 ExternalProject_Add_Step(mpv copy-binary
   DEPENDEES strip-binary
-  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/mpv.exe
+  COMMAND ${CMAKE_COMMAND} -E copy  <BINARY_DIR>/mpv.exe
                                     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.exe
-  COMMAND ${CMAKE_COMMAND} -E copy  <SOURCE_DIR>/build/mpv.com
+  COMMAND ${CMAKE_COMMAND} -E copy  <BINARY_DIR>/mpv.com
                                     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com
 )
 
