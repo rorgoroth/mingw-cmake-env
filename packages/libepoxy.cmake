@@ -11,7 +11,7 @@ ExternalProject_Add(libepoxy
     --default-library=static
     -Dtests=false
     -Ddocs=false
-  BUILD_COMMAND ${EXEC} ninja -C <BINARY_DIR>
+  BUILD_COMMAND ${EXEC} ninja -j${MAKEJOBS} -C <BINARY_DIR>
   INSTALL_COMMAND ${EXEC} ninja -C <BINARY_DIR> install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
