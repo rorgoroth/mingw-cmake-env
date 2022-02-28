@@ -7,15 +7,15 @@ ExternalProject_Add(freetype2
   GIT_REPOSITORY https://github.com/freetype/freetype.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ${CMAKE_CURRENT_BINARY_DIR}/ft2exec <SOURCE_DIR>/configure
+  CONFIGURE_COMMAND ${EXEC} ${CMAKE_CURRENT_BINARY_DIR}/ft2exec <SOURCE_DIR>/configure
     --build=${HOST_ARCH}
     --host=${TARGET_ARCH}
     --prefix=${MINGW_INSTALL_PREFIX}
     --with-sysroot=${MINGW_INSTALL_PREFIX}
     --disable-shared
     --without-harfbuzz
-  BUILD_COMMAND ${MAKE}
-  INSTALL_COMMAND ${MAKE} install
+  BUILD_COMMAND ${EXEC} ${MAKE}
+  INSTALL_COMMAND ${EXEC} ${MAKE} install
   COMMAND ${CMAKE_COMMAND} -E create_symlink  ${MINGW_INSTALL_PREFIX}/bin/freetype-config
                                               ${CMAKE_INSTALL_PREFIX}/bin/freetype-config
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
