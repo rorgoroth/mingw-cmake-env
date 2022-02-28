@@ -17,13 +17,14 @@ ExternalProject_Add(gcc-base
     --disable-shared
     --disable-win32-registry
     --enable-checking=release
+    --enable-default-pie
+    --enable-default-ssp
     --enable-languages=c,c++
     --enable-libssp
     --enable-lto
     --enable-seh-exceptions
     --enable-threads=posix
-    --with-arch=x86-64
-    --with-tune=generic
+    --with-arch=x86-64-v3
     --without-included-gettext
   BUILD_COMMAND make -j${MAKEJOBS} all-gcc
   INSTALL_COMMAND make install-strip-gcc
