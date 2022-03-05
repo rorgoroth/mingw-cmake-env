@@ -1,6 +1,6 @@
 ExternalProject_Add(expat
-  URL https://github.com/libexpat/libexpat/releases/download/R_2_4_6/expat-2.4.6.tar.bz2
-  URL_HASH MD5=eb735f87dac7d50007259929b0674aa6
+  URL https://github.com/libexpat/libexpat/releases/download/R_2_4_7/expat-2.4.7.tar.bz2
+  URL_HASH MD5=cd3d5825dbd57519232cfcadd14a5725
   CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     -G Ninja
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
