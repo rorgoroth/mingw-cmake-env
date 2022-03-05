@@ -1,7 +1,6 @@
 ExternalProject_Add(ffmpeg
   DEPENDS
     bzip2
-    fribidi
     gmp
     libass
     libpng
