@@ -9,8 +9,6 @@ ExternalProject_Add(ffmpeg
     vulkan
   GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
   GIT_SHALLOW 1
-  GIT_REMOTE_NAME origin
-  GIT_TAG release/5.0
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
     --cross-prefix=${TARGET_ARCH}-
