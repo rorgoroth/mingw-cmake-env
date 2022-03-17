@@ -1,7 +1,9 @@
 ExternalProject_Add(libplacebo
   DEPENDS
     lcms2
+    libepoxy
     shaderc
+    spirv-cross
     vulkan
   GIT_REPOSITORY https://github.com/haasn/libplacebo.git
   GIT_SHALLOW 1
@@ -13,6 +15,8 @@ ExternalProject_Add(libplacebo
     --buildtype=release
     --default-library=static
     -Ddemos=false
+    -Dd3d11=enabled
+    -Dvulkan=enabled
     -Dvulkan-registry='${MINGW_INSTALL_PREFIX}/share/vulkan/registry/vk.xml'
   BUILD_COMMAND ${EXEC} ninja -j${MAKEJOBS} -C <BINARY_DIR>
   INSTALL_COMMAND ${EXEC} ninja -C <BINARY_DIR> install
