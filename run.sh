@@ -28,31 +28,34 @@ clean () {
 
 package () {
   cd bin || exit
-  rm -rf ./*.7z
+    rm -rf ./*.7z
 
   cd mpv-package || exit
-  7za a "mpv-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "mpv-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
   cd iortcw-package || exit
-  7za a "iortcw-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "iortcw-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
   cd quake3e-package || exit
-  7za a "quake3e-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "quake3e-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
   cd quake3e-urt-package || exit
-  7za a "quake3e-urt-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "quake3e-urt-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
   cd quake3e-urt-slim-package || exit
-  7za a "quake3e-urt-slim-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "quake3e-urt-slim-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
   mv -- */*.7z .
 
   cd .. || exit
+
+  gh release delete latest -y
+  gh release create --notes "Latest Build" latest ./bin/*.7z
 }
 
 case "$1" in
