@@ -53,8 +53,11 @@ package () {
   mv -- */*.7z .
 
   cd .. || exit
+}
 
+release (){
   gh release delete latest -y
+  git push --delete origin latest
   gh release create --notes "Latest Build" latest ./bin/*.7z
 }
 
@@ -68,11 +71,14 @@ case "$1" in
   "pkg")
     package
     ;;
+  "release")
+    release
+    ;;
   "clean")
     clean $@
     ;;
   *)
-    echo "Accepted Args: build | fullbuild | pkg | clean \$package"
+    echo "Accepted Args: build | fullbuild | pkg | release | clean \$package"
     exit 1
     ;;
 esac
