@@ -57,6 +57,7 @@ package () {
 
 release (){
   gh release delete latest -y
+  git tag --delete latest
   git push --delete origin latest
   gh release create --notes "Latest Build" latest ./bin/*.7z
 }
