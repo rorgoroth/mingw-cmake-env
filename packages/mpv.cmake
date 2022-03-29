@@ -13,7 +13,7 @@ ExternalProject_Add(mpv
     shaderc
     spirv-cross
     uchardet
-    vulkan
+    vulkan-loader
   GIT_REPOSITORY https://github.com/mpv-player/mpv.git
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ${EXEC}

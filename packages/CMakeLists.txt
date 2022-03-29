@@ -78,7 +78,8 @@ list(
   fontconfig
   libass
   libxml2
-  vulkan
+  vulkan-headers
+  vulkan-loader
   spirv-cross
   shaderc
   libepoxy
