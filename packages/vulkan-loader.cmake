@@ -1,21 +1,5 @@
-ExternalProject_Add(vulkan-header
-  GIT_REPOSITORY https://github.com/KhronosGroup/Vulkan-Headers.git
-  GIT_SHALLOW 1
-  GIT_REMOTE_NAME origin
-  GIT_TAG main
-  UPDATE_COMMAND ""
-  CMAKE_ARGS
-    -G Ninja
-    -DCMAKE_BUILD_TYPE=Release
-    -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
-  BUILD_COMMAND ""
-  INSTALL_COMMAND ninja install
-  LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_INSTALL 1
-)
-force_rebuild_git(vulkan-header)
-
-ExternalProject_Add(vulkan
-  DEPENDS vulkan-header
+ExternalProject_Add(vulkan-loader
+  DEPENDS vulkan-headers
   GIT_REPOSITORY https://github.com/KhronosGroup/Vulkan-Loader.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
@@ -35,7 +19,7 @@ ExternalProject_Add(vulkan
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
 
-ExternalProject_Add_Step(vulkan copy-wdk-headers
+ExternalProject_Add_Step(vulkan-loader copy-wdk-headers
   DEPENDEES download
   DEPENDERS configure
   COMMAND ${CMAKE_COMMAND} -E copy  ${CMAKE_SOURCE_DIR}/toolchain/mingw-headers/d3dkmthk.h
@@ -45,4 +29,4 @@ ExternalProject_Add_Step(vulkan copy-wdk-headers
   COMMENT "Copying extra mingw headers"
 )
 
-force_rebuild_git(vulkan)
+force_rebuild_git(vulkan-loader)

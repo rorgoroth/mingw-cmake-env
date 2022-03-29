@@ -6,7 +6,8 @@ ExternalProject_Add(ffmpeg
     libpng
     libxml2
     libzimg
-    vulkan
+    spirv-cross
+    vulkan-loader
   GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""

@@ -4,7 +4,7 @@ ExternalProject_Add(libplacebo
     libepoxy
     shaderc
     spirv-cross
-    vulkan
+    vulkan-loader
   GIT_REPOSITORY https://github.com/haasn/libplacebo.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
