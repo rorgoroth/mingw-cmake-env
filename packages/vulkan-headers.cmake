@@ -9,7 +9,7 @@ ExternalProject_Add(vulkan-headers
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
   BUILD_COMMAND ""
-  INSTALL_COMMAND ninja install
+  INSTALL_COMMAND ${NINJA} install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_INSTALL 1
 )
 force_rebuild_git(vulkan-headers)

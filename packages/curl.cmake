@@ -29,7 +29,7 @@ ExternalProject_Add(curl
     --enable-threaded-resolver
     --with-schannel
     --without-zlib
-  BUILD_COMMAND ${EXEC} ${MAKE}
-  INSTALL_COMMAND ${EXEC} ${MAKE} install
+  BUILD_COMMAND ${MAKE}
+  INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
