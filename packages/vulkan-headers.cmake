@@ -1,10 +1,8 @@
 ExternalProject_Add(vulkan-headers
-  GIT_REPOSITORY https://github.com/KhronosGroup/Vulkan-Headers.git
-  GIT_SHALLOW 1
-  GIT_REMOTE_NAME origin
-  GIT_TAG main
+  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.210.tar.gz
+  URL_HASH MD5=84d26b13f5dc564eb85dcbcf9c02ec10
   UPDATE_COMMAND ""
-  CMAKE_ARGS
+  CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
@@ -22,5 +20,3 @@ ExternalProject_Add_Step(vulkan-headers copy-wdk-headers
                                     <SOURCE_DIR>/loader/d3dukmdt.h
   COMMENT "Copying extra mingw headers"
 )
-
-force_rebuild_git(vulkan-headers)
