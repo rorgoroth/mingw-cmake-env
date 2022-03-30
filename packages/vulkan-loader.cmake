@@ -1,9 +1,10 @@
 ExternalProject_Add(vulkan-loader
   DEPENDS vulkan-headers
-  GIT_REPOSITORY https://github.com/KhronosGroup/Vulkan-Loader.git
-  GIT_SHALLOW 1
+  URL https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.209.tar.gz
+  URL_HASH MD5=9ba3f16bdcd831c463e53e5a5a340807
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-*.patch
+  PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-loader-0001.patch
+        COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-loader-0002.patch
   CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     -G Ninja
     -DCMAKE_BUILD_TYPE=Release
@@ -18,5 +19,3 @@ ExternalProject_Add(vulkan-loader
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
-
-force_rebuild_git(vulkan-loader)
