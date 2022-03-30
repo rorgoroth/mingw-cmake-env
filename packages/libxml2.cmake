@@ -11,8 +11,8 @@ ExternalProject_Add(libxml2
     --with-threads
     --with-tree
     --without-lzma
-  BUILD_COMMAND ${EXEC} ${MAKE}
-  INSTALL_COMMAND ${EXEC} ${MAKE} install
+  BUILD_COMMAND ${MAKE}
+  INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
 

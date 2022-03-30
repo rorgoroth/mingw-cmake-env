@@ -8,8 +8,8 @@ ExternalProject_Add(libpng
     --host=${TARGET_ARCH}
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-shared
-  BUILD_COMMAND ${EXEC} ${MAKE}
-  INSTALL_COMMAND ${EXEC} ${MAKE} install
+  BUILD_COMMAND ${MAKE}
+  INSTALL_COMMAND ${MAKE} install
     COMMAND ${CMAKE_COMMAND} -E create_symlink  ${MINGW_INSTALL_PREFIX}/bin/libpng-config
                                                 ${CMAKE_INSTALL_PREFIX}/bin/libpng-config
     COMMAND ${CMAKE_COMMAND} -E create_symlink  ${MINGW_INSTALL_PREFIX}/bin/libpng16-config
