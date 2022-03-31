@@ -14,7 +14,8 @@ fullbuild () {
   cd build || exit
     ninja update || exit
     ninja clean || exit
-    ninja -j1 || exit
+    ninja gcc || exit
+    ninja || exit
     find ../bin/ -type f -name '*.exe' -delete
     find ../bin/ -type f -name '*.com' -delete
     find ../bin/ -type f -name '*.dll' -delete
@@ -59,7 +60,7 @@ release (){
   gh release delete latest -y
   git tag --delete latest
   git push --delete origin latest
-  gh release create --notes "Latest Build" latest ./bin/*.7z
+  gh release create -t "Latest Build" -n "Latest Build" latest ./bin/*.7z
 }
 
 case "$1" in
