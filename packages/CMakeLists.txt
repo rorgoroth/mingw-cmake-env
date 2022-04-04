@@ -86,7 +86,6 @@ list(
   libplacebo
   ffmpeg
   mpv
-  curl
   iortcw
   iortcw-mp
   quake3e
