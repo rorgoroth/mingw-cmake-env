@@ -43,10 +43,6 @@ package () {
     7za a "quake3e-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
-  cd quake3e-urt-package || exit
-    7za a "quake3e-urt-$(date +"%Y-%m-%d").7z" -- ./*
-  cd .. || exit
-
   cd quake3e-urt-slim-package || exit
     7za a "quake3e-urt-slim-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
