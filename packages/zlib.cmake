@@ -4,7 +4,7 @@ ExternalProject_Add(zlib
   GIT_TAG develop
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/zlib-1-win32-static.patch
+  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/zlib-0*.patch
   CONFIGURE_COMMAND ${EXEC} CHOST=${TARGET_ARCH} <SOURCE_DIR>/configure
     --prefix=${MINGW_INSTALL_PREFIX}
     --static
