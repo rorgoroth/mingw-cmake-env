@@ -8,6 +8,7 @@ ExternalProject_Add(winpthreads
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-shared
     --enable-static
+    CFLAGS='-DWINPTHREAD_STATIC'
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install-strip
   LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
