@@ -1,7 +1,7 @@
-From 293818e5813d2957d4c11e0c682f21174008ed6b Mon Sep 17 00:00:00 2001
-From: shinchiro <shinchiro@users.noreply.github.com>
-Date: Sun, 15 Jan 2017 07:41:45 +0800
-Subject: [PATCH] win32 static
+From 3d3441669f26af7a2e004e641cdfedabf2cc5823 Mon Sep 17 00:00:00 2001
+From: Ray Griffin <raymond.griffin@protonmail.com>
+Date: Tue, 3 May 2022 14:10:07 +0100
+Subject: [PATCH] mingw: win32-static
 
 ---
  Makefile.in | 4 ++--
@@ -9,7 +9,7 @@ Subject: [PATCH] win32 static
  2 files changed, 2 insertions(+), 5 deletions(-)
 
 diff --git a/Makefile.in b/Makefile.in
-index 1852192..c88f5b5 100644
+index 3d858aa..b36efe9 100644
 --- a/Makefile.in
 +++ b/Makefile.in
 @@ -310,12 +310,12 @@ install-libs: $(LIBS)
@@ -28,10 +28,10 @@ index 1852192..c88f5b5 100644
  	  chmod 755 $(DESTDIR)$(sharedlibdir)/$(SHAREDLIBV); \
  	  echo "chmod 755 $(DESTDIR)$(sharedlibdir)/$(SHAREDLIBV)"; \
 diff --git a/configure b/configure
-index e974d1f..f023947 100644
+index 52ff4a0..2a7daca 100755
 --- a/configure
 +++ b/configure
-@@ -215,10 +215,7 @@ if test "$gcc" -eq 1 && ($cc -c $test.c) >> configure.log 2>&1; then
+@@ -226,10 +226,7 @@ if test "$gcc" -eq 1 && ($cc -c $test.c) >> configure.log 2>&1; then
    CYGWIN* | Cygwin* | cygwin* | OS/2*)
          EXE='.exe' ;;
    MINGW* | mingw*)
@@ -42,6 +42,6 @@ index e974d1f..f023947 100644
          LDSHARED=${LDSHARED-"$cc -shared"}
          LDSHAREDLIBC=""
          EXE='.exe' ;;
---
-2.10.2
+-- 
+2.36.0
 
