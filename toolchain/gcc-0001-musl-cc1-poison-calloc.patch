@@ -1,0 +1,24 @@
+diff -ruN a/libcc1/libcc1plugin.cc b/libcc1/libcc1plugin.cc
+--- a/libcc1/libcc1plugin.cc	2022-05-06 08:30:59.000000000 +0100
++++ b/libcc1/libcc1plugin.cc	2022-05-06 14:41:43.963007897 +0100
+@@ -31,6 +31,8 @@
+ #undef PACKAGE_TARNAME
+ #undef PACKAGE_VERSION
+
++#include "pthread.h"
++
+ #include "gcc-plugin.h"
+ #include "system.h"
+ #include "coretypes.h"
+diff -ruN a/libcc1/libcp1plugin.cc b/libcc1/libcp1plugin.cc
+--- a/libcc1/libcp1plugin.cc	2022-05-06 08:30:59.000000000 +0100
++++ b/libcc1/libcp1plugin.cc	2022-05-06 14:41:27.193008246 +0100
+@@ -32,6 +32,8 @@
+ #undef PACKAGE_TARNAME
+ #undef PACKAGE_VERSION
+
++#include "pthread.h"
++
+ #include "gcc-plugin.h"
+ #include "system.h"
+ #include "coretypes.h"
