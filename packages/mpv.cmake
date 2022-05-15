@@ -22,6 +22,7 @@ ExternalProject_Add(mpv
     --cross-file=${MESON_CROSS}
     --buildtype=release
     --default-library=static
+    --prefer-static
     -Dd3d11=enabled
     -Diconv=enabled
     -Djpeg=enabled
