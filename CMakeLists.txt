@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.20.0)
-project(mingw-env C)
+project(mingw-env)
+enable_language(C ASM CXX)
+
 include(ExternalProject)
 include(ProcessorCount)
 
@@ -40,6 +42,7 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
       "${CMAKE_CURRENT_BINARY_DIR}/install"
       CACHE PATH "Default install path" FORCE)
 endif()
+
 set(MINGW_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/mingw)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/toolchain.cmake.in
