@@ -20,9 +20,10 @@ ExternalProject_Add(mpv
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
-    --buildtype=release
+    --buildtype=plain
     --default-library=static
     --prefer-static
+    -Db_ndebug=true
     -Dd3d11=enabled
     -Diconv=enabled
     -Djpeg=enabled
