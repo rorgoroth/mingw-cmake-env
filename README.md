@@ -1,8 +1,8 @@
 This is a stripped down version of [shinchiro/mpv-winbuild-cmake](https://github.com/shinchiro/mpv-winbuild-cmake).
 
-This is only tested on Alpine Linux ran on WSL version 2.
+This is only tested on Alpine Linux (Edge branch with testing enabled) ran on WSL version 2.
 
-Only 64bit Windows 10 is supported and binaries target x86-64-v3 architecture.
+Only 64bit Windows 10 is supported and the produced binaries target x86-64-v3 architecture, which is pretty much any CPU made in the past 5 or so years.
 
 Binary Downloads (mpv, q3, urt, iortcw, etc): [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases)
 
