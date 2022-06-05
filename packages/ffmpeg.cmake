@@ -1,6 +1,7 @@
 ExternalProject_Add(ffmpeg
   DEPENDS
     bzip2
+    dav1d
     gmp
     libass
     libpng
@@ -32,14 +33,15 @@ ExternalProject_Add(ffmpeg
     --enable-cross-compile
     --enable-gmp
     --enable-gpl
-    --enable-version3
     --enable-libass
+    --enable-libdav1d
     --enable-libxml2
     --enable-libzimg
     --enable-nonfree
     --enable-postproc
     --enable-runtime-cpudetect
     --enable-schannel
+    --enable-version3
     --enable-vulkan
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
