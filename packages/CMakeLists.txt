@@ -84,6 +84,7 @@ list(
   shaderc
   libepoxy
   libplacebo
+  dav1d
   ffmpeg
   mpv
   iortcw
