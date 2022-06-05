@@ -8,7 +8,7 @@ ExternalProject_Add(vulkan-headers
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
   BUILD_COMMAND ""
   INSTALL_COMMAND ${NINJA} install
-  LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_INSTALL 1
+  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_INSTALL 1
 )
 
 ExternalProject_Add_Step(vulkan-headers copy-wdk-headers

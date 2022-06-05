@@ -19,7 +19,7 @@ ExternalProject_Add(fontconfig
     --enable-iconv
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
-  LOG_DOWNLOAD 1 LOG_UPDATE 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
+  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
 )
 
 force_rebuild_git(fontconfig)
