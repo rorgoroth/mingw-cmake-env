@@ -1,8 +1,9 @@
-ExternalProject_Add(expat
+ExternalProject_Add(
+  expat
   URL https://github.com/libexpat/libexpat/releases/download/R_2_4_8/expat-2.4.8.tar.bz2
   URL_HASH MD5=0aa62f74c097c96ecbe62e656f352c3b
-  CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
-    -G Ninja
+  CONFIGURE_COMMAND
+    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
     -DCMAKE_BUILD_TYPE=Release
@@ -22,5 +23,7 @@ ExternalProject_Add(expat
     -DEXPAT_WITH_SYS_GETRANDOM=AUTO
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
-  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
-)
+  LOG_DOWNLOAD 1
+  LOG_CONFIGURE 1
+  LOG_BUILD 1
+  LOG_INSTALL 1)

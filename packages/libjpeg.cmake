@@ -1,10 +1,11 @@
-ExternalProject_Add(libjpeg
+ExternalProject_Add(
+  libjpeg
   GIT_REPOSITORY https://github.com/libjpeg-turbo/libjpeg-turbo.git
   GIT_REMOTE_NAME origin
   GIT_TAG main
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
-    -G Ninja
+  CONFIGURE_COMMAND
+    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
     -DCMAKE_BUILD_TYPE=Release
@@ -12,7 +13,9 @@ ExternalProject_Add(libjpeg
     -DENABLE_STATIC=ON
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
-  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
-)
+  LOG_DOWNLOAD 1
+  LOG_CONFIGURE 1
+  LOG_BUILD 1
+  LOG_INSTALL 1)
 
 force_rebuild_git(libjpeg)

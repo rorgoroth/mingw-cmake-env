@@ -1,9 +1,10 @@
-ExternalProject_Add(uchardet
+ExternalProject_Add(
+  uchardet
   GIT_REPOSITORY https://github.com/freedesktop/uchardet.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
-    -G Ninja
+  CONFIGURE_COMMAND
+    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
     -DTARGET_ARCHITECTURE=${TARGET_CPU_FAMILY}
@@ -13,7 +14,9 @@ ExternalProject_Add(uchardet
     -DCMAKE_BUILD_TYPE=Release
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
-  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
-)
+  LOG_DOWNLOAD 1
+  LOG_CONFIGURE 1
+  LOG_BUILD 1
+  LOG_INSTALL 1)
 
 force_rebuild_git(uchardet)

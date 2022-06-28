@@ -1,8 +1,10 @@
-ExternalProject_Add(dav1d
+ExternalProject_Add(
+  dav1d
   GIT_REPOSITORY https://code.videolan.org/videolan/dav1d.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+  CONFIGURE_COMMAND
+    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
@@ -12,8 +14,10 @@ ExternalProject_Add(dav1d
     -Denable_tools=false
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
-  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
-)
+  LOG_DOWNLOAD 1
+  LOG_CONFIGURE 1
+  LOG_BUILD 1
+  LOG_INSTALL 1)
 
 force_rebuild_git(dav1d)
 force_meson_configure(dav1d)

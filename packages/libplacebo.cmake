@@ -1,14 +1,15 @@
-ExternalProject_Add(libplacebo
-  DEPENDS
-    lcms2
-    libepoxy
-    shaderc
-    spirv-cross
-    vulkan-loader
+ExternalProject_Add(
+  libplacebo
+  DEPENDS lcms2
+          libepoxy
+          shaderc
+          spirv-cross
+          vulkan-loader
   GIT_REPOSITORY https://github.com/haasn/libplacebo.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+  CONFIGURE_COMMAND
+    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
@@ -20,8 +21,10 @@ ExternalProject_Add(libplacebo
     -Dvulkan-registry='${MINGW_INSTALL_PREFIX}/share/vulkan/registry/vk.xml'
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
-  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
-)
+  LOG_DOWNLOAD 1
+  LOG_CONFIGURE 1
+  LOG_BUILD 1
+  LOG_INSTALL 1)
 
 force_rebuild_git(libplacebo)
 force_meson_configure(libplacebo)
