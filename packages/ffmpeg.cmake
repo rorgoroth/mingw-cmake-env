@@ -1,18 +1,19 @@
-ExternalProject_Add(ffmpeg
-  DEPENDS
-    bzip2
-    dav1d
-    gmp
-    libass
-    libpng
-    libxml2
-    libzimg
-    spirv-cross
-    vulkan-loader
+ExternalProject_Add(
+  ffmpeg
+  DEPENDS bzip2
+          dav1d
+          gmp
+          libass
+          libpng
+          libxml2
+          libzimg
+          spirv-cross
+          vulkan-loader
   GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
+  CONFIGURE_COMMAND
+    ${EXEC} <SOURCE_DIR>/configure
     --cross-prefix=${TARGET_ARCH}-
     --prefix=${MINGW_INSTALL_PREFIX}
     --arch=${TARGET_CPU}
@@ -45,7 +46,9 @@ ExternalProject_Add(ffmpeg
     --enable-vulkan
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
-  LOG_DOWNLOAD 1 LOG_CONFIGURE 1 LOG_BUILD 1 LOG_INSTALL 1
-)
+  LOG_DOWNLOAD 1
+  LOG_CONFIGURE 1
+  LOG_BUILD 1
+  LOG_INSTALL 1)
 
 force_rebuild_git(ffmpeg)
