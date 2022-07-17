@@ -35,6 +35,10 @@ package () {
     7za a "mpv-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
 
+  cd ffmpeg-package || exit
+    7za a "ffmpeg-$(date +"%Y-%m-%d").7z" -- ./*
+  cd .. || exit
+
   cd iortcw-package || exit
     7za a "iortcw-$(date +"%Y-%m-%d").7z" -- ./*
   cd .. || exit
