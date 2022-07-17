@@ -85,6 +85,21 @@ list(
   libepoxy
   libplacebo
   dav1d
+  amf-headers
+  aom
+  lame
+  libvpx
+  libwebp
+  nvcodec-headers
+  ogg
+  flac
+  opus
+  opusfile
+  libopusenc
+  opus-tools
+  speex
+  vorbis
+  x264
   ffmpeg
   mpv
   iortcw
