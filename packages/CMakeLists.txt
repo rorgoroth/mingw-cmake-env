@@ -102,6 +102,7 @@ list(
   x264
   ffmpeg
   mpv
+  curl
   iortcw
   iortcw-mp
   quake3e
