@@ -21,6 +21,7 @@ ExternalProject_Add(
     ${MINGW_INSTALL_PREFIX}/bin/libpng16-config
     ${CMAKE_INSTALL_PREFIX}/bin/libpng16-config
   LOG_DOWNLOAD 1
+  LOG_UPDATE 1
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
