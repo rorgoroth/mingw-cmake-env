@@ -21,7 +21,7 @@ ExternalProject_Add(
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
-    --buildtype=plain
+    --buildtype=release
     --default-library=static
     --prefer-static
     -Db_ndebug=true
