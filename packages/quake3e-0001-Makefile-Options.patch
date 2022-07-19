@@ -1,14 +1,14 @@
-From d2edce6b460a905464cc6523a1ea946f86fa86d7 Mon Sep 17 00:00:00 2001
+From d2abb6b7f3f123cfc4820f315ce6222df8bb3271 Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
 Date: Tue, 22 Feb 2022 16:53:26 +0000
-Subject: [PATCH] Makefile Options
+Subject: [PATCH 1/2] Makefile Options
 
 ---
  Makefile | 36 +++++++++++++++---------------------
  1 file changed, 15 insertions(+), 21 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 7b874c26..a17e4d98 100644
+index 1a2273bb..936aeeb1 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -23,27 +23,21 @@ ifeq ($(COMPILE_PLATFORM),mingw32)
@@ -55,5 +55,5 @@ index 7b874c26..a17e4d98 100644
  
  ifeq ($(V),1)
 -- 
-2.35.1
+2.37.1
 
