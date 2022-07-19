@@ -1,14 +1,14 @@
-From 71924f6f26be88f6b437f4c785d23d22bfe78dfd Mon Sep 17 00:00:00 2001
+From e22efa376c15615d5d66f4fae26a204be67b28ce Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
 Date: Wed, 23 Feb 2022 19:43:02 +0000
-Subject: [PATCH] Set game version
+Subject: [PATCH 2/3] Set game version
 
 ---
  code/qcommon/q_shared.h | 43 +++++++++++++++++++----------------------
  1 file changed, 20 insertions(+), 23 deletions(-)
 
 diff --git a/code/qcommon/q_shared.h b/code/qcommon/q_shared.h
-index 954ecc2d..301829b6 100644
+index e5626e37..447026d6 100644
 --- a/code/qcommon/q_shared.h
 +++ b/code/qcommon/q_shared.h
 @@ -26,31 +26,28 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
@@ -75,7 +75,7 @@ index 954ecc2d..301829b6 100644
  	return 1;
  }
  
-@@ -1137,7 +1134,7 @@ typedef struct {
+@@ -1133,7 +1130,7 @@ typedef struct {
  #define	MAX_STATS				16
  #define	MAX_PERSISTANT			16
  #define	MAX_POWERUPS			16
@@ -84,7 +84,7 @@ index 954ecc2d..301829b6 100644
  
  #define	MAX_PS_EVENTS			2
  
-@@ -1257,7 +1254,7 @@ typedef struct usercmd_s {
+@@ -1253,7 +1250,7 @@ typedef struct usercmd_s {
  	int				serverTime;
  	int				angles[3];
  	int 			buttons;
@@ -93,7 +93,7 @@ index 954ecc2d..301829b6 100644
  	signed char	forwardmove, rightmove, upmove;
  } usercmd_t;
  
-@@ -1337,7 +1334,7 @@ typedef struct entityState_s {
+@@ -1333,7 +1330,7 @@ typedef struct entityState_s {
  typedef enum {
  	CA_UNINITIALIZED,
  	CA_DISCONNECTED, 	// not talking to a server
@@ -102,7 +102,7 @@ index 954ecc2d..301829b6 100644
  	CA_CONNECTING,		// sending request packets to the server
  	CA_CHALLENGING,		// sending challenge packets to the server
  	CA_CONNECTED,		// netchan_t established, getting gamestate
-@@ -1347,7 +1344,7 @@ typedef enum {
+@@ -1343,7 +1340,7 @@ typedef enum {
  	CA_CINEMATIC		// playing a cinematic or a static pic, not connected to a server
  } connstate_t;
  
@@ -112,5 +112,5 @@ index 954ecc2d..301829b6 100644
  #define GLYPH_START 0
  #define GLYPH_END 255
 -- 
-2.35.1
+2.37.1
 
