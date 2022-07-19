@@ -33,6 +33,7 @@ ExternalProject_Add(
   BUILD_COMMAND make -j${MAKEJOBS} all-gcc
   INSTALL_COMMAND make install-strip-gcc
   LOG_DOWNLOAD 1
+  LOG_UPDATE 1
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
