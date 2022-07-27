@@ -1,9 +1,8 @@
 ExternalProject_Add(
   vorbis
   DEPENDS ogg
-  URL "https://downloads.xiph.org/releases/vorbis/libvorbis-1.3.7.tar.xz"
-  URL_HASH
-    SHA256=b33cc4934322bcbf6efcbacf49e3ca01aadbea4114ec9589d1b1e9d20f72954b
+  GIT_REPOSITORY https://github.com/xiph/vorbis.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
@@ -18,3 +17,5 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
+force_rebuild_git(vorbis)
+autogen(vorbis)
