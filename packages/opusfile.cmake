@@ -3,6 +3,7 @@ ExternalProject_Add(
   DEPENDS opus
           ogg
   GIT_REPOSITORY https://github.com/xiph/opusfile.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/autogen.sh
   COMMAND
