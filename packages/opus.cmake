@@ -1,6 +1,7 @@
 ExternalProject_Add(
   opus
   GIT_REPOSITORY https://github.com/xiph/opus.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
@@ -21,3 +22,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(opus)
+autogen(opus)
