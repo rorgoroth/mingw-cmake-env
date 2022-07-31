@@ -36,13 +36,18 @@ ExternalProject_Add(
     --disable-ffplay
     --disable-ffprobe
     --disable-filters
+      --enable-filter=blurdetect
       --enable-filter=copy
       --enable-filter=crop
       --enable-filter=cropdetect
       --enable-filter=deband
       --enable-filter=deblock
+      --enable-filter=gblur
       --enable-filter=rotate
       --enable-filter=scale
+      --enable-filter=sobel
+      --enable-filter=threshold
+      --enable-filter=trim
     --disable-encoders
       --enable-encoder=aac
       --enable-encoder=aac_mf
