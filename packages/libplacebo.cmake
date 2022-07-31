@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libplacebo
-  DEPENDS lcms2
-          libepoxy
+  DEPENDS glad
+          lcms2
           shaderc
           spirv-cross
           vulkan-loader
@@ -26,6 +26,19 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
+
+get_property(
+  src_glad
+  TARGET glad
+  PROPERTY _EP_SOURCE_DIR)
+
+ExternalProject_Add_Step(
+  libplacebo symlink
+  DEPENDEES download update patch
+  DEPENDERS configure
+  WORKING_DIRECTORY <SOURCE_DIR>/3rdparty
+  COMMAND rm -rf glad
+  COMMAND ${CMAKE_COMMAND} -E create_symlink ${src_glad} glad)
 
 force_rebuild_git(libplacebo)
 force_meson_configure(libplacebo)
