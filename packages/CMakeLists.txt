@@ -106,7 +106,7 @@ list(
   iortcw
   iortcw-mp
   quake3e
-  quake3e-urt-slim
+  quake3e-urbanterror
 )
 
 foreach(package IN LISTS ep)
