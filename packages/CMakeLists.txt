@@ -82,7 +82,7 @@ list(
   vulkan-loader
   spirv-cross
   shaderc
-  libepoxy
+  glad
   libplacebo
   dav1d
   amf-headers
