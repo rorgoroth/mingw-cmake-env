@@ -27,4 +27,4 @@ ExternalProject_Add_Step(
     ${CMAKE_COMMAND} -E copy
     ${CMAKE_SOURCE_DIR}/toolchain/mingw-headers/d3dukmdt.h
     <SOURCE_DIR>/loader/d3dukmdt.h
-  COMMENT "Copying extra mingw headers")
+  COMMENT "vulkan-headers: Copying extra mingw headers")
