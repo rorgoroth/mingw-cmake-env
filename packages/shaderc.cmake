@@ -1,6 +1,11 @@
 ExternalProject_Add(
   shaderc
-  GIT_REPOSITORY https://github.com/rorgoroth/mpv-shaderc.git
+  DEPENDS glslang
+          spirv-headers
+          spirv-tools
+  GIT_REPOSITORY https://github.com/google/shaderc.git
+  GIT_REMOTE_NAME origin
+  GIT_TAG main
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
@@ -22,6 +27,38 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
+get_property(
+  src_glslang
+  TARGET glslang
+  PROPERTY _EP_SOURCE_DIR)
+get_property(
+  src_spirv-headers
+  TARGET spirv-headers
+  PROPERTY _EP_SOURCE_DIR)
+get_property(
+  src_spirv-tools
+  TARGET spirv-tools
+  PROPERTY _EP_SOURCE_DIR)
+
+ExternalProject_Add_Step(
+  shaderc symlink
+  DEPENDEES download update patch
+  DEPENDERS configure
+  WORKING_DIRECTORY <SOURCE_DIR>/third_party
+  COMMAND
+    ${CMAKE_COMMAND} -E create_symlink
+    ${src_glslang}
+    glslang
+  COMMAND
+    ${CMAKE_COMMAND} -E create_symlink
+    ${src_spirv-headers}
+    spirv-headers
+  COMMAND
+    ${CMAKE_COMMAND} -E create_symlink
+    ${src_spirv-tools}
+    spirv-tools
+  COMMENT "shaderc: Symlinking glslang, spirv-headers, spirv-tools")
+
 ExternalProject_Add_Step(
   shaderc manual-install
   DEPENDEES build
@@ -37,6 +74,6 @@ ExternalProject_Add_Step(
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/shaderc_combined.pc
     ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/shaderc_combined.pc
-  COMMENT "Manually installing")
+  COMMENT "shaderc: Manually installing")
 
 force_rebuild_git(shaderc)
