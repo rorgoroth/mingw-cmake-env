@@ -80,7 +80,10 @@ list(
   libxml2
   vulkan-headers
   vulkan-loader
+  spirv-headers
+  spirv-tools
   spirv-cross
+  glslang
   shaderc
   glad
   libplacebo
