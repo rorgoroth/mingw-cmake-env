@@ -32,23 +32,23 @@ package () {
     rm -rf ./*.7z
 
   cd mpv-package || exit
-    7za a "mpv-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "mpv.7z" -- ./*
   cd .. || exit
 
   cd ffmpeg-package || exit
-    7za a "ffmpeg-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "ffmpeg.7z" -- ./*
   cd .. || exit
 
   cd iortcw-package || exit
-    7za a "iortcw-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "iortcw.7z" -- ./*
   cd .. || exit
 
   cd quake3e-package || exit
-    7za a "quake3e-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "quake3e.7z" -- ./*
   cd .. || exit
 
   cd quake3e-urbanterror-package || exit
-    7za a "quake3e-urbanterror-$(date +"%Y-%m-%d").7z" -- ./*
+    7za a "quake3e-urbanterror.7z" -- ./*
   cd .. || exit
 
   mv -- */*.7z .
