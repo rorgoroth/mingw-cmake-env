@@ -23,10 +23,6 @@ fullbuild () {
   cd .. || exit
 }
 
-clean () {
-  rm -rfv build/packages/"$2"-*
-}
-
 package () {
   cd bin || exit
     rm -rf ./*.7z
@@ -63,6 +59,14 @@ release (){
   gh release create -t "Latest Build" -n "Latest Build" latest ./bin/*.7z
 }
 
+clean () {
+  rm -rfv build/packages/"$2"-*
+}
+
+checkupdates (){
+  sh ./packages/update-check.sh
+}
+
 case "$1" in
   "build")
     build
@@ -78,6 +82,9 @@ case "$1" in
     ;;
   "clean")
     clean $@
+    ;;
+  "checkup")
+    checkupdates
     ;;
   *)
     echo "Accepted Args: build | fullbuild | pkg | release | clean \$package"
