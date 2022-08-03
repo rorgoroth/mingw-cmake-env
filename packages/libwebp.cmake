@@ -1,9 +1,7 @@
 ExternalProject_Add(
   libwebp
-  GIT_REPOSITORY https://chromium.googlesource.com/webm/libwebp.git
-  GIT_SHALLOW 1
-  GIT_REMOTE_NAME origin
-  GIT_TAG main
+  URL https://github.com/webmproject/libwebp/archive/refs/tags/v1.2.3.tar.gz
+  URL_HASH MD5=a9d3c93923ab0e5eab649a965b7b2bcd
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
@@ -18,5 +16,4 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-force_rebuild_git(libwebp)
 autogen(libwebp)
