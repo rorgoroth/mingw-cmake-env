@@ -1,9 +1,7 @@
 ExternalProject_Add(
   libvpx
-  GIT_REPOSITORY https://chromium.googlesource.com/webm/libvpx.git
-  GIT_SHALLOW 1
-  GIT_REMOTE_NAME origin
-  GIT_TAG main
+  URL https://github.com/webmproject/libvpx/archive/refs/tags/v1.12.0.tar.gz
+  URL_HASH MD5=10cf85debdd07be719a35ca3bfb8ea64
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} CROSS=${TARGET_ARCH}- <SOURCE_DIR>/configure
@@ -26,5 +24,3 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-force_rebuild_git(libvpx)
