@@ -3,15 +3,16 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/xiph/opus.git
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
-    -G Ninja
-    -DCMAKE_BUILD_TYPE=Release
-    -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
-    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
-    -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -D_FORTIFY_SOURCE=0'
-    -DBUILD_TESTING=OFF
-    -DOPUS_BUILD_PROGRAMS=OFF
-    -DOPUS_STACK_PROTECTOR=OFF
+    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+    --prefix=${MINGW_INSTALL_PREFIX}
+    --libdir=${MINGW_INSTALL_PREFIX}/lib
+    --cross-file=${MESON_CROSS}
+    --buildtype=release
+    --default-library=static
+    --prefer-static
+    -Dextra-programs=disabled 
+    -Dtests=disabled 
+    -Ddocs=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
@@ -21,4 +22,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(opus)
-autogen(opus)
+force_meson_configure(opus)
