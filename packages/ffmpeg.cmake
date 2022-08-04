@@ -8,13 +8,13 @@ ExternalProject_Add(
           gmp
           lame
           libass
+          libopusenc
           libpng
           libvpx
           libwebp
           libxml2
           libzimg
           nvcodec-headers
-          opus
           speex
           spirv-cross
           vorbis
