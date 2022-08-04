@@ -6,7 +6,6 @@ ExternalProject_Add(
           opusfile
           libopusenc
   GIT_REPOSITORY https://github.com/xiph/opus-tools.git
-  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} CFLAGS='-D_FORTIFY_SOURCE=0'
