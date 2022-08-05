@@ -1,6 +1,5 @@
-if(${CMAKE_VERSION} VERSION_GREATER_EQUAL "3.19.0")
-  cmake_policy(SET CMP0114 OLD)
-endif()
+cmake_policy(SET CMP0114 OLD)
+cmake_policy(SET CMP0135 NEW)
 
 function(force_rebuild_git _name)
   get_property(
