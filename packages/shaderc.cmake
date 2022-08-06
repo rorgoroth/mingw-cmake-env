@@ -1,4 +1,8 @@
-ExternalProject_Add(
+get_property(src_glslang TARGET glslang PROPERTY _EP_SOURCE_DIR)
+get_property(src_spirv-headers TARGET spirv-headers PROPERTY _EP_SOURCE_DIR)
+get_property(src_spirv-tools TARGET spirv-tools PROPERTY _EP_SOURCE_DIR)
+  
+  ExternalProject_Add(
   shaderc
   DEPENDS glslang
           spirv-headers
@@ -8,8 +12,14 @@ ExternalProject_Add(
   GIT_TAG main
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND
-    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
+  CONFIGURE_COMMAND ""
+    COMMAND sh -c "rm -rf <SOURCE_DIR>/third_party/glslang"
+    COMMAND sh -c "ln -s ${src_glslang} <SOURCE_DIR>/third_party/glslang"
+    COMMAND sh -c "rm -rf <SOURCE_DIR>/third_party/spirv-headers"
+    COMMAND sh -c "ln -s ${src_spirv-headers} <SOURCE_DIR>/third_party/spirv-headers"
+    COMMAND sh -c "rm -rf <SOURCE_DIR>/third_party/spirv-tools"
+    COMMAND sh -c "ln -s ${src_spirv-tools} <SOURCE_DIR>/third_party/spirv-tools"
+    COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_TOOLCHAIN_FILE=<SOURCE_DIR>/cmake/linux-mingw-toolchain.cmake
@@ -26,38 +36,6 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-get_property(
-  src_glslang
-  TARGET glslang
-  PROPERTY _EP_SOURCE_DIR)
-get_property(
-  src_spirv-headers
-  TARGET spirv-headers
-  PROPERTY _EP_SOURCE_DIR)
-get_property(
-  src_spirv-tools
-  TARGET spirv-tools
-  PROPERTY _EP_SOURCE_DIR)
-
-ExternalProject_Add_Step(
-  shaderc symlink
-  DEPENDEES download update patch
-  DEPENDERS configure
-  WORKING_DIRECTORY <SOURCE_DIR>/third_party
-  COMMAND
-    ${CMAKE_COMMAND} -E create_symlink
-    ${src_glslang}
-    glslang
-  COMMAND
-    ${CMAKE_COMMAND} -E create_symlink
-    ${src_spirv-headers}
-    spirv-headers
-  COMMAND
-    ${CMAKE_COMMAND} -E create_symlink
-    ${src_spirv-tools}
-    spirv-tools
-  COMMENT "shaderc: Symlinking glslang, spirv-headers, spirv-tools")
 
 ExternalProject_Add_Step(
   shaderc manual-install
