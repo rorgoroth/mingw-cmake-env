@@ -2,13 +2,13 @@
 
 main() {
     packages_dir=$(pwd)
-    for dir in $packages_dir/*-prefix ; do
-        local name=$(echo $(basename $dir) | sed -e 's|-prefix$||')
+    for dir in "$packages_dir"/*-prefix ; do
+        local name=$(echo $(basename "$dir") | sed -e 's|-prefix$||')
         local src_dir=$packages_dir/$name-prefix/src/$name
         local stamp_dir=$packages_dir/$name-prefix/src/$name-stamp
 
         if [[ -d "$src_dir/.git" ]] ; then
-            gitupdate $name $src_dir $stamp_dir &
+            gitupdate "$name" "$src_dir" "$stamp_dir" &
         fi
     done
     wait
@@ -21,14 +21,13 @@ gitupdate()
     local stamp_dir=$3
 
     echo "Updating $name"
-    git -C $src_dir reset --hard @{u} > /dev/null
+    git -C "$src_dir" reset --hard "@{u}" > /dev/null
 
-    result=$(git -C $src_dir pull 2>&1)
-    result_module=$(git -C $src_dir submodule update --init --remote --recursive 2>&1)
+    result=$(git -C "$src_dir" pull 2>&1)
 
-    if [[ ! "$result" =~ up[-\ ]to[-\ ]date ]] || [[ ! -z $result_module ]]; then
+    if [[ ! "$result" =~ up[-\ ]to[-\ ]date ]] ; then
         echo "Deleting stamp files for $name"
-        find $stamp_dir -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
+        find "$stamp_dir" -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
     fi
 }
 
