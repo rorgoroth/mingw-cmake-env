@@ -1,7 +1,7 @@
 ExternalProject_Add(
   binutils
-  URL https://ftp.gnu.org/gnu/binutils/binutils-2.38.tar.xz
-  URL_HASH MD5=6e39cad1bb414add02b5b1169c18fdc5
+  URL https://ftp.gnu.org/gnu/binutils/binutils-2.39.tar.xz
+  URL_HASH MD5=f7e986ae9ff06405cafb2e585ee36d27
   CONFIGURE_COMMAND
     <SOURCE_DIR>/configure
     --target=${TARGET_ARCH}
