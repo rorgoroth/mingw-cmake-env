@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libwebp
-  URL https://github.com/webmproject/libwebp/archive/refs/tags/v1.2.3.tar.gz
-  URL_HASH MD5=a9d3c93923ab0e5eab649a965b7b2bcd
+  URL https://github.com/webmproject/libwebp/archive/refs/tags/v1.2.4.tar.gz
+  URL_HASH MD5=4f08244f88a39816c3e0719ca16c7a92
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
