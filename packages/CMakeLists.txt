@@ -106,6 +106,7 @@ list(
   mpv
   curl
   libsdl2
+  minizip
   iortcw
   iortcw-mp
   quake3e
