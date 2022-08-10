@@ -107,6 +107,7 @@ list(
   curl
   libsdl2
   minizip
+  glew
   iortcw
   iortcw-mp
   quake3e
