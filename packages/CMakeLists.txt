@@ -105,6 +105,7 @@ list(
   ffmpeg
   mpv
   curl
+  libsdl2
   iortcw
   iortcw-mp
   quake3e
