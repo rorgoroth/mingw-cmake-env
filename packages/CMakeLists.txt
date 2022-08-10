@@ -108,6 +108,7 @@ list(
   libsdl2
   minizip
   glew
+  sqlite
   iortcw
   iortcw-mp
   quake3e
