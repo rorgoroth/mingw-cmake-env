@@ -93,9 +93,7 @@ list(
   ogg
   flac
   opus
-  opusfile
   libopusenc
-  opus-tools
   speex
   vorbis
   x264
