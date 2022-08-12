@@ -1,25 +1,9 @@
-get_property(src_glslang TARGET glslang PROPERTY _EP_SOURCE_DIR)
-get_property(src_spirv-headers TARGET spirv-headers PROPERTY _EP_SOURCE_DIR)
-get_property(src_spirv-tools TARGET spirv-tools PROPERTY _EP_SOURCE_DIR)
-  
   ExternalProject_Add(
   shaderc
-  DEPENDS glslang
-          spirv-headers
-          spirv-tools
-  GIT_REPOSITORY https://github.com/google/shaderc.git
-  GIT_REMOTE_NAME origin
-  GIT_TAG main
+  GIT_REPOSITORY https://github.com/rorgoroth/mpv-shaderc.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ""
-    COMMAND sh -c "rm -rf <SOURCE_DIR>/third_party/glslang"
-    COMMAND sh -c "ln -s ${src_glslang} <SOURCE_DIR>/third_party/glslang"
-    COMMAND sh -c "rm -rf <SOURCE_DIR>/third_party/spirv-headers"
-    COMMAND sh -c "ln -s ${src_spirv-headers} <SOURCE_DIR>/third_party/spirv-headers"
-    COMMAND sh -c "rm -rf <SOURCE_DIR>/third_party/spirv-tools"
-    COMMAND sh -c "ln -s ${src_spirv-tools} <SOURCE_DIR>/third_party/spirv-tools"
-    COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
+  CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_TOOLCHAIN_FILE=<SOURCE_DIR>/cmake/linux-mingw-toolchain.cmake
@@ -52,6 +36,6 @@ ExternalProject_Add_Step(
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/shaderc_combined.pc
     ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/shaderc_combined.pc
-  COMMENT "shaderc: Manually installing")
+  COMMENT "Manually installing")
 
 force_rebuild_git(shaderc)
