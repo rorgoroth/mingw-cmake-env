@@ -1,9 +1,20 @@
 build
 bin/*.7z
 
-bin/iortcw-package
 bin/mpv-package/mpv.com
 bin/mpv-package/mpv.exe
-bin/quake3e-package
-bin/quake3e-urbanterror-package
-bin/ffmpeg-package
+
+bin/ffmpeg-package/ffmpeg.exe
+
+bin/iortcw-package/main
+bin/iortcw-package/OpenAL64.dll
+bin/iortcw-package/SDL264.dll
+bin/iortcw-package/ioWolfDED.x64.exe
+bin/iortcw-package/ioWolfMP.x64.exe
+bin/iortcw-package/ioWolfSP.x64.exe
+bin/iortcw-package/renderer_mp_opengl1_x64.dll
+bin/iortcw-package/renderer_sp_opengl1_x64.dll
+bin/quake3e-package/quake3e-server.exe
+bin/quake3e-package/quake3e.exe
+bin/quake3e-urbanterror-package/q3e-urt-server.exe
+bin/quake3e-urbanterror-package/q3e-urt.exe
