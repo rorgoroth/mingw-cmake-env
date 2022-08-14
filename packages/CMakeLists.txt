@@ -104,6 +104,7 @@ list(
   minizip
   glew
   sqlite
+  libuv
   iortcw
   iortcw-mp
   quake3e
