@@ -18,3 +18,5 @@ bin/quake3e-package/quake3e-server.exe
 bin/quake3e-package/quake3e.exe
 bin/quake3e-urbanterror-package/q3e-urt-server.exe
 bin/quake3e-urbanterror-package/q3e-urt.exe
+
+bin/aria2c-package/mpv.exe

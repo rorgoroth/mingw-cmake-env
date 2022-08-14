@@ -2,7 +2,7 @@
 
 build () {
   cd build || exit
-    ninja update && ninja -j1 || exit
+    ninja -j1 || exit
     find ../bin/ -type f -name '*.exe' -delete
     find ../bin/ -type f -name '*.com' -delete
     find ../bin/ -type f -name '*.dll' -delete
@@ -26,6 +26,10 @@ fullbuild () {
 package () {
   cd bin || exit
     rm -rf ./*.7z
+
+  cd aria2c-package || exit
+    7za a "aria2c.7z" -- ./*
+  cd .. || exit
 
   cd mpv-package || exit
     7za a "mpv.7z" -- ./*

@@ -106,6 +106,7 @@ list(
   sqlite
   libuv
   c-ares
+  aria2c
   iortcw
   iortcw-mp
   quake3e
