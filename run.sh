@@ -2,7 +2,7 @@
 
 build () {
   cd build || exit
-    ninja -j1 || exit
+    ninja update && ninja -j1 || exit
     find ../bin/ -type f -name '*.exe' -delete
     find ../bin/ -type f -name '*.com' -delete
     find ../bin/ -type f -name '*.dll' -delete
@@ -75,13 +75,13 @@ case "$1" in
   "build")
     build
     ;;
-  "fullbuild")
+  "fbuild")
     fullbuild
     ;;
   "pkg")
     package
     ;;
-  "release")
+  "rel")
     release
     ;;
   "clean")
