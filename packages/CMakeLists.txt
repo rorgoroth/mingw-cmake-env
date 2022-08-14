@@ -105,6 +105,7 @@ list(
   glew
   sqlite
   libuv
+  c-ares
   iortcw
   iortcw-mp
   quake3e
