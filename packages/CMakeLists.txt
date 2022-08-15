@@ -111,6 +111,7 @@ list(
   iortcw-mp
   quake3e
   quake3e-urbanterror
+  zstd
 )
 
 foreach(package IN LISTS ep)

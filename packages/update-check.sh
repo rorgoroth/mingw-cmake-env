@@ -76,3 +76,8 @@ vulkan_loader_local=$(cat ./packages/vulkan-loader.cmake | grep 'Vulkan-Loader' 
 vulkan_loader_remote=$(wget -q -O- 'https://github.com/KhronosGroup/Vulkan-Loader/tags' | grep 'href="/KhronosGroup/Vulkan-Loader/archive/refs/tags' | sed -n 's,.*href="/KhronosGroup/Vulkan-Loader/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 echo "Vulkan-Loader: $vulkan_loader_local -> $vulkan_loader_remote"
 
+# zstd
+zstd_local=$(cat ./packages/zstd.cmake | grep 'zstd' | sed -n 's,.*zstd-\([0-9][^>]*\)\.tar.*,\1,p')
+zstd_remote=$(wget -q -O- 'https://github.com/facebook/zstd/releases' | sed -n 's,.*zstd-\([0-9][^"]*\)\.tar.*,\1,p' | head -1)
+echo "zstd: $zstd_local -> $zstd_remote"
+
