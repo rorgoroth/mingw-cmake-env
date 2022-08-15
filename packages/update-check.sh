@@ -52,9 +52,9 @@ libuv_remote=$(wget -q -O- 'https://github.com/libuv/libuv/tags' | grep 'href="/
 echo "libuv: $libuv_local -> $libuv_remote"
 
 # libvpx
-libvpx_local=$(cat ./packages/libvpx.cmake | grep 'libvpx' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
-libvpx_remote=$(wget -q -O- 'https://github.com/webmproject/libvpx/tags' | grep 'href="/webmproject/libvpx/archive/refs/tags' | sed -n 's,.*href="/webmproject/libvpx/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
-echo "libvpx: $libvpx_local -> $libvpx_remote"
+#libvpx_local=$(cat ./packages/libvpx.cmake | grep 'libvpx' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
+#libvpx_remote=$(wget -q -O- 'https://github.com/webmproject/libvpx/tags' | grep 'href="/webmproject/libvpx/archive/refs/tags' | sed -n 's,.*href="/webmproject/libvpx/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+#echo "libvpx: $libvpx_local -> $libvpx_remote"
 
 # libwebp
 libwebp_local=$(cat ./packages/libwebp.cmake | grep 'libwebp' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')

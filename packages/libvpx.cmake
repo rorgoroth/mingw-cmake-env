@@ -1,7 +1,9 @@
 ExternalProject_Add(
   libvpx
-  URL https://github.com/webmproject/libvpx/archive/refs/tags/v1.12.0.tar.gz
-  URL_HASH MD5=10cf85debdd07be719a35ca3bfb8ea64
+  GIT_REPOSITORY https://chromium.googlesource.com/webm/libvpx.git
+  GIT_SHALLOW 1
+  GIT_REMOTE_NAME origin
+  GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} CROSS=${TARGET_ARCH}- <SOURCE_DIR>/configure
@@ -10,11 +12,18 @@ ExternalProject_Add(
     --prefix=${MINGW_INSTALL_PREFIX}
     --as=yasm
     --disable-decode-perf-tests
-    --disable-docs
     --disable-encode-perf-tests
+    --disable-docs
     --disable-examples
+    --disable-shared
     --disable-tools
     --disable-unit-tests
+    --enable-postproc
+    --enable-runtime-cpu-detect
+    --enable-static
+    --enable-vp8
+    --enable-vp9
+    --enable-vp9-postproc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
           COMMAND ${EXEC} ${TARGET_ARCH}-ranlib
@@ -24,3 +33,5 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
+
+force_rebuild_git(libvpx)
