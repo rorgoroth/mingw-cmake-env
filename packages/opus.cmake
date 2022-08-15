@@ -10,8 +10,8 @@ ExternalProject_Add(
     --buildtype=release
     --default-library=static
     --prefer-static
-    -Dextra-programs=disabled 
-    -Dtests=disabled 
+    -Dextra-programs=disabled
+    -Dtests=disabled
     -Ddocs=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
