@@ -57,9 +57,9 @@ echo "libuv: $libuv_local -> $libuv_remote"
 #echo "libvpx: $libvpx_local -> $libvpx_remote"
 
 # libwebp
-libwebp_local=$(cat ./packages/libwebp.cmake | grep 'libwebp' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
-libwebp_remote=$(wget -q -O- 'https://github.com/webmproject/libwebp/tags' | grep 'href="/webmproject/libwebp/archive/refs/tags' | sed -n 's,.*href="/webmproject/libwebp/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
-echo "libwebp: $libwebp_local -> $libwebp_remote"
+#libwebp_local=$(cat ./packages/libwebp.cmake | grep 'libwebp' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
+#libwebp_remote=$(wget -q -O- 'https://github.com/webmproject/libwebp/tags' | grep 'href="/webmproject/libwebp/archive/refs/tags' | sed -n 's,.*href="/webmproject/libwebp/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+#echo "libwebp: $libwebp_local -> $libwebp_remote"
 
 # libzimg
 libzimg_local=$(cat ./packages/libzimg.cmake | grep 'zimg' | sed -n 's,.*release-\([0-9][^>]*\)\.tar.*,\1,p')
