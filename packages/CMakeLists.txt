@@ -99,6 +99,7 @@ list(
   x264
   ffmpeg
   mpv
+  zstd
   curl
   libsdl2
   minizip
@@ -111,7 +112,6 @@ list(
   iortcw-mp
   quake3e
   quake3e-urbanterror
-  zstd
 )
 
 foreach(package IN LISTS ep)

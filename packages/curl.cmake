@@ -1,36 +1,45 @@
 ExternalProject_Add(curl
-  DEPENDS gcc
+  DEPENDS zlib
+          zstd
   URL https://github.com/curl/curl/releases/download/curl-7_84_0/curl-7.84.0.tar.gz
   URL_HASH MD5=d0b9238c62a95aeaab66458c0e31d999
-  PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/curl-001.patch
+  PATCH_COMMAND ""
   UPDATE_COMMAND ""
-  CONFIGURE_COMMAND ${EXEC} <SOURCE_DIR>/configure
-    --host=${TARGET_ARCH}
-    --prefix=${MINGW_INSTALL_PREFIX}
-    --disable-curldebug
-    --disable-debug
-    --disable-ldap
-    --disable-ldaps
-    --disable-manual
-    --disable-shared
-    --disable-verbose
-    --disable-warnings
-    --disable-werror
-    --enable-file
-    --enable-ftp
-    --enable-http
-    --enable-ipv6
-    --enable-libcurl-option
-    --enable-optimize
-    --enable-pthreads
-    --enable-silent-rules
-    --enable-static
-    --enable-symbol-hiding
-    --enable-threaded-resolver
-    --with-schannel
-    --without-zlib
-  BUILD_COMMAND ${MAKE}
-  INSTALL_COMMAND ${MAKE} install
+  CONFIGURE_COMMAND
+    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
+    -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
+    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
+    -DCMAKE_BUILD_TYPE=Release
+    -DBUILD_CURL_EXE=ON
+    -DBUILD_SHARED_LIBS=OFF
+    -DBUILD_TESTING=OFF
+    -DCURL_BROTLI=OFF
+    -DCURL_ENABLE_SSL=ON
+    -DCURL_LTO=OFF
+    -DCURL_STATIC_CRT=OFF
+    -DCURL_TARGET_WINDOWS_VERSION=0x0A00
+    -DCURL_USE_SCHANNEL=ON
+    -DCURL_WERROR=OFF
+    -DCURL_WINDOWS_SSPI=ON
+    -DCURL_ZLIB=ON
+    -DCURL_ZSTD=ON
+    -DENABLE_ARES=OFF
+    -DENABLE_CURLDEBUG=OFF
+    -DENABLE_DEBUG=OFF
+    -DENABLE_INET_PTON=ON
+    -DENABLE_THREADED_RESOLVER=ON
+    -DENABLE_UNICODE=ON
+    -DENABLE_UNIX_SOCKETS=ON
+    -DPICKY_COMPILER=ON
+    -DUSE_LIBIDN2=ON
+    -DUSE_MSH3=OFF
+    -DUSE_NGHTTP2=OFF
+    -DUSE_NGTCP2=OFF
+    -DUSE_QUICHE=OFF
+    -DUSE_WIN32_IDN=OFF
+    -DUSE_WIN32_LDAP=ON
+  BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
+  INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
