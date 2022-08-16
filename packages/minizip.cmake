@@ -1,6 +1,7 @@
 ExternalProject_Add(
   minizip
   DEPENDS zlib
+          zstd
   GIT_REPOSITORY https://github.com/zlib-ng/minizip-ng.git
   GIT_REMOTE_NAME origin
   GIT_TAG develop
@@ -31,7 +32,7 @@ ExternalProject_Add(
     -DMZ_SIGNING=ON
     -DMZ_WZAES=ON
     -DMZ_ZLIB=ON
-    -DMZ_ZSTD=OFF
+    -DMZ_ZSTD=ON
   BUILD_COMMAND ${NINJA}
   INSTALL_COMMAND ${NINJA} install
   LOG_DOWNLOAD 1
