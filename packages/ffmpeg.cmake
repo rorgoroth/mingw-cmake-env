@@ -119,6 +119,7 @@ ExternalProject_Add(
     --disable-manpages
     --disable-podpages
     --disable-postproc
+    --disable-sdl2
     --disable-txtpages
     --enable-amf
     --enable-cross-compile
