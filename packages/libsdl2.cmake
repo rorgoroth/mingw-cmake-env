@@ -2,7 +2,7 @@ ExternalProject_Add(
   libsdl2
   URL https://www.libsdl.org/release/SDL2-2.0.22.tar.gz
   URL_HASH MD5=40aedb499cb2b6f106d909d9d97f869a
-  PATCH_COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/libsdl2-0001.patch
+  PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/libsdl2-0001.patch
   CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}

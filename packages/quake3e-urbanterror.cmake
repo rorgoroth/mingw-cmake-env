@@ -4,7 +4,6 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/rorgoroth/Quake3e-UrbanTerror.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE} PLATFORM=mingw64 ARCH=x86_64
   INSTALL_COMMAND ""

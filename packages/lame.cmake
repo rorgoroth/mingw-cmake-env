@@ -2,7 +2,6 @@ ExternalProject_Add(
   lame
   GIT_REPOSITORY https://gitlab.com/shinchiro/lame.git
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${DEBPATCH}
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
     --host=${TARGET_ARCH}
