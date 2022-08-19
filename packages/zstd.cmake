@@ -1,5 +1,6 @@
 ExternalProject_Add(
   zstd
+  DEPENDS zlib
   URL https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-1.5.2.tar.gz
   URL_HASH MD5=072b10f71f5820c24761a65f31f43e73
   CONFIGURE_COMMAND
