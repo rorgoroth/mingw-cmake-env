@@ -10,7 +10,6 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/aria2/aria2.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/aria2c-*.patch
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
     --host=${TARGET_ARCH}
