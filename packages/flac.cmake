@@ -5,20 +5,30 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} <SOURCE_DIR>/configure
-    --host=${TARGET_ARCH}
-    --prefix=${MINGW_INSTALL_PREFIX}
-    --enable-static
-    --disable-shared
-    --disable-doxygen-docs
-    --disable-xmms-plugin
-    --disable-thorough-tests
-    --disable-oggtest
-    --disable-examples
-    --disable-stack-smash-protection
-    CFLAGS='-D_FORTIFY_SOURCE=0'
-  BUILD_COMMAND ${MAKE}
-  INSTALL_COMMAND ${MAKE} install
+    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
+    -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
+    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
+    -DCMAKE_BUILD_TYPE=Release
+    -DBUILD_CXXLIBS=ON
+    -DBUILD_DOCS=OFF
+    -DBUILD_EXAMPLES=OFF
+    -DBUILD_PROGRAMS=OFF
+    -DBUILD_SHARED_LIBS=OFF
+    -DBUILD_TESTING=OFF
+    -DBUILD_UTILS=OFF
+    -DENABLE_64_BIT_WORDS=OFF
+    -DENABLE_WERROR=OFF
+    -DINSTALL_CMAKE_CONFIG_MODULE=ON
+    -DINSTALL_MANPAGES=OFF
+    -DINSTALL_PKGCONFIG_MODULES=ON
+    -DWITH_ASM=ON
+    -DWITH_AVX=ON
+    -DWITH_FORTIFY_SOURCE=ON
+    -DWITH_OGG=ON
+    -DWITH_STACK_PROTECTOR=ON
+    -DWITH_XMMS=OFF
+  BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
+  INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
@@ -26,4 +36,3 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(flac)
-autogen(flac)
