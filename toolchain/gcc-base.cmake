@@ -5,11 +5,14 @@ ExternalProject_Add(
   STAMP_DIR gcc-prefix/src/gcc-stamp
   SOURCE_DIR gcc-prefix/src/gcc
   BINARY_DIR gcc-prefix/src/gcc-build
-  URL https://sourceware.org/pub/gcc/releases/gcc-12.1.0/gcc-12.1.0.tar.gz
-  URL_HASH MD5=7854cdccc3a7988aa37fb0d0038b8096
+  URL https://sourceware.org/pub/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.gz
+  URL_HASH MD5=d7644b494246450468464ffc2c2b19c3
   PATCH_COMMAND
     ${EXEC} patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-musl-cc1-poison-calloc.patch
+  COMMAND
+    ${EXEC} patch -p1 <
+    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0002-posix_memalign.patch
   CONFIGURE_COMMAND
     <SOURCE_DIR>/configure
     --target=${TARGET_ARCH}
