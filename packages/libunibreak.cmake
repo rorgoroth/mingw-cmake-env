@@ -1,12 +1,6 @@
 ExternalProject_Add(
-  libass
-  DEPENDS fontconfig
-          freetype2
-          fribidi
-          harfbuzz
-          libiconv
-          libunibreak
-  GIT_REPOSITORY https://github.com/libass/libass.git
+  libunibreak
+  GIT_REPOSITORY https://github.com/adah1972/libunibreak.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
@@ -22,5 +16,5 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-force_rebuild_git(libass)
-autogen(libass)
+force_rebuild_git(libunibreak)
+autogen(libunibreak)

@@ -75,6 +75,7 @@ list(
   harfbuzz
   libzimg
   fontconfig
+  libunibreak
   libass
   libxml2
   vulkan-headers
