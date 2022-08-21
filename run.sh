@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Standard build
 build () {
   cd build || exit
     ninja update && ninja -j1 || exit
@@ -10,8 +11,13 @@ build () {
   cd .. || exit
 }
 
+# Full build, clean up as much as possible. You should manually
+# remove the installation prefix before running this as to create
+# a clean environment.
 fullbuild () {
   cd build || exit
+    find toolchain/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
+    find packages/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
     ninja update || exit
     ninja clean || exit
     ninja gcc || exit
@@ -23,6 +29,7 @@ fullbuild () {
   cd .. || exit
 }
 
+# Create the 7z packages.
 package () {
   cd bin || exit
     rm -rf ./*.7z
@@ -56,6 +63,7 @@ package () {
   cd .. || exit
 }
 
+# Upload packages
 release (){
   gh release delete latest -y
   git tag --delete latest
@@ -63,12 +71,14 @@ release (){
   gh release create -t "Latest Build" -n "Latest Build" latest ./bin/*.7z
 }
 
+# Clean a package, useful for random build failures.
 clean () {
-  rm -rfv build/packages/"$2"-*
+  rm -rf build/packages/"$2"-*
 }
 
+# Run update checking script
 checkupdates (){
-  sh ./packages/update-check.sh
+  sh ./packages/update-check.sh | column -t
 }
 
 case "$1" in
@@ -81,13 +91,13 @@ case "$1" in
   "pkg")
     package
     ;;
-  "rel")
+  "release")
     release
     ;;
   "clean")
     clean $@
     ;;
-  "checkup")
+  "checkupdates")
     checkupdates
     ;;
   *)
