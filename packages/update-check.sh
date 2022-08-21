@@ -6,7 +6,7 @@ gcc_remote=$(wget -q -O- 'https://ftp.gnu.org/gnu/gcc/?C=M;O=D' | sed -n 's,.*<a
 echo "gcc: $gcc_local -> $gcc_remote"
 
 # mingw
-mingw_local="10.0.0-git"
+mingw_local="10.0.0"
 #mingw_local=$(cat ./toolchain/mingw-w64.cmake | sed -n 's,.*mingw-w64-\([0-9][^"]*\)\.tar.*,\1,p')
 mingw_remote=$(wget -q -O- 'https://github.com/mingw-w64/mingw-w64/tags' | grep 'href="/mingw-w64/mingw-w64/archive/refs/tags' | sed -n 's,.*href="/mingw-w64/mingw-w64/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 echo "mingw: $mingw_local -> $mingw_remote"
