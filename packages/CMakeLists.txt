@@ -43,7 +43,7 @@ function(autoreconf _name)
     ${_name} autoreconf
     DEPENDEES download update patch
     DEPENDERS configure
-    COMMAND ${EXEC} autoreconf -fi
+    COMMAND ${EXEC} autoreconf -i
     WORKING_DIRECTORY <SOURCE_DIR>
     LOG 1)
 endfunction()
