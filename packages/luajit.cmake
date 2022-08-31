@@ -8,14 +8,13 @@ set(EXPORT
     BUILDMODE=static
     FILE_T=luajit.exe
     CFLAGS='-D_WIN32_WINNT=0x0A00 -DUNICODE'
-    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT -DLUAJIT_DISABLE_JIT ${ENABLE_GC64}'
+    XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT'
     PREFIX=${MINGW_INSTALL_PREFIX} Q=")
 
 ExternalProject_Add(
   luajit
   DEPENDS libiconv
   GIT_REPOSITORY https://github.com/openresty/luajit2.git
-  GIT_SHALLOW 1
   GIT_REMOTE_NAME origin
   GIT_TAG v2.1-agentzh
   UPDATE_COMMAND ""
