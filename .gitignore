@@ -31,3 +31,7 @@ bin/quake3e-package/quake3e.exe
 # Q3e-URT
 bin/quake3e-urbanterror-package/q3e-urt-server.exe
 bin/quake3e-urbanterror-package/q3e-urt.exe
+
+# Q3e-OA
+bin/quake3e-openarena-package/quake3e-oa-server.exe
+bin/quake3e-openarena-package/quake3e-oa.exe

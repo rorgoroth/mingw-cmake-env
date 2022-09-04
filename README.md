@@ -17,6 +17,8 @@ See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
 
 [Quake3e](https://github.com/ec-/Quake3e): Quake3 optimized client using Vulkan, git builds.
 
+[OpenArena](https://github.com/rorgoroth/Quake3e-OpenArena): Completely FOSS version of Quake 3, client only (based on Quake3e using Vulkan), git builds.
+
 [Urban Terror](https://github.com/omg-urt/urbanterror-slim): Quake3 mod and standalone game, client only (based on Quake3e, using Vulkan), git builds.
 
 [ioRTcW](https://github.com/iortcw/iortcw): Open source client for RTCW single and multiplayer, client only, git builds.

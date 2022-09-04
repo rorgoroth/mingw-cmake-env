@@ -113,6 +113,7 @@ list(
   iortcw-mp
   quake3e
   quake3e-urbanterror
+  quake3e-openarena
 )
 
 foreach(package IN LISTS ep)
