@@ -1,16 +1,16 @@
 diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
---- a/loader/CMakeLists.txt	2022-07-17 06:28:13.038638200 +0100
-+++ b/loader/CMakeLists.txt	2022-07-17 06:27:35.374212000 +0100
-@@ -323,8 +323,6 @@
+--- a/loader/CMakeLists.txt	2022-09-09 10:00:49.902343381 +0100
++++ b/loader/CMakeLists.txt	2022-09-09 10:01:14.162343039 +0100
+@@ -333,8 +333,6 @@
  endif()
  
  # Generate pkg-config file.
 -include(FindPkgConfig QUIET)
 -if(PKG_CONFIG_FOUND)
      set(VK_API_VERSION "${LOADER_GENERATED_HEADER_VERSION}")
-     if(WIN32 AND NOT MINGW)
-         set(VULKAN_LIB_SUFFIX "-1")
-@@ -341,7 +339,6 @@
+     foreach(LIB ${CMAKE_CXX_IMPLICIT_LINK_LIBRARIES} ${PLATFORM_LIBS})
+         set(PRIVATE_LIBS "${PRIVATE_LIBS} -l${LIB}")
+@@ -358,7 +356,6 @@
      set(PRIVATE_LIBS "${PRIVATE_LIBS} -lshlwapi -lcfgmgr32")
      configure_file("vulkan.pc.in" "vulkan.pc" @ONLY)
      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vulkan.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
