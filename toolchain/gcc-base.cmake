@@ -1,3 +1,11 @@
+if(${TARGET_CPU} MATCHES "x86_64")
+    set(arch "x86-64-v3")
+    set(exception "--enable-seh-exceptions")
+else()
+    set(arch "i686")
+    set(exception "--enable-dw2-exceptions")
+endif()
+
 ExternalProject_Add(
   gcc-base
   DEPENDS mingw-w64-headers
@@ -29,10 +37,10 @@ ExternalProject_Add(
     --enable-languages=c,c++
     --enable-libssp
     --enable-lto
-    --enable-seh-exceptions
     --enable-threads=posix
-    --with-arch=x86-64-v3
+    --with-arch=${arch}
     --without-included-gettext
+    ${exception}
   BUILD_COMMAND make -j${MAKEJOBS} all-gcc
   INSTALL_COMMAND make install-strip-gcc
   LOG_DOWNLOAD 1

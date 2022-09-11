@@ -22,8 +22,8 @@ if(TARGET_CPU MATCHES "x86_64")
   set(TARGET_CPU_FAMILY "x86_64")
   set(TARGET_BITS 64)
 else()
-  message(
-    FATAL_ERROR "Only 64bit is supported.")
+  set(TARGET_CPU_FAMILY "x86")
+  set(TARGET_BITS 32)
 endif()
 
 ProcessorCount(CPU_COUNT)
