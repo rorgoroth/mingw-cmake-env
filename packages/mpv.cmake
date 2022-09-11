@@ -9,6 +9,7 @@ ExternalProject_Add(
           libplacebo
           libpng
           luajit
+          openal
           rubberband
           shaderc
           spirv-cross
@@ -32,6 +33,7 @@ ExternalProject_Add(
     -Dlibplacebo=enabled
     -Dlua=enabled
     -Dmanpage-build=disabled
+    -Dopenal=enabled
     -Drubberband=enabled
     -Dshaderc=enabled
     -Dspirv-cross=enabled

@@ -99,6 +99,7 @@ list(
   vorbis
   x264
   ffmpeg
+  openal
   mpv
   zstd
   curl
