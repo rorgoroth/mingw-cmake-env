@@ -16,10 +16,10 @@ ExternalProject_Add(
   URL https://sourceware.org/pub/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.gz
   URL_HASH MD5=d7644b494246450468464ffc2c2b19c3
   PATCH_COMMAND
-    ${EXEC} patch -p1 <
+    patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-musl-cc1-poison-calloc.patch
   COMMAND
-    ${EXEC} patch -p1 <
+    patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0002-posix_memalign.patch
   CONFIGURE_COMMAND
     <SOURCE_DIR>/configure
