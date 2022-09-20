@@ -1,6 +1,7 @@
 ExternalProject_Add(
   quake3e-openarena
   DEPENDS gcc
+          vorbis
   GIT_REPOSITORY https://github.com/rorgoroth/Quake3e-OpenArena.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
