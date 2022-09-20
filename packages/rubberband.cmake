@@ -1,9 +1,7 @@
 ExternalProject_Add(
   rubberband
-  GIT_REPOSITORY https://github.com/breakfastquay/rubberband.git
-  GIT_SHALLOW 1
-  GIT_REMOTE_NAME origin
-  GIT_TAG default
+  URL https://github.com/breakfastquay/rubberband/archive/refs/tags/v3.0.0.tar.gz
+  URL_HASH MD5=509cbb45e2e2c067bd7e198ae9f1d026
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
@@ -21,5 +19,3 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-force_rebuild_git(rubberband)
