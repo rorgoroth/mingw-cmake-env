@@ -34,10 +34,6 @@ package () {
   cd bin || exit
     rm -rf ./*.7z
 
-  cd aria2c-package || exit
-    7za a "aria2c.7z" -- ./*
-  cd .. || exit
-
   cd mpv-package || exit
     7za a "mpv.7z" -- ./*
   cd .. || exit
