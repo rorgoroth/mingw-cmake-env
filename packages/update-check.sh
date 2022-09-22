@@ -47,9 +47,9 @@ libsdl2_remote=$(wget -q -O- 'https://github.com/libsdl-org/SDL/tags' | grep 'hr
 echo "libsdl2: $libsdl2_local -> $libsdl2_remote"
 
 # libuv
-libuv_local=$(cat ./packages/libuv.cmake | grep 'libuv' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
-libuv_remote=$(wget -q -O- 'https://github.com/libuv/libuv/tags' | grep 'href="/libuv/libuv/archive/refs/tags' | sed -n 's,.*href="/libuv/libuv/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
-echo "libuv: $libuv_local -> $libuv_remote"
+#libuv_local=$(cat ./packages/libuv.cmake | grep 'libuv' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
+#libuv_remote=$(wget -q -O- 'https://github.com/libuv/libuv/tags' | grep 'href="/libuv/libuv/archive/refs/tags' | sed -n 's,.*href="/libuv/libuv/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+#echo "libuv: $libuv_local -> $libuv_remote"
 
 # libvpx
 #libvpx_local=$(cat ./packages/libvpx.cmake | grep 'libvpx' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
