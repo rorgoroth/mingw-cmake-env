@@ -107,7 +107,6 @@ list(
   minizip
   glew
   sqlite
-  c-ares
   aria2c
   iortcw
   iortcw-mp
