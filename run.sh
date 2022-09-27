@@ -58,6 +58,10 @@ package () {
     7za a "quake3e-openarena.7z" -- ./*
   cd .. || exit
 
+  cd xonotic-package || exit
+    7za a "xonotic.7z" -- ./*
+  cd .. || exit
+
   mv -- */*.7z .
 
   cd .. || exit
