@@ -48,4 +48,9 @@ ExternalProject_Add_Step(
     <SOURCE_DIR>/xonotic-sdl.exe
     ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/xonotic-sdl.exe)
 
+ExternalProject_Add_Step(
+  xonotic clean
+  DEPENDEES copy-binary
+  COMMAND git -C <SOURCE_DIR> clean -dfxq)
+
 force_rebuild_git(xonotic)

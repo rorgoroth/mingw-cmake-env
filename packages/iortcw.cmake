@@ -55,4 +55,9 @@ ExternalProject_Add_Step(
     <SOURCE_DIR>/SP-BUILD/main/ui_sp_x64.dll
     ${CMAKE_CURRENT_BINARY_DIR}/iortcw-package/main/ui_sp_x64.dll)
 
+ExternalProject_Add_Step(
+  iortcw clean
+  DEPENDEES copy-binary
+  COMMAND git -C <SOURCE_DIR> clean -dfxq)
+
 force_rebuild_git(iortcw)

@@ -51,4 +51,9 @@ ExternalProject_Add_Step(
     <SOURCE_DIR>/MP-BUILD/main/ui_mp_x64.dll
     ${CMAKE_CURRENT_BINARY_DIR}/iortcw-package/main/ui_mp_x64.dll)
 
+ExternalProject_Add_Step(
+  iortcw-mp clean
+  DEPENDEES copy-binary
+  COMMAND git -C <SOURCE_DIR> clean -dfxq)
+
 force_rebuild_git(iortcw-mp)
