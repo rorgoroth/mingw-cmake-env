@@ -23,7 +23,7 @@ echo "curl: $curl_local -> $curl_remote"
 
 # expat
 expat_local=$(cat ./packages/expat.cmake | sed -n 's,.*expat-\([0-9][^"]*\)\.tar.*,\1,p')
-expat_remote=$(wget -q -O- 'https://github.com/libexpat/libexpat/releases' | sed -n 's,.*expat-\([0-9][^"]*\)\.tar.*,\1,p' | head -1)
+expat_remote=$(wget -q -O- 'https://github.com/libexpat/libexpat/tags' | sed -n 's,.*R_\([0-9][^"]*\)\.tar.*,\1,p' | head -1)
 echo "expat: $expat_local -> $expat_remote"
 
 # gmp
@@ -78,6 +78,6 @@ echo "Vulkan-Loader: $vulkan_loader_local -> $vulkan_loader_remote"
 
 # zstd
 zstd_local=$(cat ./packages/zstd.cmake | grep 'zstd' | sed -n 's,.*zstd-\([0-9][^>]*\)\.tar.*,\1,p')
-zstd_remote=$(wget -q -O- 'https://github.com/facebook/zstd/releases' | sed -n 's,.*zstd-\([0-9][^"]*\)\.tar.*,\1,p' | head -1)
+zstd_remote=$(wget -q -O- 'https://github.com/facebook/zstd/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | sort -Vr | head -1)
 echo "zstd: $zstd_local -> $zstd_remote"
 
