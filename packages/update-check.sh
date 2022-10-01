@@ -66,6 +66,11 @@ libzimg_local=$(cat ./packages/libzimg.cmake | grep 'zimg' | sed -n 's,.*release
 libzimg_remote=$(wget -q -O- 'https://github.com/sekrit-twc/zimg/tags' | grep 'href="/sekrit-twc/zimg/archive/refs/tags/release' | sed -n 's,.*href="/sekrit-twc/zimg/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 echo "libzimg: $libzimg_local -> $libzimg_remote"
 
+# rubberband
+rubberband_local=$(cat ./packages/rubberband.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
+rubberband_remote=$(wget -q -O- 'https://github.com/breakfastquay/rubberband/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | head -1)
+echo "rubberband: $rubberband_local -> $rubberband_remote"
+
 # vulkan-headers
 vulkan_headers_local=$(cat ./packages/vulkan-headers.cmake | grep 'Vulkan-Headers' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
 vulkan_headers_remote=$(wget -q -O- 'https://github.com/KhronosGroup/Vulkan-Headers/tags' | grep 'href="/KhronosGroup/Vulkan-Headers/archive/refs/tags' | sed -n 's,.*href="/KhronosGroup/Vulkan-Headers/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
