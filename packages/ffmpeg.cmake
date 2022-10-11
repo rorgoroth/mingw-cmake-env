@@ -36,6 +36,7 @@ ExternalProject_Add(
     --disable-ffplay
     --disable-ffprobe
     --disable-filters
+      --enable-filter=aresample
       --enable-filter=blurdetect
       --enable-filter=copy
       --enable-filter=crop
