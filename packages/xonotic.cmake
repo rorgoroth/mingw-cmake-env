@@ -32,14 +32,18 @@ ExternalProject_Add_Step(
     ${CMAKE_COMMAND} -E copy
     <SOURCE_DIR>/Xonotic/SDL2.dll
     ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/SDL2.dll
-    COMMAND
+  COMMAND
     ${CMAKE_COMMAND} -E copy
     <SOURCE_DIR>/xonotic-dedicated.exe
     ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/xonotic-dedicated.exe
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <SOURCE_DIR>/xonotic-sdl.exe
-    ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/xonotic-sdl.exe)
+    ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/xonotic-sdl.exe
+  COMMAND
+    ${CMAKE_COMMAND} -E copy_directory
+    <SOURCE_DIR>/Xonotic/bin64
+    ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/bin64/)
 
 ExternalProject_Add_Step(
   xonotic clean
