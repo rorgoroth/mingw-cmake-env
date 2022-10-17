@@ -9,11 +9,11 @@ ExternalProject_Add(
     ${EXEC} <SOURCE_DIR>/configure
     --host=${TARGET_ARCH}
     --prefix=${MINGW_INSTALL_PREFIX}
-    --disable-examples 
-    --disable-oggtest 
-    --disable-sdltest 
-    --disable-shared 
-    --disable-vorbistest 
+    --disable-examples
+    --disable-oggtest
+    --disable-sdltest
+    --disable-shared
+    --disable-vorbistest
     --enable-static
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
