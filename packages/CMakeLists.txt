@@ -97,6 +97,7 @@ list(
   libopusenc
   speex
   vorbis
+  theora
   x264
   ffmpeg
   openal
