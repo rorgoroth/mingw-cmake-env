@@ -1,6 +1,7 @@
 ExternalProject_Add(
   libwebp
-  DEPENDS libpng
+  DEPENDS libjpeg
+          libpng
   GIT_REPOSITORY https://chromium.googlesource.com/webm/libwebp.git
   GIT_SHALLOW 1
   GIT_REMOTE_NAME origin
