@@ -1,6 +1,5 @@
 ExternalProject_Add(
   quake3e-urbanterror
-  DEPENDS gcc
   GIT_REPOSITORY https://github.com/omg-urt/urbanterror-slim.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""

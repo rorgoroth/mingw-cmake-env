@@ -1,7 +1,6 @@
 ExternalProject_Add(
   xonotic
-  DEPENDS gcc
-          libsdl2
+  DEPENDS libsdl2
   GIT_REPOSITORY https://github.com/rorgoroth/darkplaces-mingw-w64.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
