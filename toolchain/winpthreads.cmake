@@ -1,5 +1,6 @@
 ExternalProject_Add(
   winpthreads
+  EXCLUDE_FROM_ALL 1
   DEPENDS mingw-w64-crt
   PREFIX mingw-w64-prefix
   SOURCE_DIR mingw-w64-prefix/src

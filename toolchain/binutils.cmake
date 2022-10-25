@@ -1,5 +1,6 @@
 ExternalProject_Add(
   binutils
+  EXCLUDE_FROM_ALL 1
   URL https://ftp.gnu.org/gnu/binutils/binutils-2.39.tar.xz
   URL_HASH MD5=f7e986ae9ff06405cafb2e585ee36d27
   CONFIGURE_COMMAND

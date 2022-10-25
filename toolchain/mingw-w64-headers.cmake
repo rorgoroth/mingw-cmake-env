@@ -1,5 +1,6 @@
 ExternalProject_Add(
   mingw-w64-headers
+  EXCLUDE_FROM_ALL 1
   DEPENDS binutils mingw-w64 widl
   PREFIX mingw-w64-prefix
   SOURCE_DIR mingw-w64-prefix/src

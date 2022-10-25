@@ -8,6 +8,7 @@ endif()
 
 ExternalProject_Add(
   gcc-base
+  EXCLUDE_FROM_ALL 1
   DEPENDS mingw-w64-headers
   PREFIX gcc-prefix
   STAMP_DIR gcc-prefix/src/gcc-stamp

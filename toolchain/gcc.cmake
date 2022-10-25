@@ -1,6 +1,7 @@
 ExternalProject_Add(
   gcc
-  DEPENDS gcc-base winpthreads gendef
+  EXCLUDE_FROM_ALL 1
+  DEPENDS gcc-base gendef winpthreads
   SOURCE_DIR gcc-prefix/src
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE}

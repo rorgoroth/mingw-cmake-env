@@ -1,0 +1,137 @@
+From cf405923053881883f96e411129f938ac549cad2 Mon Sep 17 00:00:00 2001
+From: Ray Griffin <raymond.griffin@protonmail.com>
+Date: Wed, 26 Oct 2022 14:56:45 +0100
+Subject: toolchain fake build
+
+---
+ toolchain/binutils.cmake          | 4 ++--
+ toolchain/gcc-base.cmake          | 4 ++--
+ toolchain/gcc.cmake               | 4 ++--
+ toolchain/gendef.cmake            | 4 ++--
+ toolchain/mingw-w64-crt.cmake     | 4 ++--
+ toolchain/mingw-w64-headers.cmake | 2 +-
+ toolchain/widl.cmake              | 4 ++--
+ toolchain/winpthreads.cmake       | 4 ++--
+ 8 files changed, 15 insertions(+), 15 deletions(-)
+
+diff --git a/toolchain/binutils.cmake b/toolchain/binutils.cmake
+index 9806870..cd12da2 100644
+--- a/toolchain/binutils.cmake
++++ b/toolchain/binutils.cmake
+@@ -16,8 +16,8 @@ ExternalProject_Add(
+     --enable-lto
+     --enable-plugins
+     --enable-threads
+-  BUILD_COMMAND make -j${MAKEJOBS}
+-  INSTALL_COMMAND make install-strip
++  BUILD_COMMAND true
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+diff --git a/toolchain/gcc-base.cmake b/toolchain/gcc-base.cmake
+index e082daa..2e1d4f8 100644
+--- a/toolchain/gcc-base.cmake
++++ b/toolchain/gcc-base.cmake
+@@ -42,8 +42,8 @@ ExternalProject_Add(
+     --with-arch=${arch}
+     --without-included-gettext
+     ${exception}
+-  BUILD_COMMAND make -j${MAKEJOBS} all-gcc
+-  INSTALL_COMMAND make install-strip-gcc
++  BUILD_COMMAND true
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+diff --git a/toolchain/gcc.cmake b/toolchain/gcc.cmake
+index 977cf80..68d8fda 100644
+--- a/toolchain/gcc.cmake
++++ b/toolchain/gcc.cmake
+@@ -4,8 +4,8 @@ ExternalProject_Add(
+   DEPENDS gcc-base gendef widl winpthreads
+   SOURCE_DIR gcc-prefix/src
+   CONFIGURE_COMMAND ""
+-  BUILD_COMMAND ${MAKE}
+-  INSTALL_COMMAND ${MAKE} install-strip
++  BUILD_COMMAND true
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+diff --git a/toolchain/gendef.cmake b/toolchain/gendef.cmake
+index 3948d20..3bf10d0 100644
+--- a/toolchain/gendef.cmake
++++ b/toolchain/gendef.cmake
+@@ -7,8 +7,8 @@ ExternalProject_Add(
+   CONFIGURE_COMMAND
+     ${EXEC} <SOURCE_DIR>/mingw-w64/mingw-w64-tools/gendef/configure
+     --prefix=${CMAKE_INSTALL_PREFIX}
+-  BUILD_COMMAND ${MAKE}
+-  INSTALL_COMMAND ${MAKE} install-strip
++  BUILD_COMMAND true
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+diff --git a/toolchain/mingw-w64-crt.cmake b/toolchain/mingw-w64-crt.cmake
+index d532245..469b88b 100644
+--- a/toolchain/mingw-w64-crt.cmake
++++ b/toolchain/mingw-w64-crt.cmake
+@@ -18,8 +18,8 @@ ExternalProject_Add(
+     --with-default-msvcrt=msvcrt-os
+     --enable-wildcard
+     ${disable_lib}
+-  BUILD_COMMAND ${MAKE}
+-  INSTALL_COMMAND ${MAKE} install-strip
++  BUILD_COMMAND true
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+diff --git a/toolchain/mingw-w64-headers.cmake b/toolchain/mingw-w64-headers.cmake
+index faea0be..72af161 100644
+--- a/toolchain/mingw-w64-headers.cmake
++++ b/toolchain/mingw-w64-headers.cmake
+@@ -13,7 +13,7 @@ ExternalProject_Add(
+     --with-default-msvcrt=msvcrt
+     --with-default-win32-winnt=0x0A00
+   BUILD_COMMAND ""
+-  INSTALL_COMMAND make install-strip
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+diff --git a/toolchain/widl.cmake b/toolchain/widl.cmake
+index 7a7a704..5412c19 100644
+--- a/toolchain/widl.cmake
++++ b/toolchain/widl.cmake
+@@ -8,8 +8,8 @@ ExternalProject_Add(
+     ${EXEC} <SOURCE_DIR>/mingw-w64/mingw-w64-tools/widl/configure
+     --prefix=${CMAKE_INSTALL_PREFIX}
+     --target=${TARGET_ARCH}
+-  BUILD_COMMAND ${MAKE}
+-  INSTALL_COMMAND ${MAKE} install-strip
++  BUILD_COMMAND true
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+diff --git a/toolchain/winpthreads.cmake b/toolchain/winpthreads.cmake
+index 3bc529a..a8e0685 100644
+--- a/toolchain/winpthreads.cmake
++++ b/toolchain/winpthreads.cmake
+@@ -10,8 +10,8 @@ ExternalProject_Add(
+     --prefix=${MINGW_INSTALL_PREFIX}
+     --disable-shared
+     --enable-static CFLAGS='-DWINPTHREAD_STATIC'
+-  BUILD_COMMAND ${MAKE}
+-  INSTALL_COMMAND ${MAKE} install-strip
++  BUILD_COMMAND true
++  INSTALL_COMMAND true
+   LOG_DOWNLOAD 1
+   LOG_UPDATE 1
+   LOG_CONFIGURE 1
+--
+2.38.1
+

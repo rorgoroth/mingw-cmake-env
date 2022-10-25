@@ -6,6 +6,7 @@ endif()
 
 ExternalProject_Add(
   mingw-w64-crt
+  EXCLUDE_FROM_ALL 1
   DEPENDS mingw-w64 gcc-base
   PREFIX mingw-w64-prefix
   SOURCE_DIR mingw-w64-prefix/src
