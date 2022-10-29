@@ -4,7 +4,7 @@ ExternalProject_Add(
   URL https://github.com/facebook/zstd/releases/download/v1.5.2/zstd-1.5.2.tar.gz
   URL_HASH MD5=072b10f71f5820c24761a65f31f43e73
   CONFIGURE_COMMAND
-    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>/build/meson
+    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>/build/meson
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}

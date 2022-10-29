@@ -4,7 +4,7 @@ ExternalProject_Add(
   URL_HASH MD5=70353465c6a37f469a16eb90ebe28be2
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}

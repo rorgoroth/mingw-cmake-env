@@ -12,7 +12,7 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
   CONFIGURE_COMMAND
-    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}

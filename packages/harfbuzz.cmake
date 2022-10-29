@@ -8,7 +8,7 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}

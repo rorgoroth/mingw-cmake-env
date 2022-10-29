@@ -13,7 +13,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND ""
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/glad"
     COMMAND sh -c "ln -s ${src_glad} <SOURCE_DIR>/3rdparty/glad"
-    COMMAND ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+    COMMAND ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
