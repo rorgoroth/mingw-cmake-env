@@ -42,5 +42,7 @@ cd mingw-cmake-env
 mkdir build && cd build
 cmake -G Ninja ..
 ninja gcc
-ninja
+ninja $package
 ```
+
+Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is also excluded by default, so if there are updates to toolchain you need to manually run `ninja gcc`.
