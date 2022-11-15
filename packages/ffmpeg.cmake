@@ -38,6 +38,7 @@ ExternalProject_Add(
     --disable-filters
       --enable-filter=aresample
       --enable-filter=blurdetect
+      --enable-filter=convolution
       --enable-filter=copy
       --enable-filter=crop
       --enable-filter=cropdetect
