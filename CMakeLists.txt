@@ -2,6 +2,32 @@ cmake_minimum_required(VERSION 3.23.0)
 project(mingw-env)
 enable_language(C ASM CXX)
 
+function(colored_msg msg)
+    if(NOT WIN32)
+        string(ASCII 27 Esc)
+        message("${Esc}[35m${msg}${Esc}[m")
+    else()
+        message("${msg}")
+    endif()
+endfunction()
+
+macro(print_mingw64_banner)
+    colored_msg("")
+    colored_msg("  ███╗░░░███╗██╗███╗░░██╗░██████╗░░██╗░░░░░░░██╗░█████╗░░░██╗██╗")
+    colored_msg("  ████╗░████║██║████╗░██║██╔════╝░░██║░░██╗░░██║██╔═══╝░░██╔╝██║")
+    colored_msg("  ██╔████╔██║██║██╔██╗██║██║░░██╗░░╚██╗████╗██╔╝██████╗░██╔╝░██║")
+    colored_msg("  ██║╚██╔╝██║██║██║╚████║██║░░╚██╗░░████╔═████║░██╔══██╗███████║")
+    colored_msg("  ██║░╚═╝░██║██║██║░╚███║╚██████╔╝░░╚██╔╝░╚██╔╝░╚█████╔╝╚════██║")
+    colored_msg("  ╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░╚═╝░░░╚════╝░░░░░░╚═╝")
+    colored_msg("")
+endmacro()
+
+macro(print_header)
+    print_mingw64_banner()
+endmacro()
+
+print_header()
+
 include(ExternalProject)
 include(ProcessorCount)
 
