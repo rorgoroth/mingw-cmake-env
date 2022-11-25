@@ -20,8 +20,8 @@ ExternalProject_Add(
           vorbis
           vulkan-loader
           x264
-  GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
-  GIT_SHALLOW 1
+  URL https://github.com/FFmpeg/FFmpeg/archive/refs/tags/n5.1.2.tar.gz
+  URL_HASH MD5=208f6321d58ae939ee44ac419a87262c
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
@@ -162,4 +162,4 @@ ExternalProject_Add_Step(
     <BINARY_DIR>/ffmpeg.exe
     ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-package/ffmpeg.exe)
 
-force_rebuild_git(ffmpeg)
+#force_rebuild_git(ffmpeg)
