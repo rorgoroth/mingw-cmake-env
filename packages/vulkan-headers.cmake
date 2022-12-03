@@ -1,7 +1,7 @@
 ExternalProject_Add(
   vulkan-headers
-  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.230.tar.gz
-  URL_HASH MD5=e1643adb9270e01d72408a646e14fcea
+  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.236.tar.gz
+  URL_HASH MD5=e737286ebd31f924284f1f2235aedf14
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
