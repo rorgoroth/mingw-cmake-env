@@ -37,9 +37,4 @@ ExternalProject_Add_Step(
     <SOURCE_DIR>/build/release-mingw64-x86_64/quake3e.ded.x64.exe
     ${CMAKE_CURRENT_BINARY_DIR}/quake3e-openarena-package/quake3e.ded.x64.exe)
 
-ExternalProject_Add_Step(
-  quake3e-openarena clean
-  DEPENDEES copy-binary
-  COMMAND git -C <SOURCE_DIR> clean -dfxq)
-
 force_rebuild_git(quake3e-openarena)
