@@ -22,6 +22,9 @@ ExternalProject_Add(
   COMMAND
     patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0002-posix_memalign.patch
+  COMMAND
+    patch -p2 <
+    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0003-vmov.patch
   CONFIGURE_COMMAND
     <SOURCE_DIR>/configure
     --target=${TARGET_ARCH}
