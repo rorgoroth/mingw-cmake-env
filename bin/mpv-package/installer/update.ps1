@@ -27,15 +27,6 @@ function Update-Mpv {
     Remove-Item -Force $file
 }
 
-function Update-Ffmpeg  {
-    $link = "https://github.com/rorgoroth/mingw-cmake-env/releases/download/latest/ffmpeg.7z"
-    $file = "ffmpeg.7z"
-    Write-Host "Downloading" $file -ForegroundColor Green
-    Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::FireFox -OutFile $file
-    Extract-Archive
-    Remove-Item -Force $file
-}
-
 function Update-Ytdlp {
     $link = "https://github.com/rorgoroth/yt-dlp/releases/download/latest/yt-dlp.exe"
     $file = "yt-dlp.exe"
@@ -46,7 +37,6 @@ function Update-Ytdlp {
 # Run the whole lot here
 try {
     Update-Mpv
-    Update-Ffmpeg
     Update-Ytdlp
     Write-Host "Operation completed" -ForegroundColor Magenta
     Write-Host
