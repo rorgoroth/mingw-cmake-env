@@ -15,6 +15,7 @@ ExternalProject_Add(
           libxml2
           libzimg
           nvcodec-headers
+          onevpl
           speex
           spirv-cross
           vorbis
@@ -136,6 +137,7 @@ ExternalProject_Add(
     --enable-libopus
     --enable-libspeex
     --enable-libvorbis
+    --enable-libvpl
     --enable-libvpx
     --enable-libwebp
     --enable-libx264

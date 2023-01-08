@@ -99,6 +99,7 @@ list(
   vorbis
   theora
   x264
+  onevpl
   ffmpeg
   openal
   mpv
