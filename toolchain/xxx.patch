@@ -1,27 +1,27 @@
-From 6490b1640e31bff19b44755dccb86e24f027d53f Mon Sep 17 00:00:00 2001
+From ef4f1696f404fdc4dd5afa60f2103ec19126de04 Mon Sep 17 00:00:00 2001
 From: Ray Griffin <raymond.griffin@protonmail.com>
 Date: Wed, 28 Dec 2022 19:49:00 +0000
 Subject: [PATCH] xxx
 
 ---
  toolchain/binutils.cmake          | 18 +++-------------
- toolchain/gcc-base.cmake          | 34 +++----------------------------
+ toolchain/gcc-base.cmake          | 35 +++----------------------------
  toolchain/gcc.cmake               |  6 +++---
- toolchain/gendef.cmake            |  8 +++-----
+ toolchain/gendef.cmake            |  8 +++----
  toolchain/mingw-w64-crt.cmake     | 12 +++--------
  toolchain/mingw-w64-headers.cmake | 13 +++---------
  toolchain/widl.cmake              |  9 +++-----
  toolchain/winpthreads.cmake       | 11 +++-------
- 8 files changed, 24 insertions(+), 87 deletions(-)
+ 8 files changed, 24 insertions(+), 88 deletions(-)
 
 diff --git a/toolchain/binutils.cmake b/toolchain/binutils.cmake
-index 9806870..b1f13f6 100644
+index 32be3ba1c..a7120684c 100644
 --- a/toolchain/binutils.cmake
 +++ b/toolchain/binutils.cmake
 @@ -3,21 +3,9 @@ ExternalProject_Add(
    EXCLUDE_FROM_ALL 1
-   URL https://ftp.gnu.org/gnu/binutils/binutils-2.39.tar.xz
-   URL_HASH MD5=f7e986ae9ff06405cafb2e585ee36d27
+   URL https://ftp.gnu.org/gnu/binutils/binutils-2.40.tar.xz
+   URL_HASH MD5=007b59bd908a737c06e5a8d3d2c737eb
 -  CONFIGURE_COMMAND
 -    <SOURCE_DIR>/configure
 -    --target=${TARGET_ARCH}
@@ -44,21 +44,21 @@ index 9806870..b1f13f6 100644
    LOG_UPDATE 1
    LOG_CONFIGURE 1
 diff --git a/toolchain/gcc-base.cmake b/toolchain/gcc-base.cmake
-index edcf346..51e6473 100644
+index ca6a4d7eb..57020a2fc 100644
 --- a/toolchain/gcc-base.cmake
 +++ b/toolchain/gcc-base.cmake
-@@ -16,37 +16,9 @@ ExternalProject_Add(
+@@ -16,38 +16,9 @@ ExternalProject_Add(
    BINARY_DIR gcc-prefix/src/gcc-build
-   URL https://sourceware.org/pub/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.gz
-   URL_HASH MD5=d7644b494246450468464ffc2c2b19c3
+   URL https://mirrorservice.org/sites/sourceware.org/pub/gcc/snapshots/LATEST-13/gcc-13-20230115.tar.xz
+   URL_HASH MD5=d2cb5878ecac92137797cf7fc6e89aea
 -  PATCH_COMMAND
 -    patch -p1 <
--    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-musl-cc1-poison-calloc.patch
+-    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-libcc1-include-pthread.patch
 -  COMMAND
 -    patch -p1 <
--    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0002-posix_memalign.patch
+-    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0002-posix-memalign.patch
 -  COMMAND
--    patch -p2 <
+-    patch -p1 <
 -    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0003-vmov.patch
 -  CONFIGURE_COMMAND
 -    <SOURCE_DIR>/configure
@@ -70,6 +70,7 @@ index edcf346..51e6473 100644
 -    --disable-nls
 -    --disable-shared
 -    --disable-win32-registry
+-    --enable-checking=release
 -    --enable-checking=release
 -    --enable-default-pie
 -    --enable-default-ssp
@@ -89,7 +90,7 @@ index edcf346..51e6473 100644
    LOG_UPDATE 1
    LOG_CONFIGURE 1
 diff --git a/toolchain/gcc.cmake b/toolchain/gcc.cmake
-index 6b60600..0137551 100644
+index 6b6060060..0137551af 100644
 --- a/toolchain/gcc.cmake
 +++ b/toolchain/gcc.cmake
 @@ -3,9 +3,9 @@ ExternalProject_Add(
@@ -106,7 +107,7 @@ index 6b60600..0137551 100644
    LOG_UPDATE 1
    LOG_CONFIGURE 1
 diff --git a/toolchain/gendef.cmake b/toolchain/gendef.cmake
-index 3948d20..094cd5e 100644
+index 3948d206d..094cd5e14 100644
 --- a/toolchain/gendef.cmake
 +++ b/toolchain/gendef.cmake
 @@ -4,11 +4,9 @@ ExternalProject_Add(
@@ -125,7 +126,7 @@ index 3948d20..094cd5e 100644
    LOG_UPDATE 1
    LOG_CONFIGURE 1
 diff --git a/toolchain/mingw-w64-crt.cmake b/toolchain/mingw-w64-crt.cmake
-index d532245..d8743ed 100644
+index d53224553..d8743ed79 100644
 --- a/toolchain/mingw-w64-crt.cmake
 +++ b/toolchain/mingw-w64-crt.cmake
 @@ -10,16 +10,10 @@ ExternalProject_Add(
@@ -149,7 +150,7 @@ index d532245..d8743ed 100644
    LOG_UPDATE 1
    LOG_CONFIGURE 1
 diff --git a/toolchain/mingw-w64-headers.cmake b/toolchain/mingw-w64-headers.cmake
-index faea0be..11fe5c8 100644
+index faea0be37..11fe5c825 100644
 --- a/toolchain/mingw-w64-headers.cmake
 +++ b/toolchain/mingw-w64-headers.cmake
 @@ -4,16 +4,9 @@ ExternalProject_Add(
@@ -173,7 +174,7 @@ index faea0be..11fe5c8 100644
    LOG_UPDATE 1
    LOG_CONFIGURE 1
 diff --git a/toolchain/widl.cmake b/toolchain/widl.cmake
-index 7a7a704..422eeeb 100644
+index 7a7a7049a..422eeebe7 100644
 --- a/toolchain/widl.cmake
 +++ b/toolchain/widl.cmake
 @@ -4,12 +4,9 @@ ExternalProject_Add(
@@ -193,7 +194,7 @@ index 7a7a704..422eeeb 100644
    LOG_UPDATE 1
    LOG_CONFIGURE 1
 diff --git a/toolchain/winpthreads.cmake b/toolchain/winpthreads.cmake
-index 3bc529a..4ba8c3d 100644
+index 3bc529af4..4ba8c3d66 100644
 --- a/toolchain/winpthreads.cmake
 +++ b/toolchain/winpthreads.cmake
 @@ -4,14 +4,9 @@ ExternalProject_Add(
