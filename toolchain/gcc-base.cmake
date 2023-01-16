@@ -14,16 +14,16 @@ ExternalProject_Add(
   STAMP_DIR gcc-prefix/src/gcc-stamp
   SOURCE_DIR gcc-prefix/src/gcc
   BINARY_DIR gcc-prefix/src/gcc-build
-  URL https://sourceware.org/pub/gcc/releases/gcc-12.2.0/gcc-12.2.0.tar.gz
-  URL_HASH MD5=d7644b494246450468464ffc2c2b19c3
+  URL https://mirrorservice.org/sites/sourceware.org/pub/gcc/snapshots/LATEST-13/gcc-13-20230115.tar.xz
+  URL_HASH MD5=d2cb5878ecac92137797cf7fc6e89aea
   PATCH_COMMAND
     patch -p1 <
-    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-musl-cc1-poison-calloc.patch
+    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-libcc1-include-pthread.patch
   COMMAND
     patch -p1 <
-    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0002-posix_memalign.patch
+    ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0002-posix-memalign.patch
   COMMAND
-    patch -p2 <
+    patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0003-vmov.patch
   CONFIGURE_COMMAND
     <SOURCE_DIR>/configure
@@ -35,6 +35,7 @@ ExternalProject_Add(
     --disable-nls
     --disable-shared
     --disable-win32-registry
+    --enable-checking=release
     --enable-checking=release
     --enable-default-pie
     --enable-default-ssp

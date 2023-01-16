@@ -1,14 +1,140 @@
-Description: Use unaligned VMOV instructions
-Author: Stephen Kitt <skitt@debian.org>
-Bug-Debian: https://bugs.debian.org/939559
+From 726a544034c77835703f7df61632541e460f27e8 Mon Sep 17 00:00:00 2001
+From: Ray Griffin <raymond.griffin@protonmail.com>
+Date: Mon, 16 Jan 2023 16:43:05 +0000
+Subject: [PATCH 3/3] vmov
 
-Based on a patch originally by Claude Heiland-Allen <claude@mathr.co.uk>
+---
+ gcc/config/i386/i386.cc |  64 ++++++++----------------
+ gcc/config/i386/sse.md  | 108 +++++++++-------------------------------
+ 2 files changed, 44 insertions(+), 128 deletions(-)
 
-Index: gcc-mingw-w64/src/gcc/config/i386/sse.md
-===================================================================
---- gcc-mingw-w64.orig/src/gcc/config/i386/sse.md	2022-09-22 16:40:40.909921592 +0200
-+++ gcc-mingw-w64/src/gcc/config/i386/sse.md	2022-09-22 16:40:40.905921486 +0200
-@@ -1363,17 +1363,11 @@
+diff --git a/gcc/config/i386/i386.cc b/gcc/config/i386/i386.cc
+index de978d190..fad221e83 100644
+--- a/gcc/config/i386/i386.cc
++++ b/gcc/config/i386/i386.cc
+@@ -5474,17 +5474,15 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+ 	{
+ 	case opcode_int:
+ 	  if (scalar_mode == E_HFmode || scalar_mode == E_BFmode)
+-	    opcode = (misaligned_p
+-		      ? (TARGET_AVX512BW ? "vmovdqu16" : "vmovdqu64")
+-		      : "vmovdqa64");
++	    opcode = TARGET_AVX512BW ? "vmovdqu16" : "vmovdqu64";
+ 	  else
+-	    opcode = misaligned_p ? "vmovdqu32" : "vmovdqa32";
++	    opcode = "vmovdqu32";
+ 	  break;
+ 	case opcode_float:
+-	  opcode = misaligned_p ? "vmovups" : "vmovaps";
++	  opcode = "vmovups";
+ 	  break;
+ 	case opcode_double:
+-	  opcode = misaligned_p ? "vmovupd" : "vmovapd";
++	  opcode = "vmovupd";
+ 	  break;
+ 	}
+     }
+@@ -5495,29 +5493,25 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+ 	case E_HFmode:
+ 	case E_BFmode:
+ 	  if (evex_reg_p)
+-	    opcode = (misaligned_p
+-		      ? (TARGET_AVX512BW
++	    opcode = TARGET_AVX512BW
+ 			 ? "vmovdqu16"
+-			 : "vmovdqu64")
+-		      : "vmovdqa64");
++			 : "vmovdqu64";
+ 	  else
+-	    opcode = (misaligned_p
+-		      ? (TARGET_AVX512BW
++	    opcode = TARGET_AVX512BW
+ 			 ? "vmovdqu16"
+-			 : "%vmovdqu")
+-		      : "%vmovdqa");
++			 : "%vmovdqu";
+ 	  break;
+ 	case E_SFmode:
+-	  opcode = misaligned_p ? "%vmovups" : "%vmovaps";
++	  opcode = "%vmovups";
+ 	  break;
+ 	case E_DFmode:
+-	  opcode = misaligned_p ? "%vmovupd" : "%vmovapd";
++	  opcode = "%vmovupd";
+ 	  break;
+ 	case E_TFmode:
+ 	  if (evex_reg_p)
+-	    opcode = misaligned_p ? "vmovdqu64" : "vmovdqa64";
++	    opcode = "vmovdqu64";
+ 	  else
+-	    opcode = misaligned_p ? "%vmovdqu" : "%vmovdqa";
++	    opcode = "%vmovdqu";
+ 	  break;
+ 	default:
+ 	  gcc_unreachable ();
+@@ -5529,48 +5523,32 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+ 	{
+ 	case E_QImode:
+ 	  if (evex_reg_p)
+-	    opcode = (misaligned_p
+-		      ? (TARGET_AVX512BW
+-			 ? "vmovdqu8"
+-			 : "vmovdqu64")
+-		      : "vmovdqa64");
++	    opcode = TARGET_AVX512BW ? "vmovdqu8" : "vmovdqu64";
+ 	  else
+-	    opcode = (misaligned_p
+-		      ? (TARGET_AVX512BW
+-			 ? "vmovdqu8"
+-			 : "%vmovdqu")
+-		      : "%vmovdqa");
++	    opcode = TARGET_AVX512BW ? "vmovdqu8" : "%vmovdqu";
+ 	  break;
+ 	case E_HImode:
+ 	  if (evex_reg_p)
+-	    opcode = (misaligned_p
+-		      ? (TARGET_AVX512BW
+-			 ? "vmovdqu16"
+-			 : "vmovdqu64")
+-		      : "vmovdqa64");
++	    opcode = TARGET_AVX512BW ? "vmovdqu16" : "vmovdqu64";
+ 	  else
+-	    opcode = (misaligned_p
+-		      ? (TARGET_AVX512BW
+-			 ? "vmovdqu16"
+-			 : "%vmovdqu")
+-		      : "%vmovdqa");
++	    opcode = TARGET_AVX512BW ? "vmovdqu16" : "%vmovdqu";
+ 	  break;
+ 	case E_SImode:
+ 	  if (evex_reg_p)
+-	    opcode = misaligned_p ? "vmovdqu32" : "vmovdqa32";
++	    opcode = "vmovdqu32";
+ 	  else
+-	    opcode = misaligned_p ? "%vmovdqu" : "%vmovdqa";
++	    opcode = "%vmovdqu";
+ 	  break;
+ 	case E_DImode:
+ 	case E_TImode:
+ 	case E_OImode:
+ 	  if (evex_reg_p)
+-	    opcode = misaligned_p ? "vmovdqu64" : "vmovdqa64";
++	    opcode = "vmovdqu64";
+ 	  else
+-	    opcode = misaligned_p ? "%vmovdqu" : "%vmovdqa";
++	    opcode = "%vmovdqu";
+ 	  break;
+ 	case E_XImode:
+-	  opcode = misaligned_p ? "vmovdqu64" : "vmovdqa64";
++	  opcode = "vmovdqu64";
+ 	  break;
+ 	default:
+ 	  gcc_unreachable ();
+diff --git a/gcc/config/i386/sse.md b/gcc/config/i386/sse.md
+index d50627a7d..757ee5912 100644
+--- a/gcc/config/i386/sse.md
++++ b/gcc/config/i386/sse.md
+@@ -1419,17 +1419,11 @@
  {
    if (FLOAT_MODE_P (GET_MODE_INNER (<MODE>mode)))
      {
@@ -28,7 +154,7 @@ Index: gcc-mingw-w64/src/gcc/config/i386/sse.md
      }
  }
    [(set_attr "type" "ssemov")
-@@ -1564,17 +1558,11 @@
+@@ -1620,17 +1614,11 @@
  {
    if (FLOAT_MODE_P (GET_MODE_INNER (<MODE>mode)))
      {
@@ -48,7 +174,7 @@ Index: gcc-mingw-w64/src/gcc/config/i386/sse.md
      }
  }
    [(set_attr "type" "ssemov")
-@@ -10312,7 +10300,7 @@
+@@ -10449,7 +10437,7 @@
    "TARGET_SSE && !(MEM_P (operands[0]) && MEM_P (operands[1]))"
    "@
     %vmovlps\t{%1, %0|%q0, %1}
@@ -57,7 +183,7 @@ Index: gcc-mingw-w64/src/gcc/config/i386/sse.md
     %vmovlps\t{%1, %d0|%d0, %q1}"
    [(set_attr "type" "ssemov")
     (set_attr "prefix" "maybe_vex")
-@@ -17966,29 +17954,15 @@
+@@ -18257,29 +18245,15 @@
    switch (<MODE>mode)
      {
      case E_V8DFmode:
@@ -91,7 +217,7 @@ Index: gcc-mingw-w64/src/gcc/config/i386/sse.md
      default:
        gcc_unreachable ();
      }
-@@ -26194,63 +26168,27 @@
+@@ -26765,63 +26739,27 @@
        switch (get_attr_mode (insn))
  	{
  	case MODE_V16SF:
@@ -169,126 +295,6 @@ Index: gcc-mingw-w64/src/gcc/config/i386/sse.md
  	default:
  	  gcc_unreachable ();
  	}
-Index: gcc-mingw-w64/src/gcc/config/i386/i386.cc
-===================================================================
---- gcc-mingw-w64.orig/src/gcc/config/i386/i386.cc	2022-09-22 16:40:40.909921592 +0200
-+++ gcc-mingw-w64/src/gcc/config/i386/i386.cc	2022-09-22 16:42:36.428927213 +0200
-@@ -5418,17 +5418,15 @@
- 	{
- 	case opcode_int:
- 	  if (scalar_mode == E_HFmode)
--	    opcode = (misaligned_p
--		      ? (TARGET_AVX512BW ? "vmovdqu16" : "vmovdqu64")
--		      : "vmovdqa64");
-+	    opcode = TARGET_AVX512BW ? "vmovdqu16" : "vmovdqu64";
- 	  else
--	    opcode = misaligned_p ? "vmovdqu32" : "vmovdqa32";
-+	    opcode = "vmovdqu32";
- 	  break;
- 	case opcode_float:
--	  opcode = misaligned_p ? "vmovups" : "vmovaps";
-+	  opcode = "vmovups";
- 	  break;
- 	case opcode_double:
--	  opcode = misaligned_p ? "vmovupd" : "vmovapd";
-+	  opcode = "vmovupd";
- 	  break;
- 	}
-     }
-@@ -5438,29 +5436,25 @@
- 	{
- 	case E_HFmode:
- 	  if (evex_reg_p)
--	    opcode = (misaligned_p
--		      ? (TARGET_AVX512BW
-+	    opcode = TARGET_AVX512BW
- 			 ? "vmovdqu16"
--			 : "vmovdqu64")
--		      : "vmovdqa64");
-+			 : "vmovdqu64";
- 	  else
--	    opcode = (misaligned_p
--		      ? (TARGET_AVX512BW
-+	    opcode = TARGET_AVX512BW
- 			 ? "vmovdqu16"
--			 : "%vmovdqu")
--		      : "%vmovdqa");
-+			 : "%vmovdqu";
- 	  break;
- 	case E_SFmode:
--	  opcode = misaligned_p ? "%vmovups" : "%vmovaps";
-+	  opcode = "%vmovups";
- 	  break;
- 	case E_DFmode:
--	  opcode = misaligned_p ? "%vmovupd" : "%vmovapd";
-+	  opcode = "%vmovupd";
- 	  break;
- 	case E_TFmode:
- 	  if (evex_reg_p)
--	    opcode = misaligned_p ? "vmovdqu64" : "vmovdqa64";
-+	    opcode = "vmovdqu64";
- 	  else
--	    opcode = misaligned_p ? "%vmovdqu" : "%vmovdqa";
-+	    opcode = "%vmovdqu";
- 	  break;
- 	default:
- 	  gcc_unreachable ();
-@@ -5472,48 +5466,32 @@
- 	{
- 	case E_QImode:
- 	  if (evex_reg_p)
--	    opcode = (misaligned_p
--		      ? (TARGET_AVX512BW
--			 ? "vmovdqu8"
--			 : "vmovdqu64")
--		      : "vmovdqa64");
--	  else
--	    opcode = (misaligned_p
--		      ? (TARGET_AVX512BW
--			 ? "vmovdqu8"
--			 : "%vmovdqu")
--		      : "%vmovdqa");
-+	    opcode = TARGET_AVX512BW ? "vmovdqu8" : "vmovdqu64";
-+	  else
-+	    opcode = TARGET_AVX512BW ? "vmovdqu8" : "%vmovdqu";
- 	  break;
- 	case E_HImode:
- 	  if (evex_reg_p)
--	    opcode = (misaligned_p
--		      ? (TARGET_AVX512BW
--			 ? "vmovdqu16"
--			 : "vmovdqu64")
--		      : "vmovdqa64");
-+	    opcode = TARGET_AVX512BW ? "vmovdqu16" : "vmovdqu64";
- 	  else
--	    opcode = (misaligned_p
--		      ? (TARGET_AVX512BW
--			 ? "vmovdqu16"
--			 : "%vmovdqu")
--		      : "%vmovdqa");
-+	    opcode = TARGET_AVX512BW ? "vmovdqu16" : "%vmovdqu";
- 	  break;
- 	case E_SImode:
- 	  if (evex_reg_p)
--	    opcode = misaligned_p ? "vmovdqu32" : "vmovdqa32";
-+	    opcode = "vmovdqu32";
- 	  else
--	    opcode = misaligned_p ? "%vmovdqu" : "%vmovdqa";
-+	    opcode = "%vmovdqu";
- 	  break;
- 	case E_DImode:
- 	case E_TImode:
- 	case E_OImode:
- 	  if (evex_reg_p)
--	    opcode = misaligned_p ? "vmovdqu64" : "vmovdqa64";
-+	    opcode = "vmovdqu64";
- 	  else
--	    opcode = misaligned_p ? "%vmovdqu" : "%vmovdqa";
-+	    opcode = "%vmovdqu";
- 	  break;
- 	case E_XImode:
--	  opcode = misaligned_p ? "vmovdqu64" : "vmovdqa64";
-+	  opcode = "vmovdqu64";
- 	  break;
- 	default:
- 	  gcc_unreachable ();
+-- 
+2.39.0
+
