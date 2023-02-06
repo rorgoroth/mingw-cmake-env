@@ -3,7 +3,7 @@
 # Standard build
 build () {
   cd build || exit
-    ninja update && ninja -j1 || exit
+    ninja update && ninja || exit
   cd .. || exit
 }
 
@@ -16,8 +16,8 @@ fullbuild () {
     find packages/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
     ninja update || exit
     ninja clean || exit
-    ninja -j1 gcc || exit
-    ninja -j1 || exit
+    ninja gcc || exit
+    ninja  || exit
   cd .. || exit
 }
 
