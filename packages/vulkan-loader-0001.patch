@@ -1,6 +1,6 @@
 diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
---- a/loader/CMakeLists.txt	2023-01-29 13:06:46.772080262 +0000
-+++ b/loader/CMakeLists.txt	2023-01-29 13:07:15.232077108 +0000
+--- a/loader/CMakeLists.txt	2023-02-20 20:40:56.000000000 +0000
++++ b/loader/CMakeLists.txt	2023-02-21 13:01:41.003215400 +0000
 @@ -21,7 +21,7 @@
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
  target_include_directories(loader_specific_options INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/generated ${CMAKE_CURRENT_BINARY_DIR})
@@ -37,7 +37,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
          add_library(vulkan STATIC ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
          target_compile_definitions(vulkan PRIVATE BUILD_STATIC_LOADER)
      else()
-@@ -350,6 +350,7 @@
+@@ -345,6 +345,7 @@
          # https://forums.developer.apple.com/thread/65963
  
  # cmake-format: off
@@ -45,7 +45,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
          set_target_properties(vulkan-framework PROPERTIES
              OUTPUT_NAME vulkan
              FRAMEWORK TRUE
-@@ -363,6 +364,7 @@
+@@ -358,6 +359,7 @@
              PUBLIC_HEADER DESTINATION vulkan
              FRAMEWORK DESTINATION loader
          )
@@ -53,7 +53,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
  # cmake-format: on
      endif()
  endif()
-@@ -388,7 +390,7 @@
+@@ -382,7 +384,7 @@
          list(REMOVE_DUPLICATES PRIVATE_LIBS)
          set(PRIVATE_LIBS "Libs.private: ${PRIVATE_LIBS}")
      endif()
@@ -62,17 +62,17 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
          if(MINGW)
              set(VULKAN_LIB_SUFFIX "-1.dll")
          else()
-@@ -411,6 +413,7 @@
+@@ -405,6 +407,7 @@
          file(RELATIVE_PATH CMAKE_INSTALL_REL_LIBDIR_PC ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_FULL_LIBDIR_PC})
          file(RELATIVE_PATH CMAKE_INSTALL_REL_INCLUDEDIR_PC ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_FULL_INCLUDEDIR})
      endif()
 +    set(PRIVATE_LIBS "Libs.private: -lshlwapi -lcfgmgr32")
+     set(VULKAN_LOADER_PKG_CONFIG_NAME "Vulkan-Loader")
      configure_file("vulkan.pc.in" "vulkan.pc" @ONLY)
      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vulkan.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
- endif()
 diff -ruN a/loader/loader.h b/loader/loader.h
---- a/loader/loader.h	2023-01-29 13:06:46.772080262 +0000
-+++ b/loader/loader.h	2023-01-29 13:07:15.232077108 +0000
+--- a/loader/loader.h	2023-02-20 20:40:56.000000000 +0000
++++ b/loader/loader.h	2023-02-21 13:01:41.003215400 +0000
 @@ -32,7 +32,9 @@
  #include "loader_common.h"
  
@@ -84,8 +84,8 @@ diff -ruN a/loader/loader.h b/loader/loader.h
  static inline VkPhysicalDevice loader_unwrap_physical_device(VkPhysicalDevice physicalDevice) {
      struct loader_physical_device_tramp *phys_dev = (struct loader_physical_device_tramp *)physicalDevice;
 diff -ruN a/loader/loader.rc b/loader/loader.rc
---- a/loader/loader.rc	2023-01-29 13:06:46.772080262 +0000
-+++ b/loader/loader.rc	2023-01-29 13:07:15.232077108 +0000
+--- a/loader/loader.rc	2023-02-20 20:40:56.000000000 +0000
++++ b/loader/loader.rc	2023-02-21 13:01:41.003215400 +0000
 @@ -19,7 +19,11 @@
  // Author: Charles Giessen <charles@lunarg.com>
  //
@@ -97,10 +97,10 @@ diff -ruN a/loader/loader.rc b/loader/loader.rc
 +#endif
  
  // All set through CMake
- #define VER_FILE_VERSION 1, 3, 240
+ #define VER_FILE_VERSION 1, 3, 241
 diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
---- a/loader/loader_windows.c	2023-01-29 13:06:46.782080262 +0000
-+++ b/loader/loader_windows.c	2023-01-29 13:07:15.242077106 +0000
+--- a/loader/loader_windows.c	2023-02-20 20:40:56.000000000 +0000
++++ b/loader/loader_windows.c	2023-02-21 13:01:41.003215400 +0000
 @@ -47,6 +47,8 @@
  #include <strsafe.h>
  #ifdef __MINGW32__
@@ -127,8 +127,8 @@ diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
  bool windows_add_json_entry(const struct loader_instance *inst,
                              char **reg_data,    // list of JSON files
 diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
---- a/loader/vk_loader_platform.h	2023-01-29 13:06:46.782080262 +0000
-+++ b/loader/vk_loader_platform.h	2023-01-29 13:07:15.242077106 +0000
+--- a/loader/vk_loader_platform.h	2023-02-20 20:40:56.000000000 +0000
++++ b/loader/vk_loader_platform.h	2023-02-21 13:01:41.003215400 +0000
 @@ -66,6 +66,7 @@
  #include <io.h>
  #include <shlwapi.h>
