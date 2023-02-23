@@ -9,6 +9,7 @@ ExternalProject_Add(
           lame
           libass
           libopusenc
+          libplacebo
           libpng
           libvpx
           libwebp
@@ -135,6 +136,7 @@ ExternalProject_Add(
     --enable-libdav1d
     --enable-libmp3lame
     --enable-libopus
+    --enable-libplacebo
     --enable-libspeex
     --enable-libvorbis
     --enable-libvpl
@@ -148,6 +150,7 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
+    "--extra-libs='-lstdc++'" # Needed by shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1
