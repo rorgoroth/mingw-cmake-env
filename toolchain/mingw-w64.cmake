@@ -2,8 +2,8 @@ ExternalProject_Add(
   mingw-w64
   EXCLUDE_FROM_ALL 1
   PREFIX mingw-w64-prefix
-  URL https://github.com/mirror/mingw-w64/archive/a57cacad31f5766d45959b6c0f9b122918d545fa.tar.gz
-  URL_HASH MD5=f50d6c5dfe03febfba49413425b1bcc5
+  URL https://github.com/mirror/mingw-w64/archive/40134887fb81f5be451b5c4c92dc1e0372f08b68.tar.gz
+  URL_HASH MD5=c60b19906eb83c57f7e7cd1b7746725a
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""

@@ -1,9 +1,7 @@
 if(${TARGET_CPU} MATCHES "x86_64")
     set(arch "x86-64-v3")
-    set(exception "--enable-seh-exceptions")
 else()
     set(arch "i686")
-    set(exception "--enable-dw2-exceptions")
 endif()
 
 ExternalProject_Add(
@@ -14,8 +12,8 @@ ExternalProject_Add(
   STAMP_DIR gcc-prefix/src/gcc-stamp
   SOURCE_DIR gcc-prefix/src/gcc
   BINARY_DIR gcc-prefix/src/gcc-build
-  URL https://mirrorservice.org/sites/sourceware.org/pub/gcc/snapshots/13-20230129/gcc-13-20230129.tar.xz
-  URL_HASH MD5=3de39366a3a91db05553bbdee0b2020b
+  URL https://github.com/gcc-mirror/gcc/archive/d3e427f684b0cd7cedbe7b93a06f455e562c5901.tar.gz
+  URL_HASH MD5=988f9ca1265efda167f5c8030d5c0d10
   PATCH_COMMAND
     patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-libcc1-include-pthread.patch
@@ -45,7 +43,6 @@ ExternalProject_Add(
     --enable-threads=posix
     --with-arch=${arch}
     --without-included-gettext
-    ${exception}
   BUILD_COMMAND make -j${MAKEJOBS} all-gcc
   INSTALL_COMMAND make install-strip-gcc
   LOG_DOWNLOAD 1
