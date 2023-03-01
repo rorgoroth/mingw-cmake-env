@@ -47,6 +47,8 @@ string(REGEX MATCH "^[^-]+" HOST_CPU ${HOST_ARCH})
 if(TARGET_CPU MATCHES "x86_64")
   set(TARGET_CPU_FAMILY "x86_64")
   set(TARGET_BITS 64)
+  set(GCC_ARCH "x86-64-v3"
+      CACHE STRING "Default optimization arch(-march=) for GCC to target.")
 else()
   set(TARGET_CPU_FAMILY "x86")
   set(TARGET_BITS 32)
@@ -58,7 +60,6 @@ if(CPU_COUNT EQUAL 0)
 endif()
 
 set(MAKEJOBS ${CPU_COUNT})
-# set(MAKEJOBS 8)
 set(MAKEJOBS
     ${MAKEJOBS}
     CACHE STRING "Number of parallel processes to run for each package build")

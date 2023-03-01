@@ -1,5 +1,5 @@
 if(${TARGET_CPU} MATCHES "x86_64")
-    set(arch "x86-64-v3")
+    set(arch "${GCC_ARCH}")
 else()
     set(arch "i686")
 endif()
@@ -12,8 +12,8 @@ ExternalProject_Add(
   STAMP_DIR gcc-prefix/src/gcc-stamp
   SOURCE_DIR gcc-prefix/src/gcc
   BINARY_DIR gcc-prefix/src/gcc-build
-  URL https://github.com/gcc-mirror/gcc/archive/d3e427f684b0cd7cedbe7b93a06f455e562c5901.tar.gz
-  URL_HASH MD5=988f9ca1265efda167f5c8030d5c0d10
+  URL https://github.com/gcc-mirror/gcc/archive/3843dc1460259fbca1f336b0259f0b6b527d77ae.tar.gz
+  URL_HASH MD5=d3944484369b70a7536b590e72a24fb8
   PATCH_COMMAND
     patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-libcc1-include-pthread.patch
@@ -32,6 +32,7 @@ ExternalProject_Add(
     --disable-multilib
     --disable-nls
     --disable-shared
+    --disable-sjlj-exceptions
     --disable-win32-registry
     --enable-checking=release
     --enable-checking=release

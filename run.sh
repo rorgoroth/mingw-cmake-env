@@ -85,7 +85,7 @@ case "$1" in
   "build")
     build
     ;;
-  "fbuild")
+  "fullbuild")
     fullbuild
     ;;
   "pkg")

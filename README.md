@@ -40,7 +40,7 @@ Setup/Build:
 git clone https://github.com/rorgoroth/mingw-cmake-env.git
 cd mingw-cmake-env
 mkdir build && cd build
-cmake -G Ninja ..
+ccmake -G Ninja ..
 ninja gcc
 ninja $package
 ```
