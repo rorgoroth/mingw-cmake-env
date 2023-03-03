@@ -2,23 +2,20 @@
 
 # Standard build
 build () {
-  cd build || exit
-    ninja update && ninja || exit
-  cd .. || exit
+  ninja -C build update || exit
+  ninja -C build        || exit
 }
 
 # Full build, clean up as much as possible. You should manually
 # remove the installation prefix before running this as to create
 # a clean environment.
 fullbuild () {
-  cd build || exit
-    find toolchain/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
-    find packages/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
-    ninja update || exit
-    ninja clean || exit
-    ninja gcc || exit
-    ninja  || exit
-  cd .. || exit
+  find build/toolchain/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
+  find build/packages/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
+  ninja -C build update   || exit
+  ninja -C build clean    || exit
+  ninja -C build gcc      || exit
+  ninja -C build          || exit
 }
 
 # Create the 7z packages.
