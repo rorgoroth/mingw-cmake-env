@@ -125,6 +125,9 @@ ExternalProject_Add(
     --disable-postproc
     --disable-sdl2
     --disable-txtpages
+    --disable-vaapi
+    --disable-vdpau
+    --disable-videotoolbox
     --enable-amf
     --enable-cross-compile
     --enable-gmp
