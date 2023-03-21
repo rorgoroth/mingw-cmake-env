@@ -1,10 +1,12 @@
 ExternalProject_Add(
   quake3e-openarena
   DEPENDS vorbis
+          zlib
+          zstd
   GIT_REPOSITORY https://github.com/rorgoroth/Quake3e-OpenArena.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/quake3e-0*.patch
+  PATCH_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE} PLATFORM=mingw64 ARCH=x86_64
   INSTALL_COMMAND ""

@@ -1,9 +1,11 @@
 ExternalProject_Add(
   quake3e-urbanterror
-  GIT_REPOSITORY https://github.com/omg-urt/urbanterror-slim.git
+  DEPENDS zlib
+          zstd
+  GIT_REPOSITORY https://github.com/rorgoroth/Quake3e-UrbanTerror.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/quake3e-0*.patch
+  PATCH_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ""
