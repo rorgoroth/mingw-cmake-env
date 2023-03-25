@@ -10,7 +10,7 @@ ExternalProject_Add(
     --prefix=${MINGW_INSTALL_PREFIX}
     --enable-idl
     --enable-sdk=all
-    --with-default-msvcrt=msvcrt
+    --with-default-msvcrt=ucrt
     --with-default-win32-winnt=0x0A00
   BUILD_COMMAND ""
   INSTALL_COMMAND make install-strip

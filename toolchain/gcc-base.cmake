@@ -12,8 +12,8 @@ ExternalProject_Add(
   STAMP_DIR gcc-prefix/src/gcc-stamp
   SOURCE_DIR gcc-prefix/src/gcc
   BINARY_DIR gcc-prefix/src/gcc-build
-  URL https://github.com/gcc-mirror/gcc/archive/3843dc1460259fbca1f336b0259f0b6b527d77ae.tar.gz
-  URL_HASH MD5=d3944484369b70a7536b590e72a24fb8
+  URL https://github.com/gcc-mirror/gcc/archive/d495ea2b232f3eb50155d7c7362c09a744766746.tar.gz
+  URL_HASH MD5=6e3f3df103661b5745fd6b8ab0bfd89b
   PATCH_COMMAND
     patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-libcc1-include-pthread.patch

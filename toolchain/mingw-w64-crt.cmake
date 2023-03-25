@@ -15,7 +15,7 @@ ExternalProject_Add(
     --host=${TARGET_ARCH}
     --prefix=${MINGW_INSTALL_PREFIX}
     --with-sysroot=${CMAKE_INSTALL_PREFIX}
-    --with-default-msvcrt=msvcrt-os
+    --with-default-msvcrt=ucrt
     --enable-wildcard
     ${disable_lib}
   BUILD_COMMAND ${MAKE}
