@@ -110,7 +110,6 @@ list(
   glew
   sqlite
   iortcw
-  iortcw-mp
   quake3e
   quake3e-urbanterror
   quake3e-openarena
