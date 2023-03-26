@@ -17,6 +17,7 @@ ExternalProject_Add(
           libzimg
           nvcodec-headers
           onevpl
+          shaderc
           speex
           spirv-cross
           vorbis
@@ -140,6 +141,7 @@ ExternalProject_Add(
     --enable-libmp3lame
     --enable-libopus
     --enable-libplacebo
+    --enable-libshaderc
     --enable-libspeex
     --enable-libvorbis
     --enable-libvpl
@@ -153,7 +155,7 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
-    "--extra-libs='-lstdc++'" # Needed by shaderc
+    "--extra-libs='-lstdc++'" # Needed by libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1
