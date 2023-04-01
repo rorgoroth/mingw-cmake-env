@@ -21,10 +21,10 @@ ExternalProject_Add_Step(
   DEPENDERS configure
   COMMAND
     ${CMAKE_COMMAND} -E copy
-    ${CMAKE_SOURCE_DIR}/toolchain/mingw-headers/d3dkmthk.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-headers-d3dkmthk.h
     <SOURCE_DIR>/loader/d3dkmthk.h
   COMMAND
     ${CMAKE_COMMAND} -E copy
-    ${CMAKE_SOURCE_DIR}/toolchain/mingw-headers/d3dukmdt.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-headers-d3dukmdt.h
     <SOURCE_DIR>/loader/d3dukmdt.h
   COMMENT "vulkan-headers: Copying extra mingw headers")
