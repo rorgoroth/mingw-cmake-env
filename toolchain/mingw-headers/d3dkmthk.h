@@ -1,4 +1,4 @@
-/* https://raw.githubusercontent.com/wine-mirror/wine/master/include/ddk/d3dkmthk.h
+/* https://raw.githubusercontent.com/wine-mirror/wine/a98d9dd9e996fa3b8754d7c41edb4c4061abd8d5/include/ddk/d3dkmthk.h
  * Copyright 2016 Henri Verbeet for CodeWeavers
  *
  * This library is free software; you can redistribute it and/or
@@ -666,6 +666,20 @@ typedef struct _D3DKMT_ESCAPE
     UINT               PrivateDriverDataSize;
     D3DKMT_HANDLE      hContext;
 } D3DKMT_ESCAPE;
+
+typedef struct _D3DKMT_ADAPTERINFO
+{
+  D3DKMT_HANDLE hAdapter;
+  LUID          AdapterLuid;
+  ULONG         NumOfSources;
+  BOOL          bPrecisePresentRegionsPreferred;
+} D3DKMT_ADAPTERINFO;
+
+typedef struct _D3DKMT_ENUMADAPTERS2
+{
+  ULONG               NumAdapters;
+  D3DKMT_ADAPTERINFO *pAdapters;
+} D3DKMT_ENUMADAPTERS2;
 
 #ifdef __cplusplus
 extern "C"
