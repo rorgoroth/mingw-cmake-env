@@ -1,8 +1,8 @@
 ExternalProject_Add(
   zstd
   DEPENDS zlib
-  URL https://github.com/facebook/zstd/releases/download/v1.5.4/zstd-1.5.4.tar.gz
-  URL_HASH MD5=2352b1f9ccc7446641046bb3d440c3ed
+  URL https://github.com/facebook/zstd/releases/download/v1.5.5/zstd-1.5.5.tar.gz
+  URL_HASH MD5=63251602329a106220e0a5ad26ba656f
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>/build/meson
     --prefix=${MINGW_INSTALL_PREFIX}
