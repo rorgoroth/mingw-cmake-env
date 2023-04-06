@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libsdl2
-  URL https://github.com/libsdl-org/SDL/releases/download/release-2.26.4/SDL2-2.26.4.tar.gz
-  URL_HASH MD5=a8a81a12f3181071fe87ef2eab1202b9
+  URL https://github.com/libsdl-org/SDL/releases/download/release-2.26.5/SDL2-2.26.5.tar.gz
+  URL_HASH MD5=47f22c109070431ecccd90abd3c0ab6e
   CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_BUILD_TYPE=Release
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
