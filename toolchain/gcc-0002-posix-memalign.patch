@@ -1,5 +1,5 @@
 From c5b8f50a2d7cec4f4ce6ed9cc0ff0e6ea2a06a70 Mon Sep 17 00:00:00 2001
-From: Ray Griffin <raymond.griffin@protonmail.com>
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
 Date: Mon, 16 Jan 2023 16:22:32 +0000
 Subject: [PATCH 2/3] posix-memalign
 
@@ -13,7 +13,7 @@ index 3b2e4f479..20f790904 100644
 +++ b/gcc/config/i386/pmm_malloc.h
 @@ -27,12 +27,13 @@
  #include <stdlib.h>
- 
+
  /* We can't depend on <stdlib.h> since the prototype of posix_memalign
 -   may not be visible.  */
 +   may not be visible and we can't pollute the namespace either.  */
@@ -25,7 +25,7 @@ index 3b2e4f479..20f790904 100644
 +extern "C" int _mm_posix_memalign (void **, size_t, size_t) throw ()
  #endif
 +__asm__("posix_memalign");
- 
+
  static __inline void *
  _mm_malloc (size_t __size, size_t __alignment)
 @@ -42,7 +43,7 @@ _mm_malloc (size_t __size, size_t __alignment)
@@ -37,6 +37,6 @@ index 3b2e4f479..20f790904 100644
      return __ptr;
    else
      return NULL;
--- 
+--
 2.39.0
 

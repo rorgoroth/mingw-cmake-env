@@ -1,5 +1,5 @@
 From 726a544034c77835703f7df61632541e460f27e8 Mon Sep 17 00:00:00 2001
-From: Ray Griffin <raymond.griffin@protonmail.com>
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
 Date: Mon, 16 Jan 2023 16:43:05 +0000
 Subject: [PATCH 3/3] vmov
 
@@ -295,6 +295,6 @@ index d50627a7d..757ee5912 100644
  	default:
  	  gcc_unreachable ();
  	}
--- 
+--
 2.39.0
 
