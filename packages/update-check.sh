@@ -40,6 +40,11 @@ a=$(cat ./packages/libzimg.cmake | grep 'zimg' | sed -n 's,.*release-\([0-9][^>]
 b=$(wget -q -O- 'https://github.com/sekrit-twc/zimg/tags' | grep 'href="/sekrit-twc/zimg/archive/refs/tags/release' | sed -n 's,.*href="/sekrit-twc/zimg/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 echo "libzimg: $a -> $b"
 
+# mujs
+a=$(cat ./packages/mujs.cmake | grep 'mujs' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/ccxvii/mujs/tags' | grep 'href="/ccxvii/mujs/archive/refs/tags' | sed -n 's,.*href="/ccxvii/mujs/archive/refs/tags/\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+echo "mujs: $a -> $b"
+
 # rubberband
 a=$(cat ./packages/rubberband.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://github.com/breakfastquay/rubberband/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | head -1)

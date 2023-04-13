@@ -102,6 +102,7 @@ list(
   onevpl
   ffmpeg
   openal
+  mujs
   mpv
   zstd
   curl

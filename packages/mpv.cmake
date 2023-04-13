@@ -9,6 +9,7 @@ ExternalProject_Add(
           libplacebo
           libpng
           luajit
+          mujs
           openal
           rubberband
           shaderc
@@ -29,6 +30,7 @@ ExternalProject_Add(
     -Db_ndebug=true
     -Dd3d11=enabled
     -Diconv=enabled
+    -Djavascript=enabled
     -Djpeg=enabled
     -Dlcms2=enabled
     -Dlibplacebo=enabled
