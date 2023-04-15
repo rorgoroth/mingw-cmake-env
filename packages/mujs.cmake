@@ -5,7 +5,8 @@ AR=${TARGET_ARCH}-ar
 RANLIB=${TARGET_ARCH}-ranlib
 OUT=<BINARY_DIR>
 prefix=${MINGW_INSTALL_PREFIX}
-host=mingw")
+host=mingw
+VERSION=1.3.3")
 
 ExternalProject_Add(
   mujs
@@ -16,6 +17,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE} -C <SOURCE_DIR> ${flag}
   INSTALL_COMMAND ${MAKE} -C <SOURCE_DIR> ${flag} install
+  BUILD_IN_SOURCE 1
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
