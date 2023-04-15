@@ -1,4 +1,4 @@
-From 726a544034c77835703f7df61632541e460f27e8 Mon Sep 17 00:00:00 2001
+From b4a4610c8883c3d57eb2e51da2c00d99589e5f6a Mon Sep 17 00:00:00 2001
 From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
 Date: Mon, 16 Jan 2023 16:43:05 +0000
 Subject: [PATCH 3/3] vmov
@@ -9,10 +9,10 @@ Subject: [PATCH 3/3] vmov
  2 files changed, 44 insertions(+), 128 deletions(-)
 
 diff --git a/gcc/config/i386/i386.cc b/gcc/config/i386/i386.cc
-index de978d190..fad221e83 100644
+index fbd33a6bf..c3c4a8adb 100644
 --- a/gcc/config/i386/i386.cc
 +++ b/gcc/config/i386/i386.cc
-@@ -5474,17 +5474,15 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+@@ -5475,17 +5475,15 @@ ix86_get_ssemov (rtx *operands, unsigned size,
  	{
  	case opcode_int:
  	  if (scalar_mode == E_HFmode || scalar_mode == E_BFmode)
@@ -34,7 +34,7 @@ index de978d190..fad221e83 100644
  	  break;
  	}
      }
-@@ -5495,29 +5493,25 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+@@ -5496,29 +5494,25 @@ ix86_get_ssemov (rtx *operands, unsigned size,
  	case E_HFmode:
  	case E_BFmode:
  	  if (evex_reg_p)
@@ -72,7 +72,7 @@ index de978d190..fad221e83 100644
  	  break;
  	default:
  	  gcc_unreachable ();
-@@ -5529,48 +5523,32 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+@@ -5530,48 +5524,32 @@ ix86_get_ssemov (rtx *operands, unsigned size,
  	{
  	case E_QImode:
  	  if (evex_reg_p)
@@ -131,7 +131,7 @@ index de978d190..fad221e83 100644
  	default:
  	  gcc_unreachable ();
 diff --git a/gcc/config/i386/sse.md b/gcc/config/i386/sse.md
-index d50627a7d..757ee5912 100644
+index 513960e8f..8a7e45dd9 100644
 --- a/gcc/config/i386/sse.md
 +++ b/gcc/config/i386/sse.md
 @@ -1419,17 +1419,11 @@
@@ -174,7 +174,7 @@ index d50627a7d..757ee5912 100644
      }
  }
    [(set_attr "type" "ssemov")
-@@ -10449,7 +10437,7 @@
+@@ -10440,7 +10428,7 @@
    "TARGET_SSE && !(MEM_P (operands[0]) && MEM_P (operands[1]))"
    "@
     %vmovlps\t{%1, %0|%q0, %1}
@@ -183,7 +183,7 @@ index d50627a7d..757ee5912 100644
     %vmovlps\t{%1, %d0|%d0, %q1}"
    [(set_attr "type" "ssemov")
     (set_attr "prefix" "maybe_vex")
-@@ -18257,29 +18245,15 @@
+@@ -18248,29 +18236,15 @@
    switch (<MODE>mode)
      {
      case E_V8DFmode:
@@ -217,7 +217,7 @@ index d50627a7d..757ee5912 100644
      default:
        gcc_unreachable ();
      }
-@@ -26765,63 +26739,27 @@
+@@ -26756,63 +26730,27 @@
        switch (get_attr_mode (insn))
  	{
  	case MODE_V16SF:
@@ -295,6 +295,6 @@ index d50627a7d..757ee5912 100644
  	default:
  	  gcc_unreachable ();
  	}
---
-2.39.0
+-- 
+2.38.4
 
