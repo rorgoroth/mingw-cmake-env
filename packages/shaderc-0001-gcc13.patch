@@ -1,5 +1,5 @@
 From 2da89e57fea6cf568282567c046fda3c6e7bbcd6 Mon Sep 17 00:00:00 2001
-From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+From: rorgoroth <rorgoroth@users.noreply.github.com>
 Date: Mon, 16 Jan 2023 21:10:33 +0000
 Subject: [PATCH] fix-gcc13
 

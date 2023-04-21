@@ -1,5 +1,5 @@
 From 75db0e02441fff8b6e8242a0eed51646178e65b6 Mon Sep 17 00:00:00 2001
-From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+From: rorgoroth <rorgoroth@users.noreply.github.com>
 Date: Fri, 21 Apr 2023 14:30:09 +0100
 Subject: [PATCH] Custom changes for mpv builds.
 
@@ -16,7 +16,7 @@ index 6f7b383..3547347 100644
 @@ -72,18 +72,9 @@ FcFileScanFontConfig (FcFontSet		*set,
      int		old_nfont = set->nfont;
      const FcChar8 *sysroot = FcConfigGetSysRoot (config);
- 
+
 -    if (FcDebug () & FC_DBG_SCAN)
 -    {
 -	printf ("\tScanning file %s...", file);
@@ -25,7 +25,7 @@ index 6f7b383..3547347 100644
 -
      if (!FcFreeTypeQueryAll (file, -1, NULL, NULL, set))
  	return FcFalse;
- 
+
 -    if (FcDebug () & FC_DBG_SCAN)
 -	printf ("done\n");
 -
@@ -34,10 +34,10 @@ index 6f7b383..3547347 100644
  	FcPattern *font = set->fonts[i];
 @@ -233,8 +224,8 @@ FcDirScanConfig (FcFontSet	*set,
      base = file_prefix + strlen ((char *) file_prefix);
- 
+
      if (FcDebug () & FC_DBG_SCAN)
 -	printf ("\tScanning dir %s\n", s_dir);
--	
+-
 +	fprintf (stderr, "[fontconfig] Scanning dir %s\n", dir);
 +
      d = opendir ((char *) s_dir);
@@ -71,7 +71,7 @@ index 6f7b383..3547347 100644
 +
 +    if (FcDebug () & FC_DBG_SCAN)
 +	fprintf (stderr, "\n[fontconfig] Finished scanning dir %s\n", dir);
- 
+
  bail2:
      FcStrSetDestroy (files);
 diff --git a/src/fcinit.c b/src/fcinit.c
@@ -81,7 +81,7 @@ index c05cdc5..347f8b4 100644
 @@ -35,6 +35,12 @@
  #pragma message("To suppress these warnings, define FC_NO_MT.")
  #endif
- 
+
 +#ifdef _WIN32
 +#define _WIN32_IE 0x0500
 +#include <shlobj.h>
@@ -120,9 +120,9 @@ index c05cdc5..347f8b4 100644
      if (!FcConfigParseAndLoadFromMemory (config, fallback, FcFalse))
  	goto bail1;
 +#endif
- 
+
      return config;
- 
+
 +#ifdef _WIN32
 +bail3:
 +    free(buf2);
@@ -133,6 +133,6 @@ index c05cdc5..347f8b4 100644
  bail1:
      FcConfigDestroy (config);
  bail0:
--- 
+--
 2.38.4
 
