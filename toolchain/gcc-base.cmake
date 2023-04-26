@@ -12,8 +12,8 @@ ExternalProject_Add(
   STAMP_DIR gcc-prefix/src/gcc-stamp
   SOURCE_DIR gcc-prefix/src/gcc
   BINARY_DIR gcc-prefix/src/gcc-build
-  URL https://github.com/gcc-mirror/gcc/archive/86b31d583a3657f11d930ff156c07b2e20ab05eb.tar.gz
-  URL_HASH MD5=3c33d50801ee77b71ecfc48dc1d4b880
+  URL https://sourceware.org/pub/gcc/releases/gcc-13.1.0/gcc-13.1.0.tar.gz
+  URL_HASH MD5=acbd81e95b3d9f11ea0b3462d88107b1
   PATCH_COMMAND
     patch -p1 <
     ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-libcc1-include-pthread.patch
@@ -34,7 +34,6 @@ ExternalProject_Add(
     --disable-shared
     --disable-sjlj-exceptions
     --disable-win32-registry
-    --enable-checking=release
     --enable-checking=release
     --enable-default-pie
     --enable-default-ssp

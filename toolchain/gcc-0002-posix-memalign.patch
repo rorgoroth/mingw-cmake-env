@@ -1,16 +1,6 @@
-From 32adc2d1779771de07ff12d12aef11fa263cdb4a Mon Sep 17 00:00:00 2001
-From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
-Date: Mon, 16 Jan 2023 16:22:32 +0000
-Subject: [PATCH 2/3] posix-memalign
-
----
- gcc/config/i386/pmm_malloc.h | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
-
-diff --git a/gcc/config/i386/pmm_malloc.h b/gcc/config/i386/pmm_malloc.h
-index 352728369..c4071b64b 100644
---- a/gcc/config/i386/pmm_malloc.h
-+++ b/gcc/config/i386/pmm_malloc.h
+diff -ruN a/gcc/config/i386/pmm_malloc.h c/gcc/config/i386/pmm_malloc.h
+--- a/gcc/config/i386/pmm_malloc.h	2023-04-26 14:36:39.646516266 +0100
++++ c/gcc/config/i386/pmm_malloc.h	2023-04-26 14:39:05.296470904 +0100
 @@ -27,12 +27,13 @@
  #include <stdlib.h>
  
@@ -28,7 +18,7 @@ index 352728369..c4071b64b 100644
  
  static __inline void *
  _mm_malloc (size_t __size, size_t __alignment)
-@@ -42,7 +43,7 @@ _mm_malloc (size_t __size, size_t __alignment)
+@@ -42,7 +43,7 @@
      return malloc (__size);
    if (__alignment == 2 || (sizeof (void *) == 8 && __alignment == 4))
      __alignment = sizeof (void *);
@@ -37,6 +27,3 @@ index 352728369..c4071b64b 100644
      return __ptr;
    else
      return NULL;
--- 
-2.38.4
-

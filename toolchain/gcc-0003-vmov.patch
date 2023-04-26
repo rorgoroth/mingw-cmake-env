@@ -1,18 +1,7 @@
-From b4a4610c8883c3d57eb2e51da2c00d99589e5f6a Mon Sep 17 00:00:00 2001
-From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
-Date: Mon, 16 Jan 2023 16:43:05 +0000
-Subject: [PATCH 3/3] vmov
-
----
- gcc/config/i386/i386.cc |  64 ++++++++----------------
- gcc/config/i386/sse.md  | 108 +++++++++-------------------------------
- 2 files changed, 44 insertions(+), 128 deletions(-)
-
-diff --git a/gcc/config/i386/i386.cc b/gcc/config/i386/i386.cc
-index fbd33a6bf..c3c4a8adb 100644
---- a/gcc/config/i386/i386.cc
-+++ b/gcc/config/i386/i386.cc
-@@ -5475,17 +5475,15 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+diff -ruN a/gcc/config/i386/i386.cc d/gcc/config/i386/i386.cc
+--- a/gcc/config/i386/i386.cc	2023-04-26 14:36:39.636516270 +0100
++++ d/gcc/config/i386/i386.cc	2023-04-26 14:39:12.816469021 +0100
+@@ -5475,17 +5475,15 @@
  	{
  	case opcode_int:
  	  if (scalar_mode == E_HFmode || scalar_mode == E_BFmode)
@@ -34,7 +23,7 @@ index fbd33a6bf..c3c4a8adb 100644
  	  break;
  	}
      }
-@@ -5496,29 +5494,25 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+@@ -5496,29 +5494,25 @@
  	case E_HFmode:
  	case E_BFmode:
  	  if (evex_reg_p)
@@ -72,7 +61,7 @@ index fbd33a6bf..c3c4a8adb 100644
  	  break;
  	default:
  	  gcc_unreachable ();
-@@ -5530,48 +5524,32 @@ ix86_get_ssemov (rtx *operands, unsigned size,
+@@ -5530,48 +5524,32 @@
  	{
  	case E_QImode:
  	  if (evex_reg_p)
@@ -81,13 +70,14 @@ index fbd33a6bf..c3c4a8adb 100644
 -			 ? "vmovdqu8"
 -			 : "vmovdqu64")
 -		      : "vmovdqa64");
-+	    opcode = TARGET_AVX512BW ? "vmovdqu8" : "vmovdqu64";
- 	  else
+-	  else
 -	    opcode = (misaligned_p
 -		      ? (TARGET_AVX512BW
 -			 ? "vmovdqu8"
 -			 : "%vmovdqu")
 -		      : "%vmovdqa");
++	    opcode = TARGET_AVX512BW ? "vmovdqu8" : "vmovdqu64";
++	  else
 +	    opcode = TARGET_AVX512BW ? "vmovdqu8" : "%vmovdqu";
  	  break;
  	case E_HImode:
@@ -130,10 +120,9 @@ index fbd33a6bf..c3c4a8adb 100644
  	  break;
  	default:
  	  gcc_unreachable ();
-diff --git a/gcc/config/i386/sse.md b/gcc/config/i386/sse.md
-index 513960e8f..8a7e45dd9 100644
---- a/gcc/config/i386/sse.md
-+++ b/gcc/config/i386/sse.md
+diff -ruN a/gcc/config/i386/sse.md d/gcc/config/i386/sse.md
+--- a/gcc/config/i386/sse.md	2023-04-26 14:36:39.636516270 +0100
++++ d/gcc/config/i386/sse.md	2023-04-26 14:39:12.816469021 +0100
 @@ -1419,17 +1419,11 @@
  {
    if (FLOAT_MODE_P (GET_MODE_INNER (<MODE>mode)))
@@ -295,6 +284,3 @@ index 513960e8f..8a7e45dd9 100644
  	default:
  	  gcc_unreachable ();
  	}
--- 
-2.38.4
-
