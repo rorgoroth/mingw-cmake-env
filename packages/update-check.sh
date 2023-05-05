@@ -45,6 +45,11 @@ a=$(cat ./packages/mujs.cmake | grep 'mujs' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*
 b=$(wget -q -O- 'https://github.com/ccxvii/mujs/tags' | grep 'href="/ccxvii/mujs/archive/refs/tags' | sed -n 's,.*href="/ccxvii/mujs/archive/refs/tags/\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 echo "mujs: $a -> $b"
 
+# openal
+a=$(cat ./packages/openal.cmake | grep 'openal' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/kcat/openal-soft/tags' | grep 'href="/kcat/openal-soft/archive/refs/tags' | sed -n 's,.*href="/kcat/openal-soft/archive/refs/tags/\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+echo "openal: $a -> $b"
+
 # rubberband
 a=$(cat ./packages/rubberband.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://github.com/breakfastquay/rubberband/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | head -1)

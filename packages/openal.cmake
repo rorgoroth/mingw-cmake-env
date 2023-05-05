@@ -1,7 +1,7 @@
 ExternalProject_Add(
   openal
-  GIT_REPOSITORY https://github.com/kcat/openal-soft.git
-  GIT_SHALLOW 1
+  URL https://github.com/kcat/openal-soft/archive/refs/tags/1.23.1.tar.gz
+  URL_HASH MD5=190a60118236644b78488ccab26ebfdf
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
@@ -20,5 +20,3 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-force_rebuild_git(openal)
