@@ -29,31 +29,31 @@ package () {
     cp -r ../build/packages/*-package .
 
     cd mpv-package || exit
-      7za a "mpv.7z" -- ./*
+      7z a "mpv.7z" -- ./*
     cd .. || exit
 
     cd ffmpeg-package || exit
-      7za a "ffmpeg.7z" -- ./*
+      7z a "ffmpeg.7z" -- ./*
     cd .. || exit
 
     cd iortcw-package || exit
-      7za a "iortcw.7z" -- ./*
+      7z a "iortcw.7z" -- ./*
     cd .. || exit
 
     cd quake3e-package || exit
-      7za a "quake3e.7z" -- ./*
+      7z a "quake3e.7z" -- ./*
     cd .. || exit
 
     cd quake3e-urbanterror-package || exit
-      7za a "quake3e-urbanterror.7z" -- ./*
+      7z a "quake3e-urbanterror.7z" -- ./*
     cd .. || exit
 
     cd quake3e-openarena-package || exit
-      7za a "quake3e-openarena.7z" -- ./*
+      7z a "quake3e-openarena.7z" -- ./*
     cd .. || exit
 
     cd xonotic-package || exit
-      7za a "xonotic.7z" -- ./*
+      7z a "xonotic.7z" -- ./*
     cd .. || exit
 
     mv -- */*.7z .
