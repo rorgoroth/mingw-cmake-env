@@ -1,4 +1,5 @@
-# Build dir
+# Build
+CMakeCache.txt
 build
 
 # Package archives
@@ -40,6 +41,5 @@ bin/quake3e-openarena-package/quake3e.ded.x64.exe
 bin/xonotic-package/SDL2.dll
 bin/xonotic-package/xonotic-dedicated.exe
 bin/xonotic-package/xonotic-sdl.exe
-
 bin/xonotic-package/xonotic.exe
 bin/xonotic-package/bin64
