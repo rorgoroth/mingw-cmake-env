@@ -38,21 +38,6 @@ ExternalProject_Add(
     --disable-doc
     --disable-ffplay
     --disable-ffprobe
-    --disable-filters
-      --enable-filter=aresample
-      --enable-filter=blurdetect
-      --enable-filter=convolution
-      --enable-filter=copy
-      --enable-filter=crop
-      --enable-filter=cropdetect
-      --enable-filter=deband
-      --enable-filter=deblock
-      --enable-filter=gblur
-      --enable-filter=rotate
-      --enable-filter=scale
-      --enable-filter=sobel
-      --enable-filter=threshold
-      --enable-filter=trim
     --disable-htmlpages
     --disable-manpages
     --disable-podpages
@@ -86,7 +71,7 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
-    "--extra-libs='-lstdc++'" # Needed by libplacebo/shaderc
+    "--extra-libs='-lstdc++ -lpng'" # lstdc++ by libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1
