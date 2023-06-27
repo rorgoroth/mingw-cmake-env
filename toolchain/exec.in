@@ -2,7 +2,7 @@
 export PATH="@CMAKE_INSTALL_PREFIX@/bin:$PATH"
 export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
-export CFLAGS="-Os -pipe -Wa,-muse-unaligned-vector-move"
-export CXXFLAGS="-Os -pipe -Wa,-muse-unaligned-vector-move"
+export CFLAGS="-Os -pipe"
+export CXXFLAGS="-Os -pipe"
 export LDFLAGS="-Wl,-Os,--sort-common,--as-needed -s"
 eval $*
