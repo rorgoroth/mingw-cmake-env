@@ -1,16 +1,16 @@
 diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
---- a/loader/CMakeLists.txt	2023-06-12 19:19:29.000000000 +0100
-+++ b/loader/CMakeLists.txt	2023-06-13 14:33:44.424319191 +0100
+--- a/loader/CMakeLists.txt	2023-06-23 20:22:55.000000000 +0100
++++ b/loader/CMakeLists.txt	2023-06-27 17:19:23.875138460 +0100
 @@ -21,7 +21,7 @@
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
  target_include_directories(loader_specific_options INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/generated ${CMAKE_CURRENT_BINARY_DIR})
  
 -if(WIN32)
 +if(WIN32 AND NOT MINGW)
-     if(MSVC)
-         # Use static MSVCRT libraries
-         foreach(configuration
-@@ -136,7 +136,7 @@
+ 
+     if(ENABLE_WIN10_ONECORE)
+         # Note: When linking your app or driver to OneCore.lib, be sure to remove any links to non-umbrella libs (such as
+@@ -115,7 +115,7 @@
  set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG}Note that this may be unsafe, as the C code requires tail-call optimizations to remove")
  set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} the stack frame for certain calls. If the compiler does not do this, then unknown device")
  set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} extensions will suffer from a corrupted stack.")
@@ -19,7 +19,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      if(MINGW)
          find_program(JWASM_FOUND jwasm)
          if (JWASM_FOUND)
-@@ -192,7 +192,7 @@
+@@ -172,7 +172,7 @@
          set(USE_ASSEMBLY_FALLBACK ON)
          message(WARNING "Could not find working MASM assembler\n${ASM_FAILURE_MSG}")
      endif()
@@ -28,7 +28,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      option(USE_GAS "Use GAS" ON)
      if(USE_GAS)
          enable_language(ASM)
-@@ -277,7 +277,7 @@
+@@ -257,7 +257,7 @@
      endif()
  endif()
  
@@ -37,7 +37,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      add_library(loader-opt STATIC ${OPT_LOADER_SRCS})
      target_link_libraries(loader-opt PUBLIC loader_specific_options)
      add_dependencies(loader-opt loader_asm_gen_files)
-@@ -327,7 +327,7 @@
+@@ -307,7 +307,7 @@
      add_dependencies(vulkan loader_asm_gen_files)
  
  else()
@@ -46,7 +46,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
          add_library(vulkan STATIC ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
          target_compile_definitions(vulkan PRIVATE BUILD_STATIC_LOADER)
      else()
-@@ -382,6 +382,7 @@
+@@ -362,6 +362,7 @@
          # https://forums.developer.apple.com/thread/65963
  
  # cmake-format: off
@@ -54,7 +54,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
          set_target_properties(vulkan-framework PROPERTIES
              OUTPUT_NAME vulkan
              FRAMEWORK TRUE
-@@ -395,6 +396,7 @@
+@@ -375,6 +376,7 @@
              PUBLIC_HEADER DESTINATION vulkan
              FRAMEWORK DESTINATION loader
          )
@@ -62,7 +62,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
  # cmake-format: on
      endif()
  endif()
-@@ -429,7 +431,7 @@
+@@ -409,7 +411,7 @@
          list(REMOVE_DUPLICATES PRIVATE_LIBS)
          set(PRIVATE_LIBS "Libs.private: ${PRIVATE_LIBS}")
      endif()
@@ -71,7 +71,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
          if(MINGW)
              set(VULKAN_LIB_SUFFIX "-1.dll")
          else()
-@@ -453,6 +455,7 @@
+@@ -433,6 +435,7 @@
          file(RELATIVE_PATH CMAKE_INSTALL_REL_INCLUDEDIR_PC ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_FULL_INCLUDEDIR})
      endif()
      set(VULKAN_LOADER_PKG_CONFIG_NAME "Vulkan-Loader")
@@ -80,8 +80,8 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vulkan.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
  endif()
 diff -ruN a/loader/loader.h b/loader/loader.h
---- a/loader/loader.h	2023-06-12 19:19:29.000000000 +0100
-+++ b/loader/loader.h	2023-06-13 14:33:44.424319191 +0100
+--- a/loader/loader.h	2023-06-23 20:22:55.000000000 +0100
++++ b/loader/loader.h	2023-06-27 17:19:23.875138460 +0100
 @@ -33,7 +33,9 @@
  #include "cJSON.h"
  
@@ -93,8 +93,8 @@ diff -ruN a/loader/loader.h b/loader/loader.h
  static inline VkPhysicalDevice loader_unwrap_physical_device(VkPhysicalDevice physicalDevice) {
      struct loader_physical_device_tramp *phys_dev = (struct loader_physical_device_tramp *)physicalDevice;
 diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
---- a/loader/loader.rc.in	2023-06-12 19:19:29.000000000 +0100
-+++ b/loader/loader.rc.in	2023-06-13 14:33:44.424319191 +0100
+--- a/loader/loader.rc.in	2023-06-23 20:22:55.000000000 +0100
++++ b/loader/loader.rc.in	2023-06-27 17:19:23.875138460 +0100
 @@ -19,7 +19,11 @@
  // Author: Charles Giessen <charles@lunarg.com>
  //
@@ -108,8 +108,8 @@ diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
  // All set through CMake
  #define VER_FILE_VERSION ${LOADER_VER_FILE_VERSION}
 diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
---- a/loader/loader_windows.c	2023-06-12 19:19:29.000000000 +0100
-+++ b/loader/loader_windows.c	2023-06-13 14:33:44.424319191 +0100
+--- a/loader/loader_windows.c	2023-06-23 20:22:55.000000000 +0100
++++ b/loader/loader_windows.c	2023-06-27 17:19:23.875138460 +0100
 @@ -47,6 +47,8 @@
  #include <strsafe.h>
  #if defined(__MINGW32__)
@@ -125,9 +125,9 @@ diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
  
 +#if defined(LOADER_DYNAMIC_LIB)
  BOOL WINAPI DllMain(HINSTANCE hinst, DWORD reason, LPVOID reserved) {
+     (void)hinst;
      switch (reason) {
-         case DLL_PROCESS_ATTACH:
-@@ -111,6 +114,7 @@
+@@ -112,6 +115,7 @@
      }
      return TRUE;
  }
@@ -136,8 +136,8 @@ diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
  bool windows_add_json_entry(const struct loader_instance *inst,
                              char **reg_data,    // list of JSON files
 diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
---- a/loader/vk_loader_platform.h	2023-06-12 19:19:29.000000000 +0100
-+++ b/loader/vk_loader_platform.h	2023-06-13 14:33:44.424319191 +0100
+--- a/loader/vk_loader_platform.h	2023-06-23 20:22:55.000000000 +0100
++++ b/loader/vk_loader_platform.h	2023-06-27 17:19:23.875138460 +0100
 @@ -67,6 +67,7 @@
  #include <io.h>
  #include <shlwapi.h>
