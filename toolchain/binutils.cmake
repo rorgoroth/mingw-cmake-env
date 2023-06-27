@@ -1,7 +1,7 @@
 ExternalProject_Add(
   binutils
   EXCLUDE_FROM_ALL 1
-  URL https://ftp.gnu.org/gnu/binutils/binutils-2.40.tar.xz
+  URL https://www.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/binutils-2.40.tar.xz
   URL_HASH MD5=007b59bd908a737c06e5a8d3d2c737eb
   CONFIGURE_COMMAND
     <SOURCE_DIR>/configure
