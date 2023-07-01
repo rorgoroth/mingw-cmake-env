@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libzimg
-  URL https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.4.tar.gz
-  URL_HASH MD5=9ef18426caecf049d3078732411a9802
+  URL https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.5.tar.gz
+  URL_HASH MD5=af2c08cc0e695f4c0c225feed14e9f20
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
