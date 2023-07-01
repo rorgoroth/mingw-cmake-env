@@ -23,7 +23,7 @@ ExternalProject_Add(
     -Dtests=disabled
     -Dtools=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
-  INSTALL_COMMAND ${NINJA} -C <BINARY_DIR>
+  INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
