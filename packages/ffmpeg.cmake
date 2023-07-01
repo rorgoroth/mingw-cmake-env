@@ -5,7 +5,9 @@ ExternalProject_Add(
           bzip2
           dav1d
           flac
+          fontconfig
           gmp
+          harfbuzz
           lame
           libass
           libopusenc
@@ -54,6 +56,8 @@ ExternalProject_Add(
     --enable-libaom
     --enable-libass
     --enable-libdav1d
+    --enable-libfontconfig
+    --enable-libharfbuzz
     --enable-libmp3lame
     --enable-libopus
     --enable-libplacebo
