@@ -1,6 +1,6 @@
-diff -ruN a/libcc1/libcc1plugin.cc b/libcc1/libcc1plugin.cc
---- a/libcc1/libcc1plugin.cc	2023-04-26 14:36:39.566516284 +0100
-+++ b/libcc1/libcc1plugin.cc	2023-04-26 14:38:14.616485534 +0100
+diff -ruN gcc-13.2.0/libcc1/libcc1plugin.cc a/libcc1/libcc1plugin.cc
+--- gcc-13.2.0/libcc1/libcc1plugin.cc	2023-07-27 09:13:07.000000000 +0100
++++ a/libcc1/libcc1plugin.cc	2023-07-28 22:27:03.101813880 +0100
 @@ -33,6 +33,7 @@
  
  #define INCLUDE_MEMORY
@@ -9,9 +9,9 @@ diff -ruN a/libcc1/libcc1plugin.cc b/libcc1/libcc1plugin.cc
  #include "system.h"
  #include "coretypes.h"
  #include "stringpool.h"
-diff -ruN a/libcc1/libcp1plugin.cc b/libcc1/libcp1plugin.cc
---- a/libcc1/libcp1plugin.cc	2023-04-26 14:36:39.566516284 +0100
-+++ b/libcc1/libcp1plugin.cc	2023-04-26 14:38:14.616485534 +0100
+diff -ruN gcc-13.2.0/libcc1/libcp1plugin.cc a/libcc1/libcp1plugin.cc
+--- gcc-13.2.0/libcc1/libcp1plugin.cc	2023-07-27 09:13:07.000000000 +0100
++++ a/libcc1/libcp1plugin.cc	2023-07-28 22:27:03.101813880 +0100
 @@ -34,6 +34,7 @@
  
  #define INCLUDE_MEMORY

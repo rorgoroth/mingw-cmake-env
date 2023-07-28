@@ -1,6 +1,6 @@
-diff -ruN a/gcc/config/i386/pmm_malloc.h c/gcc/config/i386/pmm_malloc.h
---- a/gcc/config/i386/pmm_malloc.h	2023-04-26 14:36:39.646516266 +0100
-+++ c/gcc/config/i386/pmm_malloc.h	2023-04-26 14:39:05.296470904 +0100
+diff -ruN gcc-13.2.0/gcc/config/i386/pmm_malloc.h b/gcc/config/i386/pmm_malloc.h
+--- gcc-13.2.0/gcc/config/i386/pmm_malloc.h	2023-07-27 09:13:04.000000000 +0100
++++ b/gcc/config/i386/pmm_malloc.h	2023-07-28 22:27:43.271798799 +0100
 @@ -27,12 +27,13 @@
  #include <stdlib.h>
  

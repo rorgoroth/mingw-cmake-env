@@ -1,6 +1,6 @@
-diff -ruN a/gcc/config/i386/i386.cc d/gcc/config/i386/i386.cc
---- a/gcc/config/i386/i386.cc	2023-04-26 14:36:39.636516270 +0100
-+++ d/gcc/config/i386/i386.cc	2023-04-26 14:39:12.816469021 +0100
+diff -ruN gcc-13.2.0/gcc/config/i386/i386.cc c/gcc/config/i386/i386.cc
+--- gcc-13.2.0/gcc/config/i386/i386.cc	2023-07-27 09:13:04.000000000 +0100
++++ c/gcc/config/i386/i386.cc	2023-07-28 22:27:59.211792932 +0100
 @@ -5475,17 +5475,15 @@
  	{
  	case opcode_int:
@@ -120,9 +120,9 @@ diff -ruN a/gcc/config/i386/i386.cc d/gcc/config/i386/i386.cc
  	  break;
  	default:
  	  gcc_unreachable ();
-diff -ruN a/gcc/config/i386/sse.md d/gcc/config/i386/sse.md
---- a/gcc/config/i386/sse.md	2023-04-26 14:36:39.636516270 +0100
-+++ d/gcc/config/i386/sse.md	2023-04-26 14:39:12.816469021 +0100
+diff -ruN gcc-13.2.0/gcc/config/i386/sse.md c/gcc/config/i386/sse.md
+--- gcc-13.2.0/gcc/config/i386/sse.md	2023-07-27 09:13:04.000000000 +0100
++++ c/gcc/config/i386/sse.md	2023-07-28 22:27:59.221792929 +0100
 @@ -1419,17 +1419,11 @@
  {
    if (FLOAT_MODE_P (GET_MODE_INNER (<MODE>mode)))
@@ -206,7 +206,7 @@ diff -ruN a/gcc/config/i386/sse.md d/gcc/config/i386/sse.md
      default:
        gcc_unreachable ();
      }
-@@ -26756,63 +26730,27 @@
+@@ -26792,63 +26766,27 @@
        switch (get_attr_mode (insn))
  	{
  	case MODE_V16SF:
