@@ -1,7 +1,7 @@
 ExternalProject_Add(
   gmp
-  URL https://gmplib.org/download/gmp/gmp-6.2.1.tar.xz
-  URL_HASH MD5=0b82665c4a92fd2ade7440c13fcaa42b
+  URL https://gmplib.org/download/gmp/gmp-6.3.0.tar.xz
+  URL_HASH MD5=956dc04e864001a9c22429f761f2c283
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure CC_FOR_BUILD=cc
     --host=${TARGET_ARCH}
