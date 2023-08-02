@@ -74,5 +74,11 @@ ExternalProject_Add_Step(
     <BINARY_DIR>/player/mpv.com
     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com)
 
+ExternalProject_Add_Step(
+    mpv clean
+  DEPENDEES copy-binary
+  COMMAND ${NINJA} -C <BINARY_DIR> clean > /dev/null 2>&1
+  COMMENT "Performing clean step for 'mpv'")
+
 force_rebuild_git(mpv)
 force_meson_configure(mpv)
