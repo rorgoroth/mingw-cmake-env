@@ -60,7 +60,7 @@ ExternalProject_Add_Step(
     <BINARY_DIR>/mpv.exe
   COMMAND
     ${EXEC} ${TARGET_ARCH}-strip -s
-    <BINARY_DIR>/generated/mpv.com)
+    <BINARY_DIR>/player/mpv.com)
 
 ExternalProject_Add_Step(
   mpv copy-binary
@@ -71,7 +71,7 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.exe
   COMMAND
     ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/generated/mpv.com
+    <BINARY_DIR>/player/mpv.com
     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com)
 
 force_rebuild_git(mpv)
