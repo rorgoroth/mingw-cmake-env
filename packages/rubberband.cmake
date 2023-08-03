@@ -1,7 +1,7 @@
 ExternalProject_Add(
   rubberband
-  URL https://github.com/breakfastquay/rubberband/archive/refs/tags/v3.2.1.tar.gz
-  URL_HASH MD5=310008f774e52e9287cc7e6d86e5036e
+  URL https://github.com/breakfastquay/rubberband/archive/refs/tags/v3.3.0.tar.gz
+  URL_HASH MD5=1125fda060b757bf1dc8de4b6a19f0fb
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
