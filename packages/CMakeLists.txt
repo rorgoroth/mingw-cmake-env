@@ -100,6 +100,7 @@ list(
   theora
   x264
   onevpl
+  directx-headers
   ffmpeg
   openal
   mujs
