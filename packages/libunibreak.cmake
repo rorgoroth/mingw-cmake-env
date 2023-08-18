@@ -5,7 +5,7 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
-    --host=${TARGET_ARCH}
+    --host=x86_64-w64-mingw32
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-shared
   BUILD_COMMAND ${MAKE}

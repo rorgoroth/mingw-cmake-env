@@ -20,10 +20,10 @@ ExternalProject_Add_Step(
   quake3e-urbanterror strip-binary
   DEPENDEES build
   COMMAND
-    ${EXEC} ${TARGET_ARCH}-strip -s
+    ${EXEC} x86_64-w64-mingw32-strip -s
     <SOURCE_DIR>/build/release-mingw64-x86_64/quake3e.x64.exe
   COMMAND
-    ${EXEC} ${TARGET_ARCH}-strip -s
+    ${EXEC} x86_64-w64-mingw32-strip -s
     <SOURCE_DIR>/build/release-mingw64-x86_64/quake3e.ded.x64.exe)
 
 ExternalProject_Add_Step(

@@ -2,9 +2,7 @@
 
 This is a stripped down version of [shinchiro/mpv-winbuild-cmake](https://github.com/shinchiro/mpv-winbuild-cmake).
 
-This is only tested on Alpine Linux (Edge branch) ran on WSL version 2.
-
-Only 64bit Windows 10 is supported and the produced binaries target x86-64-v3 architecture, which is pretty much any CPU made in the past 5 or so years.
+This is only tested on Alpine Linux ran on WSL version 2 and only 64bit Windows 10 is supported.
 
 ## Binary Downloads
 
@@ -31,7 +29,7 @@ See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
 Basic build deps:
 
 ```bash
-apk add -i autoconf automake cmake diffutils file flex g++ gcc gettext-dev git gmp-dev gperf libtool make meson mpc1-dev mpfr-dev nasm p7zip patch po4a py3-mako samurai texinfo yasm
+apk add -i autoconf automake bash cmake diffutils g++ gcc git libtool make meson nasm p7zip patch pkgconf po4a py3-mako samurai texinfo yasm
 ```
 
 Setup/Build:
@@ -41,8 +39,10 @@ git clone https://github.com/rorgoroth/mingw-cmake-env.git
 cd mingw-cmake-env
 mkdir build && cd build
 ccmake -G Ninja ..
-ninja gcc
+ninja llvm
 ninja $package
 ```
 
-Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is also excluded by default, so if there are updates to toolchain you need to manually run `ninja gcc`.
+Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is also excluded by default, so if there are updates to toolchain you need to manually run `ninja llvm`.
+
+The toolchain now uses precompiled llvm from [rorgoroth/llvm-mingw](https://github.com/rorgoroth/llvm-mingw), checkout `deprecated_gcc` branch for the old version which requires building gcc if you need it but I probably wont be updating anything on that branch in the future. The downside to this is that my precompiled toolchain is built on alpine for alpine, it will not work inside of Ubuntu or anything else. If you want to use it you can fork my llvm-mingw yourself, run build.sh then upload your own toolchain the your release page and edit llvm.cmake in the toolchain directory to point at yours. I know it's slightly annoying but having a precompiled toolchain makes full rebuilds and setting up environment so much quicker for me. You coud also just set up an alpine container for this project which is what I do anyway.

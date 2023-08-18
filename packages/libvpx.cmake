@@ -6,7 +6,7 @@ ExternalProject_Add(
   GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} CROSS=${TARGET_ARCH}- <SOURCE_DIR>/configure
+    ${EXEC} CROSS=x86_64-w64-mingw32- <SOURCE_DIR>/configure
     --extra-cflags='-fno-asynchronous-unwind-tables'
     --target=x86_64-win64-gcc
     --prefix=${MINGW_INSTALL_PREFIX}
@@ -26,7 +26,7 @@ ExternalProject_Add(
     --enable-vp9-postproc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
-          COMMAND ${EXEC} ${TARGET_ARCH}-ranlib
+          COMMAND ${EXEC} x86_64-w64-mingw32-ranlib
           ${MINGW_INSTALL_PREFIX}/lib/libvpx.a
   LOG_DOWNLOAD 1
   LOG_UPDATE 1

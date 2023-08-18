@@ -4,15 +4,7 @@ cmake_policy(SET CMP0135 NEW)
 list(
   APPEND
   ep
-  binutils
-  mingw-w64
-  widl
-  mingw-w64-headers
-  gcc-base
-  mingw-w64-crt
-  winpthreads
-  gendef
-  gcc
+  llvm
   )
 
 foreach(package IN LISTS ep)

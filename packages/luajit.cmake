@@ -3,7 +3,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/luajit.pc.in
                ${CMAKE_CURRENT_BINARY_DIR}/luajit.pc @ONLY)
 
 set(EXPORT
-    "CROSS=${TARGET_ARCH}-
+    "CROSS=x86_64-w64-mingw32-
     TARGET_SYS=Windows
     BUILDMODE=static
     FILE_T=luajit.exe

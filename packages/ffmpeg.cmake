@@ -30,9 +30,9 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
-    --cross-prefix=${TARGET_ARCH}-
+    --cross-prefix=x86_64-w64-mingw32-
     --prefix=${MINGW_INSTALL_PREFIX}
-    --arch=${TARGET_CPU}
+    --arch=x86_64
     --target-os=mingw32
     --target-exec=wine
     --pkg-config-flags=--static
@@ -75,7 +75,7 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
-    "--extra-libs='-lstdc++ -lpng'" # lstdc++ by libplacebo/shaderc
+    "--extra-libs='-lstdc++ -lpng'"
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1

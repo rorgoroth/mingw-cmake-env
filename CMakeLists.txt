@@ -36,24 +36,6 @@ if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
     FATAL_ERROR "Generator “${CMAKE_GENERATOR}” is unsupported!\nTry Ninja if you encounter problems.")
 endif()
 
-set(TARGET_ARCH
-    "x86_64-w64-mingw32"
-    CACHE STRING "The target architecture for this toolchain.")
-string(REGEX MATCH "^[^-]+" TARGET_CPU ${TARGET_ARCH})
-
-execute_process(COMMAND ${CMAKE_C_COMPILER} -dumpmachine OUTPUT_VARIABLE HOST_ARCH)
-string(REGEX MATCH "^[^-]+" HOST_CPU ${HOST_ARCH})
-
-if(TARGET_CPU MATCHES "x86_64")
-  set(TARGET_CPU_FAMILY "x86_64")
-  set(TARGET_BITS 64)
-  set(GCC_ARCH "x86-64-v3"
-      CACHE STRING "Default optimization arch(-march=) for GCC to target.")
-else()
-  set(TARGET_CPU_FAMILY "x86")
-  set(TARGET_BITS 32)
-endif()
-
 ProcessorCount(CPU_COUNT)
 if(CPU_COUNT EQUAL 0)
   set(CPU_COUNT 1)

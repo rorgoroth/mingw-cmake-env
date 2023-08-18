@@ -12,10 +12,10 @@ build () {
 fullbuild () {
   find build/toolchain/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
   find build/packages/*-prefix/src/*-stamp/ -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
-  ninja -C build update   || exit
-  ninja -C build clean    || exit
-  ninja -C build gcc      || exit
-  ninja -C build          || exit
+  ninja -C build update || exit
+  ninja -C build clean  || exit
+  ninja -C build llvm   || exit
+  ninja -C build        || exit
 }
 
 # Create the 7z packages.
@@ -27,10 +27,9 @@ package () {
     find ./ -type f -name '*.dll' -delete
 
     cp -r ../build/packages/*-package .
-
-    cd mpv-package || exit
-      7z a "mpv.7z" -- ./*
-    cd .. || exit
+    cp ffmpeg-package/ffmpeg.exe quake3e-package/ffmpeg.exe
+    cp ffmpeg-package/ffmpeg.exe quake3e-openarena-package/ffmpeg.exe
+    cp ffmpeg-package/ffmpeg.exe quake3e-urbanterror-package/ffmpeg.exe
 
     cd ffmpeg-package || exit
       7z a "ffmpeg.7z" -- ./*
@@ -40,16 +39,20 @@ package () {
       7z a "iortcw.7z" -- ./*
     cd .. || exit
 
+    cd mpv-package || exit
+      7z a "mpv.7z" -- ./*
+    cd .. || exit
+
     cd quake3e-package || exit
       7z a "quake3e.7z" -- ./*
     cd .. || exit
 
-    cd quake3e-urbanterror-package || exit
-      7z a "quake3e-urbanterror.7z" -- ./*
-    cd .. || exit
-
     cd quake3e-openarena-package || exit
       7z a "quake3e-openarena.7z" -- ./*
+    cd .. || exit
+
+    cd quake3e-urbanterror-package || exit
+      7z a "quake3e-urbanterror.7z" -- ./*
     cd .. || exit
 
     cd xonotic-package || exit

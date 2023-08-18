@@ -4,7 +4,7 @@ ExternalProject_Add(
   URL_HASH MD5=956dc04e864001a9c22429f761f2c283
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure CC_FOR_BUILD=cc
-    --host=${TARGET_ARCH}
+    --host=x86_64-w64-mingw32
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-shared
     --enable-static

@@ -2,7 +2,6 @@
 export PATH="@CMAKE_INSTALL_PREFIX@/bin:$PATH"
 export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
-export CFLAGS="-Os -pipe"
-export CXXFLAGS="-Os -pipe"
-export LDFLAGS="-Wl,-Os,--sort-common,--as-needed -s"
+export CFLAGS="-march=x86-64-v3"
+export CXXFLAGS="-march=x86-64-v3"
 eval $*

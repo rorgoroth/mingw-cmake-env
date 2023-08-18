@@ -19,10 +19,10 @@ ExternalProject_Add_Step(
   xonotic strip-binary
   DEPENDEES build
   COMMAND
-    ${EXEC} ${TARGET_ARCH}-strip -s
+    ${EXEC} x86_64-w64-mingw32-strip -s
     <SOURCE_DIR>/xonotic-dedicated.exe
   COMMAND
-    ${EXEC} ${TARGET_ARCH}-strip -s
+    ${EXEC} x86_64-w64-mingw32-strip -s
     <SOURCE_DIR>/xonotic-sdl.exe)
 
 ExternalProject_Add_Step(

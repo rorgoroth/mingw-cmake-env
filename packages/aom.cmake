@@ -7,7 +7,7 @@ ExternalProject_Add(
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_FIND_ROOT_PATH=${CMAKE_INSTALL_PREFIX}
-    -DCMAKE_TOOLCHAIN_FILE=<SOURCE_DIR>/build/cmake/toolchains/${TARGET_CPU_FAMILY}-mingw-gcc.cmake
+    -DCMAKE_TOOLCHAIN_FILE=<SOURCE_DIR>/build/cmake/toolchains/x86_64-mingw-gcc.cmake
     -DBUILD_SHARED_LIBS=OFF
     -DENABLE_EXAMPLES=OFF
     -DENABLE_DOCS=OFF

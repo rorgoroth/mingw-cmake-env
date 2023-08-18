@@ -9,16 +9,15 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
-    --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
     --buildtype=release
     --default-library=static
-    -Dbzip2=enabled
+    -Dbzip2=disabled
     -Dharfbuzz=disabled
     -Dmmap=enabled
     -Dpng=enabled
     -Dtests=disabled
-    -Dzlib=system
+    -Dzlib=enabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
