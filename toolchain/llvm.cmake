@@ -1,8 +1,8 @@
 ExternalProject_Add(
   llvm
   EXCLUDE_FROM_ALL 1
-  URL https://github.com/rorgoroth/llvm-mingw/releases/download/2023-08-19/llvm-x86_64-w64-mingw32_17.0.0-rc2.tar.xz
-  URL_HASH MD5=c401ae48b7044d91abd8f4b293a75ae8
+  URL https://github.com/rorgoroth/llvm-mingw/releases/download/2023-08-23/llvm-x86_64-w64-mingw32_17.0.0-rc3.tar.xz
+  URL_HASH MD5=5e06c40e0c10424dff0dc9e483ee9551
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
   INSTALL_COMMAND ""
