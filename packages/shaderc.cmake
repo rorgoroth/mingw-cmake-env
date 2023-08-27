@@ -3,10 +3,10 @@
   GIT_REPOSITORY https://github.com/rorgoroth/mpv-shaderc.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ""
+  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/shaderc-*.patch
   CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_BUILD_TYPE=Release
-    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -std=c++11'
+    -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -std=c++17'
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_TOOLCHAIN_FILE=<SOURCE_DIR>/cmake/linux-mingw-toolchain.cmake
     -DMINGW_COMPILER_PREFIX=x86_64-w64-mingw32
