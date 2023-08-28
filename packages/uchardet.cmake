@@ -1,7 +1,7 @@
 ExternalProject_Add(
   uchardet
-  GIT_REPOSITORY https://gitlab.freedesktop.org/uchardet/uchardet.git
-  GIT_SHALLOW 1
+  URL https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.8.tar.xz
+  URL_HASH MD5=9e267be7aee81417e5875086dd9d44fd
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
@@ -20,4 +20,4 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-force_rebuild_git(uchardet)
+#force_rebuild_git(uchardet)
