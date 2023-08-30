@@ -5,8 +5,9 @@ ExternalProject_Add(
           freetype2
           libiconv
           zlib
-  URL https://www.freedesktop.org/software/fontconfig/release/fontconfig-2.14.2.tar.xz
-  URL_HASH MD5=95261910ea727b5dd116b06fbfd84b1f
+  GIT_REPOSITORY https://gitlab.freedesktop.org/fontconfig/fontconfig.git
+  GIT_REMOTE_NAME origin
+  GIT_TAG main
   UPDATE_COMMAND ""
   GIT_SHALLOW 1
   PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
@@ -29,5 +30,5 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-#force_rebuild_git(fontconfig)
+force_rebuild_git(fontconfig)
 force_meson_configure(fontconfig)
