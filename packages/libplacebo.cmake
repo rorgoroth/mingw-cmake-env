@@ -1,4 +1,5 @@
 get_property(src_glad TARGET glad PROPERTY _EP_SOURCE_DIR)
+get_property(src_vulkan-headers TARGET vulkan-headers PROPERTY _EP_SOURCE_DIR)
 
 ExternalProject_Add(
   libplacebo
@@ -13,6 +14,8 @@ ExternalProject_Add(
   CONFIGURE_COMMAND ""
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/glad"
     COMMAND sh -c "ln -s ${src_glad} <SOURCE_DIR>/3rdparty/glad"
+    COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/Vulkan-Headers"
+    COMMAND sh -c "ln -s ${src_vulkan-headers} <SOURCE_DIR>/3rdparty/Vulkan-Headers"
     COMMAND ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
