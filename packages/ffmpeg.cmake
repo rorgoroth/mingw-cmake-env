@@ -43,7 +43,6 @@ ExternalProject_Add(
     --disable-htmlpages
     --disable-manpages
     --disable-podpages
-    --disable-postproc
     --disable-sdl2
     --disable-txtpages
     --disable-vaapi
@@ -72,10 +71,11 @@ ExternalProject_Add(
     --enable-libzimg
     --enable-nvdec
     --enable-nvenc
+    --enable-postproc
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
-    "--extra-libs='-lstdc++ -lpng'"
+    "--extra-libs='-lstdc++'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1
