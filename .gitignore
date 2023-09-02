@@ -1,5 +1,6 @@
 # Build
 CMakeCache.txt
+CMakeFiles
 build
 
 # Package archives
@@ -11,9 +12,6 @@ bin/mpv-package/mpv.exe
 
 ## FFmpeg
 bin/ffmpeg-package/ffmpeg.exe
-
-# aria2c
-bin/aria2c-package/aria2c.exe
 
 # ioRTCW
 bin/iortcw-package/main
