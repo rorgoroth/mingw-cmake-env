@@ -82,6 +82,7 @@ list(
   vulkan-loader
   spirv-cross
   shaderc
+  fast-float
   glad
   libplacebo
   dav1d

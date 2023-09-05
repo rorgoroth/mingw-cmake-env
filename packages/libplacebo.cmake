@@ -1,9 +1,11 @@
+get_property(src_fast-float TARGET fast-float PROPERTY _EP_SOURCE_DIR)
 get_property(src_glad TARGET glad PROPERTY _EP_SOURCE_DIR)
 get_property(src_vulkan-headers TARGET vulkan-headers PROPERTY _EP_SOURCE_DIR)
 
 ExternalProject_Add(
   libplacebo
-  DEPENDS glad
+  DEPENDS fast-float
+          glad
           lcms2
           shaderc
           spirv-cross
@@ -12,6 +14,8 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
+    COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/fast_float"
+    COMMAND sh -c "ln -s ${src_fast-float} <SOURCE_DIR>/3rdparty/fast_float"
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/glad"
     COMMAND sh -c "ln -s ${src_glad} <SOURCE_DIR>/3rdparty/glad"
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/Vulkan-Headers"
