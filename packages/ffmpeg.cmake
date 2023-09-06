@@ -28,7 +28,6 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg-*.patch
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
     --cross-prefix=x86_64-w64-mingw32-
