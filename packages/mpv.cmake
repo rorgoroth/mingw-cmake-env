@@ -26,7 +26,7 @@ ExternalProject_Add(
     --buildtype=release
     --default-library=static
     --prefer-static
-    -Db_lto=true
+    -Db_lto_mode=thin
     -Db_ndebug=true
     -Dd3d11=enabled
     -Diconv=enabled

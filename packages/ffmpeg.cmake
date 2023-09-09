@@ -29,7 +29,7 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} <SOURCE_DIR>/configure
+    ${EXEC-NLTO} <SOURCE_DIR>/configure
     --cross-prefix=x86_64-w64-mingw32-
     --prefix=${MINGW_INSTALL_PREFIX}
     --arch=x86_64
@@ -76,8 +76,8 @@ ExternalProject_Add(
     --enable-schannel
     --enable-vulkan
     "--extra-libs='-lstdc++'" # libplacebo/shaderc
-  BUILD_COMMAND ${MAKE}
-  INSTALL_COMMAND ${MAKE} install
+  BUILD_COMMAND ${MAKE-NLTO}
+  INSTALL_COMMAND ${MAKE-NLTO} install
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
