@@ -111,7 +111,6 @@ list(
   curl
   libsdl2
   minizip
-  glew
   sqlite
   iortcw
   quake3e
