@@ -84,6 +84,7 @@ list(
   shaderc
   fast-float
   glad
+  xxhash
   libplacebo
   dav1d
   amf-headers

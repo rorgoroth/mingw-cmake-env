@@ -10,6 +10,7 @@ ExternalProject_Add(
           shaderc
           spirv-cross
           vulkan-loader
+          xxhash
   GIT_REPOSITORY https://github.com/haasn/libplacebo.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
@@ -26,10 +27,19 @@ ExternalProject_Add(
     --cross-file=${MESON_CROSS}
     --buildtype=release
     --default-library=static
-    -Ddemos=false
     -Dd3d11=enabled
+    -Ddemos=false
+    -Ddovi=enabled
+    -Dgl-proc-addr=enabled
+    -Dglslang=disabled
+    -Dlcms=enabled
+    -Dlibdovi=disabled
+    -Dopengl=enabled
+    -Dshaderc=enabled
+    -Dvk-proc-addr=enabled
     -Dvulkan=enabled
     -Dvulkan-registry='${MINGW_INSTALL_PREFIX}/share/vulkan/registry/vk.xml'
+    -Dxxhash=enabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
