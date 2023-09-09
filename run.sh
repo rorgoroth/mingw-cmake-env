@@ -27,9 +27,6 @@ package () {
     find ./ -type f -name '*.dll' -delete
 
     cp -r ../build/packages/*-package .
-    cp ffmpeg-package/ffmpeg.exe quake3e-package/ffmpeg.exe
-    cp ffmpeg-package/ffmpeg.exe quake3e-openarena-package/ffmpeg.exe
-    cp ffmpeg-package/ffmpeg.exe quake3e-urbanterror-package/ffmpeg.exe
 
     cd ffmpeg-package || exit
       7z a "ffmpeg.7z" -- ./*
