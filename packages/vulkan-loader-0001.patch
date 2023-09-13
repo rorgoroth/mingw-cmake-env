@@ -1,6 +1,6 @@
-diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
---- Vulkan-Loader-1.3.260/loader/CMakeLists.txt	2023-07-31 23:05:48.000000000 +0100
-+++ a/loader/CMakeLists.txt	2023-08-02 14:23:02.533962373 +0100
+diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
+--- a/loader/CMakeLists.txt	2023-09-11 19:14:24.000000000 +0100
++++ b/loader/CMakeLists.txt	2023-09-13 14:24:18.707339220 +0100
 @@ -21,7 +21,7 @@
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
  target_include_directories(loader_specific_options INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/generated ${CMAKE_CURRENT_BINARY_DIR})
@@ -10,7 +10,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
  
      if(ENABLE_WIN10_ONECORE)
          # Note: When linking your app or driver to OneCore.lib, be sure to remove any links to non-umbrella libs (such as
-@@ -115,7 +115,7 @@
+@@ -114,7 +114,7 @@
  set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG}Note that this may be unsafe, as the C code requires tail-call optimizations to remove")
  set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} the stack frame for certain calls. If the compiler does not do this, then unknown device")
  set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} extensions will suffer from a corrupted stack.")
@@ -19,7 +19,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
      if(MINGW)
          find_program(JWASM_FOUND jwasm)
          if (JWASM_FOUND)
-@@ -172,7 +172,7 @@
+@@ -171,7 +171,7 @@
          set(USE_ASSEMBLY_FALLBACK ON)
          message(WARNING "Could not find working MASM assembler\n${ASM_FAILURE_MSG}")
      endif()
@@ -28,7 +28,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
      option(USE_GAS "Use GAS" ON)
      if(USE_GAS)
          enable_language(ASM)
-@@ -257,7 +257,7 @@
+@@ -264,7 +264,7 @@
      endif()
  endif()
  
@@ -37,7 +37,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
      add_library(loader-opt STATIC ${OPT_LOADER_SRCS})
      target_link_libraries(loader-opt PUBLIC loader_specific_options)
      add_dependencies(loader-opt loader_asm_gen_files)
-@@ -307,7 +307,7 @@
+@@ -314,7 +314,7 @@
      add_dependencies(vulkan loader_asm_gen_files)
  
  else()
@@ -46,7 +46,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
          add_library(vulkan STATIC ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
          target_compile_definitions(vulkan PRIVATE BUILD_STATIC_LOADER)
      else()
-@@ -362,6 +362,7 @@
+@@ -366,6 +366,7 @@
          # https://forums.developer.apple.com/thread/65963
  
          set_target_properties(vulkan-framework PROPERTIES
@@ -54,7 +54,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
              OUTPUT_NAME vulkan
              FRAMEWORK TRUE
              FRAMEWORK_VERSION A
-@@ -402,7 +403,7 @@
+@@ -406,7 +407,7 @@
          list(REMOVE_DUPLICATES PRIVATE_LIBS)
          set(PRIVATE_LIBS "Libs.private: ${PRIVATE_LIBS}")
      endif()
@@ -63,7 +63,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
          if(MINGW)
              set(VULKAN_LIB_SUFFIX "-1.dll")
          else()
-@@ -426,6 +427,7 @@
+@@ -430,6 +431,7 @@
          file(RELATIVE_PATH CMAKE_INSTALL_REL_INCLUDEDIR_PC ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_FULL_INCLUDEDIR})
      endif()
      set(VULKAN_LOADER_PKG_CONFIG_NAME "Vulkan-Loader")
@@ -71,9 +71,9 @@ diff -ruN Vulkan-Loader-1.3.260/loader/CMakeLists.txt a/loader/CMakeLists.txt
      configure_file("vulkan.pc.in" "vulkan.pc" @ONLY)
      install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vulkan.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
  endif()
-diff -ruN Vulkan-Loader-1.3.260/loader/loader.h a/loader/loader.h
---- Vulkan-Loader-1.3.260/loader/loader.h	2023-07-31 23:05:48.000000000 +0100
-+++ a/loader/loader.h	2023-08-02 14:22:58.123963820 +0100
+diff -ruN a/loader/loader.h b/loader/loader.h
+--- a/loader/loader.h	2023-09-11 19:14:24.000000000 +0100
++++ b/loader/loader.h	2023-09-13 14:24:18.707339220 +0100
 @@ -33,7 +33,9 @@
  #include "cJSON.h"
  
@@ -84,9 +84,9 @@ diff -ruN Vulkan-Loader-1.3.260/loader/loader.h a/loader/loader.h
  
  static inline VkPhysicalDevice loader_unwrap_physical_device(VkPhysicalDevice physicalDevice) {
      struct loader_physical_device_tramp *phys_dev = (struct loader_physical_device_tramp *)physicalDevice;
-diff -ruN Vulkan-Loader-1.3.260/loader/loader.rc.in a/loader/loader.rc.in
---- Vulkan-Loader-1.3.260/loader/loader.rc.in	2023-07-31 23:05:48.000000000 +0100
-+++ a/loader/loader.rc.in	2023-08-02 14:22:58.123963820 +0100
+diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
+--- a/loader/loader.rc.in	2023-09-11 19:14:24.000000000 +0100
++++ b/loader/loader.rc.in	2023-09-13 14:24:18.707339220 +0100
 @@ -19,7 +19,11 @@
  // Author: Charles Giessen <charles@lunarg.com>
  //
@@ -99,9 +99,9 @@ diff -ruN Vulkan-Loader-1.3.260/loader/loader.rc.in a/loader/loader.rc.in
  
  // All set through CMake
  #define VER_FILE_VERSION ${LOADER_VER_FILE_VERSION}
-diff -ruN Vulkan-Loader-1.3.260/loader/loader_windows.c a/loader/loader_windows.c
---- Vulkan-Loader-1.3.260/loader/loader_windows.c	2023-07-31 23:05:48.000000000 +0100
-+++ a/loader/loader_windows.c	2023-08-02 14:22:58.123963820 +0100
+diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
+--- a/loader/loader_windows.c	2023-09-11 19:14:24.000000000 +0100
++++ b/loader/loader_windows.c	2023-09-13 14:24:18.707339220 +0100
 @@ -47,6 +47,8 @@
  #include <strsafe.h>
  #if defined(__MINGW32__)
@@ -127,10 +127,10 @@ diff -ruN Vulkan-Loader-1.3.260/loader/loader_windows.c a/loader/loader_windows.
  
  bool windows_add_json_entry(const struct loader_instance *inst,
                              char **reg_data,    // list of JSON files
-diff -ruN Vulkan-Loader-1.3.260/loader/vk_loader_platform.h a/loader/vk_loader_platform.h
---- Vulkan-Loader-1.3.260/loader/vk_loader_platform.h	2023-07-31 23:05:48.000000000 +0100
-+++ a/loader/vk_loader_platform.h	2023-08-02 14:22:58.123963820 +0100
-@@ -67,6 +67,7 @@
+diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
+--- a/loader/vk_loader_platform.h	2023-09-11 19:14:24.000000000 +0100
++++ b/loader/vk_loader_platform.h	2023-09-13 14:24:18.707339220 +0100
+@@ -69,6 +69,7 @@
  #include <io.h>
  #include <shlwapi.h>
  #include <direct.h>
@@ -138,7 +138,7 @@ diff -ruN Vulkan-Loader-1.3.260/loader/vk_loader_platform.h a/loader/vk_loader_p
  #endif  // defined(_WIN32)
  
  #include "stack_allocation.h"
-@@ -224,7 +225,7 @@
+@@ -227,7 +228,7 @@
  // resources allocated by anything allocated by once init. This isn't a problem for static libraries, but it is for dynamic
  // ones. When building a DLL, we use DllMain() instead to allow properly cleaning up resources.
  
