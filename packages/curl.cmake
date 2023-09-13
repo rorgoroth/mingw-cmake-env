@@ -1,8 +1,8 @@
 ExternalProject_Add(curl
   DEPENDS zlib
           zstd
-  URL https://github.com/curl/curl/releases/download/curl-8_2_1/curl-8.2.1.tar.gz
-  URL_HASH MD5=b25588a43556068be05e1624e0e74d41
+  URL https://github.com/curl/curl/releases/download/curl-8_3_0/curl-8.3.0.tar.gz
+  URL_HASH MD5=7e614827c4165bf30f9770577259561e
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
