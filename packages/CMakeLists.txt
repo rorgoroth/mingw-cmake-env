@@ -113,6 +113,7 @@ list(
   minizip
   sqlite
   iortcw
+  quake2pro
   quake3e
   quake3e-urbanterror
   quake3e-openarena

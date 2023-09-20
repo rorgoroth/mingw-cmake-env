@@ -40,6 +40,10 @@ package () {
       7z a "mpv.7z" -- ./*
     cd .. || exit
 
+    cd quake2pro-package || exit
+      7z a "quake2pro.7z" -- ./*
+    cd .. || exit
+
     cd quake3e-package || exit
       7z a "quake3e.7z" -- ./*
     cd .. || exit
