@@ -11,7 +11,7 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC-NLTO} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
@@ -27,7 +27,7 @@ ExternalProject_Add(
     -Dsdl2=enabled
     -Dtga=true
     -Dzlib=enabled
-  BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
+  BUILD_COMMAND ${NINJA-NLTO} -C <BINARY_DIR>
   INSTALL_COMMAND ""
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
