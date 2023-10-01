@@ -108,6 +108,7 @@ list(
   mujs
   mpv
   zstd
+  cjson
   curl
   libsdl2
   minizip
