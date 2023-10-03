@@ -19,6 +19,7 @@ ExternalProject_Add(
           libzimg
           nvcodec-headers
           onevpl
+          rubberband
           shaderc
           speex
           spirv-cross
@@ -61,6 +62,7 @@ ExternalProject_Add(
     --enable-libopus
     --enable-libplacebo
     --enable-libshaderc
+    --enable-librubberband
     --enable-libspeex
     --enable-libvorbis
     --enable-libvpl
