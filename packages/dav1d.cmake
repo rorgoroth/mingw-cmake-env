@@ -1,5 +1,6 @@
 ExternalProject_Add(
   dav1d
+  DEPENDS xxhash
   GIT_REPOSITORY https://code.videolan.org/videolan/dav1d.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
@@ -12,6 +13,7 @@ ExternalProject_Add(
     --default-library=static
     -Denable_tests=false
     -Denable_tools=false
+    -Dxxhash_muxer=enabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
