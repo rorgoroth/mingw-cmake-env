@@ -4,7 +4,7 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} <SOURCE_DIR>/autogen.sh && <SOURCE_DIR>/configure
+    ${EXEC} <SOURCE_DIR>/configure
     --host=x86_64-w64-mingw32
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-shared
