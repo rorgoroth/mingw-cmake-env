@@ -1,0 +1,149 @@
+From a554ba7e75196ed58fd00a525c2a27df9ba70113 Mon Sep 17 00:00:00 2001
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+Date: Sat, 21 Oct 2023 12:48:15 +0100
+Subject: [PATCH 2/4] Revert "test: add basic tests for timer code"
+
+This reverts commit dad4e61b68ba6bd941c481b957e7df1052fba088.
+---
+ test/meson.build  | 12 +++++------
+ test/test_utils.c |  7 ++++++
+ test/test_utils.h | 10 +++++++++
+ test/timer.c      | 54 -----------------------------------------------
+ 4 files changed, 22 insertions(+), 61 deletions(-)
+ delete mode 100644 test/timer.c
+
+diff --git a/test/meson.build b/test/meson.build
+index 19fa2dcf00..d5d567caa1 100644
+--- a/test/meson.build
++++ b/test/meson.build
+@@ -25,8 +25,6 @@ test_utils_files = [
+     'options/path.c',
+     'osdep/io.c',
+     'osdep/subprocess.c',
+-    'osdep/timer.c',
+-    timer_source,
+     path_source,
+     subprocess_source,
+     'ta/ta.c',
+@@ -36,10 +34,13 @@ test_utils_files = [
+ 
+ test_utils_deps = [libavutil, libm]
+ 
+-# The zimg code requires using threads.
++# The zimg code requires using threads. On windows, threads
++# also requires timer code so this is added.
+ if features['win32-internal-pthreads']
+     test_utils_args += '-DWIN32_TESTS'
+-    test_utils_files += ['osdep/win32/pthread.c',
++    test_utils_files += ['osdep/timer.c',
++                         'osdep/timer-win2.c',
++                         'osdep/win32/pthread.c',
+                          'osdep/windows_utils.c']
+ else
+     test_utils_deps += pthreads
+@@ -97,9 +98,6 @@ test('json', json)
+ linked_list = executable('linked-list', files('linked_list.c'), include_directories: incdir)
+ test('linked-list', linked_list)
+ 
+-timer = executable('timer', files('timer.c'), include_directories: incdir, link_with: test_utils)
+-test('timer', timer)
+-
+ paths_objects = libmpv.extract_objects('options/path.c', path_source)
+ paths = executable('paths', 'paths.c', include_directories: incdir,
+                    objects: paths_objects, link_with: test_utils)
+diff --git a/test/test_utils.c b/test/test_utils.c
+index ac59c17e8f..4bd97f30f8 100644
+--- a/test/test_utils.c
++++ b/test/test_utils.c
+@@ -106,3 +106,10 @@ int mp_msg_find_level(const char *s) {return 0;};
+ int mp_msg_level(struct mp_log *log) {return 0;};
+ void mp_write_console_ansi(void) {};
+ void mp_set_avdict(AVDictionary **dict, char **kv) {};
++
++#ifndef WIN32_TESTS
++void mp_rel_time_to_timespec(void) {};
++void mp_time_ns(void) {};
++void mp_time_ns_add(void) {};
++void mp_time_ns_to_realtime(void) {};
++#endif
+diff --git a/test/test_utils.h b/test/test_utils.h
+index 66615d3710..ac1dfb5d1d 100644
+--- a/test/test_utils.h
++++ b/test/test_utils.h
+@@ -54,3 +54,13 @@ int mp_msg_level(struct mp_log *log);
+ void mp_write_console_ansi(void);
+ typedef struct AVDictionary AVDictionary;
+ void mp_set_avdict(AVDictionary **dict, char **kv);
++
++// Windows additionally requires timer related code so it will actually
++// import the real versions of these functions and use them. On other
++// platforms, these can just be stubs for simplicity.
++#ifndef WIN32_TESTS
++void mp_rel_time_to_timespec(void);
++void mp_time_ns(void);
++void mp_time_ns_add(void);
++void mp_time_ns_to_realtime(void);
++#endif
+diff --git a/test/timer.c b/test/timer.c
+deleted file mode 100644
+index 6fe7770c2e..0000000000
+--- a/test/timer.c
++++ /dev/null
+@@ -1,54 +0,0 @@
+-#include "common/common.h"
+-#include "osdep/timer.h"
+-#include "test_utils.h"
+-
+-#include <time.h>
+-#include <sys/time.h>
+-#include <limits.h>
+-
+-int main(void)
+-{
+-    mp_time_init();
+-
+-    /* timekeeping */
+-    {
+-        int64_t now = mp_time_ns();
+-        assert_true(now > 0);
+-
+-        mp_sleep_ns(MP_TIME_MS_TO_NS(10));
+-
+-        int64_t now2 = mp_time_ns();
+-        assert_true(now2 > now);
+-
+-        mp_sleep_ns(MP_TIME_MS_TO_NS(10));
+-
+-        double now3 = mp_time_sec();
+-        assert_true(now3 > MP_TIME_NS_TO_S(now2));
+-    }
+-
+-    /* arithmetic */
+-    {
+-        const int64_t test = 123456;
+-        assert_int_equal(mp_time_ns_add(test, 1.0), test + MP_TIME_S_TO_NS(1));
+-        assert_int_equal(mp_time_ns_add(test, DBL_MAX), INT64_MAX);
+-        assert_int_equal(mp_time_ns_add(test, -1e13), 1);
+-
+-        const int64_t test2 = INT64_MAX - MP_TIME_S_TO_NS(20);
+-        assert_int_equal(mp_time_ns_add(test2, 20.44), INT64_MAX);
+-    }
+-
+-    /* conversion */
+-    {
+-        struct timeval tv;
+-        struct timespec ts;
+-        gettimeofday(&tv, NULL);
+-        ts = mp_time_ns_to_realtime(mp_time_ns());
+-        assert_true(llabs(tv.tv_sec - ts.tv_sec) <= 1);
+-
+-        gettimeofday(&tv, NULL);
+-        ts = mp_rel_time_to_timespec(0.0);
+-        assert_true(llabs(tv.tv_sec - ts.tv_sec) <= 1);
+-    }
+-
+-    return 0;
+-}
+-- 
+2.40.1
+

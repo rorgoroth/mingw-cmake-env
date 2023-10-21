@@ -1,0 +1,31 @@
+From cd449b265551a7439c2e4f39b6c6d71f73274c59 Mon Sep 17 00:00:00 2001
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+Date: Sat, 21 Oct 2023 12:48:13 +0100
+Subject: [PATCH 1/4] Revert "win32/pthread: try to fix system headers leaking
+ through"
+
+This reverts commit 3fb4eb2ba47fea78e69937971974f42cba82d1df.
+---
+ osdep/win32/include/pthread.h | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/osdep/win32/include/pthread.h b/osdep/win32/include/pthread.h
+index 71dc8084a4..395115faa3 100644
+--- a/osdep/win32/include/pthread.h
++++ b/osdep/win32/include/pthread.h
+@@ -16,12 +16,6 @@
+ #ifndef MP_WRAP_PTHREAD_H_
+ #define MP_WRAP_PTHREAD_H_
+ 
+-// this is MinGW specific and sort of a hack but we really need to prevent
+-// system pthread headers from being included, which can happen through <time.h>
+-// and <unistd.h>:
+-#define WIN_PTHREADS_TIME_H
+-#define WIN_PTHREADS_UNISTD_H
+-
+ #include <windows.h>
+ 
+ #include <sys/types.h>
+-- 
+2.40.1
+
