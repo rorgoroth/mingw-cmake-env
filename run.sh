@@ -32,10 +32,6 @@ package () {
       7z a "ffmpeg.7z" -- ./*
     cd .. || exit
 
-    cd iortcw-package || exit
-      7z a "iortcw.7z" -- ./*
-    cd .. || exit
-
     cd mpv-package || exit
       7z a "mpv.7z" -- ./*
     cd .. || exit

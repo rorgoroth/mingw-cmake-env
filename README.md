@@ -12,8 +12,6 @@ See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
 
 [FFmpeg](https://github.com/FFmpeg/FFmpeg): CLI tool for processing of video and audio files, git builds.
 
-[ioRTcW](https://github.com/iortcw/iortcw): Open source client for RTCW single and multiplayer, client only, git builds.
-
 [mpv](https://github.com/mpv-player/mpv): Media player, git builds.
 
 [OpenArena](https://github.com/rorgoroth/Quake3e-OpenArena): Completely FOSS version of Quake 3, client only (based on Quake3e using Vulkan), git builds.
