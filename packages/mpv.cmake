@@ -18,7 +18,6 @@ ExternalProject_Add(
           vulkan-loader
   GIT_REPOSITORY https://github.com/mpv-player/mpv.git
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/mpv-*.patch
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
