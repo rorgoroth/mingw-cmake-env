@@ -1,0 +1,104 @@
+name: build
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup_alpine
+        uses: jirutka/setup-alpine@v1
+
+      - name: setup_git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: add_packages
+        run: |
+          apk add 7zip autoconf automake bash cmake coreutils diffutils g++ gawk gcc gettext-dev git libtool make meson nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
+        shell: alpine.sh --root {0}
+
+      - name: load_cache
+        uses: actions/cache/restore@main
+        with:
+          path: build
+          key: cached_build
+
+      - name: setup_cmake
+        run: |
+          mkdir build || true
+          cd build
+          cmake -G Ninja ..
+        shell: alpine.sh {0}
+
+      - name: run_update
+        run: |
+          ninja -C build update
+        shell: alpine.sh {0}
+
+      - name: run_ninja
+        run: |
+          ninja -C build llvm
+          ninja -C build
+        shell: alpine.sh {0}
+
+      - name: clear_cache
+        uses: easimon/wipe-cache@main
+
+      - name: save_cache
+        uses: actions/cache/save@main
+        with:
+          path: build
+          key: cached_build
+
+      - name: run_pkg
+        run: |
+          sh run.sh pkg
+        shell: alpine.sh {0}
+
+      - name: gather_logs
+        if: always()
+        run: |
+          mkdir -p logs
+          cp -fr $(find build -type f -iname "*-out.log") logs/ || true
+          cp -fr $(find build -type f -iname "*-err.log") logs/ || true
+        shell: alpine.sh {0}
+
+      - name: upload_logs
+        uses: actions/upload-artifact@master
+        if: always()
+        with:
+          name: build-logs
+          path: logs/
+          retention-days: 7
+
+      - name: upload_pkg_artifacts
+        uses: actions/upload-artifact@master
+        with:
+          name: pkg-artifacts
+          path: bin/*.7z
+          retention-days: 7
+
+      - name: create_release_tag
+        id: create_release
+        uses: marvinpinto/action-automatic-releases@latest
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: Latest Build
+
+      - name: upload_packages
+        id: upload_release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: bin/*.7z
+          tag: latest
+          overwrite: true
+          file_glob: true

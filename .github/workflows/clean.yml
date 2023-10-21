@@ -1,0 +1,44 @@
+name: clean
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 * * SUN'
+
+jobs:
+  clean_workflows:
+    runs-on: ubuntu-latest
+    steps:
+#      - name: remove_failed
+#        uses: Mattraks/delete-workflow-runs@v2
+#        with:
+#          token: ${{ github.token }}
+#          repository: ${{ github.repository }}
+#          retain_days: 0
+#          keep_minimum_runs: 0
+#          delete_run_by_conclusion_pattern: failure
+#
+#      - name: remove_inactivity
+#        uses: Mattraks/delete-workflow-runs@v2
+#        with:
+#          token: ${{ github.token }}
+#          repository: ${{ github.repository }}
+#          retain_days: 0
+#          keep_minimum_runs: 0
+#          delete_run_by_conclusion_pattern: cancelled
+
+      - name: remove_clean
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 0
+          keep_minimum_runs: 0
+          delete_workflow_pattern: clean
+
+      - name: clean_old
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 7
+          keep_minimum_runs: 7
