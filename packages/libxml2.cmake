@@ -1,6 +1,7 @@
 ExternalProject_Add(
   libxml2
   DEPENDS libiconv
+          zlib
   GIT_REPOSITORY https://github.com/GNOME/libxml2.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
