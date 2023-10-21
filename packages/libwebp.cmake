@@ -37,4 +37,3 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(libwebp)
-autogen(libwebp)
