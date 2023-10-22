@@ -1,6 +1,6 @@
 ExternalProject_Add(
   gmp
-  URL https://gmplib.org/download/gmp/gmp-6.3.0.tar.xz
+  URL https://www.mirrorservice.org/pub/gnu/gmp/gmp-6.3.0.tar.xz
   URL_HASH MD5=956dc04e864001a9c22429f761f2c283
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure CC_FOR_BUILD=cc
