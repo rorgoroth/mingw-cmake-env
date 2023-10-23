@@ -33,7 +33,6 @@ ExternalProject_Add(
     -Djavascript=enabled
     -Djpeg=enabled
     -Dlcms2=enabled
-    -Dlibplacebo=enabled
     -Dlua=enabled
     -Dmanpage-build=disabled
     -Dopenal=enabled
