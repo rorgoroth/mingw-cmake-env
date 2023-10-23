@@ -4,7 +4,7 @@ export CXX=x86_64-w64-mingw32-clang++
 export PATH="@CMAKE_INSTALL_PREFIX@/bin:$PATH"
 export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
-export CFLAGS="-march=x86-64-v3 -O3 -fuse-ld=lld -flto=thin -mllvm --polly -mllvm --polly-position=before-vectorizer -mllvm --polly-vectorizer=stripmine -mllvm --polly-run-dce -mllvm --polly-invariant-load-hoisting -mllvm --polly-run-inliner -mguard=cf -fcf-protection=full"
-export CXXFLAGS="-march=x86-64-v3 -O3 -fuse-ld=lld -flto=thin -mllvm --polly -mllvm --polly-position=before-vectorizer -mllvm --polly-vectorizer=stripmine -mllvm --polly-run-dce -mllvm --polly-invariant-load-hoisting -mllvm --polly-run-inliner -mguard=cf -fcf-protection=full"
-export LDFLAGS="-flto=thin"
+export CFLAGS="-march=x86-64-v3 -fuse-ld=lld -flto=thin -fdata-sections -ffunction-sections -faddrsig -fvisibility=hidden -mguard=cf -fcf-protection=full"
+export CXXFLAGS="-march=x86-64-v3 -fuse-ld=lld -flto=thin -fdata-sections -ffunction-sections -faddrsig -fvisibility=hidden -mguard=cf -fcf-protection=full"
+export LDFLAGS="-flto=thin -Wl,--as-needed -Wl,--gc-sections -Wl,-Xlink=-opt:safeicf"
 eval $*

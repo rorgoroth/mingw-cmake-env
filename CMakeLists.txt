@@ -73,13 +73,6 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-nlto.in
 set(EXEC-NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nlto)
 set(MAKE-NLTO ${EXEC-NLTO} make -j${MAKEJOBS})
 set(NINJA-NLTO ${EXEC-NLTO} ninja -j${MAKEJOBS})
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-plite.in
-               ${CMAKE_CURRENT_BINARY_DIR}/exec-plite @ONLY)
-set(EXEC-PLITE ${CMAKE_CURRENT_BINARY_DIR}/exec-plite)
-set(MAKE-PLITE ${EXEC-PLITE} make -j${MAKEJOBS})
-set(NINJA-PLITE ${EXEC-PLITE} ninja -j${MAKEJOBS})
-
 string(TIMESTAMP BUILDDATE "%Y%m%d" UTC)
 
 add_subdirectory(toolchain)
