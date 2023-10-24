@@ -1,0 +1,436 @@
+From 3366e6da8f25f0aecedefcfe756f4c76d0b77e58 Mon Sep 17 00:00:00 2001
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+Date: Tue, 24 Oct 2023 16:08:15 +0100
+Subject: [PATCH] Revert "Add materials and custom footsteps support."
+
+This reverts commit 3a96516686073d479f67fef5593c225c3c363b64.
+---
+ inc/common/bsp.h      |  18 ----
+ src/client/client.h   |   1 -
+ src/client/entities.c |  22 ++---
+ src/client/tent.c     | 193 ++++--------------------------------------
+ src/common/bsp.c      |  65 --------------
+ 5 files changed, 28 insertions(+), 271 deletions(-)
+
+diff --git a/inc/common/bsp.h b/inc/common/bsp.h
+index 4fa5276d..7fc489ea 100644
+--- a/inc/common/bsp.h
++++ b/inc/common/bsp.h
+@@ -31,16 +31,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
+ #define VIS_FAST_LONGS(bsp) \
+     (((bsp)->visrowsize + sizeof(size_t) - 1) / sizeof(size_t))
+ 
+-#if USE_CLIENT
+-
+-enum {
+-    FOOTSTEP_ID_DEFAULT,
+-    FOOTSTEP_ID_LADDER,
+-    FOOTSTEP_RESERVED_COUNT
+-};
+-
+-#endif
+-
+ typedef struct mtexinfo_s {  // used internally due to name len probs //ZOID
+     csurface_t          c;
+     char                name[MAX_TEXNAME];
+@@ -52,10 +42,6 @@ typedef struct mtexinfo_s {  // used internally due to name len probs //ZOID
+     int                 numframes;
+     struct mtexinfo_s   *next; // used for animation
+ #endif
+-#if USE_CLIENT
+-    char                material[16];
+-    int                 step_id;
+-#endif
+ } mtexinfo_t;
+ 
+ #if USE_REF
+@@ -314,10 +300,6 @@ int BSP_Load(const char *name, bsp_t **bsp_p);
+ void BSP_Free(bsp_t *bsp);
+ const char *BSP_ErrorString(int err);
+ 
+-#if USE_CLIENT
+-int BSP_LoadMaterials(bsp_t *bsp);
+-#endif
+-
+ #if USE_REF
+ typedef struct {
+     mface_t     *surf;
+diff --git a/src/client/client.h b/src/client/client.h
+index ce7ad9d4..de5bcfaa 100644
+--- a/src/client/client.h
++++ b/src/client/client.h
+@@ -773,7 +773,6 @@ typedef struct cl_sustain_s {
+ 
+ void CL_SmokeAndFlash(const vec3_t origin);
+ void CL_DrawBeam(const vec3_t org, const vec3_t end, qhandle_t model);
+-void CL_PlayFootstepSfx(int step_id, int entnum, float volume, float attenuation);
+ 
+ void CL_RegisterTEntSounds(void);
+ void CL_RegisterTEntModels(void);
+diff --git a/src/client/entities.c b/src/client/entities.c
+index 36ed3817..952f23f5 100644
+--- a/src/client/entities.c
++++ b/src/client/entities.c
+@@ -23,6 +23,8 @@ extern qhandle_t cl_mod_powerscreen;
+ extern qhandle_t cl_mod_laser;
+ extern qhandle_t cl_mod_dmspot;
+ extern qhandle_t cl_img_flare;
++extern qhandle_t cl_sfx_footsteps[4];
++extern qhandle_t cl_sfx_laddersteps[5];
+ 
+ /*
+ =========================================================================
+@@ -219,15 +221,15 @@ static void parse_entity_event(int number)
+         break;
+     case EV_FOOTSTEP:
+         if (cl_footsteps->integer)
+-            CL_PlayFootstepSfx(-1, number, 1.0f, ATTN_NORM);
++            S_StartSound(NULL, number, CHAN_BODY, cl_sfx_footsteps[Q_rand() & 3], 1, ATTN_NORM, 0);
+         break;
+     case EV_OTHER_FOOTSTEP:
+         if (cl.csr.extended && cl_footsteps->integer)
+-            CL_PlayFootstepSfx(-1, number, 0.5f, ATTN_IDLE);
++            S_StartSound(NULL, number, CHAN_BODY, cl_sfx_footsteps[Q_rand() & 3], 1, ATTN_IDLE, 0);
+         break;
+     case EV_LADDER_STEP:
+         if (cl.csr.extended && cl_footsteps->integer)
+-            CL_PlayFootstepSfx(FOOTSTEP_ID_LADDER, number, 0.5f, ATTN_IDLE);
++            S_StartSound(NULL, number, CHAN_BODY, cl_sfx_laddersteps[Q_rand() % 5], 1, ATTN_NORM, 0);
+         break;
+     case EV_FALLSHORT:
+         S_StartSound(NULL, number, CHAN_AUTO, S_RegisterSound("player/land1.wav"), 1, ATTN_NORM, 0);
+@@ -365,6 +367,7 @@ A valid frame has been parsed.
+ void CL_DeltaFrame(void)
+ {
+     centity_t           *ent;
++    centity_state_t     *state;
+     int                 i, j;
+     int                 framenum;
+     int                 prevstate = cls.state;
+@@ -389,16 +392,15 @@ void CL_DeltaFrame(void)
+     ent = &cl_entities[cl.frame.clientNum + 1];
+     Com_PlayerToEntityState(&cl.frame.ps, &ent->current.s);
+ 
+-    // set current and prev, unpack solid, etc
+     for (i = 0; i < cl.frame.numEntities; i++) {
+         j = (cl.frame.firstEntity + i) & PARSE_ENTITIES_MASK;
+-        parse_entity_update(&cl.entityStates[j]);
+-    }
++        state = &cl.entityStates[j];
+ 
+-    // fire events. due to footstep tracing this must be after updating entities.
+-    for (i = 0; i < cl.frame.numEntities; i++) {
+-        j = (cl.frame.firstEntity + i) & PARSE_ENTITIES_MASK;
+-        parse_entity_event(cl.entityStates[j].number);
++        // set current and prev
++        parse_entity_update(state);
++
++        // fire events
++        parse_entity_event(state->number);
+     }
+ 
+     if (cls.demo.recording && !cls.demo.paused && !cls.demo.seeking && CL_FRAMESYNC) {
+diff --git a/src/client/tent.c b/src/client/tent.c
+index 19d3965c..c863798a 100644
+--- a/src/client/tent.c
++++ b/src/client/tent.c
+@@ -31,6 +31,8 @@ qhandle_t   cl_sfx_railg;
+ qhandle_t   cl_sfx_rockexp;
+ qhandle_t   cl_sfx_grenexp;
+ qhandle_t   cl_sfx_watrexp;
++qhandle_t   cl_sfx_footsteps[4];
++qhandle_t   cl_sfx_laddersteps[5];
+ 
+ qhandle_t   cl_sfx_lightning;
+ qhandle_t   cl_sfx_disrexp;
+@@ -52,182 +54,6 @@ qhandle_t   cl_mod_explo4_big;
+ 
+ qhandle_t   cl_img_flare;
+ 
+-#define MAX_FOOTSTEP_SFX    9
+-
+-typedef struct {
+-    int         num_sfx;
+-    qhandle_t   sfx[MAX_FOOTSTEP_SFX];
+-} cl_footstep_sfx_t;
+-
+-static cl_footstep_sfx_t    *cl_footstep_sfx;
+-static int                  cl_num_footsteps;
+-static qhandle_t            cl_last_footstep;
+-
+-extern mtexinfo_t nulltexinfo;
+-
+-/*
+-=================
+-CL_FindFootstepSurface
+-=================
+-*/
+-static int CL_FindFootstepSurface(int entnum)
+-{
+-    int footstep_id = FOOTSTEP_ID_DEFAULT;
+-    centity_t *cent = &cl_entities[entnum];
+-
+-    // skip if no materials loaded
+-    if (cl_num_footsteps <= FOOTSTEP_RESERVED_COUNT)
+-        return footstep_id;
+-
+-    // use an X/Y only mins/maxs copy of the entity,
+-    // since we don't want it to get caught inside of any geometry above or below
+-    const vec3_t trace_mins = { cent->mins[0], cent->mins[1], 0 };
+-    const vec3_t trace_maxs = { cent->maxs[0], cent->maxs[1], 0 };
+-
+-    // trace start position is the entity's current origin + { 0 0 1 },
+-    // so that entities with their mins at 0 won't get caught in the floor
+-    vec3_t trace_start;
+-    VectorCopy(cent->current.origin, trace_start);
+-    trace_start[2] += 1;
+-
+-    // the end of the trace starts down by half of STEPSIZE
+-    vec3_t trace_end;
+-    VectorCopy(trace_start, trace_end);
+-    trace_end[2] -= 9;
+-    if (cent->current.solid && cent->current.solid != PACKED_BSP) {
+-        // if the entity is a bbox'd entity, the mins.z is added to the end point as well
+-        trace_end[2] += cent->mins[2];
+-    } else {
+-        // otherwise use a value that should cover every monster in the game
+-        trace_end[2] -= 66; // should you wonder: monster_guardian is the biggest boi
+-    }
+-
+-    // first, a trace done solely against MASK_SOLID
+-    trace_t tr;
+-    CL_Trace(&tr, trace_start, trace_mins, trace_maxs, trace_end, MASK_SOLID);
+-
+-    if (tr.fraction == 1.0f) {
+-        // if we didn't hit anything, use default step ID
+-        return footstep_id;
+-    }
+-
+-    if (tr.surface != &(nulltexinfo.c)) {
+-        // copy over the surfaces' step ID
+-        footstep_id = ((mtexinfo_t *)tr.surface)->step_id;
+-
+-        // do another trace that ends instead at endpos + { 0 0 1 }, and is against MASK_SOLID | MASK_WATER
+-        vec3_t new_end;
+-        VectorCopy(tr.endpos, new_end);
+-        new_end[2] += 1;
+-
+-        CL_Trace(&tr, trace_start, trace_mins, trace_maxs, new_end, MASK_SOLID | MASK_WATER);
+-        // if we hit something else, use that new footstep id instead of the first traces' value
+-        if (tr.surface != &(nulltexinfo.c))
+-            footstep_id = ((mtexinfo_t *)tr.surface)->step_id;
+-    }
+-
+-    return footstep_id;
+-}
+-
+-/*
+-=================
+-CL_PlayFootstepSfx
+-=================
+-*/
+-void CL_PlayFootstepSfx(int step_id, int entnum, float volume, float attenuation)
+-{
+-    const cl_footstep_sfx_t *sfx;
+-    qhandle_t footstep_sfx;
+-    int sfx_num;
+-
+-    if (!cl_num_footsteps)
+-        return; // should not really happen
+-
+-    if (step_id == -1)
+-        step_id = CL_FindFootstepSurface(entnum);
+-
+-    Q_assert((unsigned)step_id < cl_num_footsteps);
+-
+-    sfx = &cl_footstep_sfx[step_id];
+-    if (!sfx->num_sfx)
+-        sfx = &cl_footstep_sfx[0];
+-    if (!sfx->num_sfx)
+-        return; // no footsteps, not even fallbacks
+-
+-    // pick a random footstep sound, but avoid playing the same one twice in a row
+-    sfx_num = Q_rand_uniform(sfx->num_sfx);
+-    footstep_sfx = sfx->sfx[sfx_num];
+-    if (footstep_sfx == cl_last_footstep)
+-        footstep_sfx = sfx->sfx[(sfx_num + 1) % sfx->num_sfx];
+-
+-    S_StartSound(NULL, entnum, CHAN_BODY, footstep_sfx, volume, attenuation, 0);
+-    cl_last_footstep = footstep_sfx;
+-}
+-
+-/*
+-=================
+-CL_RegisterFootstep
+-=================
+-*/
+-static void CL_RegisterFootstep(cl_footstep_sfx_t *sfx, const char *material)
+-{
+-    char name[MAX_QPATH];
+-    size_t len;
+-    int i;
+-
+-    Q_assert(!material || *material);
+-
+-    for (i = 0; i < MAX_FOOTSTEP_SFX; i++) {
+-        if (material)
+-            len = Q_snprintf(name, sizeof(name), "#sound/player/steps/%s%i.wav", material, i + 1);
+-        else
+-            len = Q_snprintf(name, sizeof(name), "#sound/player/step%i.wav", i + 1);
+-        Q_assert(len < sizeof(name));
+-        if (FS_LoadFile(name + 1, NULL) < 0)
+-            break;
+-        sfx->sfx[i] = S_RegisterSound(name);
+-    }
+-
+-    sfx->num_sfx = i;
+-}
+-
+-/*
+-=================
+-CL_RegisterFootsteps
+-=================
+-*/
+-static void CL_RegisterFootsteps(void)
+-{
+-    mtexinfo_t *tex;
+-    int i;
+-
+-    cl_last_footstep = 0;
+-
+-    Z_Freep(&cl_footstep_sfx);
+-    if (!cl.bsp) {
+-        cl_num_footsteps = 0;
+-        return;
+-    }
+-
+-    cl_num_footsteps = BSP_LoadMaterials(cl.bsp);
+-    Q_assert(cl_num_footsteps >= FOOTSTEP_RESERVED_COUNT);
+-    cl_footstep_sfx = Z_Malloc(sizeof(cl_footstep_sfx[0]) * cl_num_footsteps);
+-
+-    for (i = 0; i < cl_num_footsteps; i++)
+-        cl_footstep_sfx[i].num_sfx = -1;
+-
+-    // load reserved footsteps
+-    CL_RegisterFootstep(&cl_footstep_sfx[FOOTSTEP_ID_DEFAULT], NULL);
+-    CL_RegisterFootstep(&cl_footstep_sfx[FOOTSTEP_ID_LADDER], "ladder");
+-
+-    // load the rest
+-    for (i = 0, tex = cl.bsp->texinfo; i < cl.bsp->numtexinfo; i++, tex++) {
+-        cl_footstep_sfx_t *sfx = &cl_footstep_sfx[tex->step_id];
+-        if (sfx->num_sfx == -1)
+-            CL_RegisterFootstep(sfx, tex->material);
+-    }
+-}
+-
+ /*
+ =================
+ CL_RegisterTEntSounds
+@@ -235,6 +61,9 @@ CL_RegisterTEntSounds
+ */
+ void CL_RegisterTEntSounds(void)
+ {
++    int     i;
++    char    name[MAX_QPATH];
++
+     cl_sfx_ric1 = S_RegisterSound("world/ric1.wav");
+     cl_sfx_ric2 = S_RegisterSound("world/ric2.wav");
+     cl_sfx_ric3 = S_RegisterSound("world/ric3.wav");
+@@ -251,7 +80,17 @@ void CL_RegisterTEntSounds(void)
+     S_RegisterSound("player/fall2.wav");
+     S_RegisterSound("player/fall1.wav");
+ 
+-    CL_RegisterFootsteps();
++    for (i = 0; i < 4; i++) {
++        Q_snprintf(name, sizeof(name), "player/step%i.wav", i + 1);
++        cl_sfx_footsteps[i] = S_RegisterSound(name);
++    }
++
++    if (cl.csr.extended) {
++        for (i = 0; i < 5; i++) {
++            Q_snprintf(name, sizeof(name), "player/steps/ladder%i.wav", i + 1);
++            cl_sfx_laddersteps[i] = S_RegisterSound(name);
++        }
++    }
+ 
+     cl_sfx_lightning = S_RegisterSound("weapons/tesla.wav");
+     cl_sfx_disrexp = S_RegisterSound("weapons/disrupthit.wav");
+diff --git a/src/common/bsp.c b/src/common/bsp.c
+index 26fe782a..4531cd5d 100644
+--- a/src/common/bsp.c
++++ b/src/common/bsp.c
+@@ -940,71 +940,6 @@ void BSP_Free(bsp_t *bsp)
+     }
+ }
+ 
+-#if USE_CLIENT
+-
+-int BSP_LoadMaterials(bsp_t *bsp)
+-{
+-    char path[MAX_QPATH];
+-    mtexinfo_t *out, *tex;
+-    int i, j, step_id = FOOTSTEP_RESERVED_COUNT;
+-    qhandle_t f;
+-
+-    for (i = 0, out = bsp->texinfo; i < bsp->numtexinfo; i++, out++) {
+-        // see if already loaded material for this texinfo
+-        for (j = i - 1; j >= 0; j--) {
+-            tex = &bsp->texinfo[j];
+-            if (!Q_stricmp(tex->name, out->name)) {
+-                strcpy(out->material, tex->material);
+-                out->step_id = tex->step_id;
+-                break;
+-            }
+-        }
+-        if (j != -1)
+-            continue;
+-
+-        // load material file
+-        Q_concat(path, sizeof(path), "textures/", out->name, ".mat");
+-        FS_OpenFile(path, &f, FS_MODE_READ | FS_FLAG_LOADFILE);
+-        if (f) {
+-            FS_Read(out->material, sizeof(out->material) - 1, f);
+-            FS_CloseFile(f);
+-        }
+-
+-        if (out->material[0] && !COM_IsPath(out->material)) {
+-            Com_WPrintf("Bad material \"%s\" in %s\n", Com_MakePrintable(out->material), path);
+-            out->material[0] = 0;
+-        }
+-
+-        if (!out->material[0] || !Q_stricmp(out->material, "default")) {
+-            out->step_id = FOOTSTEP_ID_DEFAULT;
+-            continue;
+-        }
+-
+-        if (!Q_stricmp(out->material, "ladder")) {
+-            out->step_id = FOOTSTEP_ID_LADDER;
+-            continue;
+-        }
+-
+-        // see if already allocated step_id for this material
+-        for (j = i - 1; j >= 0; j--) {
+-            tex = &bsp->texinfo[j];
+-            if (!Q_stricmp(tex->material, out->material)) {
+-                out->step_id = tex->step_id;
+-                break;
+-            }
+-        }
+-
+-        // allocate new step_id
+-        if (j == -1)
+-            out->step_id = step_id++;
+-    }
+-
+-    Com_DPrintf("%s: %d materials loaded\n", __func__, step_id);
+-    return step_id;
+-}
+-
+-#endif
+-
+ #if USE_REF
+ 
+ static void BSP_ParseDecoupledLM(bsp_t *bsp, const byte *in, size_t filelen)
+-- 
+2.40.1
+
