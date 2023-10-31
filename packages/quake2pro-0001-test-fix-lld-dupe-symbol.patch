@@ -1,0 +1,24 @@
+From 0831a168867ea57dcc55ae2fc8f5217062262afc Mon Sep 17 00:00:00 2001
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+Date: Tue, 31 Oct 2023 06:02:10 +0000
+Subject: [PATCH] test fix lld dupe symbol
+
+---
+ src/windows/meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/windows/meson.build b/src/windows/meson.build
+index d82ed2a..659cd5c 100644
+--- a/src/windows/meson.build
++++ b/src/windows/meson.build
+@@ -1,7 +1,7 @@
+ windows = import('windows')
+
+ common_src += files('system.c', 'hunk.c')
+-client_src += files('client.c', 'wgl.c', 'pthread.c')
++client_src += files('client.c', 'wgl.c')
+
+ common_deps += cc.find_library('ws2_32')
+ client_deps += cc.find_library('opengl32')
+--
+2.40.1
