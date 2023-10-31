@@ -73,6 +73,13 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-nlto.in
 set(EXEC-NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nlto)
 set(MAKE-NLTO ${EXEC-NLTO} make -j${MAKEJOBS})
 set(NINJA-NLTO ${EXEC-NLTO} ninja -j${MAKEJOBS})
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-nicf.in
+               ${CMAKE_CURRENT_BINARY_DIR}/exec-nicf @ONLY)
+set(EXEC-NICF ${CMAKE_CURRENT_BINARY_DIR}/exec-nicf)
+set(MAKE-NICF ${EXEC-NICF} make -j${MAKEJOBS})
+set(NINJA-NICF ${EXEC-NICF} ninja -j${MAKEJOBS})
+
 string(TIMESTAMP BUILDDATE "%Y%m%d" UTC)
 
 add_subdirectory(toolchain)
