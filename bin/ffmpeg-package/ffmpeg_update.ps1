@@ -1,10 +1,10 @@
 # 7z
-$7zexe = [Environment]::ExpandEnvironmentVariables("%Programfiles%\7-Zip\7z.exe")
+$env:Path += ";C:\Program Files\7-Zip\;"
 
 # Extracting
 function Extract-Archive {
     Write-Host "Extracting" $file -ForegroundColor Green
-    & $7zexe x -y $file
+    & 7z.exe x -y $file
 }
 
 # Download, extract and remove
