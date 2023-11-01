@@ -29,7 +29,7 @@ See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
 Basic build deps:
 
 ```bash
-apk add -i autoconf automake bash cmake diffutils g++ gcc git libtool make meson nasm p7zip patch pkgconf po4a py3-mako samurai texinfo yasm
+apk add -i autoconf automake bash cmake diffutils g++ gcc git libtool make meson musl-dev nasm p7zip patch pkgconf po4a py3-mako samurai texinfo yasm
 ```
 
 Setup/Build:
