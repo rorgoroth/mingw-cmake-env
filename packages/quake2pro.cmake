@@ -28,7 +28,7 @@ ExternalProject_Add(
     -Dsdl2=enabled
     -Dtga=true
     -Dzlib=enabled
-  BUILD_COMMAND ${NINJA-NLTO} -C <BINARY_DIR>
+  BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ""
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
