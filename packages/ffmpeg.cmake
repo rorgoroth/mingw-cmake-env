@@ -8,6 +8,7 @@ ExternalProject_Add(
           fontconfig
           gmp
           harfbuzz
+          lcms2
           lame
           libass
           libopusenc
@@ -53,6 +54,7 @@ ExternalProject_Add(
     --enable-cross-compile
     --enable-gmp
     --enable-gpl --enable-version3 --enable-nonfree
+    --enable-lcms2
     --enable-libaom
     --enable-libass
     --enable-libdav1d
