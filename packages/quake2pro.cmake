@@ -1,10 +1,10 @@
 ExternalProject_Add(
   quake2pro
   DEPENDS curl
+          ffmpeg
           libpng
           libpng
           libsdl2
-          ogg
           openal
           libjpeg
   GIT_REPOSITORY https://github.com/skullernet/q2pro.git
@@ -23,7 +23,6 @@ ExternalProject_Add(
     -Dlibcurl=enabled
     -Dlibjpeg=enabled
     -Dlibpng=enabled
-    -Dogg=enabled
     -Dopenal=enabled
     -Dsdl2=enabled
     -Dtga=true
@@ -61,7 +60,7 @@ ExternalProject_Add_Step(
 ExternalProject_Add_Step(
     quake2pro clean
   DEPENDEES copy-binary
-  COMMAND ${NINJA} -C <BINARY_DIR> clean > /dev/null 2>&1
+  COMMAND sh -c "rm -rf <BINARY_DIR>/* && git -C <SOURCE_DIR> clean -xdf >/dev/null 2>&1 || true"
   COMMENT "Performing clean step for 'quake2pro'")
 
 force_rebuild_git(quake2pro)
