@@ -6,5 +6,5 @@ export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
 export CFLAGS="-march=x86-64-v3 -fuse-ld=lld -flto=thin -fvisibility=hidden -mguard=cf -fcf-protection=full"
 export CXXFLAGS="-march=x86-64-v3 -fuse-ld=lld -flto=thin -fvisibility=hidden -mguard=cf -fcf-protection=full"
-export LDFLAGS="-flto=thin -Wl,--as-needed"
+export LDFLAGS="-flto=thin"
 eval $*
