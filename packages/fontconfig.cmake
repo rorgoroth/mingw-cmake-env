@@ -10,7 +10,7 @@ ExternalProject_Add(
   GIT_TAG main
   UPDATE_COMMAND ""
   GIT_SHALLOW 1
-  PATCH_COMMAND ${EXEC} git am ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
+  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
