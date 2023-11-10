@@ -1,34 +1,18 @@
 diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
---- a/loader/CMakeLists.txt	2023-09-25 19:17:08.000000000 +0100
-+++ b/loader/CMakeLists.txt	2023-09-29 07:12:24.263378881 +0100
-@@ -21,7 +21,7 @@
+--- a/loader/CMakeLists.txt	2023-11-10 18:27:14.000000000 +0000
++++ b/loader/CMakeLists.txt	2023-11-10 20:00:14.726961775 +0000
+@@ -21,8 +21,9 @@
+ add_library(loader_specific_options INTERFACE)
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
  target_include_directories(loader_specific_options INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/generated ${CMAKE_CURRENT_BINARY_DIR})
++configure_file("vulkan_own.pc.in" "vulkan_own.pc" @ONLY)
  
 -if(WIN32)
 +if(WIN32 AND NOT MINGW)
  
      if(ENABLE_WIN10_ONECORE)
          # Note: When linking your app or driver to OneCore.lib, be sure to remove any links to non-umbrella libs (such as
-@@ -114,7 +114,7 @@
- set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG}Note that this may be unsafe, as the C code requires tail-call optimizations to remove")
- set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} the stack frame for certain calls. If the compiler does not do this, then unknown device")
- set(ASM_FAILURE_MSG "${ASM_FAILURE_MSG} extensions will suffer from a corrupted stack.")
--if(WIN32)
-+if(MSVC)
-     if(MINGW)
-         find_program(JWASM_FOUND jwasm)
-         if (JWASM_FOUND)
-@@ -174,7 +174,7 @@
-         set(USE_ASSEMBLY_FALLBACK ON)
-         message(WARNING "Could not find working MASM assembler\n${ASM_FAILURE_MSG}")
-     endif()
--elseif(UNIX) # i.e.: Linux & Apple
-+elseif(UNIX OR MINGW) # i.e.: Linux & Apple
-     option(USE_GAS "Use GAS" ON)
-     if(USE_GAS)
-         enable_language(ASM)
-@@ -267,7 +267,7 @@
+@@ -308,7 +309,7 @@
      endif()
  endif()
  
@@ -37,7 +21,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      add_library(loader-opt STATIC ${OPT_LOADER_SRCS})
      target_link_libraries(loader-opt PUBLIC loader_specific_options)
      add_dependencies(loader-opt loader_asm_gen_files)
-@@ -317,7 +317,7 @@
+@@ -354,7 +355,7 @@
      add_dependencies(vulkan loader_asm_gen_files)
  
  else()
@@ -46,51 +30,18 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
          add_library(vulkan STATIC ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
          target_compile_definitions(vulkan PRIVATE BUILD_STATIC_LOADER)
      else()
-@@ -368,6 +368,7 @@
-         # framework version does not have to be "A", this part of the Apple toolchain expects it.
-         # https://forums.developer.apple.com/thread/65963
- 
-+        if (NOT BUILD_STATIC_LOADER)
-         set_target_properties(vulkan-framework PROPERTIES
-             OUTPUT_NAME vulkan
-             FRAMEWORK TRUE
-@@ -381,6 +382,7 @@
-             PUBLIC_HEADER DESTINATION vulkan
-             FRAMEWORK DESTINATION loader
-         )
-+        endif()
-     endif()
- endif()
- 
-@@ -410,7 +412,7 @@
-         set(PRIVATE_LIBS "Libs.private: ${PRIVATE_LIBS}")
-     endif()
- 
--    if(WIN32)
-+    if(WIN32 AND NOT BUILD_STATIC_LOADER)
-         if(MINGW)
-             set(VULKAN_LIB_SUFFIX "-1.dll")
-         else()
-@@ -430,6 +432,7 @@
-         file(RELATIVE_PATH CMAKE_INSTALL_REL_INCLUDEDIR_PC ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_FULL_INCLUDEDIR})
-     endif()
-     set(VULKAN_LOADER_PKG_CONFIG_NAME "Vulkan-Loader")
-+    set(PRIVATE_LIBS "Libs.private: -lshlwapi -lcfgmgr32")
-     configure_file("vulkan.pc.in" "vulkan.pc" @ONLY)
-     install(FILES "${CMAKE_CURRENT_BINARY_DIR}/vulkan.pc" DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
- endif()
-@@ -437,7 +440,7 @@
+@@ -447,7 +448,7 @@
  target_link_libraries(vulkan PRIVATE Vulkan::Headers)
  add_library(Vulkan::Loader ALIAS vulkan)
  
 -if (APPLE AND BUILD_STATIC_LOADER)
 +if (APPLE OR BUILD_STATIC_LOADER)
-     # When exporting a static library all linked libraries - private or not - need to be exported.
+     # TLDR: This feature only exists at the request of Google for Chromium. No other project should use this!
+     message(NOTICE "Apple STATIC lib: it will be built but not installed, and vulkan.pc and VulkanLoaderConfig.cmake won't be generated!")
      return()
- endif()
 diff -ruN a/loader/loader.h b/loader/loader.h
---- a/loader/loader.h	2023-09-25 19:17:08.000000000 +0100
-+++ b/loader/loader.h	2023-09-29 07:12:24.263378881 +0100
+--- a/loader/loader.h	2023-11-10 18:27:14.000000000 +0000
++++ b/loader/loader.h	2023-11-10 20:00:14.726961775 +0000
 @@ -33,7 +33,9 @@
  #include "cJSON.h"
  
@@ -102,8 +53,8 @@ diff -ruN a/loader/loader.h b/loader/loader.h
  static inline VkPhysicalDevice loader_unwrap_physical_device(VkPhysicalDevice physicalDevice) {
      struct loader_physical_device_tramp *phys_dev = (struct loader_physical_device_tramp *)physicalDevice;
 diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
---- a/loader/loader.rc.in	2023-09-25 19:17:08.000000000 +0100
-+++ b/loader/loader.rc.in	2023-09-29 07:12:24.273378881 +0100
+--- a/loader/loader.rc.in	2023-11-10 18:27:14.000000000 +0000
++++ b/loader/loader.rc.in	2023-11-10 20:00:14.726961775 +0000
 @@ -19,7 +19,11 @@
  // Author: Charles Giessen <charles@lunarg.com>
  //
@@ -117,8 +68,8 @@ diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
  // All set through CMake
  #define VER_FILE_VERSION ${LOADER_VER_FILE_VERSION}
 diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
---- a/loader/loader_windows.c	2023-09-25 19:17:08.000000000 +0100
-+++ b/loader/loader_windows.c	2023-09-29 07:12:24.273378881 +0100
+--- a/loader/loader_windows.c	2023-11-10 18:27:14.000000000 +0000
++++ b/loader/loader_windows.c	2023-11-10 20:00:14.726961775 +0000
 @@ -47,6 +47,8 @@
  #include <strsafe.h>
  #if defined(__MINGW32__)
@@ -145,8 +96,8 @@ diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
  bool windows_add_json_entry(const struct loader_instance *inst,
                              char **reg_data,    // list of JSON files
 diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
---- a/loader/vk_loader_platform.h	2023-09-25 19:17:08.000000000 +0100
-+++ b/loader/vk_loader_platform.h	2023-09-29 07:12:24.273378881 +0100
+--- a/loader/vk_loader_platform.h	2023-11-10 18:27:14.000000000 +0000
++++ b/loader/vk_loader_platform.h	2023-11-10 20:00:14.726961775 +0000
 @@ -69,6 +69,7 @@
  #include <io.h>
  #include <shlwapi.h>
@@ -164,3 +115,18 @@ diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
  static inline void loader_platform_thread_once_fn(pthread_once_t *ctl, void (*func)(void)) {
      assert(func != NULL);
      assert(ctl != NULL);
+diff -ruN a/loader/vulkan_own.pc.in b/loader/vulkan_own.pc.in
+--- a/loader/vulkan_own.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ b/loader/vulkan_own.pc.in	2023-11-10 20:00:14.726961775 +0000
+@@ -0,0 +1,11 @@
++prefix=@CMAKE_INSTALL_PREFIX@
++exec_prefix=${prefix}
++libdir=${exec_prefix}/lib
++includedir=${prefix}/include
++
++Name: Vulkan-Loader
++Description: Vulkan Loader
++Version: @VULKAN_LOADER_VERSION@
++Libs: -L${libdir} -lvulkan
++Libs.private: -lshlwapi -lcfgmgr32
++Cflags: -I${includedir}
