@@ -68,15 +68,15 @@ set(EXEC ${CMAKE_CURRENT_BINARY_DIR}/exec)
 set(MAKE ${EXEC} make -j${MAKEJOBS})
 set(NINJA ${EXEC} ninja -j${MAKEJOBS})
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-nlto.in
-               ${CMAKE_CURRENT_BINARY_DIR}/exec-nlto @ONLY)
-set(EXEC-NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nlto)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-nolto.in
+               ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto @ONLY)
+set(EXEC-NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto)
 set(MAKE-NLTO ${EXEC-NLTO} make -j${MAKEJOBS})
 set(NINJA-NLTO ${EXEC-NLTO} ninja -j${MAKEJOBS})
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-nicf.in
-               ${CMAKE_CURRENT_BINARY_DIR}/exec-nicf @ONLY)
-set(EXEC-NICF ${CMAKE_CURRENT_BINARY_DIR}/exec-nicf)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-noicf.in
+               ${CMAKE_CURRENT_BINARY_DIR}/exec-noicf @ONLY)
+set(EXEC-NICF ${CMAKE_CURRENT_BINARY_DIR}/exec-noicf)
 set(MAKE-NICF ${EXEC-NICF} make -j${MAKEJOBS})
 set(NINJA-NICF ${EXEC-NICF} ninja -j${MAKEJOBS})
 
