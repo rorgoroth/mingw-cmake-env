@@ -10,9 +10,9 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/skullernet/q2pro.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/quake2pro-*.patch
+  PATCH_COMMAND ${EXEC} patch --ignore-whitespace --fuzz 3 -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/quake2pro-0001.patch
   CONFIGURE_COMMAND
-    ${EXEC-NLTO} meson setup <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
     --libdir=${MINGW_INSTALL_PREFIX}/lib
     --cross-file=${MESON_CROSS}
@@ -60,7 +60,7 @@ ExternalProject_Add_Step(
 ExternalProject_Add_Step(
     quake2pro clean
   DEPENDEES copy-binary
-  COMMAND sh -c "rm -rf <BINARY_DIR>/* && git -C <SOURCE_DIR> clean -xdf >/dev/null 2>&1 || true"
+  COMMAND ${NINJA} -C <BINARY_DIR> clean > /dev/null 2>&1
   COMMENT "Performing clean step for 'quake2pro'")
 
 force_rebuild_git(quake2pro)
