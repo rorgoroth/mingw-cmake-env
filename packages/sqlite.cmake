@@ -1,7 +1,7 @@
 ExternalProject_Add(
   sqlite
-  URL https://www.sqlite.org/2023/sqlite-autoconf-3410200.tar.gz
-  URL_HASH MD5=862075fd1c38324878ef809eda39edfe
+  URL https://www.sqlite.org/2023/sqlite-autoconf-3440000.tar.gz
+  URL_HASH MD5=7d4a49f724ad0643f3c4bf7e5a5838c0
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} autoreconf -fi && <SOURCE_DIR>/configure
