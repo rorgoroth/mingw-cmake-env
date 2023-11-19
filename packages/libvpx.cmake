@@ -7,7 +7,6 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC-NLTO} CROSS=x86_64-w64-mingw32- <SOURCE_DIR>/configure
-    --extra-cflags='-fno-asynchronous-unwind-tables'
     --target=x86_64-win64-gcc
     --prefix=${MINGW_INSTALL_PREFIX}
     --as=yasm
