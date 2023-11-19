@@ -31,8 +31,9 @@ endfunction()
 function(force_meson_configure _name)
   ExternalProject_Add_Step(
     ${_name} force-meson-configure
+    DEPENDEES patch
     DEPENDERS configure
-    COMMAND  sh -c "meson setup --wipe <BINARY_DIR> || true"
+    COMMAND ${EXEC} rm -rf <BINARY_DIR>/meson-*
     LOG 1)
 endfunction()
 
