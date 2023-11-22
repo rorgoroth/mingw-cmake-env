@@ -2,11 +2,11 @@
 export LC_NUMERIC="C"
 
 check() {
-  if awk "BEGIN {exit !($b > $a)}"; then
-    echo "$pkg: $a -> $b [NEW]"
-  else
-    echo "$pkg: $a -> $b"
-  fi
+    if awk "BEGIN {exit !($b > $a)}"; then
+        echo "$pkg: $a -> $b [NEW]"
+    else
+        echo "$pkg: $a -> $b"
+    fi
 }
 
 # curl
