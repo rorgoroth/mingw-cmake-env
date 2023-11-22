@@ -1,6 +1,6 @@
 diff -ruN a/Makefile b/Makefile
---- a/Makefile	2023-01-10 11:11:11.000000000 +0000
-+++ b/Makefile	2023-04-13 12:58:34.537146561 +0100
+--- a/Makefile	2023-11-22 07:20:40.960053434 +0000
++++ b/Makefile	2023-11-22 07:26:17.839942479 +0000
 @@ -2,7 +2,7 @@
  #
  # Useful targets are: release, install, uninstall.
@@ -21,16 +21,7 @@ diff -ruN a/Makefile b/Makefile
  ifeq ($(shell uname),Darwin)
    SO = dylib
  else
-@@ -99,7 +103,7 @@
- build/release/libmujs.a: build/release/libmujs.o
- 	$(AR) cr $@ $^
- build/release/mujs: main.c build/release/libmujs.o
--	$(CC) $(CFLAGS) $(OPTIM) -o $@ $^ -lm -DHAVE_READLINE -lreadline
-+	$(CC) $(CFLAGS) $(OPTIM) -o $@ $^ -lm
- build/release/mujs-pp: pp.c build/release/libmujs.o
- 	$(CC) $(CFLAGS) $(OPTIM) -o $@ $^ -lm
- 
-@@ -119,8 +123,8 @@
+@@ -124,8 +128,8 @@
  	install -d $(DESTDIR)$(bindir)
  	install -m 644 mujs.h $(DESTDIR)$(incdir)
  	install -m 644 build/release/mujs.pc $(DESTDIR)$(libdir)/pkgconfig
