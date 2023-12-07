@@ -1,6 +1,3 @@
-cmake_policy(SET CMP0114 OLD)
-cmake_policy(SET CMP0135 NEW)
-
 function(force_rebuild_git _name)
   get_property(
     git_tag
@@ -21,6 +18,7 @@ function(force_rebuild_git _name)
 
   ExternalProject_Add_Step(
     ${_name} force-update
+    INDEPENDENT 1
     DEPENDEES download update
     DEPENDERS patch build install
     COMMAND git reset --hard ${git_tag} ${pull}
