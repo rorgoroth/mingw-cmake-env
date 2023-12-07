@@ -59,7 +59,7 @@ ExternalProject_Add_Step(
     <BINARY_DIR>/mpv.exe
   COMMAND
     ${EXEC} x86_64-w64-mingw32-strip -s
-    <BINARY_DIR>/player/mpv.com)
+    <BINARY_DIR>/mpv.com)
 
 ExternalProject_Add_Step(
   mpv copy-binary
@@ -70,7 +70,7 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.exe
   COMMAND
     ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/player/mpv.com
+    <BINARY_DIR>/mpv.com
     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com)
 
 ExternalProject_Add_Step(
