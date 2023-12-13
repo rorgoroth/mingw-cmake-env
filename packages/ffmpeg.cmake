@@ -27,7 +27,7 @@ ExternalProject_Add(
           vorbis
           vulkan-loader
           x264
-  GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
+  GIT_REPOSITORY https://github.com/librempeg/librempeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
@@ -75,7 +75,6 @@ ExternalProject_Add(
     --enable-libzimg
     --enable-nvdec
     --enable-nvenc
-    --enable-postproc
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
