@@ -24,6 +24,7 @@ ExternalProject_Add(
           shaderc
           speex
           spirv-cross
+          svtav1
           vorbis
           vulkan-loader
           x264
@@ -66,6 +67,7 @@ ExternalProject_Add(
     --enable-libshaderc
     --enable-librubberband
     --enable-libspeex
+    --enable-libsvtav1
     --enable-libvorbis
     --enable-libvpl
     --enable-libvpx

@@ -66,6 +66,7 @@ list(
   xxhash
   libplacebo
   dav1d
+  svtav1
   amf-headers
   aom
   lame
