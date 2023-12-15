@@ -77,7 +77,6 @@ list(
   flac
   opus
   libopusenc
-  speex
   vorbis
   theora
   x264

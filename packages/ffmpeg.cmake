@@ -22,7 +22,6 @@ ExternalProject_Add(
           onevpl
           rubberband
           shaderc
-          speex
           spirv-cross
           svtav1
           vorbis
@@ -66,7 +65,6 @@ ExternalProject_Add(
     --enable-libplacebo
     --enable-libshaderc
     --enable-librubberband
-    --enable-libspeex
     --enable-libsvtav1
     --enable-libvorbis
     --enable-libvpl
