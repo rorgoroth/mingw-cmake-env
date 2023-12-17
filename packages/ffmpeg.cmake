@@ -27,6 +27,7 @@ ExternalProject_Add(
           vorbis
           vulkan-loader
           x264
+          x265
   GIT_REPOSITORY https://github.com/librempeg/librempeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
@@ -71,6 +72,7 @@ ExternalProject_Add(
     --enable-libvpx
     --enable-libwebp
     --enable-libx264
+    --enable-libx265
     --enable-libxml2
     --enable-libzimg
     --enable-nvdec
