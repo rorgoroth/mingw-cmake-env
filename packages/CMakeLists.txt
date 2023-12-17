@@ -80,6 +80,7 @@ list(
   vorbis
   theora
   x264
+  x265
   onevpl
   directx-headers
   ffmpeg
