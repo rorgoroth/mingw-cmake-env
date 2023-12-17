@@ -18,6 +18,7 @@ ExternalProject_Add(
     -DPNG_SHARED=OFF
     -DPNG_STATIC=ON
     -DPNG_TESTS=OFF
+    -DPNG_TOOLS=OFF
     -Dld-version-script=ON
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
