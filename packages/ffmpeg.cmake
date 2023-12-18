@@ -31,6 +31,7 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/librempeg/librempeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
+  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg-*.patch
   CONFIGURE_COMMAND
     ${EXEC-NLTO} <SOURCE_DIR>/configure
     --cross-prefix=x86_64-w64-mingw32-
@@ -39,6 +40,10 @@ ExternalProject_Add(
     --target-os=mingw32
     --target-exec=wine
     --pkg-config-flags=--static
+    --disable-libxcb
+    --disable-libxcb-shm
+    --disable-libxcb-xfixes
+    --disable-libxcb-shape
     --disable-decoder=libaom_av1
     --disable-doc
     --disable-ffplay

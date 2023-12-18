@@ -1,0 +1,26 @@
+From 17fd76ea52f8d7c58bfe70c41d465ef3ca826ea3 Mon Sep 17 00:00:00 2001
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+Date: Mon, 18 Dec 2023 13:23:25 +0000
+Subject: [PATCH 1/2] Revert "doc/indevs: fix typo"
+
+This reverts commit 19bd9f8ae8a26066855138ea54c79ff84df82a8e.
+---
+ doc/indevs.texi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/doc/indevs.texi b/doc/indevs.texi
+index c524e80..a0c684f 100644
+--- a/doc/indevs.texi
++++ b/doc/indevs.texi
+@@ -722,7 +722,7 @@ Win32 GDI-based screen capture device.
+ 
+ This device allows you to capture a region of the display on Windows.
+ 
+-Amongst options for the input filenames are such elements as:
++Amongst options for the imput filenames are such elements as:
+ @example
+ desktop
+ @end example
+-- 
+2.43.0
+
