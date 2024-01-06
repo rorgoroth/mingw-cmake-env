@@ -1,7 +1,7 @@
 diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
---- a/loader/CMakeLists.txt	2023-12-19 17:07:54.000000000 +0000
-+++ b/loader/CMakeLists.txt	2023-12-20 09:23:20.648444278 +0000
-@@ -21,8 +21,9 @@
+--- a/loader/CMakeLists.txt	2024-01-05 20:57:47.000000000 +0000
++++ b/loader/CMakeLists.txt	2024-01-06 09:59:28.624634627 +0000
+@@ -22,8 +22,9 @@
  add_library(loader_specific_options INTERFACE)
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
  target_include_directories(loader_specific_options INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/generated ${CMAKE_CURRENT_BINARY_DIR})
@@ -55,8 +55,8 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      message(NOTICE "Apple STATIC lib: it will be built but not installed, and vulkan.pc and VulkanLoaderConfig.cmake won't be generated!")
      return()
 diff -ruN a/loader/loader.h b/loader/loader.h
---- a/loader/loader.h	2023-12-19 17:07:54.000000000 +0000
-+++ b/loader/loader.h	2023-12-20 09:23:20.648444278 +0000
+--- a/loader/loader.h	2024-01-05 20:57:47.000000000 +0000
++++ b/loader/loader.h	2024-01-06 09:59:28.624634627 +0000
 @@ -33,7 +33,9 @@
  #include "cJSON.h"
  
@@ -68,8 +68,8 @@ diff -ruN a/loader/loader.h b/loader/loader.h
  static inline VkPhysicalDevice loader_unwrap_physical_device(VkPhysicalDevice physicalDevice) {
      struct loader_physical_device_tramp *phys_dev = (struct loader_physical_device_tramp *)physicalDevice;
 diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
---- a/loader/loader.rc.in	2023-12-19 17:07:54.000000000 +0000
-+++ b/loader/loader.rc.in	2023-12-20 09:23:20.648444278 +0000
+--- a/loader/loader.rc.in	2024-01-05 20:57:47.000000000 +0000
++++ b/loader/loader.rc.in	2024-01-06 09:59:28.624634627 +0000
 @@ -19,7 +19,11 @@
  // Author: Charles Giessen <charles@lunarg.com>
  //
@@ -83,8 +83,8 @@ diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
  // All set through CMake
  #define VER_FILE_VERSION ${LOADER_VER_FILE_VERSION}
 diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
---- a/loader/loader_windows.c	2023-12-19 17:07:54.000000000 +0000
-+++ b/loader/loader_windows.c	2023-12-20 09:23:20.648444278 +0000
+--- a/loader/loader_windows.c	2024-01-05 20:57:47.000000000 +0000
++++ b/loader/loader_windows.c	2024-01-06 09:59:28.624634627 +0000
 @@ -95,6 +95,7 @@
  #endif
  }
@@ -102,9 +102,9 @@ diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
  bool windows_add_json_entry(const struct loader_instance *inst,
                              char **reg_data,    // list of JSON files
 diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
---- a/loader/vk_loader_platform.h	2023-12-19 17:07:54.000000000 +0000
-+++ b/loader/vk_loader_platform.h	2023-12-20 09:23:20.648444278 +0000
-@@ -69,15 +69,12 @@
+--- a/loader/vk_loader_platform.h	2024-01-05 20:57:47.000000000 +0000
++++ b/loader/vk_loader_platform.h	2024-01-06 09:59:28.624634627 +0000
+@@ -71,15 +71,12 @@
  #include <io.h>
  #include <shlwapi.h>
  #include <direct.h>
@@ -122,7 +122,7 @@ diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
  #define LOADER_EXPORT
  #elif defined(__GNUC__) && __GNUC__ >= 4
  #define LOADER_EXPORT __attribute__((visibility("default")))
-@@ -226,7 +223,7 @@
+@@ -231,7 +228,7 @@
  // resources allocated by anything allocated by once init. This isn't a problem for static libraries, but it is for dynamic
  // ones. When building a DLL, we use DllMain() instead to allow properly cleaning up resources.
  
@@ -133,7 +133,7 @@ diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
      assert(ctl != NULL);
 diff -ruN a/loader/vulkan_own.pc.in b/loader/vulkan_own.pc.in
 --- a/loader/vulkan_own.pc.in	1970-01-01 01:00:00.000000000 +0100
-+++ b/loader/vulkan_own.pc.in	2023-12-20 09:23:20.648444278 +0000
++++ b/loader/vulkan_own.pc.in	2024-01-06 09:59:28.624634627 +0000
 @@ -0,0 +1,11 @@
 +prefix=@CMAKE_INSTALL_PREFIX@
 +exec_prefix=${prefix}
