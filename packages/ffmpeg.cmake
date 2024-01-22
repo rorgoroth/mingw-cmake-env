@@ -32,13 +32,14 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC-NLTO} <SOURCE_DIR>/configure
+    ${EXEC} <SOURCE_DIR>/configure
     --cross-prefix=x86_64-w64-mingw32-
     --prefix=${MINGW_INSTALL_PREFIX}
     --arch=x86_64
     --target-os=mingw32
     --target-exec=wine
     --pkg-config-flags=--static
+    --disable-debug
     --disable-decoder=libaom_av1
     --disable-doc
     --disable-ffplay
@@ -51,6 +52,7 @@ ExternalProject_Add(
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
+    --disable-w32threads --enable-pthreads
     --enable-amf
     --enable-cross-compile
     --enable-gmp
@@ -75,14 +77,15 @@ ExternalProject_Add(
     --enable-libx265
     --enable-libxml2
     --enable-libzimg
+    --enable-lto=thin
     --enable-nvdec
     --enable-nvenc
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
     "--extra-libs='-lstdc++'" # libplacebo/shaderc
-  BUILD_COMMAND ${MAKE-NLTO}
-  INSTALL_COMMAND ${MAKE-NLTO} install
+  BUILD_COMMAND ${MAKE}
+  INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
