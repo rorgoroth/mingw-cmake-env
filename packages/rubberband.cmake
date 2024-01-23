@@ -1,5 +1,6 @@
 ExternalProject_Add(
   rubberband
+  DEPENDS libsamplerate
   URL https://github.com/breakfastquay/rubberband/archive/refs/tags/v3.3.0.tar.gz
   URL_HASH MD5=1125fda060b757bf1dc8de4b6a19f0fb
   DOWNLOAD_EXTRACT_TIMESTAMP 1
@@ -12,7 +13,7 @@ ExternalProject_Add(
     --buildtype=release
     --default-library=static
     -Dfft=builtin
-    -Dresampler=builtin
+    -Dresampler=libsamplerate
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
