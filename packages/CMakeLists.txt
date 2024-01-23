@@ -40,6 +40,7 @@ list(
   ep
   gmp
   uchardet
+  libsamplerate
   rubberband
   zlib
   bzip2
