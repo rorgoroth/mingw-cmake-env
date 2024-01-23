@@ -52,7 +52,6 @@ ExternalProject_Add(
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
-    --disable-w32threads --enable-pthreads
     --enable-amf
     --enable-cross-compile
     --enable-gmp
