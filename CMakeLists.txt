@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.23.0)
+cmake_minimum_required(VERSION 3.27.0)
 project(mingw-env)
 enable_language(C ASM CXX)
 
@@ -33,7 +33,7 @@ include(ProcessorCount)
 
 if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
   message(
-    FATAL_ERROR "Generator “${CMAKE_GENERATOR}” is unsupported!\nTry Ninja if you encounter problems.")
+    FATAL_ERROR "Generator “${CMAKE_GENERATOR}” is unsupported!\nInstall Ninja.")
 endif()
 
 ProcessorCount(CPU_COUNT)
