@@ -50,6 +50,8 @@ jobs:
       - name: run_ninja
         run: |
           ninja -C build llvm
+          ninja -C build ffmpeg
+          ninja -C build mpv
           ninja -C build
         shell: alpine.sh {0}
 
