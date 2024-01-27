@@ -7,4 +7,4 @@ if exist "%~dp0\installer\xupdate.ps1" (
 )
 powershell -noprofile -nologo -executionpolicy bypass -File %updater_script%
 
-timeout 20
+timeout 10

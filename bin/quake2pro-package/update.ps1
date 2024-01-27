@@ -19,7 +19,6 @@ function Update-q2pro {
 
 # Run the whole lot here
 try {
-    Update-FFmpeg
     Update-q2pro
     Write-Host "Operation completed" -ForegroundColor Magenta
 }
