@@ -1,10 +1,10 @@
 ExternalProject_Add(
   libunibreak
-  GIT_REPOSITORY https://github.com/adah1972/libunibreak.git
-  GIT_SHALLOW 1
+  URL https://github.com/adah1972/libunibreak/releases/download/libunibreak_5_1/libunibreak-5.1.tar.gz
+  URL_HASH MD5=dacabd7f6a7c00481b6bc39a9367c332
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} <SOURCE_DIR>/autogen.sh && <SOURCE_DIR>/configure
+    ${EXEC} <SOURCE_DIR>/configure
     --host=x86_64-w64-mingw32
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-shared
@@ -17,4 +17,3 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-force_rebuild_git(libunibreak)
