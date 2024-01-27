@@ -9,7 +9,9 @@ set(EXPORT
     FILE_T=luajit.exe
     CFLAGS='-D_WIN32_WINNT=0x0A00 -DUNICODE'
     XCFLAGS='-DLUAJIT_ENABLE_LUA52COMPAT'
-    PREFIX=${MINGW_INSTALL_PREFIX} Q=")
+    PREFIX=${MINGW_INSTALL_PREFIX}
+    LDFLAGS='-flto=thin -Wl,--gc-sections'
+    Q=")
 
 ExternalProject_Add(
   luajit
