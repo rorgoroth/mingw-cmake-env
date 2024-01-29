@@ -37,9 +37,7 @@ jobs:
 
       - name: setup_cmake
         run: |
-          mkdir build || true
-          cd build
-          cmake -G Ninja ..
+          cmake -Bbuild -G Ninja
         shell: alpine.sh {0}
 
       - name: run_update
@@ -47,7 +45,7 @@ jobs:
           ninja -C build update
         shell: alpine.sh {0}
 
-      - name: run_ninja
+      - name: run_build
         run: |
           ninja -C build llvm
           ninja -C build ffmpeg
