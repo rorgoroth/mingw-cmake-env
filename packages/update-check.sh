@@ -81,6 +81,12 @@ a=$(cat ./packages/vulkan-loader.cmake | grep 'Vulkan-Loader' | sed -n 's,.*v\([
 b=$(wget -q -O- 'https://github.com/KhronosGroup/Vulkan-Loader/tags' | grep 'href="/KhronosGroup/Vulkan-Loader/archive/refs/tags' | sed -n 's,.*href="/KhronosGroup/Vulkan-Loader/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 check
 
+# zlib
+pkg=zlib
+a=$(cat ./packages/zlib.cmake | grep 'zlib-ng' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/zlib-ng/zlib-ng/tags' | grep 'href="/zlib-ng/zlib-ng/archive/refs/tags' | sed -n 's,.*href="/zlib-ng/zlib-ng/archive/refs/tags/\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+check
+
 # zstd
 pkg=zstd
 a=$(cat ./packages/zstd.cmake | grep 'zstd' | sed -n 's,.*zstd-\([0-9][^>]*\)\.tar.*,\1,p')

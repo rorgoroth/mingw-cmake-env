@@ -1,9 +1,8 @@
 ExternalProject_Add(
   zlib
-  GIT_REPOSITORY https://github.com/zlib-ng/zlib-ng.git
-  GIT_REMOTE_NAME origin
-  GIT_TAG develop
-  GIT_SHALLOW 1
+  URL https://github.com/zlib-ng/zlib-ng/archive/refs/tags/2.1.6.tar.gz
+  URL_HASH MD5=4854ab6a98d4b3d817b3e69ddbb148ce
+  DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
@@ -38,5 +37,3 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-force_rebuild_git(zlib)
