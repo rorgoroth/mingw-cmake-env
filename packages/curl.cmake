@@ -1,8 +1,8 @@
 ExternalProject_Add(curl
   DEPENDS zlib
           zstd
-  URL https://github.com/curl/curl/releases/download/curl-8_5_0/curl-8.5.0.tar.gz
-  URL_HASH MD5=0bc69288b20ae165ff4b7d6d7bbe70d2
+  URL https://github.com/curl/curl/releases/download/curl-8_6_0/curl-8.6.0.tar.gz
+  URL_HASH MD5=6178ea567611c2aaffafc88f91fb4238
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
