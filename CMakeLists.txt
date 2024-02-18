@@ -41,6 +41,9 @@ if(CPU_COUNT EQUAL 0)
   set(CPU_COUNT 1)
 endif()
 
+set(CPUTUNE "x86-64-v3"
+    CACHE STRING "Target arch to optimize for, eg. x86-64-v3 or native")
+
 set(MAKEJOBS ${CPU_COUNT})
 set(MAKEJOBS
     ${MAKEJOBS}
