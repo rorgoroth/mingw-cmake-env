@@ -5,7 +5,7 @@ export CXX=x86_64-w64-mingw32-clang++
 export PATH="@CMAKE_INSTALL_PREFIX@/bin:$PATH"
 export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
-export CFLAGS="-march=@CPUTUNE@ -O3 -fuse-ld=lld -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
-export CXXFLAGS="-march=@CPUTUNE@ -O3 -fuse-ld=lld -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
+export CFLAGS="-march=@CPUTUNE@ -O3 -fuse-ld=lld -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden -mllvm -polly -mllvm -polly-run-inliner -mllvm -polly-run-dce -mllvm -polly-vectorizer=stripmine"
+export CXXFLAGS="-march=@CPUTUNE@ -O3 -fuse-ld=lld -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden -mllvm -polly -mllvm -polly-run-inliner -mllvm -polly-run-dce -mllvm -polly-vectorizer=stripmine"
 export LDFLAGS="-fno-lto -Wl,--gc-sections -Wl,--icf=all"
 eval $*
