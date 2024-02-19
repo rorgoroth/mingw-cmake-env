@@ -82,7 +82,7 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-vulkan
-    "--extra-libs='-lstdc++'" # libplacebo/shaderc
+    "--extra-libs='-lstdc++ -lpthread'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1
