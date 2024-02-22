@@ -99,4 +99,10 @@ ExternalProject_Add_Step(
     <BINARY_DIR>/ffmpeg.exe
     ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-package/ffmpeg.exe)
 
+ExternalProject_Add_Step(
+    ffmpeg clean
+  DEPENDEES copy-binary
+  COMMAND ${MAKE} -C <BINARY_DIR> clean > /dev/null 2>&1
+  COMMENT "Performing clean step for 'ffmpeg'")
+
 force_rebuild_git(ffmpeg)
