@@ -93,7 +93,7 @@ ExternalProject_Add(
 
 ExternalProject_Add_Step(
   ffmpeg copy-binary
-  DEPENDEES build
+  DEPENDEES install
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/ffmpeg.exe
