@@ -18,16 +18,20 @@ fullbuild() {
     ninja -C build || exit
 }
 
-# Create the 7z packages.
+# Copy package contents in place.
 package() {
   cd bin || exit
     rm -rf ./*.7z
     find ./ -type f -name '*.exe' -delete
     find ./ -type f -name '*.com' -delete
     find ./ -type f -name '*.dll' -delete
-
     cp -r ../build/packages/*-package .
+  cd .. || exit
+}
 
+# Create package archives
+archive() {
+  cd bin || exit
     cd ffmpeg-package || exit
         7z a -mx=9 "ffmpeg.7z" -- ./*
     cd .. || exit
@@ -85,8 +89,11 @@ case "$1" in
 "fullbuild")
     fullbuild
     ;;
-"pkg")
+"package")
     package
+    ;;
+"archive")
+    archive
     ;;
 "release")
     release
@@ -98,7 +105,7 @@ case "$1" in
     checkupdates
     ;;
 *)
-    echo "Accepted Args: build | fullbuild | pkg | release | clean \$package"
+    echo "Accepted Args: build | fullbuild | package | archive | release | clean \$package"
     exit 1
     ;;
 esac
