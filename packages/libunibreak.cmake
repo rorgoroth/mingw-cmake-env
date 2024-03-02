@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libunibreak
-  URL https://github.com/adah1972/libunibreak/releases/download/libunibreak_6_0/libunibreak-6.0.tar.gz
-  URL_HASH MD5=00bbb0cfb0dc7011d58452440f28d948
+  URL https://github.com/adah1972/libunibreak/releases/download/libunibreak_6_1/libunibreak-6.1.tar.gz
+  URL_HASH MD5=8df410d010e03de1a339a400a920335e
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
