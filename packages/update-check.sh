@@ -63,6 +63,12 @@ a=$(cat ./packages/openal.cmake | grep 'openal' | sed -n 's,.*/\([0-9][^>]*\)\.t
 b=$(wget -q -O- 'https://github.com/kcat/openal-soft/tags' | grep 'href="/kcat/openal-soft/archive/refs/tags' | sed -n 's,.*href="/kcat/openal-soft/archive/refs/tags/\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 check
 
+# opus
+pkg=opus
+a=$(cat ./packages/opus.cmake | sed -n 's,.*opus-\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://ftp.osuosl.org/pub/xiph/releases/opus/?C=N;O=A' | sed -n 's,.*opus-\([0-9][^"]*\)\.tar.*,\1,p' | sort -r | head -1)
+check
+
 # rubberband
 pkg=rubberband
 a=$(cat ./packages/rubberband.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
