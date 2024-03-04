@@ -1,6 +1,7 @@
 ExternalProject_Add(
   opus
-  GIT_REPOSITORY https://github.com/xiph/opus.git
+  URL https://downloads.xiph.org/releases/opus/opus-1.5.1.tar.gz
+  URL_HASH MD5=06c0e626ea3ad72f7b006e9130c8b15d
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
@@ -21,5 +22,4 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-force_rebuild_git(opus)
 force_meson_configure(opus)
