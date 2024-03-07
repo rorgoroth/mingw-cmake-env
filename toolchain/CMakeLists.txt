@@ -1,7 +1,15 @@
 list(
   APPEND
   ep
-  llvm
+  binutils
+  mingw-w64
+  widl
+  mingw-w64-headers
+  gcc-base
+  mingw-w64-crt
+  winpthreads
+  gendef
+  gcc
   )
 
 foreach(package IN LISTS ep)

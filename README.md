@@ -29,7 +29,7 @@ See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
 Basic build deps:
 
 ```bash
-apk add -i autoconf automake bash cmake diffutils g++ gcc git libtool make meson musl-dev nasm p7zip patch pkgconf po4a py3-mako samurai texinfo yasm
+apk add -i 7zip autoconf automake bash bison cmake coreutils diffutils g++ gawk gcc gettext-dev git gmp-dev libtool make meson mpc1-dev mpfr-dev musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
 ```
 
 Setup/Build:
@@ -37,12 +37,9 @@ Setup/Build:
 ```bash
 git clone https://github.com/rorgoroth/mingw-cmake-env.git
 cd mingw-cmake-env
-mkdir build && cd build
-ccmake -G Ninja ..
-ninja llvm
-ninja $package
+ccmake -Bbuild -G Ninja
+ninja -C build gcc
+ninja -C build $package
 ```
 
-Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is excluded by default, so if there are updates to toolchain you need to manually run `ninja llvm`.
-
-The toolchain now uses precompiled clang/llvm from [rorgoroth/llvm-mingw](https://github.com/rorgoroth/llvm-mingw). The precompiled toolchain only works on Alpine, it will not work on Ubuntu or anything else. You'll need to build it yourself outside of Alpine. You should set up an Alpine container for this project.
+Where `$package` is, for example, `mpv` -  if left blank (eg.`ninja -C build`) all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is also excluded by default, so if there are updates to toolchain you need to manually run `ninja -C build gcc`.

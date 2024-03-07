@@ -9,6 +9,12 @@ check() {
     fi
 }
 
+# binutils
+a=$(cat ./toolchain/binutils.cmake | sed -n 's,.*binutils-\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://ftp.gnu.org/gnu/binutils/?C=M;O=D' | sed -n 's,.*<a href="binutils-\([0-9][^"]*\)\.tar.*,\1,p' | sort -V | tail -1)
+echo "binutils: $a -> $b"
+check
+
 # curl
 pkg=curl
 a=$(cat ./packages/curl.cmake | sed -n 's,.*curl-\([0-9][^"]*\)\.tar.*,\1,p')
