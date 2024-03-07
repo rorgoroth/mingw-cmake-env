@@ -1,8 +1,8 @@
 ExternalProject_Add(
   binutils
   EXCLUDE_FROM_ALL 1
-  URL https://www.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/binutils-2.41.tar.xz
-  URL_HASH MD5=256d7e0ad998e423030c84483a7c1e30
+  URL https://www.mirrorservice.org/sites/ftp.gnu.org/gnu/binutils/binutils-2.42.tar.xz
+  URL_HASH MD5=a075178a9646551379bfb64040487715
   CONFIGURE_COMMAND
     <SOURCE_DIR>/configure
     --target=${TARGET_ARCH}
