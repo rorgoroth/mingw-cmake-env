@@ -14,7 +14,6 @@ ExternalProject_Add(
     --disable-lavf
     --disable-lsmash
     --disable-swscale
-    --enable-lto
     --enable-static
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
