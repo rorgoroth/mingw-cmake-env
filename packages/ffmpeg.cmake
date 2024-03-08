@@ -40,7 +40,6 @@ ExternalProject_Add(
     --target-exec=wine
     --pkg-config-flags=--static
     --disable-debug
-    --disable-decoder=libaom_av1
     --disable-doc
     --disable-ffplay
     --disable-ffprobe
@@ -59,7 +58,6 @@ ExternalProject_Add(
     --enable-lcms2
     --enable-libaom
     --enable-libass
-    --enable-libdav1d
     --enable-libfontconfig
     --enable-libharfbuzz
     --enable-libmp3lame
