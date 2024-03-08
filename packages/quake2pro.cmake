@@ -38,10 +38,10 @@ ExternalProject_Add_Step(
   quake2pro strip-binary
   DEPENDEES build
   COMMAND
-    ${EXEC} x86_64-w64-mingw32-strip -s
+    ${EXEC} ${TARGET_ARCH}-strip -s
     <BINARY_DIR>/q2pro.exe
   COMMAND
-    ${EXEC} x86_64-w64-mingw32-strip -s
+    ${EXEC} ${TARGET_ARCH}-strip -s
     <BINARY_DIR>/q2proded.exe)
 
 ExternalProject_Add_Step(

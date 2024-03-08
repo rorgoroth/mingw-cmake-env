@@ -55,10 +55,10 @@ ExternalProject_Add_Step(
   mpv strip-binary
   DEPENDEES build
   COMMAND
-    ${EXEC} x86_64-w64-mingw32-strip -s
+    ${EXEC} ${TARGET_ARCH}-strip -s
     <BINARY_DIR>/mpv.exe
   COMMAND
-    ${EXEC} x86_64-w64-mingw32-strip -s
+    ${EXEC} ${TARGET_ARCH}-strip -s
     <BINARY_DIR>/mpv.com)
 
 ExternalProject_Add_Step(

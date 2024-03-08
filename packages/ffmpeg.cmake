@@ -33,9 +33,9 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
-    --cross-prefix=x86_64-w64-mingw32-
+    --cross-prefix=${TARGET_ARCH}-
     --prefix=${MINGW_INSTALL_PREFIX}
-    --arch=x86_64
+    --arch=${TARGET_CPU}
     --target-os=mingw32
     --target-exec=wine
     --pkg-config-flags=--static

@@ -1,8 +1,8 @@
 set(flag
 "CFLAGS='-UHAVE_READLINE' LIBREADLINE=''
-CC=x86_64-w64-mingw32-clang
-AR=x86_64-w64-mingw32-llvm-ar
-RANLIB=x86_64-w64-mingw32-llvm-ranlib
+CC=${TARGET_ARCH}-gcc
+AR=${TARGET_ARCH}-ar
+RANLIB=${TARGET_ARCH}-ranlib
 prefix=${MINGW_INSTALL_PREFIX}
 OUT=<BINARY_DIR>
 host=mingw

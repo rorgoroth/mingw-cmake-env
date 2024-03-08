@@ -1,3 +1,9 @@
+if(${TARGET_CPU} MATCHES "x86_64")
+    set(libvpx_target "x86_64-win64-gcc")
+else()
+    set(libvpx_target "x86-win32-gcc")
+endif()
+
 ExternalProject_Add(
   libvpx
   GIT_REPOSITORY https://chromium.googlesource.com/webm/libvpx.git
@@ -6,8 +12,8 @@ ExternalProject_Add(
   GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} CROSS=x86_64-w64-mingw32- <SOURCE_DIR>/configure
-    --target=x86_64-win64-gcc
+    ${EXEC} CROSS=${TARGET_ARCH}- <SOURCE_DIR>/configure
+    --target=${libvpx_target}
     --prefix=${MINGW_INSTALL_PREFIX}
     --as=yasm
     --disable-decode-perf-tests

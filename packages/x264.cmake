@@ -5,8 +5,8 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
-    --host=x86_64-w64-mingw32
-    --cross-prefix=x86_64-w64-mingw32-
+    --host=${TARGET_ARCH}
+    --cross-prefix=${TARGET_ARCH}-
     --prefix=${MINGW_INSTALL_PREFIX}
     --disable-cli
     --disable-ffms
