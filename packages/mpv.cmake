@@ -26,7 +26,6 @@ ExternalProject_Add(
     --buildtype=release
     --default-library=static
     --prefer-static
-    -Db_lto_mode=thin
     -Db_ndebug=true
     -Dd3d11=enabled
     -Diconv=enabled
@@ -35,7 +34,7 @@ ExternalProject_Add(
     -Dlcms2=enabled
     -Dlua=enabled
     -Dmanpage-build=disabled
-    -Dopenal=enabled
+    -Dopenal=disabled
     -Drubberband=enabled
     -Dshaderc=enabled
     -Dspirv-cross=enabled
