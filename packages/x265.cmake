@@ -1,3 +1,9 @@
+if(${TARGET_CPU} MATCHES "x86_64")
+    set(high_bit_depth "-DHIGH_BIT_DEPTH=ON -DENABLE_HDR10_PLUS=ON")
+else()
+    set(high_bit_depth "-DHIGH_BIT_DEPTH=OFF")
+endif()
+
 ExternalProject_Add(
   x265
   GIT_REPOSITORY https://bitbucket.org/multicoreware/x265_git.git
@@ -12,18 +18,17 @@ ExternalProject_Add(
     -DENABLE_AGGRESSIVE_CHECKS=OFF
     -DENABLE_ASSEMBLY=ON
     -DENABLE_CLI=OFF
-    -DENABLE_HDR10_PLUS=ON
     -DENABLE_PIC=OFF
     -DENABLE_PPA=OFF
     -DENABLE_SHARED=OFF
     -DENABLE_SVT_HEVC=OFF
     -DENABLE_TESTS=OFF
     -DENABLE_VTUNE=OFF
-    -DHIGH_BIT_DEPTH=ON
     -DMAIN12=OFF
     -DSTATIC_LINK_CRT=ON
     -DWARNINGS_AS_ERRORS=OFF
     -DWINXP_SUPPORT=OFF
+    ${high_bit_depth}
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
