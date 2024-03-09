@@ -4,4 +4,5 @@ export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
 export CFLAGS="-O3 -pipe -fstack-protector-strong"
 export CXXFLAGS="-O3 -pipe -fstack-protector-strong"
+export LDFLAGS="-Wl,--as-needed"
 eval $*
