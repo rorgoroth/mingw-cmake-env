@@ -10,6 +10,8 @@ See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
 
 ## Precompiled Packages
 
+These all come with update scripts, however if one breaks it is on you to keep backups. In the event of breakage please check out the [Actions](https://github.com/rorgoroth/mingw-cmake-env/actions) and download the artifacts from a previous working build.
+
 [FFmpeg](https://github.com/FFmpeg/FFmpeg): CLI tool for processing of video and audio files, git builds.
 
 [mpv](https://github.com/mpv-player/mpv): Media player, git builds.
