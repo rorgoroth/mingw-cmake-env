@@ -12,8 +12,8 @@ ExternalProject_Add(
   STAMP_DIR gcc-prefix/src/gcc-stamp
   SOURCE_DIR gcc-prefix/src/gcc
   BINARY_DIR gcc-prefix/src/gcc-build
-  URL https://sourceware.org/pub/gcc/releases/gcc-13.2.0/gcc-13.2.0.tar.gz
-  URL_HASH MD5=aeb5ac806c34d47e725bdd025f34bac4
+  URL https://mirrorservice.org/sites/sourceware.org/pub/gcc/snapshots/13-20240309/gcc-13-20240309.tar.xz
+  URL_HASH MD5=65fb71238ff76078a136fa393415716b
   PATCH_COMMAND
     patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/gcc-0001-libcc1-include-pthread.patch
   COMMAND
