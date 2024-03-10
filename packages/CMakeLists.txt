@@ -82,7 +82,7 @@ list(
   theora
   x264
   x265
-  onevpl
+  libvpl
   directx-headers
   ffmpeg
   openal

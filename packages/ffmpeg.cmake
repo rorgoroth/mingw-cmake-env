@@ -19,7 +19,7 @@ ExternalProject_Add(
           libxml2
           libzimg
           nvcodec-headers
-          onevpl
+          libvpl
           rubberband
           shaderc
           spirv-cross
