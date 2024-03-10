@@ -20,7 +20,7 @@ jobs:
 
       - name: add_packages
         run: |
-          apk add 7zip autoconf automake bash bison cmake coreutils diffutils g++ gawk gcc gettext-dev git gmp-dev libtool make meson mpc1-dev mpfr-dev musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
+          apk add 7zip autoconf automake bash bison cmake coreutils diffutils file flex g++ gawk gcc gettext-dev git gmp-dev libtool make meson mpc1-dev mpfr-dev musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
         shell: alpine.sh --root {0}
 
       - name: setup_git

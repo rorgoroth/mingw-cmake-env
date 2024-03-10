@@ -31,7 +31,7 @@ These all come with update scripts, however if one breaks it is on you to keep b
 Basic build deps:
 
 ```bash
-apk add -i 7zip autoconf automake bash bison cmake coreutils diffutils g++ gawk gcc gettext-dev git gmp-dev libtool make meson mpc1-dev mpfr-dev musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
+apk add -i 7zip autoconf automake bash bison cmake coreutils diffutils file flex g++ gawk gcc gettext-dev git gmp-dev libtool make meson mpc1-dev mpfr-dev musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
 ```
 
 Setup/Build:
