@@ -2,18 +2,18 @@
 majver=2
 minver=1
 relver=0
-version=${majver}.${minver}.${relver}-beta3
+version=${majver}.${minver}.${relver}
 abiver=5.1
 
 prefix=@MINGW_INSTALL_PREFIX@
 multilib=lib
 exec_prefix=${prefix}
 libdir=${exec_prefix}/${multilib}
-libname=luajit
-includedir=${prefix}/include/luajit
+libname=luajit-${abiver}
+includedir=${prefix}/include/luajit-${majver}.${minver}
 
-INSTALL_LMOD=${prefix}/share/lua
-INSTALL_CMOD=${prefix}/${multilib}/lua
+INSTALL_LMOD=${prefix}/share/lua/${abiver}
+INSTALL_CMOD=${prefix}/${multilib}/lua/${abiver}
 
 Name: LuaJIT
 Description: Just-in-time compiler for Lua
