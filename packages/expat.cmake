@@ -1,7 +1,7 @@
 ExternalProject_Add(
   expat
-  URL https://github.com/libexpat/libexpat/releases/download/R_2_6_1/expat-2.6.1.tar.xz
-  URL_HASH MD5=84d0ee1c554212dc8f068e538de5b823
+  URL https://github.com/libexpat/libexpat/releases/download/R_2_6_2/expat-2.6.2.tar.xz
+  URL_HASH MD5=0cb75c8feb842c0794ba89666b762a2d
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
