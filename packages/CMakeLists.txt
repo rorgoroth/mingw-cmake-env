@@ -86,6 +86,7 @@ list(
   directx-headers
   brotli
   highway
+  libjxl
   ffmpeg
   openal
   mujs

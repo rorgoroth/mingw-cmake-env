@@ -57,6 +57,12 @@ a=$(cat ./packages/libiconv.cmake | grep 'libiconv-' | sed -n 's,.*libiconv-\([0
 b=$(wget -q -O- 'https://www.gnu.org/software/libiconv/' | grep 'libiconv-' | sed -n 's,.*libiconv-\([0-9][^>]*\)\.tar.*,\1,p' | head -1)
 check
 
+# libjxl
+pkg=libjxl
+a=$(cat ./packages/libjxl.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/libjxl/libjxl/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
+check
+
 # libsdl2
 pkg=libsdl2
 a=$(cat ./packages/libsdl2.cmake | grep 'SDL2' | sed -n 's,.*SDL2-\([0-9][^>]*\)\.tar.*,\1,p')
