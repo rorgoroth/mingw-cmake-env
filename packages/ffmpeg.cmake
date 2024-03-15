@@ -11,6 +11,7 @@ ExternalProject_Add(
           lcms2
           lame
           libass
+          libjxl
           libopusenc
           libplacebo
           libpng
@@ -62,6 +63,7 @@ ExternalProject_Add(
     --enable-libdav1d
     --enable-libfontconfig
     --enable-libharfbuzz
+    --enable-libjxl
     --enable-libmp3lame
     --enable-libopus
     --enable-libplacebo
