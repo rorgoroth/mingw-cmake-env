@@ -85,6 +85,7 @@ list(
   libvpl
   directx-headers
   brotli
+  highway
   ffmpeg
   openal
   mujs

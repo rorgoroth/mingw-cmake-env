@@ -45,6 +45,12 @@ check
 #b=$(wget -q -O- 'https://github.com/nigels-com/glew/tags' | grep 'href="/nigels-com/glew/archive/refs/tags' | sed -n 's,.*href="/nigels-com/glew/archive/refs/tags/glew-\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 #check
 
+# highway
+pkg=highway
+a=$(cat ./packages/highway.cmake | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/google/highway/tags' | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
+check
+
 # libiconv
 pkg=libiconv
 a=$(cat ./packages/libiconv.cmake | grep 'libiconv-' | sed -n 's,.*libiconv-\([0-9][^>]*\)\.tar.*,\1,p')
