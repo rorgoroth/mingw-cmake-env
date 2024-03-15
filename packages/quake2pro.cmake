@@ -26,6 +26,7 @@ ExternalProject_Add(
     -Dsdl2=enabled
     -Dtga=true
     -Dzlib=enabled
+    -Davcodec=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ""
   LOG_DOWNLOAD 1
