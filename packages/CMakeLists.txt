@@ -84,6 +84,7 @@ list(
   x265
   libvpl
   directx-headers
+  brotli
   ffmpeg
   openal
   mujs
