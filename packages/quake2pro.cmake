@@ -1,7 +1,6 @@
 ExternalProject_Add(
   quake2pro
   DEPENDS curl
-          ffmpeg
           libpng
           libpng
           libsdl2
@@ -10,6 +9,7 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/skullernet/q2pro.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
+  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/quake2pro-*.patch
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     --prefix=${MINGW_INSTALL_PREFIX}
@@ -18,6 +18,7 @@ ExternalProject_Add(
     --buildtype=release
     --default-library=static
     --prefer-static
+    --force-fallback-for=ffmpeg
     -Db_ndebug=true
     -Dlibcurl=enabled
     -Dlibjpeg=enabled
@@ -26,7 +27,6 @@ ExternalProject_Add(
     -Dsdl2=enabled
     -Dtga=true
     -Dzlib=enabled
-    -Davcodec=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ""
   LOG_DOWNLOAD 1
