@@ -29,3 +29,5 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-headers-d3dukmdt.h
     <SOURCE_DIR>/loader/d3dukmdt.h
   COMMENT "vulkan-headers: Copying extra mingw headers")
+
+clean_build(vulkan-headers install)

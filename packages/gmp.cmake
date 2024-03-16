@@ -16,3 +16,5 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
+
+clean_build(gmp install)

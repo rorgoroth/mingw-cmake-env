@@ -26,6 +26,15 @@ function(force_rebuild_git _name)
     LOG 1)
 endfunction()
 
+function(clean_build _name _last_step)
+  ExternalProject_Add_Step(
+    ${_name} clean_build
+    DEPENDEES ${_last_step}
+    COMMAND sh -c "make -C <BINARY_DIR> clean > /dev/null 2>&1 || true"
+    COMMAND sh -c "ninja -C <BINARY_DIR> clean > /dev/null 2>&1 || true"
+    LOG 1)
+endfunction()
+
 function(force_meson_configure _name)
   ExternalProject_Add_Step(
     ${_name} force-meson-configure

@@ -29,3 +29,4 @@ ExternalProject_Add_Step(
     ${MINGW_INSTALL_PREFIX}/lib/libbz2.a)
 
 force_rebuild_git(bzip2)
+clean_build(bzip2 install)

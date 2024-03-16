@@ -21,3 +21,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(xxhash)
+clean_build(xxhash install)

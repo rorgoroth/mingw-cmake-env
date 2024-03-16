@@ -57,11 +57,6 @@ ExternalProject_Add_Step(
     <BINARY_DIR>/q2proded.exe
     ${CMAKE_CURRENT_BINARY_DIR}/quake2pro-package/q2proded.exe)
 
-ExternalProject_Add_Step(
-    quake2pro clean
-  DEPENDEES copy-binary
-  COMMAND ${NINJA} -C <BINARY_DIR> clean > /dev/null 2>&1
-  COMMENT "Performing clean step for 'quake2pro'")
-
 force_rebuild_git(quake2pro)
 force_meson_configure(quake2pro)
+clean_build(quake2pro copy-binary)
