@@ -10,6 +10,8 @@ See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
 
 ## Precompiled Packages
 
+These all come with update scripts, however if one breaks it is on you to keep backups. In the event of breakage please check out the [Actions](https://github.com/rorgoroth/mingw-cmake-env/actions) and download the artifacts from a previous working build.
+
 [FFmpeg](https://github.com/FFmpeg/FFmpeg): CLI tool for processing of video and audio files, git builds.
 
 [mpv](https://github.com/mpv-player/mpv): Media player, git builds.
@@ -37,10 +39,9 @@ Setup/Build:
 ```bash
 git clone https://github.com/rorgoroth/mingw-cmake-env.git
 cd mingw-cmake-env
-mkdir build && cd build
-ccmake -G Ninja ..
-ninja llvm
-ninja $package
+ccmake -Bbuild -G Ninja
+ninja -C build llvm
+ninja -C build $package
 ```
 
 Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is excluded by default, so if there are updates to toolchain you need to manually run `ninja llvm`.

@@ -20,3 +20,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(amf-headers)
+clean_build(amf-headers install)

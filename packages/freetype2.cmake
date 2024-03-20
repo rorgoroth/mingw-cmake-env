@@ -28,3 +28,4 @@ ExternalProject_Add(
 
 force_rebuild_git(freetype2)
 force_meson_configure(freetype2)
+clean_build(freetype2 install)

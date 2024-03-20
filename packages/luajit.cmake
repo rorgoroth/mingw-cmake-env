@@ -39,3 +39,4 @@ ExternalProject_Add_Step(
     ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/luajit.pc)
 
 force_rebuild_git(luajit)
+clean_build(luajit install)

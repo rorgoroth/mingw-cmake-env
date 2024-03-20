@@ -25,3 +25,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(theora)
+clean_build(theora install)

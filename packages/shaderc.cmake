@@ -83,3 +83,4 @@ ExternalProject_Add_Step(
   COMMENT "Manually installing")
 
 force_rebuild_git(shaderc)
+clean_build(shaderc manual-install)

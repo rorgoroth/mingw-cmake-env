@@ -24,3 +24,4 @@ ExternalProject_Add(
 
 force_rebuild_git(fribidi)
 force_meson_configure(fribidi)
+clean_build(fribidi install)

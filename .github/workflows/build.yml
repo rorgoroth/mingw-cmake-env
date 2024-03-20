@@ -85,7 +85,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: pkg-artifacts
-          path: bin/*.7z
+          path: bin/*-package
 
       - name: create_release_tag
         id: create_release

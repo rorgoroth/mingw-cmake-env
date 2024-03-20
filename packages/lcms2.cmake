@@ -20,3 +20,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(lcms2)
+clean_build(lcms2 install)

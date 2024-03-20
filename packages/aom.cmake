@@ -2,12 +2,14 @@ ExternalProject_Add(
   aom
   GIT_REPOSITORY https://aomedia.googlesource.com/aom
   GIT_SHALLOW 1
+  GIT_REMOTE_NAME origin
+  GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DCMAKE_FIND_ROOT_PATH=${CMAKE_INSTALL_PREFIX}
-    -DCMAKE_TOOLCHAIN_FILE=<SOURCE_DIR>/build/cmake/toolchains/x86_64-mingw-gcc.cmake
+    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
     -DBUILD_SHARED_LIBS=OFF
     -DENABLE_EXAMPLES=OFF
     -DENABLE_DOCS=OFF
@@ -27,3 +29,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(aom)
+clean_build(aom install)

@@ -48,11 +48,6 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-ExternalProject_Add_Step(
-  libplacebo clean
-  DEPENDEES install
-  COMMAND ${NINJA} -C <BINARY_DIR> clean > /dev/null 2>&1
-  COMMENT "Performing clean step for 'libplacebo'")
-
 force_rebuild_git(libplacebo)
 force_meson_configure(libplacebo)
+clean_build(libplacebo install)

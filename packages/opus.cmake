@@ -23,3 +23,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_meson_configure(opus)
+clean_build(opus install)
