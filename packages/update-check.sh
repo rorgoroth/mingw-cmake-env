@@ -9,6 +9,12 @@ check() {
     fi
 }
 
+# brotli
+pkg=brotli
+a=$(cat ./packages/brotli.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/google/brotli/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
+check
+
 # curl
 pkg=curl
 a=$(cat ./packages/curl.cmake | sed -n 's,.*curl-\([0-9][^"]*\)\.tar.*,\1,p')
@@ -33,10 +39,22 @@ check
 #b=$(wget -q -O- 'https://github.com/nigels-com/glew/tags' | grep 'href="/nigels-com/glew/archive/refs/tags' | sed -n 's,.*href="/nigels-com/glew/archive/refs/tags/glew-\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 #check
 
+# highway
+pkg=highway
+a=$(cat ./packages/highway.cmake | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/google/highway/tags' | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
+check
+
 # libiconv
 pkg=libiconv
 a=$(cat ./packages/libiconv.cmake | grep 'libiconv-' | sed -n 's,.*libiconv-\([0-9][^>]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://www.gnu.org/software/libiconv/' | grep 'libiconv-' | sed -n 's,.*libiconv-\([0-9][^>]*\)\.tar.*,\1,p' | head -1)
+check
+
+# libjxl
+pkg=libjxl
+a=$(cat ./packages/libjxl.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/libjxl/libjxl/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
 check
 
 # libsdl2

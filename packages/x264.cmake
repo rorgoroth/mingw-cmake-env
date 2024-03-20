@@ -25,3 +25,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(x264)
+clean_build(x264 install)

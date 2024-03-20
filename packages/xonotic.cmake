@@ -45,10 +45,5 @@ ExternalProject_Add_Step(
     <SOURCE_DIR>/Xonotic/bin64
     ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/bin64/)
 
-ExternalProject_Add_Step(
-    xonotic clean
-  DEPENDEES copy-binary
-  COMMAND ${MAKE} -C <BINARY_DIR> clean > /dev/null 2>&1
-  COMMENT "Performing clean step for 'xonotic'")
-
 force_rebuild_git(xonotic)
+clean_build(xonotic copy-binary)

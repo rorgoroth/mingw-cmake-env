@@ -54,3 +54,4 @@ INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_INSTALL 1)
 
 force_rebuild_git(libxml2)
+clean_build(libxml2 install)
