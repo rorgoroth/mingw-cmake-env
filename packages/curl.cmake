@@ -1,5 +1,6 @@
 ExternalProject_Add(curl
-  DEPENDS zlib
+  DEPENDS brotli
+          zlib
           zstd
   URL https://github.com/curl/curl/releases/download/curl-8_6_0/curl-8.6.0.tar.gz
   URL_HASH MD5=6178ea567611c2aaffafc88f91fb4238
@@ -13,7 +14,7 @@ ExternalProject_Add(curl
     -DBUILD_CURL_EXE=ON
     -DBUILD_SHARED_LIBS=OFF
     -DBUILD_TESTING=OFF
-    -DCURL_BROTLI=OFF
+    -DCURL_BROTLI=ON
     -DCURL_ENABLE_SSL=ON
     -DCURL_LTO=OFF
     -DCURL_STATIC_CRT=OFF
