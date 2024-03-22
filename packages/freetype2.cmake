@@ -1,6 +1,7 @@
 ExternalProject_Add(
   freetype2
-  DEPENDS bzip2
+  DEPENDS brotli
+          bzip2
           libpng
           zlib
   GIT_REPOSITORY https://github.com/freetype/freetype.git
@@ -14,6 +15,7 @@ ExternalProject_Add(
     --default-library=static
     -Dbzip2=disabled
     -Dharfbuzz=disabled
+    -Dbrotli=enabled
     -Dmmap=enabled
     -Dpng=enabled
     -Dtests=disabled
