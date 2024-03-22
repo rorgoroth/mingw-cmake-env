@@ -21,7 +21,18 @@ function(force_rebuild_git _name)
     INDEPENDENT 1
     DEPENDEES download update
     DEPENDERS patch build install
+    COMMAND sh -c "git am --abort 2> /dev/null || true"
     COMMAND git reset --hard ${git_tag} ${pull}
+    WORKING_DIRECTORY <SOURCE_DIR>
+    LOG 1)
+endfunction()
+
+function(force_git_patch _name)
+  ExternalProject_Add_Step(
+    ${_name} force-git-patch
+    DEPENDEES force-update patch
+    DEPENDERS configure
+    COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/${_name}-*.patch
     WORKING_DIRECTORY <SOURCE_DIR>
     LOG 1)
 endfunction()
