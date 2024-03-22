@@ -50,4 +50,3 @@ ExternalProject_Add(
 
 force_rebuild_git(libplacebo)
 force_meson_configure(libplacebo)
-clean_build(libplacebo install)

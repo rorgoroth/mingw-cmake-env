@@ -42,4 +42,3 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(minizip)
-clean_build(minizip install)

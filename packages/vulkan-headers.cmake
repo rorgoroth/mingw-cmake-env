@@ -30,4 +30,3 @@ ExternalProject_Add_Step(
     <SOURCE_DIR>/loader/d3dukmdt.h
   COMMENT "vulkan-headers: Copying extra mingw headers")
 
-clean_build(vulkan-headers install)

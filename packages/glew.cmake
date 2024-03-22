@@ -22,4 +22,3 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(glew)
-clean_build(glew install)
