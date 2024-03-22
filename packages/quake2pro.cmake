@@ -1,7 +1,6 @@
 ExternalProject_Add(
   quake2pro
   DEPENDS curl
-          ffmpeg
           libpng
           libpng
           libsdl2
