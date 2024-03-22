@@ -60,6 +60,7 @@ list(
   luajit
   fribidi
   expat
+  brotli
   freetype2
   harfbuzz
   libzimg
@@ -93,7 +94,6 @@ list(
   x265
   libvpl
   directx-headers
-  brotli
   highway
   libjxl
   ffmpeg
