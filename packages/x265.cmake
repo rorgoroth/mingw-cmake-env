@@ -33,4 +33,3 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(x265)
-clean_build(x265 install)

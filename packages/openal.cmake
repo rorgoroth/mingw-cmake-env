@@ -22,4 +22,3 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
-clean_build(openal install)

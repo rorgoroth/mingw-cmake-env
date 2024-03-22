@@ -30,4 +30,3 @@ ExternalProject_Add(
 
 force_rebuild_git(harfbuzz)
 force_meson_configure(harfbuzz)
-clean_build(harfbuzz install)

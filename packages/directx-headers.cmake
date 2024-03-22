@@ -24,4 +24,3 @@ ExternalProject_Add(
 
 force_rebuild_git(directx-headers)
 force_meson_configure(directx-headers)
-clean_build(directx-headers install)

@@ -24,4 +24,3 @@ ExternalProject_Add(
 
 force_rebuild_git(dav1d)
 force_meson_configure(dav1d)
-clean_build(dav1d install)

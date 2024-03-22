@@ -24,4 +24,3 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_meson_configure(zstd)
-clean_build(zstd install)

@@ -32,4 +32,3 @@ ExternalProject_Add(
 
 force_rebuild_git(fontconfig)
 force_meson_configure(fontconfig)
-clean_build(fontconfig install)

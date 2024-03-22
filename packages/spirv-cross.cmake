@@ -32,4 +32,3 @@ ExternalProject_Add_Step(
     ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/spirv-cross.pc)
 
 force_rebuild_git(spirv-cross)
-clean_build(spirv-cross install)

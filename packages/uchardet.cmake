@@ -21,4 +21,3 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(uchardet)
-clean_build(uchardet install)
