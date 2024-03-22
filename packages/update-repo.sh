@@ -20,7 +20,6 @@ gitupdate() {
     local stamp_dir=$3
 
     echo "Updating $name"
-    git -C "$src_dir" am --abort >/dev/null 2>&1 || true
     git -C "$src_dir" reset --hard "@{u}" >/dev/null
 
     result=$(git -C "$src_dir" pull 2>&1)
