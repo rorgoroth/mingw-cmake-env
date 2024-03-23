@@ -6,7 +6,6 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/rorgoroth/Quake3e-OpenArena.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ""
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ""
