@@ -48,7 +48,13 @@ jobs:
       - name: run_build
         run: |
           ninja -C build llvm
-          ninja -C build
+          ninja -C build quake2pro
+          ninja -C build quake3e
+          ninja -C build quake3e-openarena
+          ninja -C build quake3e-urbanterror
+          ninja -C build xonotic
+          ninja -C build ffmpeg
+          ninja -C build mpv
         shell: alpine.sh {0}
 
       - name: clear_cache
