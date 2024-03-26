@@ -1,6 +1,6 @@
 diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
---- a/loader/CMakeLists.txt	2024-03-08 17:20:45.000000000 +0000
-+++ b/loader/CMakeLists.txt	2024-03-09 17:06:49.030938450 +0000
+--- a/loader/CMakeLists.txt	2024-03-22 23:13:59.000000000 +0000
++++ b/loader/CMakeLists.txt	2024-03-26 13:53:21.120924855 +0000
 @@ -22,8 +22,9 @@
  add_library(loader_specific_options INTERFACE)
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
@@ -12,7 +12,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
  
      if(ENABLE_WIN10_ONECORE)
          # Note: When linking your app or driver to OneCore.lib, be sure to remove any links to non-umbrella libs (such as
-@@ -314,7 +315,7 @@
+@@ -334,7 +335,7 @@
      endif()
  endif()
  
@@ -21,7 +21,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      add_library(loader-opt STATIC ${OPT_LOADER_SRCS})
      target_link_libraries(loader-opt PUBLIC loader_specific_options)
      add_dependencies(loader-opt loader_asm_gen_files)
-@@ -360,21 +361,8 @@
+@@ -380,21 +381,8 @@
      add_dependencies(vulkan loader_asm_gen_files)
  
  else()
@@ -45,7 +45,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      target_sources(vulkan PRIVATE ${NORMAL_LOADER_SRCS} ${OPT_LOADER_SRCS})
  
      add_dependencies(vulkan loader_asm_gen_files)
-@@ -468,7 +456,7 @@
+@@ -488,7 +476,7 @@
  target_link_libraries(vulkan PRIVATE Vulkan::Headers)
  add_library(Vulkan::Loader ALIAS vulkan)
  
@@ -55,8 +55,8 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      message(NOTICE "Apple STATIC lib: it will be built but not installed, and vulkan.pc and VulkanLoaderConfig.cmake won't be generated!")
      return()
 diff -ruN a/loader/loader.h b/loader/loader.h
---- a/loader/loader.h	2024-03-08 17:20:45.000000000 +0000
-+++ b/loader/loader.h	2024-03-09 17:06:49.030938450 +0000
+--- a/loader/loader.h	2024-03-22 23:13:59.000000000 +0000
++++ b/loader/loader.h	2024-03-26 13:53:21.120924855 +0000
 @@ -33,7 +33,9 @@
  #include "cJSON.h"
  
@@ -68,8 +68,8 @@ diff -ruN a/loader/loader.h b/loader/loader.h
  static inline VkPhysicalDevice loader_unwrap_physical_device(VkPhysicalDevice physicalDevice) {
      struct loader_physical_device_tramp *phys_dev = (struct loader_physical_device_tramp *)physicalDevice;
 diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
---- a/loader/loader.rc.in	2024-03-08 17:20:45.000000000 +0000
-+++ b/loader/loader.rc.in	2024-03-09 17:06:49.030938450 +0000
+--- a/loader/loader.rc.in	2024-03-22 23:13:59.000000000 +0000
++++ b/loader/loader.rc.in	2024-03-26 13:53:21.120924855 +0000
 @@ -19,7 +19,11 @@
  // Author: Charles Giessen <charles@lunarg.com>
  //
@@ -83,8 +83,8 @@ diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
  // All set through CMake
  #define VER_FILE_VERSION ${LOADER_VER_FILE_VERSION}
 diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
---- a/loader/loader_windows.c	2024-03-08 17:20:45.000000000 +0000
-+++ b/loader/loader_windows.c	2024-03-09 17:06:49.030938450 +0000
+--- a/loader/loader_windows.c	2024-03-22 23:13:59.000000000 +0000
++++ b/loader/loader_windows.c	2024-03-26 13:53:21.120924855 +0000
 @@ -97,6 +97,7 @@
  #endif
  }
@@ -102,8 +102,8 @@ diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
  bool windows_add_json_entry(const struct loader_instance *inst,
                              char **reg_data,    // list of JSON files
 diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
---- a/loader/vk_loader_platform.h	2024-03-08 17:20:45.000000000 +0000
-+++ b/loader/vk_loader_platform.h	2024-03-09 17:06:49.030938450 +0000
+--- a/loader/vk_loader_platform.h	2024-03-22 23:13:59.000000000 +0000
++++ b/loader/vk_loader_platform.h	2024-03-26 13:53:21.120924855 +0000
 @@ -71,15 +71,12 @@
  #include <io.h>
  #include <shlwapi.h>
@@ -133,7 +133,7 @@ diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
      assert(ctl != NULL);
 diff -ruN a/loader/vulkan_own.pc.in b/loader/vulkan_own.pc.in
 --- a/loader/vulkan_own.pc.in	1970-01-01 01:00:00.000000000 +0100
-+++ b/loader/vulkan_own.pc.in	2024-03-09 17:06:49.030938450 +0000
++++ b/loader/vulkan_own.pc.in	2024-03-26 13:53:21.120924855 +0000
 @@ -0,0 +1,11 @@
 +prefix=@CMAKE_INSTALL_PREFIX@
 +exec_prefix=${prefix}
