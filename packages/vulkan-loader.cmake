@@ -1,8 +1,8 @@
 ExternalProject_Add(
   vulkan-loader
   DEPENDS vulkan-headers
-  URL https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.280.tar.gz
-  URL_HASH MD5=c13920b29b0e9b44998250d1cd8f6e67
+  URL https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.281.tar.gz
+  URL_HASH MD5=783f9f34fdb2725e37c61503b3d4b918
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-loader-0001.patch
@@ -12,9 +12,10 @@ ExternalProject_Add(
     -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
     -DVULKAN_HEADERS_INSTALL_DIR=${MINGW_INSTALL_PREFIX}
     -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
-    -DBUILD_TESTS=OFF
     -DBUILD_STATIC_LOADER=ON
+    -DBUILD_TESTS=OFF
     -DENABLE_WERROR=OFF
+    -DUSE_GAS=ON
     -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -D_WIN32_WINNT=0x0A00 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number'
     -DCMAKE_CXX_FLAGS='${CMAKE_CXX_FLAGS} -D__USE_MINGW_ANSI_STDIO -D__STDC_FORMAT_MACROS -fpermissive -D_WIN32_WINNT=0x0A00'
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
