@@ -3,27 +3,27 @@ project(mingw-env)
 enable_language(C ASM CXX)
 
 function(colored_msg msg)
-    if(NOT WIN32)
-        string(ASCII 27 Esc)
-        message("${Esc}[35m${msg}${Esc}[m")
-    else()
-        message("${msg}")
-    endif()
+  if(NOT WIN32)
+    string(ASCII 27 Esc)
+    message("${Esc}[35m${msg}${Esc}[m")
+  else()
+    message("${msg}")
+  endif()
 endfunction()
 
 macro(print_mingw64_banner)
-    colored_msg("")
-    colored_msg("  ███╗░░░███╗██╗███╗░░██╗░██████╗░░██╗░░░░░░░██╗░█████╗░░░██╗██╗")
-    colored_msg("  ████╗░████║██║████╗░██║██╔════╝░░██║░░██╗░░██║██╔═══╝░░██╔╝██║")
-    colored_msg("  ██╔████╔██║██║██╔██╗██║██║░░██╗░░╚██╗████╗██╔╝██████╗░██╔╝░██║")
-    colored_msg("  ██║╚██╔╝██║██║██║╚████║██║░░╚██╗░░████╔═████║░██╔══██╗███████║")
-    colored_msg("  ██║░╚═╝░██║██║██║░╚███║╚██████╔╝░░╚██╔╝░╚██╔╝░╚█████╔╝╚════██║")
-    colored_msg("  ╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░╚═╝░░░╚════╝░░░░░░╚═╝")
-    colored_msg("")
+  colored_msg("")
+  colored_msg("  ███╗░░░███╗██╗███╗░░██╗░██████╗░░██╗░░░░░░░██╗░█████╗░░░██╗██╗")
+  colored_msg("  ████╗░████║██║████╗░██║██╔════╝░░██║░░██╗░░██║██╔═══╝░░██╔╝██║")
+  colored_msg("  ██╔████╔██║██║██╔██╗██║██║░░██╗░░╚██╗████╗██╔╝██████╗░██╔╝░██║")
+  colored_msg("  ██║╚██╔╝██║██║██║╚████║██║░░╚██╗░░████╔═████║░██╔══██╗███████║")
+  colored_msg("  ██║░╚═╝░██║██║██║░╚███║╚██████╔╝░░╚██╔╝░╚██╔╝░╚█████╔╝╚════██║")
+  colored_msg("  ╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░╚═╝░░░╚════╝░░░░░░╚═╝")
+  colored_msg("")
 endmacro()
 
 macro(print_header)
-    print_mingw64_banner()
+  print_mingw64_banner()
 endmacro()
 
 print_header()
@@ -31,30 +31,26 @@ print_header()
 include(ExternalProject)
 include(ProcessorCount)
 
-if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
-  message(
-    FATAL_ERROR "Generator “${CMAKE_GENERATOR}” is unsupported!\nInstall Ninja.")
-endif()
-
 ProcessorCount(CPU_COUNT)
 if(CPU_COUNT EQUAL 0)
   set(CPU_COUNT 1)
 endif()
 
-set(CPUTUNE "x86-64-v3"
-    CACHE STRING "Target arch to optimize for, eg. x86-64-v3 or native")
-
-set(MAKEJOBS ${CPU_COUNT})
-set(MAKEJOBS
-    ${MAKEJOBS}
-    CACHE STRING "Number of parallel processes to run for each package build")
-
-if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set(CMAKE_INSTALL_PREFIX
-      "${CMAKE_CURRENT_BINARY_DIR}/install"
-      CACHE PATH "Default install path" FORCE)
+if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
+  message(
+  FATAL_ERROR "Generator “${CMAKE_GENERATOR}” is unsupported!\nInstall Ninja.")
 endif()
 
+set(CPUTUNE "x86-64-v3"
+  CACHE STRING "Target arch to optimize for, eg. x86-64-v3 or native")
+
+set(MAKEJOBS ${CPU_COUNT}
+  CACHE STRING "Number of parallel processes to run for each package build")
+
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install"
+  CACHE PATH "Default install path" FORCE)
+endif()
 set(MINGW_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/mingw)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/toolchain.cmake.in
