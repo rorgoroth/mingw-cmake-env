@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libsdl2
-  URL https://github.com/libsdl-org/SDL/releases/download/release-2.30.1/SDL2-2.30.1.tar.gz
-  URL_HASH MD5=a28514e50ef4bb5cc2e1e8c70553425d
+  URL https://github.com/libsdl-org/SDL/releases/download/release-2.30.2/SDL2-2.30.2.tar.gz
+  URL_HASH MD5=08667937c83fada423dacc7cd90f3ec8
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
     -DCMAKE_BUILD_TYPE=Release
