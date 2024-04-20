@@ -1,7 +1,8 @@
 [binaries]
-c = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-clang'
-cpp = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-clang++'
+c = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-gcc'
+cpp = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-g++'
 ar = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-ar'
+as = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-as'
 strip = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-strip'
 windres = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-windres'
 pkgconfig = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-pkg-config'
