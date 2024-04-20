@@ -20,12 +20,7 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
-    --prefix=${MINGW_INSTALL_PREFIX}
-    --libdir=${MINGW_INSTALL_PREFIX}/lib
-    --cross-file=${MESON_CROSS}
-    --buildtype=release
-    --default-library=static
-    --prefer-static
+    ${meson_conf_args}
     -Db_lto_mode=thin
     -Db_ndebug=true
     -Dd3d11=enabled

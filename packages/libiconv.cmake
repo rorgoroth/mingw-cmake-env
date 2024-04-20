@@ -5,10 +5,8 @@ ExternalProject_Add(
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
-    --host=x86_64-w64-mingw32
-    --prefix=${MINGW_INSTALL_PREFIX}
+    ${autotools_conf_args}
     --disable-nls
-    --disable-shared
     --enable-extra-encodings
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install

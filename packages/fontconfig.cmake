@@ -12,11 +12,7 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
-    --prefix=${MINGW_INSTALL_PREFIX}
-    --libdir=${MINGW_INSTALL_PREFIX}/lib
-    --cross-file=${MESON_CROSS}
-    --buildtype=release
-    --default-library=static
+    ${meson_conf_args}
     -Dcache-build=disabled
     -Ddoc=disabled
     -Dtests=disabled

@@ -3,10 +3,9 @@ ExternalProject_Add(
   URL https://github.com/libsdl-org/SDL/releases/download/release-2.30.2/SDL2-2.30.2.tar.gz
   URL_HASH MD5=08667937c83fada423dacc7cd90f3ec8
   DOWNLOAD_EXTRACT_TIMESTAMP 1
-  CONFIGURE_COMMAND ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR> -G Ninja
-    -DCMAKE_BUILD_TYPE=Release
-    -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
-    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
+  CONFIGURE_COMMAND
+    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
+    ${cmake_conf_args}
     -DSDL_HAPTIC=OFF
     -DSDL_JOYSTICK=OFF
     -DSDL_XINPUT=OFF

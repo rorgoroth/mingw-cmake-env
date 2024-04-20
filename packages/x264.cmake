@@ -5,9 +5,8 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
-    --host=x86_64-w64-mingw32
+    ${autotools_conf_args}
     --cross-prefix=x86_64-w64-mingw32-
-    --prefix=${MINGW_INSTALL_PREFIX}
     --disable-cli
     --disable-ffms
     --disable-gpac
@@ -15,7 +14,6 @@ ExternalProject_Add(
     --disable-lsmash
     --disable-swscale
     --enable-lto
-    --enable-static
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   LOG_DOWNLOAD 1

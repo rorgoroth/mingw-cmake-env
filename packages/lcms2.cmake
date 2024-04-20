@@ -7,9 +7,7 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} autoreconf -fi && <SOURCE_DIR>/configure
-    --host=x86_64-w64-mingw32
-    --prefix=${MINGW_INSTALL_PREFIX}
-    --disable-shared
+    ${autotools_conf_args}
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
   BUILD_IN_SOURCE 1

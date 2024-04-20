@@ -22,11 +22,7 @@ ExternalProject_Add(
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/Vulkan-Headers"
     COMMAND sh -c "ln -s ${src_vulkan-headers} <SOURCE_DIR>/3rdparty/Vulkan-Headers"
     COMMAND ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
-    --prefix=${MINGW_INSTALL_PREFIX}
-    --libdir=${MINGW_INSTALL_PREFIX}/lib
-    --cross-file=${MESON_CROSS}
-    --buildtype=release
-    --default-library=static
+    ${meson_conf_args}
     -Dd3d11=enabled
     -Ddemos=false
     -Ddovi=enabled

@@ -6,12 +6,7 @@ ExternalProject_Add(
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>/build/meson
-    --prefix=${MINGW_INSTALL_PREFIX}
-    --libdir=${MINGW_INSTALL_PREFIX}/lib
-    --cross-file=${MESON_CROSS}
-    --buildtype=release
-    --default-library=static
-    --prefer-static
+    ${meson_conf_args}
     -Dlzma=disabled
     -Dlz4=disabled
     -Dzlib=enabled

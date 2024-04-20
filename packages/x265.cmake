@@ -3,10 +3,8 @@ ExternalProject_Add(
   GIT_REPOSITORY https://bitbucket.org/multicoreware/x265_git.git
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} cmake -H<SOURCE_DIR>/source -B<BINARY_DIR> -G Ninja
-    -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
-    -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
-    -DCMAKE_BUILD_TYPE=Release
+    ${EXEC} cmake -H<SOURCE_DIR>/source -B<BINARY_DIR>
+    ${cmake_conf_args}
     -DCHECKED_BUILD=OFF
     -DDETAILED_CU_STATS=OFF
     -DENABLE_AGGRESSIVE_CHECKS=OFF

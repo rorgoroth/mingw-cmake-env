@@ -6,21 +6,21 @@ ExternalProject_Add(
   GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} CROSS=x86_64-w64-mingw32- <SOURCE_DIR>/configure
-    --target=x86_64-win64-gcc
+  ${EXEC} CROSS=x86_64-w64-mingw32- <SOURCE_DIR>/configure
     --prefix=${MINGW_INSTALL_PREFIX}
+    --disable-shared
+    --enable-static
+    --target=x86_64-win64-gcc
     --as=yasm
     --disable-decode-perf-tests
     --disable-encode-perf-tests
     --disable-docs
     --disable-examples
-    --disable-shared
     --disable-tools
     --disable-unit-tests
     --enable-debug
     --enable-postproc
     --enable-runtime-cpu-detect
-    --enable-static
     --enable-vp8
     --enable-vp9
     --enable-vp9-postproc
