@@ -6,9 +6,12 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
-    -Dextra-programs=disabled
-    -Dtests=disabled
+    -Ddeep-plc=enabled
     -Ddocs=disabled
+    -Ddred=enabled
+    -Dextra-programs=disabled
+    -Dosce=enabled
+    -Dtests=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
