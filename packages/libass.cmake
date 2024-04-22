@@ -10,11 +10,14 @@ ExternalProject_Add(
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} <SOURCE_DIR>/autogen.sh && <SOURCE_DIR>/configure
-    ${autotools_conf_args}
-  BUILD_COMMAND ${MAKE}
-  INSTALL_COMMAND ${MAKE} install
-  BUILD_IN_SOURCE 1
+    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
+    ${meson_conf_args}
+    -Dasm=enabled
+    -Ddirectwrite=enabled
+    -Dfontconfig=enabled
+    -Dlibunibreak=enabled
+  BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
+  INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
@@ -22,3 +25,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(libass)
+force_meson_configure(libass)
