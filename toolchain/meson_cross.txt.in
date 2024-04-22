@@ -7,6 +7,7 @@ strip = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-strip'
 windres = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-windres'
 pkgconfig = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-pkg-config'
 dlltool = '@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-dlltool'
+nasm = 'nasm'
 # exe_wrapper = 'wine'
 
 [host_machine]
