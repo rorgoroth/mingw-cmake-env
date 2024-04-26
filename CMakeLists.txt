@@ -44,6 +44,9 @@ endif()
 set(CPUTUNE "x86-64-v3"
   CACHE STRING "Target arch to optimize for, eg. x86-64-v3 or native")
 
+set(MALLOC "/usr/lib/libmimalloc-insecure.so.2"
+  CACHE STRING "set malloc implementation")
+
 set(MAKEJOBS ${CPU_COUNT}
   CACHE STRING "Number of parallel processes to run for each package build")
 
