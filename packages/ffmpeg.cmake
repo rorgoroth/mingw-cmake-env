@@ -69,8 +69,8 @@ ExternalProject_Add(
     --enable-libmp3lame
     --enable-libopus
     --enable-libplacebo
-    --enable-libshaderc
     --enable-librubberband
+    --enable-libshaderc
     --enable-libsvtav1
     --enable-libvorbis
     --enable-libvpl
