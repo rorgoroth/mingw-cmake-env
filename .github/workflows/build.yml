@@ -40,6 +40,11 @@ jobs:
           cmake -Bbuild -G Ninja
         shell: alpine.sh {0}
 
+      - name: run_clean_dist
+        run: |
+          rm -rf build/packages/{quake*,xonotic*,ffmpeg*,mpv*}
+        shell: alpine.sh {0}
+
       - name: run_update
         run: |
           ninja -C build update

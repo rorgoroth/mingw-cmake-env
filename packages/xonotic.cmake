@@ -46,4 +46,3 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/xonotic-package/bin64/)
 
 force_rebuild_git(xonotic)
-clean_build(xonotic copy-binary)

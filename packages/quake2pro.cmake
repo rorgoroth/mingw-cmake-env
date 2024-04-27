@@ -54,4 +54,3 @@ ExternalProject_Add_Step(
 force_rebuild_git(quake2pro)
 force_git_patch(quake2pro)
 force_meson_configure(quake2pro)
-clean_build(quake2pro copy-binary)

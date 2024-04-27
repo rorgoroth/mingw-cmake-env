@@ -70,4 +70,3 @@ ExternalProject_Add_Step(
 
 force_rebuild_git(mpv)
 force_meson_configure(mpv)
-clean_build(mpv copy-binary)

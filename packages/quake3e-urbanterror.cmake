@@ -38,4 +38,3 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/quake3e-urbanterror-package/quake3e.ded.x64.exe)
 
 force_rebuild_git(quake3e-urbanterror)
-clean_build(quake3e-urbanterror copy-binary)

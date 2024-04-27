@@ -104,4 +104,3 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-package/ffmpeg.exe)
 
 force_rebuild_git(ffmpeg)
-clean_build(ffmpeg copy-binary)

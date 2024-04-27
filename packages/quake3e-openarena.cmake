@@ -39,4 +39,3 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/quake3e-openarena-package/quake3e.ded.x64.exe)
 
 force_rebuild_git(quake3e-openarena)
-clean_build(quake3e-openarena copy-binary)
