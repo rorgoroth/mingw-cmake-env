@@ -5,6 +5,7 @@ ExternalProject_Add(
   GIT_TAG main
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
+  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/spirv-cross-*.patch
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
@@ -29,4 +30,3 @@ ExternalProject_Add_Step(
     ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/spirv-cross.pc)
 
 force_rebuild_git(spirv-cross)
-force_git_patch(spirv-cross)
