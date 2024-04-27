@@ -4,6 +4,7 @@ ExternalProject_Add(
           aom
           bzip2
           dav1d
+          fdk-aac
           flac
           fontconfig
           gmp
@@ -61,6 +62,7 @@ ExternalProject_Add(
     --enable-libaom
     --enable-libass
     --enable-libdav1d
+    --enable-libfdk-aac
     --enable-libfontconfig
     --enable-libharfbuzz
     --enable-libjxl
