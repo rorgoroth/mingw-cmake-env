@@ -130,6 +130,7 @@ list(
   directx-headers
   highway
   libjxl
+  fdk-aac
   ffmpeg
   openal
   mujs
