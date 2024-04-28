@@ -6,7 +6,6 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
-    -DENABLE_STATIC_LIB=ON
     -DENABLE_LIB_ONLY=OFF
     -DENABLE_APP=OFF
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
