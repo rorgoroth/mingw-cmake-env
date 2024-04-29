@@ -42,7 +42,7 @@ jobs:
 
       - name: run_clean_dist
         run: |
-          rm -rf build/packages/{quake*,xonotic*,ffmpeg*,mpv*}
+          bash -c "rm -rf build/packages/{quake*,xonotic*,ffmpeg*,mpv*}"
         shell: alpine.sh {0}
 
       - name: run_update
