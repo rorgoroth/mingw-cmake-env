@@ -65,6 +65,7 @@ set(meson_conf_args
   --buildtype=release
   --default-library=static
   --prefer-static
+  --optimization=3
 )
 set(autotools_conf_args
   --host=x86_64-w64-mingw32
