@@ -77,6 +77,7 @@ set(autotools_conf_args
 list(
   APPEND
   ep
+  winrt-headers
   gmp
   uchardet
   libsamplerate
