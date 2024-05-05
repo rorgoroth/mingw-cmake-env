@@ -66,7 +66,11 @@ ExternalProject_Add_Step(
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/mpv.com
-    ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com)
+    ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com
+  COMMAND
+    ${CMAKE_COMMAND} -E copy
+    <SOURCE_DIR>/etc/powershell-completion.ps1
+    ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/powershell-completion.ps1)
 
 force_rebuild_git(mpv)
 force_meson_configure(mpv)

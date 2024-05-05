@@ -9,6 +9,7 @@ bin/*.7z
 # mpv
 bin/mpv-package/mpv.com
 bin/mpv-package/mpv.exe
+bin/mpv-package/powershell-completion.ps1
 
 ## FFmpeg
 bin/ffmpeg-package/ffmpeg.exe
