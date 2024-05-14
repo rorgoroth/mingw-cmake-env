@@ -2,6 +2,8 @@ ExternalProject_Add(
   libvpl
   GIT_REPOSITORY https://github.com/intel/libvpl.git
   GIT_SHALLOW 1
+  GIT_REMOTE_NAME origin
+  GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
