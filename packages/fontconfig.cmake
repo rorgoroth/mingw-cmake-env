@@ -16,7 +16,6 @@ ExternalProject_Add(
     ${meson_conf_args}
     -Dcache-build=disabled
     -Ddoc=disabled
-    -Dtests=disabled
     -Dtools=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install

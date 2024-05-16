@@ -8,7 +8,6 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
-    -Dbuild-test=false
   BUILD_COMMAND ${EXEC} ninja -C <BINARY_DIR>
   INSTALL_COMMAND ${EXEC} ninja -C <BINARY_DIR> install
   LOG_DOWNLOAD 1

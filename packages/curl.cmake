@@ -10,7 +10,6 @@ ExternalProject_Add(curl
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
     -DBUILD_CURL_EXE=ON
-    -DBUILD_TESTING=OFF
     -DCURL_BROTLI=ON
     -DCURL_ENABLE_SSL=ON
     -DCURL_LTO=OFF

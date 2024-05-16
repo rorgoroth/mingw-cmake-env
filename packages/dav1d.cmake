@@ -7,7 +7,6 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
-    -Denable_tests=false
     -Denable_tools=false
     -Dxxhash_muxer=enabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>

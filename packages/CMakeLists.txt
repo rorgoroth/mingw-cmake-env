@@ -53,10 +53,13 @@ set(cmake_conf_args
   -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
   -DBUILD_SHARED_LIBS=OFF
   -DBUILD_STATIC_LIBS=ON
+  -DBUILD_TESTING=OFF
+  -DBUILD_TESTS=OFF
   -DENABLE_SHARED_LIB=OFF
   -DENABLE_SHARED=OFF
   -DENABLE_STATIC_LIB=ON
   -DENABLE_STATIC=ON
+  -DENABLE_TESTS=OFF
 )
 set(meson_conf_args
   --prefix=${MINGW_INSTALL_PREFIX}
@@ -64,8 +67,8 @@ set(meson_conf_args
   --cross-file=${MESON_CROSS}
   --buildtype=release
   --default-library=static
-  --prefer-static
   --optimization=3
+  --prefer-static
 )
 set(autotools_conf_args
   --host=x86_64-w64-mingw32

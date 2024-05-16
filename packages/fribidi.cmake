@@ -9,7 +9,7 @@ ExternalProject_Add(
     -Dbin=false
     -Dcpp_args='-DFRIBIDI_LIB_STATIC'
     -Ddocs=false
-    -Dtests=false
+
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1

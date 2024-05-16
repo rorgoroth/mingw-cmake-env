@@ -11,7 +11,7 @@ ExternalProject_Add(
     -Ddred=enabled
     -Dextra-programs=disabled
     -Dosce=enabled
-    -Dtests=disabled
+
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1

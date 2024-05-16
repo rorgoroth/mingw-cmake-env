@@ -15,7 +15,7 @@ ExternalProject_Add(
     -Dbrotli=enabled
     -Dmmap=enabled
     -Dpng=enabled
-    -Dtests=disabled
+
     -Dzlib=enabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install

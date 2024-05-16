@@ -8,7 +8,7 @@ ExternalProject_Add(
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
     -DBUILD_GMOCK=OFF
-    -DBUILD_TESTING=OFF
+
     -DHWY_CMAKE_ARM7=OFF
     -DHWY_CMAKE_RVV=OFF
     -DHWY_CMAKE_SSE2=OFF
