@@ -1,0 +1,37 @@
+name: rmpkgprefix
+on:
+  workflow_dispatch:
+    inputs:
+      pkgname:
+        required: true
+
+jobs:
+  rmpkgprefix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup_alpine
+        uses: jirutka/setup-alpine@v1
+        with:
+          branch: edge
+
+      - name: load_cache
+        uses: actions/cache/restore@main
+        with:
+          path: build
+          key: cached_build
+
+      - name: run_clean_dist
+        run: |
+          rm -rfv build/packages/${{ github.event.inputs.pkgname }}-*
+        shell: alpine.sh {0}
+
+      - name: clear_cache
+        uses: easimon/wipe-cache@main
+
+      - name: save_cache
+        uses: actions/cache/save@main
+        with:
+          path: build
+          key: cached_build

@@ -12,6 +12,8 @@ jobs:
 
       - name: setup_alpine
         uses: jirutka/setup-alpine@v1
+        with:
+          branch: edge
 
       - name: setup_git
         run: |
@@ -20,6 +22,7 @@ jobs:
 
       - name: add_packages
         run: |
+          rm /var/cache/apk/*
           apk add 7zip autoconf automake bash cmake coreutils diffutils g++ gawk gcc gettext-dev git libtool make meson mimalloc2-insecure musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
         shell: alpine.sh --root {0}
 
