@@ -4,11 +4,9 @@ This is a stripped down version of [shinchiro/mpv-winbuild-cmake](https://github
 
 This is only tested on Alpine Linux and only 64bit Windows 10 and above is supported.
 
-## Binary Downloads
+## Precompiled Packages
 
 See the [Releases](https://github.com/rorgoroth/mingw-cmake-env/releases) page.
-
-## Precompiled Packages
 
 These all come with update scripts, however if one breaks it is on you to keep backups. In the event of breakage please check out the [Actions](https://github.com/rorgoroth/mingw-cmake-env/actions) and download the artifacts from a previous working build.
 
