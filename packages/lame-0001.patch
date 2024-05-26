@@ -1,0 +1,25 @@
+From 890619987769dac49bae31bf9b86c54a87f4fd54 Mon Sep 17 00:00:00 2001
+From: rorgoroth <77244135+rorgoroth@users.noreply.github.com>
+Date: Sun, 26 May 2024 23:28:53 +0100
+Subject: [PATCH] configure.in: fix
+
+---
+ configure.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.in b/configure.in
+index 3f9fddb..335e502 100644
+--- a/configure.in
++++ b/configure.in
+@@ -422,7 +422,7 @@ AC_CHECK_LIB(termcap, initscr, HAVE_TERMCAP="termcap")
+ AC_CHECK_LIB(curses, initscr, HAVE_TERMCAP="curses")
+ AC_CHECK_LIB(ncurses, initscr, HAVE_TERMCAP="ncurses")
+ 
+-AM_ICONV
++#AM_ICONV
+ 
+ dnl math lib
+ AC_CHECK_LIB(m, cos, USE_LIBM="-lm")
+-- 
+2.45.1
+
