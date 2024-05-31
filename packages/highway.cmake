@@ -1,15 +1,16 @@
 ExternalProject_Add(
   highway
-  URL https://github.com/google/highway/archive/refs/tags/1.1.0.tar.gz
-  URL_HASH MD5=6a5d433b66626afbd3fcc5884d2f270a
+  URL https://github.com/google/highway/releases/download/1.2.0/highway-1.2.0.tar.gz
+  URL_HASH MD5=a03898e8e2b1bf43d00571ba1ab0d171
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
     -DBUILD_GMOCK=OFF
-
+    -DBUILD_TESTING=OFF
     -DHWY_CMAKE_ARM7=OFF
+    -DHWY_CMAKE_HEADER_ONLY=OFF
     -DHWY_CMAKE_RVV=OFF
     -DHWY_CMAKE_SSE2=OFF
     -DHWY_ENABLE_CONTRIB=ON
