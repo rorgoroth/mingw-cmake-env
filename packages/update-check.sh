@@ -41,7 +41,7 @@ check
 
 # highway
 pkg=highway
-a=$(cat ./packages/highway.cmake | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p')
+a=$(cat ./packages/highway.cmake | grep highway- | sed -n 's,.*highway-\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://github.com/google/highway/tags' | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
 check
 
