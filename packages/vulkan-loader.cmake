@@ -1,8 +1,8 @@
 ExternalProject_Add(
   vulkan-loader
   DEPENDS vulkan-headers
-  URL https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.285.tar.gz
-  URL_HASH MD5=c3ab0754dbac734c8885316935766568
+  URL https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.3.288.tar.gz
+  URL_HASH MD5=22b3db76c9a6fc8ebf1abc9d63749060
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-loader-0001.patch
@@ -11,7 +11,6 @@ ExternalProject_Add(
     ${cmake_conf_args}
     -DVULKAN_HEADERS_INSTALL_DIR=${MINGW_INSTALL_PREFIX}
     -DBUILD_STATIC_LOADER=ON
-
     -DENABLE_WERROR=OFF
     -DUSE_GAS=ON
     -DCMAKE_C_FLAGS='${CMAKE_C_FLAGS} -D_WIN32_WINNT=0x0A00 -D__STDC_FORMAT_MACROS -DSTRSAFE_NO_DEPRECATE -Dparse_number=cjson_parse_number'
