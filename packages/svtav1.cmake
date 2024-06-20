@@ -8,7 +8,6 @@ ExternalProject_Add(
     -DBUILD_APPS=OFF
     -DBUILD_DEC=OFF
     -DBUILD_ENC=ON
-
     -DENABLE_AVX512=OFF
     -DENABLE_NASM=ON
     -DSVT_AV1_LTO=OFF

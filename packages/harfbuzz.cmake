@@ -15,7 +15,6 @@ ExternalProject_Add(
     -Dglib=disabled
     -Dgobject=disabled
     -Dicu=disabled
-
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
