@@ -54,7 +54,7 @@ check
 # libjxl
 pkg=libjxl
 a=$(cat ./packages/libjxl.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
-b=$(wget -q -O- 'https://github.com/libjxl/libjxl/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
+b=$(wget -q -O- 'https://github.com/libjxl/libjxl/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | sort -Vr | head -1 | sed 's/\_/\./g')
 check
 
 # libsdl2
