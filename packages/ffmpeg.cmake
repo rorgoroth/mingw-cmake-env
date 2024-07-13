@@ -44,18 +44,18 @@ ExternalProject_Add(
     --disable-debug
     --disable-decoder=libaom_av1
     --disable-doc
-    --disable-ffplay
-    --disable-ffprobe
     --disable-htmlpages
     --disable-manpages
     --disable-podpages
-    --disable-sdl2
     --disable-txtpages
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
     --enable-amf
     --enable-cross-compile
+    --enable-ffmpeg
+    --enable-ffplay
+    --enable-ffprobe
     --enable-gmp
     --enable-gpl --enable-version3 --enable-nonfree
     --enable-lcms2
@@ -85,6 +85,7 @@ ExternalProject_Add(
     --enable-nvenc
     --enable-runtime-cpudetect
     --enable-schannel
+    --enable-sdl2
     --enable-vulkan
     "--extra-libs='-lstdc++ -lpthread'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
@@ -102,5 +103,21 @@ ExternalProject_Add_Step(
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/ffmpeg.exe
     ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-package/ffmpeg.exe)
+
+ExternalProject_Add_Step(
+  ffmpeg full-copy-binary
+  DEPENDEES install
+  COMMAND
+    ${CMAKE_COMMAND} -E copy
+    <BINARY_DIR>/ffmpeg.exe
+    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffmpeg.exe
+  COMMAND
+    ${CMAKE_COMMAND} -E copy
+    <BINARY_DIR>/ffplay.exe
+    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffplay.exe
+  COMMAND
+    ${CMAKE_COMMAND} -E copy
+    <BINARY_DIR>/ffprobe.exe
+    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffprobe.exe)
 
 force_rebuild_git(ffmpeg)

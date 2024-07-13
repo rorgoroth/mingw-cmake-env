@@ -36,6 +36,10 @@ archive() {
         7z a -mx=9 "ffmpeg.7z" -- ./*
     cd .. || exit
 
+    cd ffmpeg-full-package || exit
+        7z a -mx=9 "ffmpeg-full.7z" -- ./*
+    cd .. || exit
+
     cd mpv-package || exit
         7z a -mx=9 "mpv.7z" -- ./*
     cd .. || exit
