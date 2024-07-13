@@ -12,7 +12,7 @@ function Update-Xonotic {
     $link = "https://github.com/rorgoroth/mingw-cmake-env/releases/download/latest/xonotic.7z"
     $file = "xonotic.7z"
     Write-Host "Downloading" $file -ForegroundColor Green
-    Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::FireFox -OutFile $file
+    Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome -OutFile $file
     Extract-Archive
     Remove-Item -Force $file
 }

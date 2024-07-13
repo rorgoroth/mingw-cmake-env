@@ -12,7 +12,7 @@ function Update-Q3eURT {
     $link = "https://github.com/rorgoroth/mingw-cmake-env/releases/download/latest/quake3e-urbanterror.7z"
     $file = "quake3e-urbanterror.7z"
     Write-Host "Downloading" $file -ForegroundColor Green
-    Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::FireFox -OutFile $file
+    Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome -OutFile $file
     Extract-Archive
     Remove-Item -Force $file
 }
