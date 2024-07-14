@@ -1,12 +1,13 @@
 ExternalProject_Add(
   vulkan-headers
-  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.288.tar.gz
-  URL_HASH MD5=f76d1495ec30aaab87706aa6652258e2
+  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.3.290.tar.gz
+  URL_HASH MD5=80774beab5667da772b1819ba5a4e7a6
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
+    -DVULKAN_HEADERS_ENABLE_MODULE=OFF
   BUILD_COMMAND ""
   INSTALL_COMMAND ${NINJA} install
   LOG_DOWNLOAD 1
