@@ -4,7 +4,7 @@ ExternalProject_Add(
   URL_HASH MD5=8df410d010e03de1a339a400a920335e
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} <SOURCE_DIR>/configure
+    ${EXEC} autoreconf -fi && <SOURCE_DIR>/configure
     ${autotools_conf_args}
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
