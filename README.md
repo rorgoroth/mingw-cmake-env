@@ -42,6 +42,6 @@ ninja -C build llvm
 ninja -C build $package
 ```
 
-Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is excluded by default, so if there are updates to toolchain you need to manually run `ninja llvm`.
+Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is excluded by default, so if there are updates to toolchain you need to manually run `ninja -C build llvm`.
 
 The toolchain now uses precompiled clang/llvm from [rorgoroth/llvm-mingw](https://github.com/rorgoroth/llvm-mingw). The precompiled toolchain only works on Alpine, it will not work on Ubuntu or anything else. You'll need to build it yourself outside of Alpine. You should set up an Alpine container for this project.
