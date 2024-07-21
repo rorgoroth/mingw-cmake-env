@@ -1,12 +1,12 @@
 #!/bin/sh
 
-export CC=x86_64-w64-mingw32-clang
-export CXX=x86_64-w64-mingw32-clang++
+export CC=x86_64-w64-mingw32-gcc
+export CXX=x86_64-w64-mingw32-g++
 export PATH="@CMAKE_INSTALL_PREFIX@/bin:$PATH"
 export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
-export CFLAGS="-march=@CPUTUNE@ -O3 -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
-export CXXFLAGS="-march=@CPUTUNE@ -O3 -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
+export CFLAGS="-march=@CPUTUNE@ -@OPTIM@ -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
+export CXXFLAGS="-march=@CPUTUNE@ -@OPTIM@ -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
 export LDFLAGS="-fno-lto -Wl,--gc-sections -Wl,--icf=all"
 export LD_PRELOAD="@MALLOC@"
 eval $*

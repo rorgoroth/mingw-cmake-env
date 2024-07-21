@@ -42,7 +42,10 @@ if(NOT CMAKE_GENERATOR STREQUAL "Ninja")
 endif()
 
 set(CPUTUNE "x86-64-v3"
-  CACHE STRING "Target arch to optimize for, eg. x86-64-v3 or native")
+  CACHE STRING "Target 'march' to optimize for. Example: x86-64-v3 or native")
+
+set(OPTIM "O3"
+  CACHE STRING "Target optimization level. Example: O2 or O3")
 
 set(MALLOC "/usr/lib/libmimalloc-insecure.so.2"
   CACHE STRING "set malloc implementation")
