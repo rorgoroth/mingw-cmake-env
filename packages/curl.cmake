@@ -2,8 +2,8 @@ ExternalProject_Add(curl
   DEPENDS brotli
           zlib
           zstd
-  URL https://github.com/curl/curl/releases/download/curl-8_8_0/curl-8.8.0.tar.bz2
-  URL_HASH MD5=d5265a351fdfb12ec840a2a0ba1ce9ff
+  URL https://github.com/curl/curl/releases/download/curl-8_9_0/curl-8.9.0.tar.bz2
+  URL_HASH MD5=c04c664726cd20db7a59076150c429ea
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
