@@ -1,6 +1,7 @@
 ExternalProject_Add(
   quake3e-openarena
-  DEPENDS vorbis
+  DEPENDS brotli
+          vorbis
           zlib
           zstd
   GIT_REPOSITORY https://github.com/rorgoroth/Quake3e-OpenArena.git

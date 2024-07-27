@@ -131,6 +131,7 @@ list(
   highway
   libjxl
   fdk-aac
+  libsdl2
   ffmpeg
   openal
   mujs
@@ -138,7 +139,6 @@ list(
   zstd
   cjson
   curl
-  libsdl2
   minizip
   glew
   sqlite
