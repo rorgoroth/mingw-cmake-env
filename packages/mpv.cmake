@@ -16,6 +16,7 @@ ExternalProject_Add(
           spirv-cross
           uchardet
           vulkan-loader
+          winrt-headers
   GIT_REPOSITORY https://github.com/mpv-player/mpv.git
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
@@ -36,6 +37,7 @@ ExternalProject_Add(
     -Dspirv-cross=enabled
     -Duchardet=enabled
     -Dvulkan=enabled
+    -Dwin32-smtc=enabled
     -Dzimg=enabled
     -Dzlib=enabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
