@@ -11,6 +11,3 @@ bin/*/*.dll
 
 # mpv
 bin/mpv-package/powershell-completion.ps1
-
-# Xonotic
-bin/xonotic-package/bin64

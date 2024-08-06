@@ -146,7 +146,6 @@ list(
   quake3e
   quake3e-urbanterror
   quake3e-openarena
-  xonotic
 )
 
 foreach(package IN LISTS ep)

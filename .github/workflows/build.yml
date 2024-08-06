@@ -45,7 +45,7 @@ jobs:
 
 #      - name: run_clean_dist
 #        run: |
-#          bash -c "rm -rf build/packages/{quake*,xonotic*,ffmpeg*,mpv*}"
+#          bash -c "rm -rf build/packages/{quake*,ffmpeg*,mpv*}"
 #        shell: alpine.sh {0}
 
       - name: run_update
@@ -60,7 +60,6 @@ jobs:
           ninja -C build quake3e
           ninja -C build quake3e-openarena
           ninja -C build quake3e-urbanterror
-          ninja -C build xonotic
           ninja -C build ffmpeg
           ninja -C build mpv
         shell: alpine.sh {0}
