@@ -22,7 +22,9 @@ function Update-Mpv {
     $link = "https://github.com/rorgoroth/mingw-cmake-env/releases/download/latest/mpv.7z"
     $file = "mpv.7z"
     Write-Host "Downloading" $file -ForegroundColor Green
+    $ProgressPreference = 'SilentlyContinue'
     Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome -OutFile $file
+    $ProgressPreference = 'Continue'
     Extract-Archive
     Remove-Item -Force $file
 }
@@ -31,7 +33,9 @@ function Update-Ytdlp {
     $link = "https://github.com/rorgoroth/yt-dlp/releases/download/latest/yt-dlp.exe"
     $file = "yt-dlp.exe"
     Write-Host "Downloading" $file -ForegroundColor Green
+    $ProgressPreference = 'SilentlyContinue'
     Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome -OutFile $file
+    $ProgressPreference = 'Continue'
 }
 
 # Run the whole lot here

@@ -12,7 +12,9 @@ function Update-q2pro {
     $link = "https://github.com/rorgoroth/mingw-cmake-env/releases/download/latest/quake2pro.7z"
     $file = "quake2pro.7z"
     Write-Host "Downloading" $file -ForegroundColor Green
+    $ProgressPreference = 'SilentlyContinue'
     Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome -OutFile $file
+    $ProgressPreference = 'Continue'
     Extract-Archive
     Remove-Item -Force $file
 }

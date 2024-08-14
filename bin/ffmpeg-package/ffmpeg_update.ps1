@@ -12,7 +12,9 @@ function Update-FFmpeg {
     $link = "https://github.com/rorgoroth/mingw-cmake-env/releases/download/latest/ffmpeg.7z"
     $file = "ffmpeg.7z"
     Write-Host "Downloading" $file -ForegroundColor Green
+    $ProgressPreference = 'SilentlyContinue'
     Invoke-WebRequest -Uri $link -UserAgent [Microsoft.PowerShell.Commands.PSUserAgent]::Chrome -OutFile $file
+    $ProgressPreference = 'Continue'
     Extract-Archive
     Remove-Item -Force $file
 }
