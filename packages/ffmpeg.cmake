@@ -31,7 +31,7 @@ ExternalProject_Add(
           vulkan-loader
           x264
           x265
-  GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
+  GIT_REPOSITORY https://github.com/librempeg/librempeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
