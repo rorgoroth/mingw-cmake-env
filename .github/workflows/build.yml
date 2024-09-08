@@ -15,21 +15,10 @@ jobs:
         with:
           branch: edge
 
-      - name: setup_git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
       - name: add_packages
         run: |
           rm /var/cache/apk/*
-          apk add 7zip autoconf automake bash cmake coreutils diffutils g++ gawk gcc gettext-dev git libtool make meson mimalloc2-insecure musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
-        shell: alpine.sh --root {0}
-
-      - name: setup_git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          apk add 7zip autoconf automake bash clang18 llvm18 llvm18-linker-tools lld cmake coreutils diffutils g++ gawk gcc gettext-dev git libtool make meson musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
         shell: alpine.sh --root {0}
 
       - name: load_cache
@@ -42,11 +31,6 @@ jobs:
         run: |
           cmake -Bbuild -G Ninja
         shell: alpine.sh {0}
-
-#      - name: run_clean_dist
-#        run: |
-#          bash -c "rm -rf build/packages/{quake*,ffmpeg*,mpv*}"
-#        shell: alpine.sh {0}
 
       - name: run_update
         run: |
@@ -101,7 +85,6 @@ jobs:
           path: bin/*-package
 
       - name: create_release_tag
-        id: create_release
         uses: shxrklol/action-auto-releases-n20@v1.1
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -110,7 +93,6 @@ jobs:
           title: Latest Build
 
       - name: upload_packages
-        id: upload_release
         uses: svenstaro/upload-release-action@2.9.0
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
