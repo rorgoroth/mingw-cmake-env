@@ -27,7 +27,7 @@ These all come with update scripts, however if one breaks it is on you to keep b
 Basic build deps:
 
 ```bash
-apk add -i autoconf automake bash bzip2 cmake diffutils g++ gcc git libtool make meson mimalloc2-insecure musl-dev nasm p7zip patch pkgconf po4a py3-mako samurai texinfo yasm zstd
+apk add -i 7zip autoconf automake bash clang18 llvm18 llvm18-linker-tools lld cmake coreutils diffutils g++ gawk gcc gettext-dev git libtool make meson musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
 ```
 
 Setup/Build:
@@ -42,4 +42,4 @@ ninja -C build $package
 
 Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The toolchain is excluded by default, so if there are updates to toolchain you need to manually run `ninja -C build llvm`.
 
-The toolchain now uses precompiled clang/llvm from [rorgoroth/llvm-mingw](https://github.com/rorgoroth/llvm-mingw). The precompiled toolchain only works on Alpine, it will not work on Ubuntu or anything else. You'll need to build it yourself outside of Alpine. You should set up an Alpine container for this project.
+The toolchain uses clang/llvm from [rorgoroth/llvm-mingw](https://github.com/rorgoroth/llvm-mingw). This is only tested on Alpine Edge, any other distro you're on your own. You should set up an Alpine container for this project.
