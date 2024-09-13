@@ -1,8 +1,7 @@
 ExternalProject_Add(
   libzimg
-  URL https://github.com/sekrit-twc/zimg/archive/refs/tags/release-3.0.5.tar.gz
-  URL_HASH MD5=af2c08cc0e695f4c0c225feed14e9f20
-  DOWNLOAD_EXTRACT_TIMESTAMP 1
+  GIT_REPOSITORY https://bitbucket.org/the-sekrit-twc/zimg.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/autogen.sh && <SOURCE_DIR>/configure
@@ -16,3 +15,4 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
+force_rebuild_git(libzimg)
