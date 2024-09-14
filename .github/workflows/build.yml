@@ -32,6 +32,11 @@ jobs:
           cmake -Bbuild -G Ninja
         shell: alpine.sh {0}
 
+      - name: run_clean_dist
+        run: |
+          bash -c "rm -rf build/packages/{quake*,ffmpeg*,mpv*}"
+        shell: alpine.sh {0}
+
       - name: run_update
         run: |
           ninja -C build update
