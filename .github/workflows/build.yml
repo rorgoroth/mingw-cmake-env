@@ -21,6 +21,12 @@ jobs:
           apk add 7zip autoconf automake bash clang18 llvm18 llvm18-linker-tools lld cmake coreutils diffutils g++ gawk gcc gettext-dev git libtool make meson musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
         shell: alpine.sh --root {0}
 
+      - name: setup_git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        shell: alpine.sh --root {0}
+
       - name: load_cache
         uses: actions/cache/restore@main
         with:
