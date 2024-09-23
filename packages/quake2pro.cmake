@@ -22,6 +22,7 @@ ExternalProject_Add(
     -Dsdl2=enabled
     -Dtga=true
     -Dzlib=enabled
+    -Dwindows-egl=false
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ""
   LOG_DOWNLOAD 1
@@ -43,6 +44,10 @@ ExternalProject_Add_Step(
 ExternalProject_Add_Step(
   quake2pro copy-binary
   DEPENDEES strip-binary
+  COMMAND
+    ${CMAKE_COMMAND} -E copy
+    <BINARY_DIR>/gamex86_64.dll
+    ${CMAKE_CURRENT_BINARY_DIR}/quake2pro-package/gamex86_64.dll
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/q2pro.exe
