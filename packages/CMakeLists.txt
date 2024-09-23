@@ -67,7 +67,6 @@ set(meson_conf_args
   --cross-file=${MESON_CROSS}
   --buildtype=release
   --default-library=static
-  --optimization=3
   --prefer-static
 )
 set(autotools_conf_args
