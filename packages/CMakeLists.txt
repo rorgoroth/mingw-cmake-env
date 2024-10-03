@@ -79,6 +79,7 @@ set(autotools_conf_args
 list(
   APPEND
   ep
+  llvm
   winrt-headers
   gmp
   uchardet

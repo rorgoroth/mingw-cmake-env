@@ -2,7 +2,6 @@ find_program(PKGCONFIG NAMES pkg-config)
 
 ExternalProject_Add(
   llvm
-  EXCLUDE_FROM_ALL 1
   GIT_REPOSITORY https://github.com/rorgoroth/llvm-mingw.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""

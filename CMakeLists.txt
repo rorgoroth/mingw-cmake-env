@@ -56,21 +56,21 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 set(MINGW_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/mingw)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/toolchain.cmake.in
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/toolchain.cmake.in
                ${CMAKE_CURRENT_BINARY_DIR}/toolchain.cmake @ONLY)
 set(TOOLCHAIN_FILE ${CMAKE_CURRENT_BINARY_DIR}/toolchain.cmake)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/meson_cross.txt.in
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/meson_cross.txt.in
                ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt @ONLY)
 set(MESON_CROSS ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec.in
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec.in
                ${CMAKE_CURRENT_BINARY_DIR}/exec @ONLY)
 set(EXEC ${CMAKE_CURRENT_BINARY_DIR}/exec)
 set(MAKE ${EXEC} make -j${MAKEJOBS})
 set(NINJA ${EXEC} ninja -j${MAKEJOBS})
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/toolchain/exec-nolto.in
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec-nolto.in
                ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto @ONLY)
 set(EXEC-NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto)
 set(MAKE-NLTO ${EXEC-NLTO} make -j${MAKEJOBS})
@@ -78,5 +78,4 @@ set(NINJA-NLTO ${EXEC-NLTO} ninja -j${MAKEJOBS})
 
 string(TIMESTAMP BUILDDATE "%Y%m%d" UTC)
 
-add_subdirectory(toolchain)
 add_subdirectory(packages)
