@@ -53,10 +53,7 @@ ExternalProject_Add_Step(
   DEPENDEES build
   COMMAND
     ${EXEC} x86_64-w64-mingw32-strip -s
-    <BINARY_DIR>/mpv.exe
-  COMMAND
-    ${EXEC} x86_64-w64-mingw32-strip -s
-    <BINARY_DIR>/mpv.com)
+    <BINARY_DIR>/mpv.exe)
 
 ExternalProject_Add_Step(
   mpv copy-binary
@@ -65,10 +62,6 @@ ExternalProject_Add_Step(
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/mpv.exe
     ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.exe
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/mpv.com
-    ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv.com
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <SOURCE_DIR>/etc/powershell-completion.ps1
