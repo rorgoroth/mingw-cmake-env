@@ -7,7 +7,6 @@ ExternalProject_Add(
           fdk-aac
           flac
           fontconfig
-          gmp
           harfbuzz
           lcms2
           lame
@@ -57,7 +56,6 @@ ExternalProject_Add(
     --enable-ffmpeg
     --enable-ffplay
     --enable-ffprobe
-    --enable-gmp
     --enable-gpl --enable-version3 --enable-nonfree
     --enable-lcms2
     --enable-libaom

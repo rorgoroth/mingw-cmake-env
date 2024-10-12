@@ -27,12 +27,6 @@ a=$(cat ./packages/expat.cmake | sed -n 's,.*expat-\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://github.com/libexpat/libexpat/tags' | sed -n 's,.*R_\([0-9][^"]*\)\.tar.*,\1,p' | head -1 | sed 's/\_/\./g')
 check
 
-# gmp
-pkg=gmp
-a=$(cat ./packages/gmp.cmake | sed -n 's,.*gmp-\([0-9][^>]*\)\.tar.*,\1,p')
-b=$(wget -q -O- 'https://gmplib.org/' | grep '<a href="' | sed -n 's,.*gmp-\([0-9][^>]*\)\.tar.*,\1,p' | sort -V | tail -1)
-check
-
 # glew
 #pkg=glew
 #a=$(cat ./packages/glew.cmake | grep 'glew' | sed -n 's,.*glew-\([0-9][^>]*\)\.tgz,\1,p')

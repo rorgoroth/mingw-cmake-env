@@ -81,7 +81,6 @@ list(
   ep
   llvm
   winrt-headers
-  gmp
   uchardet
   libsamplerate
   rubberband
