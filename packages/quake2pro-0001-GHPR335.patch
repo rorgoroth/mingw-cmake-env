@@ -1,7 +1,7 @@
-From fff65eabe6c7db723a5bbe1e22cdfe1440aad745 Mon Sep 17 00:00:00 2001
+From b2aff6ac66b162717247ca6ef4a5144d76848525 Mon Sep 17 00:00:00 2001
 From: Frank Richter <frank.richter@gmail.com>
 Date: Mon, 13 Nov 2023 01:50:31 +0100
-Subject: [PATCH 1/6] Add Meson wrap for ffmpeg
+Subject: [PATCH 1/7] Add Meson wrap for ffmpeg
 
 ---
  subprojects/ffmpeg.wrap | 11 +++++++++++
@@ -26,20 +26,20 @@ index 000000000..d27a02cc1
 +libswresample = libswresample_dep
 +libswscale = libswscale_dep
 
-From 6bb5cb10cd65218124a090ac391375c65ca5b20e Mon Sep 17 00:00:00 2001
+From eff62a35e33508abffb7a7e308697e09b9b38cf9 Mon Sep 17 00:00:00 2001
 From: Frank Richter <frank.richter@gmail.com>
 Date: Mon, 13 Nov 2023 19:51:02 +0100
-Subject: [PATCH 2/6] Set some default ffmpeg options
+Subject: [PATCH 2/7] Set some default ffmpeg options
 
 ---
  meson.build | 16 +++++++++++-----
  1 file changed, 11 insertions(+), 5 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index cc0dfb567..3f07c9057 100644
+index 74d33ffbb..dd2daa508 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -320,12 +320,18 @@ if openal.found()
+@@ -338,12 +338,18 @@ if openal.found()
  endif
  
  # require FFmpeg >= 5.1.3
@@ -64,20 +64,20 @@ index cc0dfb567..3f07c9057 100644
    client_src += ['src/client/ffcin.c', 'src/client/sound/ogg.c']
    client_deps += [avcodec, avformat, avutil, swresample, swscale]
 
-From 2da2a037ded5ff6ed11d08f178a0b87ae6ef8c10 Mon Sep 17 00:00:00 2001
+From fd11dbf7e458f2a1755c6dd9f5620eace397083e Mon Sep 17 00:00:00 2001
 From: Frank Richter <frank.richter@gmail.com>
 Date: Mon, 13 Nov 2023 19:58:53 +0100
-Subject: [PATCH 3/6] Change FFmpeg defaults to a list
+Subject: [PATCH 3/7] Change FFmpeg defaults to a list
 
 ---
  meson.build | 12 ++++++------
  1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index 3f07c9057..529d08a98 100644
+index dd2daa508..d047e3ba1 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -320,12 +320,12 @@ if openal.found()
+@@ -338,12 +338,12 @@ if openal.found()
  endif
  
  # require FFmpeg >= 5.1.3
@@ -97,20 +97,20 @@ index 3f07c9057..529d08a98 100644
  avcodec = dependency('libavcodec', version: '>= 59.37.100', default_options: ffmpeg_defaults, required: avcodec_opt)
  avformat = dependency('libavformat', version: '>= 59.27.100', default_options: ffmpeg_defaults, required: avcodec_opt)
 
-From 8fa209d5e11133dec7a74df3d57c420980b2c040 Mon Sep 17 00:00:00 2001
+From 6f8d996d5ec35b54841a3e48a7d6f253980ba315 Mon Sep 17 00:00:00 2001
 From: Frank Richter <frank.richter@gmail.com>
 Date: Wed, 15 Nov 2023 22:40:38 +0100
-Subject: [PATCH 4/6] Change FFmpeg defaults to produce a smaller binary
+Subject: [PATCH 4/7] Change FFmpeg defaults to produce a smaller binary
 
 ---
  meson.build | 88 ++++++++++++++++++++++++++++++++++++++++++++++++++++-
  1 file changed, 87 insertions(+), 1 deletion(-)
 
 diff --git a/meson.build b/meson.build
-index 529d08a98..663f6e57b 100644
+index d047e3ba1..0d55fe7fb 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -319,12 +319,98 @@ if openal.found()
+@@ -337,12 +337,98 @@ if openal.found()
    config.set10('USE_OPENAL', true)
  endif
  
@@ -211,20 +211,20 @@ index 529d08a98..663f6e57b 100644
  avcodec_opt = get_option('avcodec')
  avcodec = dependency('libavcodec', version: '>= 59.37.100', default_options: ffmpeg_defaults, required: avcodec_opt)
 
-From e4c9429747ade0d93b3fef214ae6cb55fa38762e Mon Sep 17 00:00:00 2001
+From b24624a207955f60ffbc144532c4bbbb046f70db Mon Sep 17 00:00:00 2001
 From: Frank Richter <frank.richter@gmail.com>
 Date: Fri, 1 Dec 2023 08:26:12 +0100
-Subject: [PATCH 5/6] Clean up a comment
+Subject: [PATCH 5/7] Clean up a comment
 
 ---
  meson.build | 27 ---------------------------
  1 file changed, 27 deletions(-)
 
 diff --git a/meson.build b/meson.build
-index 663f6e57b..fba216868 100644
+index 0d55fe7fb..2a6ed843e 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -319,33 +319,6 @@ if openal.found()
+@@ -337,33 +337,6 @@ if openal.found()
    config.set10('USE_OPENAL', true)
  endif
  
@@ -259,10 +259,10 @@ index 663f6e57b..fba216868 100644
  ffmpeg_defaults = [
    'tests=disabled',
 
-From 52957be483862c71ebc6a01e9e16008309268ccc Mon Sep 17 00:00:00 2001
+From 03d17c78b1aafb6ce52abedf5990403e95330d22 Mon Sep 17 00:00:00 2001
 From: Frank Richter <frank.richter@gmail.com>
 Date: Sat, 2 Dec 2023 03:03:14 +0100
-Subject: [PATCH 6/6] Update wrapped ffmpeg version
+Subject: [PATCH 6/7] Update wrapped ffmpeg version
 
 ---
  subprojects/ffmpeg.wrap | 2 +-
@@ -277,6 +277,28 @@ index d27a02cc1..6586a14fc 100644
  url=https://gitlab.freedesktop.org/gstreamer/meson-ports/ffmpeg.git
 -revision=d8f9ba81a48513ef80a3ec67270cba1bb15e5f44
 +revision=meson-6.1
+ depth=1
+ 
+ [provide]
+
+From deda2aba08a9ace2f822d367a962feaeedc520fe Mon Sep 17 00:00:00 2001
+From: Frank Richter <frank.richter@gmail.com>
+Date: Sat, 26 Oct 2024 16:54:02 +0200
+Subject: [PATCH 7/7] Update wrapped ffmpeg version
+
+---
+ subprojects/ffmpeg.wrap | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/subprojects/ffmpeg.wrap b/subprojects/ffmpeg.wrap
+index 6586a14fc..bd572f286 100644
+--- a/subprojects/ffmpeg.wrap
++++ b/subprojects/ffmpeg.wrap
+@@ -1,6 +1,6 @@
+ [wrap-git]
+ url=https://gitlab.freedesktop.org/gstreamer/meson-ports/ffmpeg.git
+-revision=meson-6.1
++revision=meson-7.1
  depth=1
  
  [provide]
