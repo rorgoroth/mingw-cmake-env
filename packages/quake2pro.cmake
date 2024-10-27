@@ -11,7 +11,7 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/quake2pro-*.patch
   CONFIGURE_COMMAND
-    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
     --force-fallback-for=ffmpeg
     -Db_ndebug=true

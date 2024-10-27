@@ -21,7 +21,7 @@ ExternalProject_Add(
     COMMAND sh -c "ln -s ${src_glad} <SOURCE_DIR>/3rdparty/glad"
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/Vulkan-Headers"
     COMMAND sh -c "ln -s ${src_vulkan-headers} <SOURCE_DIR>/3rdparty/Vulkan-Headers"
-    COMMAND ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
+    COMMAND ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
     -Dd3d11=enabled
     -Ddemos=false

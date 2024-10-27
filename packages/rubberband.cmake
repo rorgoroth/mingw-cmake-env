@@ -6,7 +6,7 @@ ExternalProject_Add(
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
     -Dfft=builtin
     -Dresampler=libsamplerate

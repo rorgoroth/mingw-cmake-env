@@ -20,7 +20,7 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/mpv-player/mpv.git
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
     -Db_lto_mode=thin
     -Db_ndebug=true

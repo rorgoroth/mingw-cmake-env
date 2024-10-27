@@ -4,7 +4,7 @@ ExternalProject_Add(
   URL_HASH MD5=c40b3a1fbdbb9a7aa178600b88200c76
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
     -Ddeep-plc=enabled
     -Ddocs=disabled

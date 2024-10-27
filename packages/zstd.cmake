@@ -5,7 +5,7 @@ ExternalProject_Add(
   URL_HASH MD5=5a473726b3445d0e5d6296afd1ab6854
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
-    ${EXEC} meson setup <BINARY_DIR> <SOURCE_DIR>/build/meson
+    ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>/build/meson
     ${meson_conf_args}
     -Dlzma=disabled
     -Dlz4=disabled
