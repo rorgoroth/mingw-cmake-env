@@ -3,6 +3,7 @@
 # Standard build
 build() {
     ninja -C build update || exit
+    ninja -C build llvm || exit
     ninja -C build || exit
 }
 
