@@ -22,6 +22,8 @@ These all come with update scripts, however if one breaks it is on you to keep b
 
 [Urban Terror](https://github.com/omg-urt/urbanterror-slim): Quake3 mod and standalone game, client only (based on Quake3e, using Vulkan), git builds.
 
+[xonotic](https://github.com/rorgoroth/darkplaces-mingw-w64): Client only, git builds.
+
 ## Build Instructions
 
 Basic build deps:

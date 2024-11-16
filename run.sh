@@ -61,6 +61,10 @@ archive() {
         7z a -mx=9 "quake3e-urbanterror.7z" -- ./*
     cd .. || exit
 
+    cd xonotic-package || exit
+        7z a -mx=9 "xonotic.7z" -- ./*
+    cd .. || exit
+
     mv -- */*.7z .
   cd .. || exit
 }
