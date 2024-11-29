@@ -1,7 +1,7 @@
 ExternalProject_Add(
   openal
-  URL https://github.com/kcat/openal-soft/archive/refs/tags/1.24.0.tar.gz
-  URL_HASH MD5=9bf204aa3580b35fb27604484f51c6e0
+  URL https://github.com/kcat/openal-soft/archive/refs/tags/1.24.1.tar.gz
+  URL_HASH MD5=f57dd15086366fc7d73966b8cfde5fe9
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
