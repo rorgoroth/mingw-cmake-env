@@ -3,8 +3,8 @@ find_program(PKGCONFIG NAMES pkg-config)
 ExternalProject_Add(
   llvm
   EXCLUDE_FROM_ALL 1
-  URL https://github.com/rorgoroth/llvm-mingw/releases/download/19.1.4/19.1.4.tar.zst
-  URL_HASH MD5=5f8af389848c3fbc29e453ae49e39f30
+  URL https://github.com/rorgoroth/llvm-mingw/releases/download/19.1.5/19.1.5.tar.zst
+  URL_HASH MD5=cd120e4a5b06a94f5dd066a0f14e27b6
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
