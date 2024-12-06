@@ -65,7 +65,7 @@ set(meson_conf_args
   --prefix=${MINGW_INSTALL_PREFIX}
   --libdir=${MINGW_INSTALL_PREFIX}/lib
   --cross-file=${MESON_CROSS}
-  --buildtype=release
+  --buildtype=plain
   --default-library=static
   --prefer-static
 )
