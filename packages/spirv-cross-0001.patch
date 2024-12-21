@@ -14,23 +14,23 @@ index 6860c5b..3ef7718 100644
 @@ -345,7 +345,7 @@ if (SPIRV_CROSS_SHARED)
  		install(FILES ${CMAKE_CURRENT_BINARY_DIR}/spirv-cross-c-shared.pc DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
  	endif()
- 
+
 -	spirv_cross_add_library(spirv-cross-c-shared spirv_cross_c_shared SHARED
 +	spirv_cross_add_library(spirv-cross-c-shared spirv_cross_c_shared STATIC
  			${spirv-cross-core-sources}
  			${spirv-cross-c-sources})
- 
+
 @@ -401,11 +401,6 @@ if (SPIRV_CROSS_SHARED)
  		endif()
  	endif()
- 
+
 -	target_compile_definitions(spirv-cross-c-shared PRIVATE SPVC_EXPORT_SYMBOLS)
 -
 -	set_target_properties(spirv-cross-c-shared PROPERTIES
 -			VERSION ${SPIRV_CROSS_VERSION}
 -			SOVERSION ${spirv-cross-abi-major})
  endif()
- 
+
  if (SPIRV_CROSS_CLI)
--- 
+--
 2.33.0
