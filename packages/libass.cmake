@@ -16,6 +16,11 @@ ExternalProject_Add(
     -Ddirectwrite=enabled
     -Dfontconfig=enabled
     -Dlibunibreak=enabled
+    -Dtest=disabled
+    -Dcompare=disabled
+    -Dprofile=disabled
+    -Dfuzz=disabled
+    -Dcheckasm=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
