@@ -45,6 +45,7 @@ try {
     Write-Host "Operation completed" -ForegroundColor Magenta
     Write-Host
     Warning
+    Timeout /T 10
 }
 catch [System.Exception] {
     Write-Host $_.Exception.Message -ForegroundColor Red
