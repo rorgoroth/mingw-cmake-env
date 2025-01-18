@@ -33,6 +33,7 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/librempeg/librempeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
+  PATCH_COMMAND ${EXEC} patch --ignore-whitespace --fuzz=3 --strip 1 < ${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg-0001-libsvtav1_FFn7_fix.patch
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
     --cross-prefix=x86_64-w64-mingw32-
