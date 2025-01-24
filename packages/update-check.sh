@@ -2,11 +2,11 @@
 export LC_NUMERIC="C"
 
 check() {
-    if awk "BEGIN {exit !($b > $a)}"; then
+if ! printf "%s\n%s\n" "$b" "$a" | sort -cV &> /dev/null ; then
         echo "$pkg: $a -> $b [NEW]"
     else
         echo "$pkg: $a -> $b"
-    fi
+fi
 }
 
 # brotli
@@ -54,7 +54,7 @@ check
 # libsdl2
 pkg=libsdl2
 a=$(cat ./packages/libsdl2.cmake | grep 'SDL2' | sed -n 's,.*SDL2-\([0-9][^>]*\)\.tar.*,\1,p')
-b=$(wget -q -O- 'https://github.com/libsdl-org/SDL/tags' | grep 'href="/libsdl-org/SDL/archive/refs/tags' | sed -n 's,.*href="/libsdl-org/SDL/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+b=$(wget -q -O- 'https://github.com/libsdl-org/SDL/tags' | grep 'href="/libsdl-org/SDL/archive/refs/tags' | grep 'release-2' | sed -n 's,.*href="/libsdl-org/SDL/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 check
 
 # mujs
