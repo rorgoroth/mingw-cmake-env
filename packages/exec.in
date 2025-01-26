@@ -1,8 +1,9 @@
 #!/bin/sh
-
-export CC=x86_64-w64-mingw32-gcc
-export CXX=x86_64-w64-mingw32-g++
 export PATH="@CMAKE_INSTALL_PREFIX@/bin:$PATH"
+export CCACHE_DIR="@MINGW_INSTALL_PREFIX@/ccache"
+export CCACHE_CONFIGPATH="@MINGW_INSTALL_PREFIX@/ccache/ccache.conf"
+export CC="ccache x86_64-w64-mingw32-gcc"
+export CXX="ccache x86_64-w64-mingw32-gcc"
 export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
 export CFLAGS="-march=@CPUTUNE@ -@OPTIM@ -flto=thin -fdata-sections -ffunction-sections -fvisibility=hidden"

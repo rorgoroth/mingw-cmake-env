@@ -36,6 +36,7 @@ ExternalProject_Add(
   PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg-0001-libsvtav1-FFmpeg-v7-fix.patch
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
+    --cc='ccache x86_64-w64-mingw32-gcc' --cxx='ccache x86_64-w64-mingw32-gcc'
     --cross-prefix=x86_64-w64-mingw32-
     --prefix=${MINGW_INSTALL_PREFIX}
     --arch=x86_64

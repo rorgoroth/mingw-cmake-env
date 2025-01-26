@@ -18,10 +18,6 @@ ExternalProject_Add(
     COMMAND sh -c "cp -ar <SOURCE_DIR>/x86_64-w64-mingw32 ${CMAKE_INSTALL_PREFIX}/"
     COMMAND
       ${CMAKE_COMMAND} -E create_symlink
-      ${CMAKE_INSTALL_PREFIX}/x86_64-w64-mingw32
-      ${CMAKE_INSTALL_PREFIX}/mingw
-    COMMAND
-      ${CMAKE_COMMAND} -E create_symlink
       ${PKGCONFIG}
       ${CMAKE_INSTALL_PREFIX}/bin/x86_64-w64-mingw32-pkg-config
     COMMAND

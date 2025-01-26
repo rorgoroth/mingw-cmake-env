@@ -54,7 +54,11 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
   set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install"
   CACHE PATH "Default install path" FORCE)
 endif()
-set(MINGW_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/mingw)
+set(MINGW_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/x86_64-w64-mingw32)
+
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/packages/ccache.conf.in
+                ${MINGW_INSTALL_PREFIX}/ccache/ccache.conf @ONLY)
+set(CCACHE_CONF ${MINGW_INSTALL_PREFIX}/ccache/ccache.conf)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/toolchain.cmake.in
                ${CMAKE_CURRENT_BINARY_DIR}/toolchain.cmake @ONLY)

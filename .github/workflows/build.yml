@@ -18,7 +18,7 @@ jobs:
       - name: add_packages
         run: |
           rm /var/cache/apk/*
-          apk add 7zip autoconf automake bash clang lld llvm llvm-linker-tools gcc g++ cmake coreutils diffutils gawk gettext-dev git libtool make meson musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
+          apk add 7zip autoconf automake bash ccache clang lld llvm llvm-linker-tools gcc g++ cmake coreutils diffutils gawk gettext-dev git libtool make meson musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
         shell: alpine.sh --root {0}
 
       - name: setup_git
@@ -27,20 +27,27 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
         shell: alpine.sh --root {0}
 
-      - name: load_cache
+      - name: load_cache_build
         uses: actions/cache/restore@main
         with:
           path: build
           key: cached_build
 
+      - name: load_cache_ltocache
+        uses: actions/cache/restore@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ltocache
+          key: ltocache
+
+      - name: load_cache_ccache
+        uses: actions/cache/restore@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ccache
+          key: ccache
+
       - name: setup_cmake
         run: |
           cmake -Bbuild -G Ninja
-        shell: alpine.sh {0}
-
-      - name: run_clean_dist
-        run: |
-          bash -c "rm -rf build/packages/{quake*,xonotic*,ffmpeg*,mpv*}"
         shell: alpine.sh {0}
 
       - name: run_update
@@ -63,7 +70,25 @@ jobs:
       - name: clear_cache
         uses: easimon/wipe-cache@main
 
-      - name: save_cache
+      - name: save_cache_ltocache
+        uses: actions/cache/save@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ltocache
+          key: ltocache
+
+      - name: save_cache_ccache
+        uses: actions/cache/save@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ccache
+          key: ccache
+
+      - name: run_clean_lto-ccache_cache
+        run: |
+          bash -c "rm -rf build/install/x86_64-w64-mingw32/ltocache"
+          bash -c "rm -rf build/install/x86_64-w64-mingw32/ccache"
+        shell: alpine.sh {0}
+
+      - name: save_cache_build
         uses: actions/cache/save@main
         with:
           path: build
