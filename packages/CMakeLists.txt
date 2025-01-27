@@ -20,21 +20,23 @@ function(force_rebuild_git _name)
     ${_name} force-update
     INDEPENDENT 1
     DEPENDEES download update
-    DEPENDERS patch build install
+    DEPENDERS patch configure build install
     COMMAND sh -c "git am --abort 2> /dev/null || true"
     COMMAND git reset --hard ${git_tag} ${pull}
     WORKING_DIRECTORY <SOURCE_DIR>
     LOG 1)
 endfunction()
 
-function(force_git_patch _name)
+function(patch_git _name)
   ExternalProject_Add_Step(
-    ${_name} force-git-patch
-    DEPENDEES force-update patch
-    DEPENDERS configure
-    COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/${_name}-*.patch
-    WORKING_DIRECTORY <SOURCE_DIR>
-    LOG 1)
+    ${_name} patch-git
+      DEPENDEES force-update
+      DEPENDERS configure build
+      COMMAND sh -c "git am --abort 2> /dev/null || true"
+      COMMAND sh -c "git reset --hard origin/master 2> /dev/null || true"
+      COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/${_name}-*.patch
+      WORKING_DIRECTORY <SOURCE_DIR>
+      LOG 1)
 endfunction()
 
 function(force_meson_configure _name)
