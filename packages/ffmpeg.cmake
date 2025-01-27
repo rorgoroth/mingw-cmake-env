@@ -33,7 +33,6 @@ ExternalProject_Add(
   GIT_REPOSITORY https://github.com/librempeg/librempeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg-0001-libsvtav1-FFmpeg-v7-fix.patch
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
     --cc='ccache x86_64-w64-mingw32-gcc' --cxx='ccache x86_64-w64-mingw32-gcc'
@@ -122,3 +121,4 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffprobe.exe)
 
 force_rebuild_git(ffmpeg)
+patch_git(ffmpeg)

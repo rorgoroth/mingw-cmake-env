@@ -2,7 +2,6 @@ ExternalProject_Add(
   lame
   GIT_REPOSITORY https://gitlab.com/shinchiro/lame.git
   GIT_SHALLOW 1
-  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/lame-*.patch
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} autoupdate -f && autoreconf -fi && <SOURCE_DIR>/configure
@@ -18,3 +17,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(lame)
+patch_git(lame)

@@ -10,7 +10,6 @@ ExternalProject_Add(
   GIT_TAG main
   UPDATE_COMMAND ""
   GIT_SHALLOW 1
-  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
@@ -26,4 +25,5 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(fontconfig)
+patch_git(fontconfig)
 force_meson_configure(fontconfig)
