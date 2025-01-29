@@ -19,13 +19,12 @@ gitupdate() {
     local src_dir=$2
     local stamp_dir=$3
 
-    echo "Updating $name"
     git -C "$src_dir" reset --hard "@{u}" >/dev/null
 
     result=$(git -C "$src_dir" pull 2>&1)
 
     if [[ ! "$result" =~ up[-\ ]to[-\ ]date ]]; then
-        echo "Deleting stamp files for $name"
+        echo "Updating $name"
         find "$stamp_dir" -maxdepth 1 -type f ! -iname "*.cmake" -size 0c -delete
     fi
 }
