@@ -37,7 +37,7 @@ endif()
       COMMAND sh -c "git am --abort 2> /dev/null || true"
       COMMAND sh -c "git rebase --abort 2> /dev/null || true"
       COMMAND git reset --hard ${git_tag} ${pull}
-      COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/${_name}-*.patch
+      COMMAND sh -c "git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/${_name}-*.patch"
       WORKING_DIRECTORY <SOURCE_DIR>
       LOG 1)
 endfunction()
@@ -155,7 +155,7 @@ list(
 
 foreach(package IN LISTS ep)
   include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
-  message(STATUS "Parsing package ${package}")
+#  message(STATUS "Parsing package ${package}")
 endforeach()
 
 set(UPDATE_SCRIPT ${CMAKE_SOURCE_DIR}/packages/update-repo.sh)
@@ -165,4 +165,4 @@ add_custom_target(
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
   COMMAND chmod 755 ${UPDATE_SCRIPT}
   COMMAND ${EXEC} ${UPDATE_SCRIPT}
-  COMMENT "Updating git repo")
+  COMMENT "Updating Git Repositories...")
