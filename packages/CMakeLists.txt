@@ -142,6 +142,7 @@ list(
   mpv
   zstd
   cjson
+  libpsl
   curl
   minizip
   glew
