@@ -16,21 +16,45 @@ jobs:
         with:
           branch: edge
 
-      - name: load_cache
+      - name: load_cache_build
         uses: actions/cache/restore@main
         with:
           path: build
           key: cached_build
 
+      - name: load_cache_ltocache
+        uses: actions/cache/restore@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ltocache
+          key: ltocache
+
+      - name: load_cache_ccache
+        uses: actions/cache/restore@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ccache
+          key: ccache
+
       - name: run_clean_dist
         run: |
-          rm -rfv build/packages/${{ github.event.inputs.pkgname }}-*
+          rm -rfv build/packages/${{ github.event.inputs.pkgname }}*
         shell: alpine.sh {0}
 
       - name: clear_cache
         uses: easimon/wipe-cache@main
 
-      - name: save_cache
+      - name: save_cache_ltocache
+        uses: actions/cache/save@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ltocache
+          key: ltocache
+
+      - name: save_cache_ccache
+        uses: actions/cache/save@main
+        with:
+          path: build/install/x86_64-w64-mingw32/ccache
+          key: ccache
+
+      - name: save_cache_build
         uses: actions/cache/save@main
         with:
           path: build
