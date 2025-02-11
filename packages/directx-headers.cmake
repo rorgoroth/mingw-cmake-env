@@ -6,7 +6,7 @@ ExternalProject_Add(
   GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} meson <BINARY_DIR> <SOURCE_DIR>
+    ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
   BUILD_COMMAND ${EXEC} ninja -C <BINARY_DIR>
   INSTALL_COMMAND ${EXEC} ninja -C <BINARY_DIR> install
