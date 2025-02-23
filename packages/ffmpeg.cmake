@@ -121,4 +121,3 @@ ExternalProject_Add_Step(
     ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffprobe.exe)
 
 force_rebuild_git(ffmpeg)
-patch_git(ffmpeg)
