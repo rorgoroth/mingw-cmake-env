@@ -101,6 +101,7 @@ list(
   brotli
   freetype2
   harfbuzz
+  graphengine
   libzimg
   fontconfig
   libunibreak
