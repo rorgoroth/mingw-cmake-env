@@ -1,32 +1,6 @@
-cmake_minimum_required(VERSION 3.27.0)
+cmake_minimum_required(VERSION 3.30.0)
 project(mingw-env)
 enable_language(C ASM CXX)
-
-function(colored_msg msg)
-  if(NOT WIN32)
-    string(ASCII 27 Esc)
-    message("${Esc}[35m${msg}${Esc}[m")
-  else()
-    message("${msg}")
-  endif()
-endfunction()
-
-macro(print_mingw64_banner)
-  colored_msg("")
-  colored_msg("  ███╗░░░███╗██╗███╗░░██╗░██████╗░░██╗░░░░░░░██╗░█████╗░░░██╗██╗")
-  colored_msg("  ████╗░████║██║████╗░██║██╔════╝░░██║░░██╗░░██║██╔═══╝░░██╔╝██║")
-  colored_msg("  ██╔████╔██║██║██╔██╗██║██║░░██╗░░╚██╗████╗██╔╝██████╗░██╔╝░██║")
-  colored_msg("  ██║╚██╔╝██║██║██║╚████║██║░░╚██╗░░████╔═████║░██╔══██╗███████║")
-  colored_msg("  ██║░╚═╝░██║██║██║░╚███║╚██████╔╝░░╚██╔╝░╚██╔╝░╚█████╔╝╚════██║")
-  colored_msg("  ╚═╝░░░░░╚═╝╚═╝╚═╝░░╚══╝░╚═════╝░░░░╚═╝░░░╚═╝░░░╚════╝░░░░░░╚═╝")
-  colored_msg("")
-endmacro()
-
-macro(print_header)
-  print_mingw64_banner()
-endmacro()
-
-print_header()
 
 include(ExternalProject)
 include(ProcessorCount)
@@ -70,12 +44,12 @@ set(MESON_CROSS ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec.in
                ${CMAKE_CURRENT_BINARY_DIR}/exec @ONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec-nolto.in
+               ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto @ONLY)
+
 set(EXEC ${CMAKE_CURRENT_BINARY_DIR}/exec)
 set(MAKE ${EXEC} make -j${MAKEJOBS})
 set(NINJA ${EXEC} ninja -j${MAKEJOBS})
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec-nolto.in
-               ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto @ONLY)
 set(EXEC-NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto)
 set(MAKE-NLTO ${EXEC-NLTO} make -j${MAKEJOBS})
 set(NINJA-NLTO ${EXEC-NLTO} ninja -j${MAKEJOBS})
