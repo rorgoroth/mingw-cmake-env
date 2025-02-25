@@ -114,12 +114,14 @@ jobs:
         with:
           name: build-logs
           path: logs/
+          compression-level: 9
 
       - name: upload_pkg_artifacts
         uses: actions/upload-artifact@master
         with:
           name: pkg-artifacts
           path: bin/*-package
+          compression-level: 0
 
       - name: create_release_tag
         uses: rearrangement/auto-releases@v1.1
