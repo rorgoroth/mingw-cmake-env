@@ -8,5 +8,5 @@ export PKG_CONFIG="pkg-config --static"
 export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
 export CFLAGS="-march=@CPUTUNE@ -@OPTIM@ -flto=thin -fdata-sections -ffunction-sections -fvisibility=hidden"
 export CXXFLAGS="-march=@CPUTUNE@ -@OPTIM@ -flto=thin -fdata-sections -ffunction-sections -fvisibility=hidden"
-export LDFLAGS="-flto=thin -flto-jobs=@CPU_COUNT@ -Wl,--gc-sections -Wl,--icf=all -Wl,--thinlto-cache-dir=@MINGW_INSTALL_PREFIX@/ltocache -Wl,--thinlto-cache-policy=cache_size_bytes=1g:prune_interval=1m"
+export LDFLAGS="-flto=thin -flto-jobs=@CPU_COUNT@ -Wl,--gc-sections -Wl,--icf=all -Wl,--thinlto-cache-dir=@MINGW_INSTALL_PREFIX@/ltocache -Wl,--thinlto-cache-policy=cache_size_bytes=500M:prune_interval=1m"
 eval $*
