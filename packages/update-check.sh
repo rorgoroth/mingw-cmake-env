@@ -57,6 +57,12 @@ a=$(cat ./packages/libsdl2.cmake | grep 'SDL2' | sed -n 's,.*SDL2-\([0-9][^>]*\)
 b=$(wget -q -O- 'https://github.com/libsdl-org/SDL/tags' | grep 'href="/libsdl-org/SDL/archive/refs/tags' | grep 'release-2' | sed -n 's,.*href="/libsdl-org/SDL/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
 check
 
+# libxml2
+pkg=libxml2
+a=$(cat ./packages/libxml2.cmake | grep 'libxml2' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/GNOME/libxml2/tags' | grep 'href="/GNOME/libxml2/archive/refs/tags' | sed -n 's,.*href="/GNOME/libxml2/archive/refs/tags/v\([0-9][^"_]*\)\.tar.*,\1,p' | head -1)
+check
+
 # mujs
 pkg=mujs
 a=$(cat ./packages/mujs.cmake | grep 'mujs' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*,\1,p')

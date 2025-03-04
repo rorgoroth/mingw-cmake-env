@@ -2,9 +2,9 @@ ExternalProject_Add(
   libxml2
   DEPENDS libiconv
           zlib
-  GIT_REPOSITORY https://github.com/GNOME/libxml2.git
-  GIT_SHALLOW 1
-  UPDATE_COMMAND ""
+  URL https://github.com/GNOME/libxml2/archive/refs/tags/v2.13.6.tar.gz
+  URL_HASH MD5=c70f671f4796fb397d6e26304fa42330
+  DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
@@ -49,5 +49,3 @@ INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-force_rebuild_git(libxml2)
