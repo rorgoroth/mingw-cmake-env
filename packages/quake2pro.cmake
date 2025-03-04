@@ -6,10 +6,9 @@ ExternalProject_Add(
           libsdl2
           openal
           libjpeg
-  GIT_REPOSITORY https://github.com/skullernet/q2pro.git
+  GIT_REPOSITORY https://github.com/rorgoroth/q2pro.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/quake2pro-*.patch
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
