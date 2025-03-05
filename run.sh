@@ -33,35 +33,35 @@ package() {
 archive() {
   cd bin || exit
     cd ffmpeg-package || exit
-        7z a -mx=9 "ffmpeg.7z" -- ./*
+        7z a -mx=1 "ffmpeg.7z" -- ./*
     cd .. || exit
 
     cd ffmpeg-full-package || exit
-        7z a -mx=9 "ffmpeg-full.7z" -- ./*
+        7z a -mx=1 "ffmpeg-full.7z" -- ./*
     cd .. || exit
 
     cd mpv-package || exit
-        7z a -mx=9 "mpv.7z" -- ./*
+        7z a -mx=1 "mpv.7z" -- ./*
     cd .. || exit
 
     cd quake2pro-package || exit
-        7z a -mx=9 "quake2pro.7z" -- ./*
+        7z a -mx=1 "quake2pro.7z" -- ./*
     cd .. || exit
 
     cd quake3e-package || exit
-        7z a -mx=9 "quake3e.7z" -- ./*
+        7z a -mx=1 "quake3e.7z" -- ./*
     cd .. || exit
 
     cd quake3e-openarena-package || exit
-        7z a -mx=9 "quake3e-openarena.7z" -- ./*
+        7z a -mx=1 "quake3e-openarena.7z" -- ./*
     cd .. || exit
 
     cd quake3e-urbanterror-package || exit
-        7z a -mx=9 "quake3e-urbanterror.7z" -- ./*
+        7z a -mx=1 "quake3e-urbanterror.7z" -- ./*
     cd .. || exit
 
     cd xonotic-package || exit
-        7z a -mx=9 "xonotic.7z" -- ./*
+        7z a -mx=1 "xonotic.7z" -- ./*
     cd .. || exit
 
     mv -- */*.7z .
