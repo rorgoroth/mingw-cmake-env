@@ -1,6 +1,6 @@
 ExternalProject_Add(
   x264
-  GIT_REPOSITORY https://code.videolan.org/videolan/x264.git
+  GIT_REPOSITORY https://github.com/zhongflyTeam/x264.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND

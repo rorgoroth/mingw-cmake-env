@@ -1,7 +1,7 @@
 ExternalProject_Add(
   dav1d
   DEPENDS xxhash
-  GIT_REPOSITORY https://code.videolan.org/videolan/dav1d.git
+  GIT_REPOSITORY https://github.com/zhongflyTeam/dav1d.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND

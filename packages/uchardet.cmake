@@ -1,6 +1,6 @@
 ExternalProject_Add(
   uchardet
-  GIT_REPOSITORY https://gitlab.freedesktop.org/uchardet/uchardet.git
+  GIT_REPOSITORY https://github.com/zhongflyTeam/uchardet.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
