@@ -2,16 +2,20 @@ find_program(PKGCONFIG NAMES pkg-config)
 
 ExternalProject_Add(
   llvm
-  GIT_REPOSITORY https://github.com/rorgoroth/llvm-mingw.git
-  GIT_SHALLOW 1
-  UPDATE_COMMAND ""
   EXCLUDE_FROM_ALL 1
+  URL https://github.com/rorgoroth/llvm-mingw/releases/download/20.1.0/20.1.0.tar.zst
+  URL_HASH MD5=513fabeee69da20bcbd3fe9c011c4f68
+  DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND ""
-  BUILD_COMMAND
-	COMMAND
-      sh -c "./build-all.sh --host-clang --disable-dylib --disable-lldb --disable-lldb-mi --disable-clang-tools-extra --with-default-win32-winnt=0x0A00 --with-default-msvcrt=ucrt --disable-cfguard ${CMAKE_INSTALL_PREFIX}"
-  BUILD_IN_SOURCE 1
+  BUILD_COMMAND ""
   INSTALL_COMMAND
+    COMMAND sh -c "mkdir -p ${CMAKE_INSTALL_PREFIX}"
+    COMMAND sh -c "cp -ar <SOURCE_DIR>/bin ${CMAKE_INSTALL_PREFIX}/"
+    COMMAND sh -c "cp -ar <SOURCE_DIR>/generic-w64-mingw32 ${CMAKE_INSTALL_PREFIX}/"
+    COMMAND sh -c "cp -ar <SOURCE_DIR>/include ${CMAKE_INSTALL_PREFIX}/"
+    COMMAND sh -c "cp -ar <SOURCE_DIR>/lib ${CMAKE_INSTALL_PREFIX}/"
+    COMMAND sh -c "cp -ar <SOURCE_DIR>/share ${CMAKE_INSTALL_PREFIX}/"
+    COMMAND sh -c "cp -ar <SOURCE_DIR>/x86_64-w64-mingw32 ${CMAKE_INSTALL_PREFIX}/"
     COMMAND
       ${CMAKE_COMMAND} -E create_symlink
       ${CMAKE_INSTALL_PREFIX}/x86_64-w64-mingw32
@@ -24,11 +28,6 @@ ExternalProject_Add(
       ${CMAKE_COMMAND} -E create_symlink
       ${CMAKE_INSTALL_PREFIX}/x86_64-w64-mingw32/lib
       ${CMAKE_INSTALL_PREFIX}/x86_64-w64-mingw32/lib64
-    COMMAND sh -c "find ${CMAKE_INSTALL_PREFIX} -name '*.dll.a' -print -delete"
   LOG_DOWNLOAD 1
-  LOG_UPDATE 1
-  LOG_CONFIGURE 1
-  LOG_BUILD 1
-  LOG_INSTALL 1)
-
-force_rebuild_git(llvm)
+  LOG_INSTALL 1
+  LOG_UPDATE 1)
