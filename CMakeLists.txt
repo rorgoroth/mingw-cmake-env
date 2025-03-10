@@ -21,6 +21,9 @@ set(CPUTUNE "x86-64-v3"
 set(OPTIM "O3"
   CACHE STRING "Target optimization level. Example: O2 or O3")
 
+set(MALLOC "/usr/lib/libmimalloc-insecure.so.2"
+   CACHE STRING "set malloc implementation")
+
 set(MAKEJOBS ${CPU_COUNT}
   CACHE STRING "Number of parallel processes to run for each package build")
 

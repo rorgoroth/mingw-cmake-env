@@ -10,4 +10,5 @@ export PKG_CONFIG_LIBDIR="@MINGW_INSTALL_PREFIX@/lib/pkgconfig"
 export CFLAGS="-march=@CPUTUNE@ -@OPTIM@ -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
 export CXXFLAGS="-march=@CPUTUNE@ -@OPTIM@ -fno-lto -fdata-sections -ffunction-sections -fvisibility=hidden"
 export LDFLAGS="-fno-lto -Wl,--gc-sections -Wl,--icf=all"
+export LD_PRELOAD="@MALLOC@"
 eval $*
