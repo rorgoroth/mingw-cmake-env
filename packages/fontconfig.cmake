@@ -15,8 +15,16 @@ ExternalProject_Add(
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
     -Dcache-build=disabled
+    -Ddoc-html=disabled
+    -Ddoc-man=disabled
+    -Ddoc-pdf=disabled
+    -Ddoc-txt=disabled
     -Ddoc=disabled
+    -Dfontations=disabled
+    -Diconv=enabled
+    -Dtests=disabled
     -Dtools=disabled
+    -Dxml-backend=expat
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
