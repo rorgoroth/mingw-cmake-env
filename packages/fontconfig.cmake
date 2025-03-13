@@ -25,5 +25,11 @@ ExternalProject_Add(
   LOG_BUILD 1
   LOG_INSTALL 1)
 
+ExternalProject_Add_Step(
+  fontconfig rm-dll
+  DEPENDEES install
+  COMMAND sh -c "rm ${MINGW_INSTALL_PREFIX}/lib/libfontconfig.dll.a >/dev/null 2>&1 || true"
+  COMMAND sh -c "rm ${MINGW_INSTALL_PREFIX}/bin/libfontconfig-1.dll >/dev/null 2>&1 || true")
+
 force_rebuild_git(fontconfig)
 force_meson_configure(fontconfig)
