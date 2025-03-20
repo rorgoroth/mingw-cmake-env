@@ -30,10 +30,9 @@ ExternalProject_Add(
           vulkan-loader
           x264
           x265
-  GIT_REPOSITORY https://github.com/librempeg/librempeg.git
+  GIT_REPOSITORY https://github.com/rorgoroth/librempeg.git
   GIT_SHALLOW 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/ffmpeg-*.patch
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
     --cc='ccache x86_64-w64-mingw32-gcc' --cxx='ccache x86_64-w64-mingw32-gcc'
