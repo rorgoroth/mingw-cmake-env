@@ -6,7 +6,7 @@ ExternalProject_Add(
   GIT_TAG dev
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
-    ${EXEC} cmake -H<SOURCE_DIR>/cmake_unofficial -B<BINARY_DIR>
+    ${EXEC} cmake -H<SOURCE_DIR>/build/cmake -B<BINARY_DIR>
     ${cmake_conf_args}
     -DXXHASH_BUILD_XXHSUM=OFF
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
