@@ -1,5 +1,7 @@
 # 7z
-$env:Path += ";C:\Program Files\7-Zip\;"
+if ((Get-Command "7z.exe" -ErrorAction SilentlyContinue) -eq $null) {
+    Write-Host "7z not found, please install it or add it to your $PATH."
+}
 
 # Extracting
 function Extract-Archive {
