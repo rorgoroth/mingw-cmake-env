@@ -12,7 +12,8 @@ ExternalProject_Add(
           vulkan-loader
           xxhash
   GIT_REPOSITORY https://github.com/haasn/libplacebo.git
-  GIT_SHALLOW 1
+  GIT_TAG 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
+#  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/fast_float"
