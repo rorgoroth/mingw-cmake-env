@@ -1,7 +1,6 @@
 ExternalProject_Add(
   x265
   GIT_REPOSITORY https://github.com/zhongflyTeam/x265_git.git
-  GIT_TAG b354c009a60bcd6d7fc04014e200a1ee9c45c167
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR>/source -B<BINARY_DIR>
