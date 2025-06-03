@@ -51,6 +51,12 @@ a=$(cat ./packages/libjxl.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://github.com/libjxl/libjxl/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | sort -Vr | head -1 | sed 's/\_/\./g')
 check
 
+# libplacebo
+pkg=libplacebo
+a=$(cat ./packages/libplacebo.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/haasn/libplacebo/tags' | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p' | sort -Vr | head -1)
+check
+
 # libsdl2
 pkg=libsdl2
 a=$(cat ./packages/libsdl2.cmake | grep 'SDL2' | sed -n 's,.*SDL2-\([0-9][^>]*\)\.tar.*,\1,p')
