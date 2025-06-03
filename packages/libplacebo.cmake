@@ -12,7 +12,7 @@ ExternalProject_Add(
           vulkan-loader
           xxhash
   GIT_REPOSITORY https://github.com/haasn/libplacebo.git
-  GIT_TAG 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
+  GIT_TAG v7.351.0
 #  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
