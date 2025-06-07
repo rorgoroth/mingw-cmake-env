@@ -1,6 +1,6 @@
 diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
---- a/loader/CMakeLists.txt	2025-05-09 16:42:12.000000000 +0100
-+++ b/loader/CMakeLists.txt	2025-05-10 14:53:51.486812918 +0100
+--- a/loader/CMakeLists.txt	2025-06-06 17:29:17.000000000 +0100
++++ b/loader/CMakeLists.txt	2025-06-07 16:55:33.801678594 +0100
 @@ -22,8 +22,9 @@
  add_library(loader_specific_options INTERFACE)
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
@@ -45,7 +45,7 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      target_sources(vulkan PRIVATE ${NORMAL_LOADER_SRCS})
  
      set_target_properties(vulkan PROPERTIES
-@@ -521,7 +509,7 @@
+@@ -517,7 +505,7 @@
      target_compile_definitions(vulkan PRIVATE SHOULD_EXPORT_TEST_FUNCTIONS)
  endif()
  
@@ -55,8 +55,8 @@ diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
      message(NOTICE "Apple STATIC lib: it will be built but not installed, and vulkan.pc and VulkanLoaderConfig.cmake won't be generated!")
      return()
 diff -ruN a/loader/loader.c b/loader/loader.c
---- a/loader/loader.c	2025-05-09 16:42:12.000000000 +0100
-+++ b/loader/loader.c	2025-05-10 14:53:51.486812918 +0100
+--- a/loader/loader.c	2025-06-06 17:29:17.000000000 +0100
++++ b/loader/loader.c	2025-06-07 16:55:33.805678593 +0100
 @@ -1972,7 +1972,7 @@
      return res;
  }
@@ -76,8 +76,8 @@ diff -ruN a/loader/loader.c b/loader/loader.c
  #endif
  }
 diff -ruN a/loader/loader.h b/loader/loader.h
---- a/loader/loader.h	2025-05-09 16:42:12.000000000 +0100
-+++ b/loader/loader.h	2025-05-10 14:53:51.486812918 +0100
+--- a/loader/loader.h	2025-06-06 17:29:17.000000000 +0100
++++ b/loader/loader.h	2025-06-07 16:55:33.809678592 +0100
 @@ -33,7 +33,9 @@
  #include "cJSON.h"
  
@@ -98,8 +98,8 @@ diff -ruN a/loader/loader.h b/loader/loader.h
  #else
  void loader_initialize(void);
 diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
---- a/loader/loader.rc.in	2025-05-09 16:42:12.000000000 +0100
-+++ b/loader/loader.rc.in	2025-05-10 14:53:51.496812921 +0100
+--- a/loader/loader.rc.in	2025-06-06 17:29:17.000000000 +0100
++++ b/loader/loader.rc.in	2025-06-07 16:55:33.809678592 +0100
 @@ -19,7 +19,11 @@
  // Author: Charles Giessen <charles@lunarg.com>
  //
@@ -113,8 +113,8 @@ diff -ruN a/loader/loader.rc.in b/loader/loader.rc.in
  // All set through CMake
  #define VER_FILE_VERSION ${LOADER_VER_FILE_VERSION}
 diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
---- a/loader/loader_windows.c	2025-05-09 16:42:12.000000000 +0100
-+++ b/loader/loader_windows.c	2025-05-10 14:53:51.496812921 +0100
+--- a/loader/loader_windows.c	2025-06-06 17:29:17.000000000 +0100
++++ b/loader/loader_windows.c	2025-06-07 16:55:33.813678591 +0100
 @@ -95,6 +95,7 @@
  #endif
  }
@@ -132,8 +132,8 @@ diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
  bool windows_add_json_entry(const struct loader_instance *inst,
                              char **reg_data,    // list of JSON files
 diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
---- a/loader/vk_loader_platform.h	2025-05-09 16:42:12.000000000 +0100
-+++ b/loader/vk_loader_platform.h	2025-05-10 14:53:51.496812921 +0100
+--- a/loader/vk_loader_platform.h	2025-06-06 17:29:17.000000000 +0100
++++ b/loader/vk_loader_platform.h	2025-06-07 16:55:33.813678591 +0100
 @@ -71,15 +71,12 @@
  #include <io.h>
  #include <shlwapi.h>
@@ -172,7 +172,7 @@ diff -ruN a/loader/vk_loader_platform.h b/loader/vk_loader_platform.h
  }
 diff -ruN a/loader/vulkan_own.pc.in b/loader/vulkan_own.pc.in
 --- a/loader/vulkan_own.pc.in	1970-01-01 01:00:00.000000000 +0100
-+++ b/loader/vulkan_own.pc.in	2025-05-10 14:53:51.496812921 +0100
++++ b/loader/vulkan_own.pc.in	2025-06-07 16:55:33.813678591 +0100
 @@ -0,0 +1,11 @@
 +prefix=@CMAKE_INSTALL_PREFIX@
 +exec_prefix=${prefix}
