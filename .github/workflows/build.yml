@@ -18,7 +18,7 @@ jobs:
       - name: add_packages
         run: |
           rm /var/cache/apk/*
-          apk add 7zip autoconf automake bash ccache clang lld llvm llvm-linker-tools gcc g++ cmake coreutils diffutils gawk gettext-dev git libtool make meson mimalloc2-insecure musl-dev nasm patch pkgconf po4a py3-mako samurai texinfo util-linux-misc yasm
+          apk add 7zip autoconf automake bash ccache clang lld llvm llvm-linker-tools gcc g++ cmake coreutils diffutils gawk gettext-dev git libtool make meson mimalloc2-insecure musl-dev nasm patch pkgconf po4a py3-jinja2 py3-mako samurai texinfo util-linux-misc yasm
         shell: alpine.sh --root {0}
 
       - name: setup_git
