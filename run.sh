@@ -3,7 +3,6 @@
 # Standard build
 build() {
   ninja -C build update || exit
-  ninja -C build llvm || exit
   ninja -C build quake2pro || exit
   ninja -C build quake3e || exit
   ninja -C build quake3e-openarena || exit
