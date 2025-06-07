@@ -52,12 +52,12 @@ ExternalProject_Add(
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
+    --enable-agpl --enable-gpl --enable-version3 --enable-nonfree
     --enable-amf
     --enable-cross-compile
     --enable-ffmpeg
     --enable-ffplay
     --enable-ffprobe
-    --enable-gpl --enable-version3 --enable-nonfree
     --enable-lcms2
     --enable-libaom
     --enable-libass
