@@ -132,7 +132,7 @@ jobs:
           title: Latest Build
 
       - name: upload_packages
-        uses: svenstaro/upload-release-action@2.9.1
+        uses: svenstaro/upload-release-action@2.10.0
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: bin/*.7z
