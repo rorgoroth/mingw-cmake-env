@@ -11,8 +11,8 @@ VERSION=1.3.4")
 
 ExternalProject_Add(
   mujs
-  URL https://github.com/ccxvii/mujs/archive/refs/tags/1.3.6.tar.gz
-  URL_HASH MD5=7b88fd69954f0c9886587c020c149a4c
+  URL https://github.com/ccxvii/mujs/archive/refs/tags/1.3.7.tar.gz
+  URL_HASH MD5=f6e8fd8297340238a07e58be019fd7dc
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/mujs-0001.patch
   UPDATE_COMMAND ""
