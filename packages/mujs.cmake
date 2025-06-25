@@ -7,7 +7,7 @@ prefix=${MINGW_INSTALL_PREFIX}
 OUT=<BINARY_DIR>
 host=mingw
 HAVE_READLINE=no
-VERSION=1.3.4")
+VERSION=1.3.7")
 
 ExternalProject_Add(
   mujs

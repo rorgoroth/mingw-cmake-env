@@ -29,7 +29,7 @@ These all come with update scripts, however if one breaks it is on you to keep b
 Basic build deps:
 
 ```bash
-apk add -i 7zip autoconf automake bash ccache clang llvm llvm-linker-tools lld cmake coreutils diffutils g++ gawk gcc gettext-dev git libtool make meson mimalloc2-insecure musl-dev nasm patch pkgconf po4a py3-jinja2 py3-mako samurai texinfo util-linux-misc yasm
+apk add -i 7zip autoconf automake bash ccache clang cmake coreutils curl diffutils g++ gawk gcc gettext-dev git libtool lld llvm llvm-linker-tools make meson mimalloc2-insecure musl-dev nasm patch pkgconf po4a py3-jinja2 py3-mako samurai texinfo util-linux-misc yasm
 ```
 
 Setup/Build:
