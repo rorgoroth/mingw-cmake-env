@@ -4,7 +4,7 @@ ExternalProject_Add(
   llvm
   EXCLUDE_FROM_ALL 1
   URL https://github.com/rorgoroth/llvm-mingw/releases/download/20.1.8/20.1.8.tar.zst
-  URL_HASH MD5=f27dc639c4473c8fb7fc11f75aa3412e
+  URL_HASH MD5=07aeedf66aca0c72277fbc97acb7edc1
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
