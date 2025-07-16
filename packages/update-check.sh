@@ -2,11 +2,11 @@
 export LC_NUMERIC="C"
 
 check() {
-if ! printf "%s\n%s\n" "$b" "$a" | sort -cV &> /dev/null ; then
+    if ! printf "%s\n%s\n" "$b" "$a" | sort -cV &>/dev/null; then
         echo "$pkg: $a -> $b [NEW]"
     else
         echo "$pkg: $a -> $b"
-fi
+    fi
 }
 
 # brotli
