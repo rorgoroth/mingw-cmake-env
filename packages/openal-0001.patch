@@ -1,0 +1,26 @@
+diff -ruN a/fmt-11.1.1/include/fmt/format.h b/fmt-11.1.1/include/fmt/format.h
+--- a/fmt-11.1.1/include/fmt/format.h	2025-03-29 04:08:24.000000000 +0000
++++ b/fmt-11.1.1/include/fmt/format.h	2025-07-18 12:05:54.908748511 +0100
+@@ -44,6 +44,7 @@
+ #  include <cmath>    // std::signbit
+ #  include <cstddef>  // std::byte
+ #  include <cstdint>  // uint32_t
++#  include <cstdlib>  // std::malloc, std::free
+ #  include <cstring>  // std::memcpy
+ #  include <limits>   // std::numeric_limits
+ #  include <new>      // std::bad_alloc
+@@ -742,12 +743,12 @@
+ 
+   T* allocate(size_t n) {
+     FMT_ASSERT(n <= max_value<size_t>() / sizeof(T), "");
+-    T* p = static_cast<T*>(malloc(n * sizeof(T)));
++    T* p = static_cast<T*>(std::malloc(n * sizeof(T)));
+     if (!p) FMT_THROW(std::bad_alloc());
+     return p;
+   }
+ 
+-  void deallocate(T* p, size_t) { free(p); }
++  void deallocate(T* p, size_t) { std::free(p); }
+ };
+ 
+ }  // namespace detail

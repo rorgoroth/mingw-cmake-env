@@ -4,6 +4,7 @@ ExternalProject_Add(
   URL_HASH MD5=e5cbc2d06597e6f2c8e5bec5128543c0
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
+  PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/openal-0001.patch
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
