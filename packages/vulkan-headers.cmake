@@ -1,7 +1,7 @@
 ExternalProject_Add(
   vulkan-headers
-  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.4.320.tar.gz
-  URL_HASH MD5=7638da0e675a151fc56e440cd0862df0
+  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.4.323.tar.gz
+  URL_HASH MD5=daad29c430be19ba00ba6be768797840
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
@@ -15,18 +15,3 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-ExternalProject_Add_Step(
-  vulkan-headers copy-wdk-headers
-  DEPENDEES download
-  DEPENDERS configure
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-headers-d3dkmthk.h
-    <SOURCE_DIR>/loader/d3dkmthk.h
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-headers-d3dukmdt.h
-    <SOURCE_DIR>/loader/d3dukmdt.h
-  COMMENT "vulkan-headers: Copying extra mingw headers")
-
