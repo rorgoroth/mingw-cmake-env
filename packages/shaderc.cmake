@@ -70,7 +70,6 @@ ExternalProject_Add_Step(
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/shaderc_combined.pc
-    ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/shaderc_combined.pc
-  COMMENT "Manually installing")
+    ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/shaderc_combined.pc)
 
 force_rebuild_git(shaderc)
