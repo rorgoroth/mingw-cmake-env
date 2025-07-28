@@ -5,12 +5,9 @@ ExternalProject_Add(
           freetype2
           libiconv
           zlib
-  GIT_REPOSITORY https://github.com/zhongflyTeam/fontconfig.git
-  GIT_REMOTE_NAME origin
-  GIT_TAG main
-  UPDATE_COMMAND ""
-  GIT_SHALLOW 1
-  PATCH_COMMAND ${EXEC} git am -3 ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-*.patch
+  URL https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/2.17.1/fontconfig-2.17.1.tar.xz
+  URL_HASH MD5=f68f95052c7297b98eccb7709d817f6a
+  PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-0001.patch
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
@@ -39,5 +36,4 @@ ExternalProject_Add_Step(
   COMMAND sh -c "rm ${MINGW_INSTALL_PREFIX}/lib/libfontconfig.dll.a >/dev/null 2>&1 || true"
   COMMAND sh -c "rm ${MINGW_INSTALL_PREFIX}/bin/libfontconfig-1.dll >/dev/null 2>&1 || true")
 
-force_rebuild_git(fontconfig)
 force_meson_configure(fontconfig)
