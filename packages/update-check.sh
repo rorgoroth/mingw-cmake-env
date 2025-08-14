@@ -78,7 +78,7 @@ check
 # mujs
 pkg=mujs
 a=$(cat ./packages/mujs.cmake | grep 'mujs' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*,\1,p')
-b=$(wget -q -O- 'https://github.com/ccxvii/mujs/tags' | grep 'href="/ccxvii/mujs/archive/refs/tags' | sed -n 's,.*href="/ccxvii/mujs/archive/refs/tags/\([0-9][^"_]*\)\.tar.*,\1,p' | sort -Vr | head -1)
+b=$(wget -q -O- 'https://codeberg.org/ccxvii/mujs/tags' | grep 'href="/ccxvii/mujs/archive/' | sed -n 's,.*href="/ccxvii/mujs/archive/\([0-9][^"_]*\)\.tar.*,\1,p' | sort -Vr | head -1)
 check
 
 # openal
