@@ -132,6 +132,7 @@ list(
   libjxl
   fdk-aac
   libsdl2
+  libsdl3
   ffmpeg
   openal
   mujs
