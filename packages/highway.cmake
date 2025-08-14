@@ -1,7 +1,7 @@
 ExternalProject_Add(
   highway
-  URL https://github.com/google/highway/releases/download/1.2.0/highway-1.2.0.tar.gz
-  URL_HASH MD5=a03898e8e2b1bf43d00571ba1ab0d171
+  URL https://github.com/google/highway/releases/download/1.3.0/highway-1.3.0.tar.gz
+  URL_HASH MD5=b2926ccf7fa63b351ac79d2f814e3f31
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
