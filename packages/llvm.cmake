@@ -3,8 +3,8 @@ find_program(PKGCONFIG NAMES pkg-config)
 ExternalProject_Add(
   llvm
   EXCLUDE_FROM_ALL 1
-  URL https://github.com/rorgoroth/llvm-mingw/releases/download/21.1.0-rc3/21.1.0-rc3.tar.zst
-  URL_HASH SHA256=0d908ae2d7b960fbde59210bd75e90f7259e9386b715af4568bf9ca728863641
+  URL https://github.com/rorgoroth/llvm-mingw/releases/download/21.1.0/21.1.0.tar.zst
+  URL_HASH SHA256=628fbe8a01e5dcd192b514eeb6010f5a9e2dc0a2d528c44bae1ecb4bcddd91f4
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
