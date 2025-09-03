@@ -41,7 +41,7 @@ check
 
 # harfbuzz
 pkg=harfbuzz
-a=$(cat ./packages/harfbuzz.cmake | grep harfbuzz- | sed -n 's,.*harfbuzz-\([0-9][^"]*\)\.tar.*,\1,p')
+a=$(cat ./packages/harfbuzz.cmake | grep tags | sed -n 's,.*tags/\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://github.com/harfbuzz/harfbuzz/tags' | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p' | sort -Vr | head -1 | sed 's/\_/\./g')
 check
 
