@@ -69,6 +69,12 @@ a=$(cat ./packages/libsdl2.cmake | grep 'release-' | sed -n 's,.*release-\([0-9]
 b=$(wget -q -O- 'https://github.com/libsdl-org/SDL/tags' | grep 'href="/libsdl-org/SDL/archive/refs/tags' | grep 'release-2' | sed -n 's,.*href="/libsdl-org/SDL/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | sort -Vr | head -1)
 check
 
+# libsdl3
+pkg=libsdl3
+a=$(cat ./packages/libsdl3.cmake | grep 'release-' | sed -n 's,.*release-\([0-9][^>]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://github.com/libsdl-org/SDL/tags' | grep 'href="/libsdl-org/SDL/archive/refs/tags' | grep 'release-3' | sed -n 's,.*href="/libsdl-org/SDL/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | sort -Vr | head -1)
+check
+
 # libxml2
 pkg=libxml2
 a=$(cat ./packages/libxml2.cmake | grep 'libxml2' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
