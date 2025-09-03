@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libsdl2
-  URL https://github.com/libsdl-org/SDL/releases/download/release-2.32.8/SDL2-2.32.8.tar.gz
-  URL_HASH MD5=7df28be966308a4a51aac87f4e0cf16a
+  URL https://github.com/libsdl-org/SDL/archive/refs/tags/release-2.32.10.tar.gz
+  URL_HASH MD5=8706910f57da3af1b27b1e9d8463b303
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
