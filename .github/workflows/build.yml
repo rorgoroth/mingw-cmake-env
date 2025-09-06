@@ -123,13 +123,10 @@ jobs:
           path: bin/*-package
           compression-level: 0
 
-      - name: create_release_tag
-        uses: rearrangement/auto-releases@v1.1
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: Latest Build
+      - name: Delete tag
+        run: gh release delete latest --cleanup-tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: upload_packages
         uses: svenstaro/upload-release-action@latest
