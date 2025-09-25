@@ -1,7 +1,7 @@
 ExternalProject_Add(
   vulkan-headers
-  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.4.325.tar.gz
-  URL_HASH MD5=b1ccd0082b9e0d671828c31ddb94f982
+  URL https://github.com/KhronosGroup/Vulkan-Headers/archive/refs/tags/v1.4.327.tar.gz
+  URL_HASH MD5=d7c40d146c1574b55a71c56d3be4c1a9
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
