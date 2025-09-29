@@ -11,8 +11,9 @@ ExternalProject_Add(
           spirv-cross
           vulkan-loader
           xxhash
-  GIT_REPOSITORY https://github.com/haasn/libplacebo.git
-  GIT_SHALLOW 1
+  URL https://github.com/haasn/libplacebo/archive/refs/tags/v7.351.0.tar.gz
+  URL_HASH MD5=2bd64e3591e4689b29669cd915aa22a4
+  DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
     COMMAND sh -c "rm -rf <SOURCE_DIR>/3rdparty/fast_float"
