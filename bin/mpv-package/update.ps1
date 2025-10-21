@@ -3,7 +3,7 @@ function Warning {
     Write-Host "WARNING:" -ForegroundColor Red
     Write-Host "This script does not keep backups, it replaces and deletes the binaries " -ForegroundColor Green
     Write-Host "and downloaded archives. If you need more functionality then please copy:" -ForegroundColor Green
-    Write-Host "installer/update.ps1 --> installer/xupdate.ps1" -ForegroundColor Green
+    Write-Host "update.ps1 --> xupdate.ps1" -ForegroundColor Green
     Write-Host "and modify the new file to your needs, update.bat will prefer that file if" -ForegroundColor Green
     Write-Host "it exists." -ForegroundColor Green
 }
