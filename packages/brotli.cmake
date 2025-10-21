@@ -1,7 +1,7 @@
 ExternalProject_Add(
   brotli
-  URL https://github.com/google/brotli/archive/refs/tags/v1.2.0rc1.tar.gz
-  URL_HASH MD5=573dc5fc9f41dae958c047d449dc2322
+  URL https://github.com/google/brotli/archive/refs/tags/v1.2.0rc2.tar.gz
+  URL_HASH MD5=491c71aba79b7201de672852a4134902
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
