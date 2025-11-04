@@ -1,14 +1,17 @@
 diff -ruN a/Makefile b/Makefile
 --- a/Makefile	2025-06-23 13:15:36.000000000 +0100
-+++ b/Makefile	2025-06-24 16:24:03.199185593 +0100
-@@ -2,7 +2,7 @@
++++ b/Makefile	2025-11-04 19:10:32.857638313 +0000
+@@ -2,9 +2,9 @@
  #
  # Useful targets are: release, install, uninstall.
  
 -default: build/debug/mujs build/debug/mujs-pp
 +default: build/release/mujs build/release/mujs-pp
  
- CFLAGS = -std=c99 -pedantic -Wall -Wextra -Wno-unused-parameter
+-CFLAGS = -std=c99 -pedantic -Wall -Wextra -Wno-unused-parameter
++CFLAGS += -std=c99 -pedantic -Wall -Wextra -Wno-unused-parameter
+ 
+ OPTIM = -O3
  
 @@ -19,6 +19,10 @@
    VERSION = $(patsubst mujs-%,%,$(notdir $(CURDIR)))
@@ -21,7 +24,42 @@ diff -ruN a/Makefile b/Makefile
  ifeq ($(shell uname),Darwin)
    SO = dylib
  else
-@@ -126,8 +130,8 @@
+@@ -72,14 +76,6 @@
+ opnames.h: jsi.h
+ 	grep -E '\<OP_' jsi.h | sed 's/^[^A-Z]*OP_/"/;s/,.*/",/' | tr A-Z a-z > $@
+ 
+-UnicodeData.txt:
+-	curl -s -o $@ https://www.unicode.org/Public/16.0.0/ucd/UnicodeData.txt
+-SpecialCasing.txt:
+-	curl -s -o $@ https://www.unicode.org/Public/16.0.0/ucd/SpecialCasing.txt
+-
+-utfdata.h: genucd.py UnicodeData.txt SpecialCasing.txt
+-	python3 genucd.py UnicodeData.txt SpecialCasing.txt >$@
+-
+ build/sanitize/mujs: main.c one.c $(SRCS) $(HDRS)
+ 	@mkdir -p $(@D)
+ 	$(CC) $(CFLAGS) -g -fsanitize=address -fno-omit-frame-pointer -o $@ main.c one.c -lm $(READLINE_CFLAGS) $(READLINE_LIBS)
+@@ -99,16 +95,16 @@
+ 
+ build/release/libmujs.$(SO): one.c $(SRCS) $(HDRS)
+ 	@mkdir -p $(@D)
+-	$(CC) $(CFLAGS) $(OPTIM) -fPIC -shared -o $@ one.c -lm
++	$(CC) $(CFLAGS) $(OPTIM) -fPIC -shared -o $@ one.c -lm $(LDFLAGS)
+ build/release/libmujs.o: one.c $(SRCS) $(HDRS)
+ 	@mkdir -p $(@D)
+ 	$(CC) $(CFLAGS) $(OPTIM) -c -o $@ one.c
+ build/release/libmujs.a: build/release/libmujs.o
+ 	$(AR) cr $@ $^
+ build/release/mujs: main.c build/release/libmujs.o
+-	$(CC) $(CFLAGS) $(OPTIM) -o $@ $^ -lm $(READLINE_CFLAGS) $(READLINE_LIBS)
++	$(CC) $(CFLAGS) $(OPTIM) -o $@ $^ -lm $(READLINE_CFLAGS) $(READLINE_LIBS) $(LDFLAGS)
+ build/release/mujs-pp: pp.c build/release/libmujs.o
+-	$(CC) $(CFLAGS) $(OPTIM) -o $@ $^ -lm
++	$(CC) $(CFLAGS) $(OPTIM) -o $@ $^ -lm $(LDFLAGS)
+ 
+ build/release/mujs.pc:
+ 	@mkdir -p $(@D)
+@@ -126,8 +122,8 @@
  	install -d $(DESTDIR)$(bindir)
  	install -m 644 mujs.h $(DESTDIR)$(incdir)
  	install -m 644 build/release/mujs.pc $(DESTDIR)$(libdir)/pkgconfig

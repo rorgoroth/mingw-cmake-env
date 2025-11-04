@@ -1,9 +1,5 @@
-set(flag
-"CFLAGS='-UHAVE_READLINE' LIBREADLINE=''
-CC=x86_64-w64-mingw32-clang
-AR=x86_64-w64-mingw32-llvm-ar
-RANLIB=x86_64-w64-mingw32-llvm-ranlib
-prefix=${MINGW_INSTALL_PREFIX}
+set(flags
+"prefix=${MINGW_INSTALL_PREFIX}
 OUT=<BINARY_DIR>
 host=mingw
 HAVE_READLINE=no
@@ -17,8 +13,8 @@ ExternalProject_Add(
   PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/mujs-0001.patch
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
-  BUILD_COMMAND ${MAKE} -C <SOURCE_DIR> ${flag}
-  INSTALL_COMMAND ${MAKE} -C <SOURCE_DIR> ${flag} install
+  BUILD_COMMAND ${MAKE} ${flags}
+  INSTALL_COMMAND ${MAKE} ${flags} install-static
   BUILD_IN_SOURCE 1
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
