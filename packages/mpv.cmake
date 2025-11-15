@@ -8,6 +8,7 @@ ExternalProject_Add(
           libjpeg
           libplacebo
           libpng
+          libsdl2
           luajit
           mujs
           openal
@@ -33,6 +34,9 @@ ExternalProject_Add(
     -Dmanpage-build=disabled
     -Dopenal=enabled
     -Drubberband=enabled
+    -Dsdl2-audio=disabled
+    -Dsdl2-gamepad=enabled
+    -Dsdl2-video=disabled
     -Dshaderc=enabled
     -Dspirv-cross=enabled
     -Duchardet=enabled
