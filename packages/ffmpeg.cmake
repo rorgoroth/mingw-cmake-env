@@ -46,6 +46,7 @@ ExternalProject_Add(
     --disable-decoder=libaom_av1
     --disable-doc
     --disable-htmlpages
+    --disable-hwaccel=prores_vulkan
     --disable-manpages
     --disable-podpages
     --disable-txtpages
