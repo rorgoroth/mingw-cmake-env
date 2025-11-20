@@ -124,9 +124,13 @@ jobs:
           compression-level: 0
 
       - name: Delete tag
-        run: gh release delete latest --cleanup-tag
+        run: gh release delete latest --cleanup-tag || true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sleep 1m
+        run: sleep 60s
+        shell: alpine.sh {0}
 
       - name: upload_packages
         uses: svenstaro/upload-release-action@latest
@@ -134,5 +138,8 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: bin/*.7z
           tag: latest
+          release_name: latest
           overwrite: true
           file_glob: true
+          draft: false
+          make_latest: true
