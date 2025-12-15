@@ -12,7 +12,7 @@ jobs:
       contents: read
     steps:
       - name: remove_clean
-        uses: Mattraks/delete-workflow-runs@v2
+        uses: Mattraks/delete-workflow-runs@latest
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -21,7 +21,7 @@ jobs:
           delete_workflow_pattern: clean
 
       - name: remove_rmpkgprefix
-        uses: Mattraks/delete-workflow-runs@v2
+        uses: Mattraks/delete-workflow-runs@latest
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -30,7 +30,7 @@ jobs:
           delete_workflow_pattern: rmpkgprefix
 
       - name: Delete failed build runs
-        uses: Mattraks/delete-workflow-runs@v2
+        uses: Mattraks/delete-workflow-runs@latest
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -40,7 +40,7 @@ jobs:
           delete_workflow_pattern: build
 
       - name: Delete cancelled build runs
-        uses: Mattraks/delete-workflow-runs@v2
+        uses: Mattraks/delete-workflow-runs@latest
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
@@ -50,7 +50,7 @@ jobs:
           delete_workflow_pattern: build
 
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@v2
+        uses: Mattraks/delete-workflow-runs@latest
         with:
           token: ${{ github.token }}
           repository: ${{ github.repository }}
