@@ -1,7 +1,7 @@
 ExternalProject_Add(
   opus
-  URL https://downloads.xiph.org/releases/opus/opus-1.5.2.tar.gz
-  URL_HASH MD5=c40b3a1fbdbb9a7aa178600b88200c76
+  URL https://downloads.xiph.org/releases/opus/opus-1.6.tar.gz
+  URL_HASH MD5=6ddaa5851e354621b735806007fa4651
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
