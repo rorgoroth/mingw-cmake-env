@@ -27,7 +27,7 @@ ExternalProject_Add(
     -Db_ndebug=true
     -Dd3d11=enabled
     -Diconv=enabled
-    -Djavascript=disabled
+    -Djavascript=enabled
     -Djpeg=enabled
     -Dlcms2=enabled
     -Dlua=enabled
