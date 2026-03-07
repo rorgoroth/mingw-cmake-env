@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libiconv
-  URL https://www.mirrorservice.org/sites/ftp.gnu.org/gnu/libiconv/libiconv-1.18.tar.gz
-  URL_HASH MD5=1af69958b42981d3c3029ffb4c7ebaed
+  URL https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.19.tar.gz
+  URL_HASH MD5=c04d0fa4cae4e9a4febc457fc00ee519
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
