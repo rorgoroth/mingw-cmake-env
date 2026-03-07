@@ -1,8 +1,8 @@
 ExternalProject_Add(
   vulkan-loader
   DEPENDS vulkan-headers
-  URL https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.4.344.tar.gz
-  URL_HASH MD5=168979ce1c775c7109239b992c082968
+  URL https://github.com/KhronosGroup/Vulkan-Loader/archive/refs/tags/v1.4.345.tar.gz
+  URL_HASH MD5=cc837cf463ab2368356afef0c70b0a36
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/vulkan-loader-0001.patch
