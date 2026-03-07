@@ -50,6 +50,7 @@ ExternalProject_Add(
     --disable-manpages
     --disable-podpages
     --disable-txtpages
+    --disable-unstable
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
