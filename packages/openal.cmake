@@ -1,18 +1,16 @@
 ExternalProject_Add(
   openal
-  URL https://github.com/kcat/openal-soft/archive/refs/tags/1.24.3.tar.gz
-  URL_HASH MD5=e5cbc2d06597e6f2c8e5bec5128543c0
+  URL https://github.com/kcat/openal-soft/archive/refs/tags/1.25.1.tar.gz
+  URL_HASH MD5=46f0f1b93239141f8274aaa06ba8c0a7
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
-  PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/openal-0001.patch
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
-    -DLIBTYPE=STATIC
     -DALSOFT_UTILS=OFF
     -DALSOFT_EXAMPLES=OFF
     -DALSOFT_TESTS=OFF
-    -DALSOFT_BACKEND_PIPEWIRE=OFF
+    -DALSOFT_ENABLE_MODULES=OFF
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
