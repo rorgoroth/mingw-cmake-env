@@ -7,6 +7,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
     ${cmake_conf_args}
+    -DLIBTYPE=STATIC
     -DALSOFT_UTILS=OFF
     -DALSOFT_EXAMPLES=OFF
     -DALSOFT_TESTS=OFF
