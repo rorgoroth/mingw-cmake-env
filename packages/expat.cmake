@@ -1,7 +1,7 @@
 ExternalProject_Add(
   expat
-  URL https://github.com/libexpat/libexpat/releases/download/R_2_7_4/expat-2.7.4.tar.bz2
-  URL_HASH MD5=d8c3327b7e10e75582873a0d97e7a538
+  URL https://github.com/libexpat/libexpat/releases/download/R_2_7_5/expat-2.7.5.tar.bz2
+  URL_HASH MD5=39ccac48bfbb1b39ad19914a63f2588c
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
