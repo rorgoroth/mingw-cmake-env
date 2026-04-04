@@ -105,6 +105,9 @@ list(
   vulkan-headers
   vulkan-loader
   spirv-cross
+  glslang
+  spirv-headers
+  spirv-tools
   shaderc
   fast-float
   glad

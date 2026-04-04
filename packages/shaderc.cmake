@@ -1,7 +1,16 @@
-  ExternalProject_Add(
+get_property(src_glslang TARGET glslang PROPERTY _EP_SOURCE_DIR)
+get_property(src_spirv-headers TARGET spirv-headers PROPERTY _EP_SOURCE_DIR)
+get_property(src_spirv-tools TARGET spirv-tools PROPERTY _EP_SOURCE_DIR)
+
+ExternalProject_Add(
   shaderc
-  GIT_REPOSITORY https://github.com/rorgoroth/mpv-shaderc.git
+  DEPENDS glslang
+          spirv-headers
+          spirv-tools
+  GIT_REPOSITORY https://github.com/google/shaderc.git
   GIT_SHALLOW 1
+  GIT_REMOTE_NAME origin
+  GIT_TAG main
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
@@ -51,6 +60,18 @@
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
+
+ExternalProject_Add_Step(
+  shaderc symlink-externals
+  DEPENDEES download update patch
+  DEPENDERS configure
+  WORKING_DIRECTORY <SOURCE_DIR>/third_party
+  COMMAND
+    ${CMAKE_COMMAND} -E create_symlink ${src_glslang} glslang
+  COMMAND
+    ${CMAKE_COMMAND} -E create_symlink ${src_spirv-headers} spirv-headers
+  COMMAND
+    ${CMAKE_COMMAND} -E create_symlink ${src_spirv-tools} spirv-tools)
 
 ExternalProject_Add_Step(
   shaderc manual-install
