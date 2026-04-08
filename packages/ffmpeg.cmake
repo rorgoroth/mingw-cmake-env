@@ -25,6 +25,7 @@ ExternalProject_Add(
           rubberband
           shaderc
           spirv-cross
+          spirv-headers
           svtav1
           vorbis
           vulkan-loader

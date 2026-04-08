@@ -133,6 +133,7 @@ list(
   fdk-aac
   libsdl2
   libsdl3
+  spirv-headers
   ffmpeg
   openal
   mujs
