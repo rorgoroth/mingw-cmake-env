@@ -109,7 +109,7 @@ jobs:
         shell: alpine.sh {0}
 
       - name: Upload Build Logs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: build-logs
