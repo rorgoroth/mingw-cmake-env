@@ -2,8 +2,8 @@ ExternalProject_Add(
   harfbuzz
   DEPENDS freetype2
           libpng
-  URL https://github.com/harfbuzz/harfbuzz/archive/refs/tags/14.1.0.tar.gz
-  URL_HASH MD5=f607aad958437749cb744d6d1a62b795
+  URL https://github.com/harfbuzz/harfbuzz/archive/refs/tags/14.2.0.tar.gz
+  URL_HASH MD5=b13778d174b695223d1810bdc3fb0430
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
