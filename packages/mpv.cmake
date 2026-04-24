@@ -8,7 +8,7 @@ ExternalProject_Add(
           libjpeg
           libplacebo
           libpng
-          libsdl2
+          sdl2
           luajit
           mujs
           openal

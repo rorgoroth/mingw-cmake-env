@@ -15,7 +15,7 @@ ExternalProject_Add(
           libopusenc
           libplacebo
           libpng
-          libsdl2
+          sdl2
           libvpl
           libvpx
           libwebp

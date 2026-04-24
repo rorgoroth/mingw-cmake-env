@@ -3,7 +3,7 @@ ExternalProject_Add(
   DEPENDS curl
           libpng
           libpng
-          libsdl2
+          sdl2
           openal
           libjpeg
   GIT_REPOSITORY https://github.com/rorgoroth/q2pro.git

@@ -131,7 +131,7 @@ list(
   highway
   libjxl
   fdk-aac
-  libsdl2
+  sdl2
   sdl3
   spirv-headers
   ffmpeg
