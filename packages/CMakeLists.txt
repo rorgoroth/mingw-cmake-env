@@ -132,7 +132,7 @@ list(
   libjxl
   fdk-aac
   libsdl2
-  libsdl3
+  sdl3
   spirv-headers
   ffmpeg
   openal
