@@ -1,119 +1,106 @@
 #!/bin/sh
 
-# Standard build
-build() {
-  ninja -C build update || exit
-  ninja -C build quake3e || exit
-  ninja -C build quake3e-openarena || exit
-  ninja -C build quake3e-urbanterror || exit
-  ninja -C build xonotic || exit
-  ninja -C build ffmpeg || exit
-  ninja -C build mpv || exit
+set -e
+set -u
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
+error() {
+  printf "ERROR: %s\n" "$1" >&2
+  exit 1
 }
 
-# Full build, clean up as much as possible. You should manually
-# remove the installation prefix before running this as to create
-# a clean environment.
-fullbuild() {
-  ninja -C build clean || exit
-  ninja -C build update || exit
-  ninja -C build llvm || exit
-  ninja -C build quake3e || exit
-  ninja -C build quake3e-openarena || exit
-  ninja -C build quake3e-urbanterror || exit
-  ninja -C build xonotic || exit
-  ninja -C build ffmpeg || exit
-  ninja -C build mpv || exit
+# Standard build
+build() {
+  echo "Starting standard build..."
+  ninja -C build update || error "Failed to update build"
+  ninja -C build llvm || error "Failed to build llvm"
+  ninja -C build quake3e || error "Failed to build quake3e"
+  ninja -C build quake3e-openarena || error "Failed to build quake3e-openarena"
+  ninja -C build quake3e-urbanterror || error "Failed to build quake3e-urbanterror"
+  ninja -C build xonotic || error "Failed to build xonotic"
+  ninja -C build ffmpeg || error "Failed to build ffmpeg"
+  ninja -C build mpv || error "Failed to build mpv"
+  echo "Standard build complete."
+}
+
+# Clean build
+cleanbuild() {
+  echo "Starting full build with clean..."
+  ninja -C build clean || error "Failed to clean build"
+  build
+  echo "Full build complete."
 }
 
 # Copy package contents in place.
 package() {
-  cd bin || exit
-  rm -rf ./*.7z
-  find ./ -type f -name '*.exe' -delete
-  find ./ -type f -name '*.com' -delete
-  find ./ -type f -name '*.dll' -delete
-  cp -r ../build/packages/*-package .
-  cd .. || exit
+  echo "Packaging contents..."
+  (
+    cd bin || error "Cannot enter bin directory"
+    rm -f ./*.7z || true # Ignore if no files match
+    find . -type f \( -name '*.exe' -o -name '*.com' -o -name '*.dll' \) -delete
+    cp -r ../build/packages/*-package . || error "Failed to copy packages"
+  ) || error "Packaging failed"
+  echo "Packaging complete."
 }
 
 # Create package archives
 archive() {
-  cd bin || exit
-  cd ffmpeg-package || exit
-  7z a -mx=1 "ffmpeg.7z" -- ./*
-  cd .. || exit
+  echo "Creating archives..."
 
-  cd ffmpeg-full-package || exit
-  7z a -mx=1 "ffmpeg-full.7z" -- ./*
-  cd .. || exit
+  PACKAGES="ffmpeg ffmpeg-full mpv quake3e quake3e-openarena quake3e-urbanterror xonotic"
 
-  cd mpv-package || exit
-  7z a -mx=1 "mpv.7z" -- ./*
-  cd .. || exit
+  for pkg in $PACKAGES; do
+    pkg_dir="${pkg}-package"
+    archive_name="${pkg}.7z"
 
-  cd quake3e-package || exit
-  7z a -mx=1 "quake3e.7z" -- ./*
-  cd .. || exit
+    if [ ! -d "bin/$pkg_dir" ]; then
+      echo "Warning: Directory bin/$pkg_dir not found, skipping $pkg"
+      continue
+    fi
 
-  cd quake3e-openarena-package || exit
-  7z a -mx=1 "quake3e-openarena.7z" -- ./*
-  cd .. || exit
-
-  cd quake3e-urbanterror-package || exit
-  7z a -mx=1 "quake3e-urbanterror.7z" -- ./*
-  cd .. || exit
-
-  cd xonotic-package || exit
-  7z a -mx=1 "xonotic.7z" -- ./*
-  cd .. || exit
-
-  mv -- */*.7z .
-  cd .. || exit
+    (
+      cd "bin/$pkg_dir" || error "Cannot enter $pkg_dir"
+      7z a -mx=1 "../$archive_name" -- ./* || error "Failed to create $archive_name"
+    ) || error "Failed to archive $pkg"
+  done
+  echo "Archives created in bin/."
 }
 
-# Upload packages
-release() {
-  gh release delete latest -y
-  git tag --delete latest
-  git push --delete origin latest
-  gh release create -t "Latest Build" -n "Latest Build" latest ./bin/*.7z
-}
-
-# Clean a package, useful for random build failures.
-clean() {
-  rm -rf build/packages/"$2"-*
+# Clean a specific package
+rmpkg() {
+  pkg_name="$1"
+  rm -rfv "build/packages/${pkg_name}-"* || error "Failed to rmpkg $pkg_name"
 }
 
 # Run update checking script
 checkupdates() {
-  sh ./packages/update-check.sh | column -t
+  sh ./packages/update-check.sh | column -t || error "Update check script failed"
 }
 
-case "$1" in
-"build")
-  build
-  ;;
-"fullbuild")
-  fullbuild
-  ;;
-"package")
-  package
-  ;;
-"archive")
-  archive
-  ;;
-"release")
-  release
-  ;;
-"clean")
-  clean $@
-  ;;
-"checkupdates")
-  checkupdates
-  ;;
-*)
-  echo "Accepted Args: build | fullbuild | package | archive | release | clean \$package"
-  exit 1
-  ;;
+# Menu
+case "${1:-}" in
+  "build")
+    build
+    ;;
+  "cleanbuild")
+    cleanbuild
+    ;;
+  "package")
+    package
+    ;;
+  "archive")
+    archive
+    ;;
+  "rmpkg")
+    rmpkg "$2"
+    ;;
+  "checkupdates")
+    checkupdates
+    ;;
+  *)
+    echo "Usage: $0 {build|cleanbuild|package|archive|rmpkg <pkg>|checkupdates}"
+    exit 1
+    ;;
 esac
