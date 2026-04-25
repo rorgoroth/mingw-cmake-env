@@ -14,8 +14,6 @@ These all come with update scripts, however if one breaks it is on you to keep b
 
 [mpv](https://github.com/mpv-player/mpv): Media player, git builds.
 
-[Quake2pro](https://github.com/skullernet/q2pro): Enhanced Quake 2 client and server focused on multiplayer, git builds.
-
 [Quake3e OpenArena](https://github.com/rorgoroth/Quake3e-OpenArena): Completely FOSS version of Quake 3, client only (based on Quake3e using Vulkan), git builds.
 
 [Quake3e](https://github.com/ec-/Quake3e): Quake3 optimized client using Vulkan, git builds.
@@ -23,6 +21,9 @@ These all come with update scripts, however if one breaks it is on you to keep b
 [Quake3e Urban Terror](https://github.com/rorgoroth/Quake3e-UrbanTerror): Quake3 mod and standalone game, client only (based on Quake3e, using Vulkan), git builds.
 
 [xonotic](https://github.com/rorgoroth/darkplaces-mingw-w64): Client only, git builds.
+
+### Retired Packages
+[Quake2pro](https://github.com/rorgoroth/q2pro): Enhanced Quake 2 client and server focused on multiplayer, git builds. See projects release page for the final binary release.
 
 ## Build Instructions
 

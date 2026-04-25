@@ -3,7 +3,6 @@
 # Standard build
 build() {
   ninja -C build update || exit
-  ninja -C build quake2pro || exit
   ninja -C build quake3e || exit
   ninja -C build quake3e-openarena || exit
   ninja -C build quake3e-urbanterror || exit
@@ -19,7 +18,6 @@ fullbuild() {
   ninja -C build clean || exit
   ninja -C build update || exit
   ninja -C build llvm || exit
-  ninja -C build quake2pro || exit
   ninja -C build quake3e || exit
   ninja -C build quake3e-openarena || exit
   ninja -C build quake3e-urbanterror || exit
@@ -52,10 +50,6 @@ archive() {
 
   cd mpv-package || exit
   7z a -mx=1 "mpv.7z" -- ./*
-  cd .. || exit
-
-  cd quake2pro-package || exit
-  7z a -mx=1 "quake2pro.7z" -- ./*
   cd .. || exit
 
   cd quake3e-package || exit

@@ -58,7 +58,6 @@ jobs:
       - name: Run Build
         run: |
           ninja -C build llvm
-          ninja -C build quake2pro
           ninja -C build quake3e
           ninja -C build quake3e-openarena
           ninja -C build quake3e-urbanterror
@@ -132,12 +131,6 @@ jobs:
         with:
           name: mpv
           path: bin/mpv-package
-
-      - name: Upload quake2pro Package
-        uses: actions/upload-artifact@v7
-        with:
-          name: quake2pro
-          path: bin/quake2pro-package
 
       - name: Upload quake3e Package
         uses: actions/upload-artifact@v7

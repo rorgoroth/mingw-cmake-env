@@ -145,7 +145,6 @@ list(
   minizip
   glew
   sqlite
-  quake2pro
   quake3e
   quake3e-urbanterror
   quake3e-openarena
