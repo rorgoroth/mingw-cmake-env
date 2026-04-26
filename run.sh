@@ -15,7 +15,6 @@ error() {
 build() {
   echo "Starting standard build..."
   ninja -C build update || error "Failed to update build"
-  ninja -C build llvm || error "Failed to build llvm"
   ninja -C build quake3e || error "Failed to build quake3e"
   ninja -C build quake3e-openarena || error "Failed to build quake3e-openarena"
   ninja -C build quake3e-urbanterror || error "Failed to build quake3e-urbanterror"
@@ -29,6 +28,7 @@ build() {
 cleanbuild() {
   echo "Starting full build with clean..."
   ninja -C build clean || error "Failed to clean build"
+  ninja -C build llvm || error "Failed to build llvm"
   build
   echo "Full build complete."
 }
