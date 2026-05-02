@@ -59,7 +59,6 @@ jobs:
         run: |
           ninja -C build llvm
           ninja -C build quake3e
-          ninja -C build quake3e-openarena
           ninja -C build quake3e-urbanterror
           ninja -C build xonotic
           ninja -C build ffmpeg
@@ -137,12 +136,6 @@ jobs:
         with:
           name: quake3e
           path: bin/quake3e-package
-
-      - name: Upload quake3e-openarena Package
-        uses: actions/upload-artifact@v7
-        with:
-          name: quake3e-openarena
-          path: bin/quake3e-openarena-package
 
       - name: Upload quake3e-urbanterror Package
         uses: actions/upload-artifact@v7
