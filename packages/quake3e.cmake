@@ -1,6 +1,7 @@
 ExternalProject_Add(
   quake3e
   DEPENDS brotli
+          libpsl
           zlib
           zstd
   GIT_REPOSITORY https://github.com/rorgoroth/Quake3e.git
