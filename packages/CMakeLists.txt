@@ -94,6 +94,9 @@ list(
   fribidi
   expat
   brotli
+  zstd
+  libpsl
+  curl
   freetype2
   harfbuzz
   graphengine
@@ -138,10 +141,7 @@ list(
   openal
   mujs
   mpv
-  zstd
   cjson
-  libpsl
-  curl
   minizip
   glew
   sqlite
