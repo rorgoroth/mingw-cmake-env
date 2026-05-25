@@ -1,6 +1,7 @@
 ExternalProject_Add(
   mpv
-  DEPENDS ffmpeg
+  DEPENDS curl
+          ffmpeg
           fribidi
           lcms2
           libass
@@ -30,6 +31,7 @@ ExternalProject_Add(
     -Djavascript=enabled
     -Djpeg=enabled
     -Dlcms2=enabled
+    -Dlibcurl=enabled
     -Dlua=enabled
     -Dmanpage-build=disabled
     -Dopenal=enabled
