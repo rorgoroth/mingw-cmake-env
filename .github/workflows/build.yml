@@ -61,6 +61,7 @@ jobs:
           ninja -C build quake3e
           ninja -C build quake3e-urbanterror
           ninja -C build xonotic
+          ninja -C build librempeg
           ninja -C build ffmpeg
           ninja -C build mpv
         shell: alpine.sh {0}
@@ -124,6 +125,12 @@ jobs:
         with:
           name: ffmpeg
           path: bin/ffmpeg-package
+
+      - name: Upload librempeg Package
+        uses: actions/upload-artifact@v7
+        with:
+          name: librempeg
+          path: bin/librempeg-package
 
       - name: Upload mpv Package
         uses: actions/upload-artifact@v7

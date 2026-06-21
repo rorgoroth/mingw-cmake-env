@@ -1,5 +1,5 @@
 ExternalProject_Add(
-  ffmpeg
+  librempeg
   DEPENDS amf-headers
           aom
           bzip2
@@ -31,11 +31,8 @@ ExternalProject_Add(
           vulkan-loader
           x264
           x265
-  GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
-  GIT_REMOTE_NAME origin
-  GIT_TAG release/8.1
-#  GIT_SHALLOW 1
-
+  GIT_REPOSITORY https://github.com/rorgoroth/librempeg.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
@@ -58,11 +55,11 @@ ExternalProject_Add(
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
-    --enable-gpl --enable-version3 --enable-nonfree
+    --enable-agpl --enable-gpl --enable-version3 --enable-nonfree
     --enable-amf
     --enable-cross-compile
     --enable-ffmpeg
-    --enable-ffplay
+    --disable-ffplay
     --enable-ffprobe
     --enable-lcms2
     --enable-libaom
@@ -92,10 +89,10 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-sdl2
-    --enable-vulkan
+    --disable-vulkan
     "--extra-libs='-lstdc++ -lpthread'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
-  INSTALL_COMMAND ${MAKE} install
+  INSTALL_COMMAND ""
   LOG_DOWNLOAD 1
   LOG_UPDATE 1
   LOG_CONFIGURE 1
@@ -103,27 +100,15 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 ExternalProject_Add_Step(
-  ffmpeg copy-binary
+  librempeg copy-binary
   DEPENDEES install
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/ffmpeg.exe
-    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-package/ffmpeg.exe)
-
-ExternalProject_Add_Step(
-  ffmpeg full-copy-binary
-  DEPENDEES install
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/ffmpeg.exe
-    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffmpeg.exe
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/ffplay.exe
-    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffplay.exe
+    ${CMAKE_CURRENT_BINARY_DIR}/librempeg-package/ffmpeg.exe
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/ffprobe.exe
-    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffprobe.exe)
+    ${CMAKE_CURRENT_BINARY_DIR}/librempeg-package/ffprobe.exe)
 
-force_rebuild_git(ffmpeg)
+force_rebuild_git(librempeg)

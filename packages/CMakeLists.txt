@@ -137,6 +137,7 @@ list(
   sdl2
   sdl3
   spirv-headers
+  librempeg
   ffmpeg
   openal
   mujs
