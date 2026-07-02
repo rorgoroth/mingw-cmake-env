@@ -1,7 +1,7 @@
 ExternalProject_Add(
   sdl3
-  URL https://github.com/libsdl-org/SDL/archive/refs/tags/release-3.4.10.tar.gz
-  URL_HASH MD5=1f9aab29041d6434c9fe5986bbe62992
+  URL https://github.com/libsdl-org/SDL/archive/refs/tags/release-3.4.12.tar.gz
+  URL_HASH MD5=30e75c2ca6fe03dfcac8fc6d0b4b6f13
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
