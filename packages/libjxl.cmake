@@ -6,8 +6,8 @@ ExternalProject_Add(
           libjpeg
           libpng
           zlib
-  URL https://github.com/libjxl/libjxl/archive/refs/tags/v0.11.2.tar.gz
-  URL_HASH MD5=eda39db6e7a58b73be9124381862b9d1
+  URL https://github.com/libjxl/libjxl/archive/refs/tags/v0.12.0.tar.gz
+  URL_HASH MD5=a0fd3ac7b474525dadb99bbcb5d814f9
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
