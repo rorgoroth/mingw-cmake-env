@@ -34,15 +34,3 @@ ExternalProject_Add(
   LOG_CONFIGURE 1
   LOG_BUILD 1
   LOG_INSTALL 1)
-
-ExternalProject_Add_Step(
-  vulkan-loader manual-install
-  DEPENDEES build
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/loader/libvulkan.a
-    ${MINGW_INSTALL_PREFIX}/lib/libvulkan.a
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/loader/vulkan_own.pc
-    ${MINGW_INSTALL_PREFIX}/lib/pkgconfig/vulkan.pc)
