@@ -32,9 +32,7 @@ ExternalProject_Add(
           x264
           x265
   GIT_REPOSITORY https://github.com/FFmpeg/FFmpeg.git
-  GIT_REMOTE_NAME origin
-  GIT_TAG release/8.1
-#  GIT_SHALLOW 1
+  GIT_SHALLOW 1
 
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
@@ -50,7 +48,6 @@ ExternalProject_Add(
     --disable-decoder=libaom_av1
     --disable-doc
     --disable-htmlpages
-    --disable-hwaccel=prores_vulkan
     --disable-manpages
     --disable-podpages
     --disable-txtpages
@@ -58,12 +55,12 @@ ExternalProject_Add(
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
+    --disable-vulkan
+    --disable-ffplay
     --enable-gpl --enable-version3 --enable-nonfree
     --enable-amf
     --enable-cross-compile
     --enable-ffmpeg
-    --enable-ffplay
-    --enable-ffprobe
     --enable-lcms2
     --enable-libaom
     --enable-libass
@@ -92,7 +89,6 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-sdl2
-    --enable-vulkan
     "--extra-libs='-lstdc++ -lpthread'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
@@ -117,10 +113,6 @@ ExternalProject_Add_Step(
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/ffmpeg.exe
     ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffmpeg.exe
-  COMMAND
-    ${CMAKE_COMMAND} -E copy
-    <BINARY_DIR>/ffplay.exe
-    ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg-full-package/ffplay.exe
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <BINARY_DIR>/ffprobe.exe
