@@ -46,8 +46,8 @@ ExternalProject_Add(
     --disable-debug
     --disable-decoder=libaom_av1
     --disable-doc
+    --disable-ffplay
     --disable-htmlpages
-    --disable-hwaccel=prores_vulkan
     --disable-manpages
     --disable-podpages
     --disable-txtpages
@@ -55,11 +55,11 @@ ExternalProject_Add(
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
+    --disable-vulkan
     --enable-agpl --enable-gpl --enable-version3 --enable-nonfree
     --enable-amf
     --enable-cross-compile
     --enable-ffmpeg
-    --disable-ffplay
     --enable-ffprobe
     --enable-lcms2
     --enable-libaom
@@ -89,7 +89,6 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-sdl2
-    --disable-vulkan
     "--extra-libs='-lstdc++ -lpthread'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ""

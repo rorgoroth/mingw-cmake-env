@@ -47,6 +47,7 @@ ExternalProject_Add(
     --disable-debug
     --disable-decoder=libaom_av1
     --disable-doc
+    --disable-ffplay
     --disable-htmlpages
     --disable-manpages
     --disable-podpages
@@ -56,11 +57,11 @@ ExternalProject_Add(
     --disable-vdpau
     --disable-videotoolbox
     --disable-vulkan
-    --disable-ffplay
-    --enable-gpl --enable-version3 --enable-nonfree
     --enable-amf
     --enable-cross-compile
     --enable-ffmpeg
+    --enable-ffprobe
+    --enable-gpl --enable-version3 --enable-nonfree
     --enable-lcms2
     --enable-libaom
     --enable-libass
