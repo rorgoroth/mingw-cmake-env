@@ -23,7 +23,6 @@ ExternalProject_Add(
           libzimg
           nvcodec-headers
           rubberband
-          shaderc
           spirv-cross
           spirv-headers
           svtav1
@@ -73,7 +72,6 @@ ExternalProject_Add(
     --enable-libopus
     --enable-libplacebo
     --enable-librubberband
-    --enable-libshaderc
     --enable-libsvtav1
     --enable-libvorbis
     --enable-libvpl
