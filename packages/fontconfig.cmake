@@ -5,8 +5,8 @@ ExternalProject_Add(
           freetype2
           libiconv
           zlib
-  URL https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/2.18.2/fontconfig-2.18.2.tar.xz
-  URL_HASH MD5=784b516220f93441d8ffc67ee9b3b34a
+  URL https://gitlab.freedesktop.org/api/v4/projects/890/packages/generic/fontconfig/2.18.3/fontconfig-2.18.3.tar.xz
+  URL_HASH MD5=ce819e229ca6fb7d1be47a192d6681a3
   PATCH_COMMAND ${EXEC} patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/fontconfig-0001.patch
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
