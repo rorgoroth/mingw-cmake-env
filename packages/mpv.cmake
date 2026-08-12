@@ -82,7 +82,11 @@ ExternalProject_Add_Step(
   COMMAND
     ${CMAKE_COMMAND} -E copy
     <SOURCE_DIR>/etc/mpv-register.bat
-    ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv-register.bat)
+    ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv-register.bat
+  COMMAND
+    ${CMAKE_COMMAND} -E copy
+    <SOURCE_DIR>/etc/mpv-unregister.bat
+    ${CMAKE_CURRENT_BINARY_DIR}/mpv-package/mpv-unregister.bat)
 
 force_rebuild_git(mpv)
 force_meson_configure(mpv)
