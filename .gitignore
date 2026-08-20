@@ -12,6 +12,7 @@ bin/*/*.dll
 # mpv
 bin/mpv-package/powershell-completion.ps1
 bin/mpv-package/mpv-register.bat
+/bin/mpv-package/mpv-unregister.bat
 
 # Xonotic
 bin/xonotic-package/bin64
