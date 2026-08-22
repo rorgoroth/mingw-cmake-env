@@ -8,7 +8,7 @@ VERSION=1.3.8")
 ExternalProject_Add(
   mujs
   URL https://codeberg.org/ccxvii/mujs/archive/1.3.8.tar.gz
-  URL_HASH MD5=55dd114344d4e4cb739328a29c60378f
+  URL_HASH MD5=cd4183198048476d4aa4d6ffa2c34fd0
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   PATCH_COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/mujs-0001.patch
   UPDATE_COMMAND ""
