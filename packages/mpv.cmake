@@ -12,7 +12,6 @@ ExternalProject_Add(
           sdl2
           luajit
           mujs
-          openal
           rubberband
           shaderc
           spirv-cross
@@ -34,7 +33,6 @@ ExternalProject_Add(
     -Dlibcurl=enabled
     -Dlua=enabled
     -Dmanpage-build=disabled
-    -Dopenal=enabled
     -Drubberband=enabled
     -Dsdl2-audio=disabled
     -Dsdl2-gamepad=enabled

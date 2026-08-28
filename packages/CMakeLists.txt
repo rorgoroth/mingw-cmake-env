@@ -138,7 +138,6 @@ list(
   spirv-headers
   librempeg
   ffmpeg
-  openal
   mujs
   mpv
   cjson
