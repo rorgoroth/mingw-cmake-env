@@ -44,7 +44,6 @@ ExternalProject_Add(
     -Duchardet=enabled
     -Dvulkan=enabled
     -Dwin32-smtc=enabled
-    -Dzimg=enabled
     -Dzlib=enabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ""

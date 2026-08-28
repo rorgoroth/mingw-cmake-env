@@ -20,7 +20,6 @@ ExternalProject_Add(
           libvpx
           libwebp
           libxml2
-          libzimg
           nvcodec-headers
           rubberband
           spirv-cross
@@ -81,7 +80,6 @@ ExternalProject_Add(
     --enable-libx264
     --enable-libx265
     --enable-libxml2
-    --enable-libzimg
     --enable-lto=thin
     --enable-nvdec
     --enable-nvenc
