@@ -4,7 +4,7 @@ ExternalProject_Add(
   llvm
   EXCLUDE_FROM_ALL 1
   URL https://github.com/rorgoroth/llvm-mingw/releases/download/23.1.0/23.1.0.tar.zst
-  URL_HASH SHA256=a468422b3b9f90f08a68720368252b7ace82ee1354c9c19611dd33da94556430
+  URL_HASH SHA256=60833f8d1a8e8e0e4d2be4ff52398d52227c2fa14a288f3208f7a1a727ebd65d
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND ""
   BUILD_COMMAND ""
