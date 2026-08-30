@@ -8,13 +8,13 @@ VERSION=1.3.8")
 ExternalProject_Add(
   mujs
   URL https://codeberg.org/ccxvii/mujs/archive/1.3.8.tar.gz
-  URL_HASH MD5=cd4183198048476d4aa4d6ffa2c34fd0
+  URL_HASH SHA256=b28288394e40fed41ed38840d4c2de399c5a7476d6e264660b0c189cda72037d
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   PATCH_COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/mujs-0001.patch
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ""
-  BUILD_COMMAND ${MAKE-NLTO} ${flags}
-  INSTALL_COMMAND ${MAKE-NLTO} ${flags} install-static
+  BUILD_COMMAND ${MAKE_NLTO} ${flags}
+  INSTALL_COMMAND ${MAKE_NLTO} ${flags} install-static
   BUILD_IN_SOURCE 1
   LOG_DOWNLOAD 1
   LOG_UPDATE 1

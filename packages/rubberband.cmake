@@ -2,7 +2,7 @@ ExternalProject_Add(
   rubberband
   DEPENDS libsamplerate
   URL https://github.com/breakfastquay/rubberband/archive/refs/tags/v4.0.0.tar.gz
-  URL_HASH MD5=87ac2e0fcd62f4fa9d2bf83237adbb77
+  URL_HASH SHA256=24300f48a8014b7c863b573a9647e61b1b19b37875e2cdd92005e64c6424d266
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND

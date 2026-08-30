@@ -67,11 +67,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec-nolto.in
                ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto @ONLY)
 
 set(EXEC ${CMAKE_CURRENT_BINARY_DIR}/exec)
-set(EXEC-NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto)
+set(EXEC_NLTO ${CMAKE_CURRENT_BINARY_DIR}/exec-nolto)
 
 # Set executable permissions on generated scripts
 if(UNIX)
-    execute_process(COMMAND chmod +x ${EXEC} ${EXEC-NLTO}
+    execute_process(COMMAND chmod +x ${EXEC} ${EXEC_NLTO}
                     RESULT_VARIABLE CHMOD_RESULT)
     if(NOT CHMOD_RESULT EQUAL 0)
         message(WARNING "Failed to set executable permissions on generated scripts.")
@@ -80,8 +80,8 @@ endif()
 
 set(MAKE ${EXEC} make -j${MAKEJOBS})
 set(NINJA ${EXEC} ninja -j${MAKEJOBS})
-set(MAKE-NLTO ${EXEC-NLTO} make -j${MAKEJOBS})
-set(NINJA-NLTO ${EXEC-NLTO} ninja -j${MAKEJOBS})
+set(MAKE_NLTO ${EXEC_NLTO} make -j${MAKEJOBS})
+set(NINJA_NLTO ${EXEC_NLTO} ninja -j${MAKEJOBS})
 
 string(TIMESTAMP BUILDDATE "%Y%m%d" UTC)
 

@@ -1,5 +1,5 @@
 ExternalProject_Add(
-    directx-headers
+  directx-headers
   GIT_REPOSITORY https://github.com/microsoft/DirectX-Headers.git
   GIT_SHALLOW 1
   GIT_REMOTE_NAME origin

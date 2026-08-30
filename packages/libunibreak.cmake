@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libunibreak
   URL https://github.com/adah1972/libunibreak/archive/refs/tags/libunibreak_7_0.tar.gz
-  URL_HASH MD5=b60346b804d6ad38900d9c2576488c72
+  URL_HASH SHA256=e4cb1a0d9aebb129c9856ec75e3d98e675997e385cce4e0106ef8f68e09afaa3
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} autoreconf -fi && <SOURCE_DIR>/configure

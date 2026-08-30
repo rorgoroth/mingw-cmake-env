@@ -1,4 +1,4 @@
-  ExternalProject_Add(
+ExternalProject_Add(
   shaderc
   GIT_REPOSITORY https://github.com/rorgoroth/mpv-shaderc.git
   GIT_SHALLOW 1

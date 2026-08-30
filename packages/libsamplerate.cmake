@@ -1,6 +1,7 @@
 ExternalProject_Add(
-    libsamplerate
+  libsamplerate
   GIT_REPOSITORY https://github.com/libsndfile/libsamplerate.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>

@@ -3,7 +3,7 @@ ExternalProject_Add(
   DEPENDS libiconv
           zlib
   URL https://github.com/GNOME/libxml2/archive/refs/tags/v2.15.3.tar.gz
-  URL_HASH MD5=850186d051631364d7da049beda741c4
+  URL_HASH SHA256=5c6060277173270356c3f1c321a640ab629bdabc5e5ba9095b99e00759ba0c39
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
