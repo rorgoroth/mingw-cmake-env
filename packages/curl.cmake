@@ -3,8 +3,8 @@ ExternalProject_Add(curl
           libpsl
           zlib
           zstd
-  URL https://github.com/curl/curl/releases/download/curl-8_21_0/curl-8.21.0.tar.bz2
-  URL_HASH SHA256=ad6f2f94934b38e31e48272833c99b891d045b4565fe942a53fbd27bd3910e16
+  URL https://github.com/curl/curl/releases/download/curl-8_22_0/curl-8.22.0.tar.bz2
+  URL_HASH SHA256=5d956a6a22b3c279f50c421ee5d3c9e9d660cb6f115dcf881b579e952130549c
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
