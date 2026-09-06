@@ -100,6 +100,7 @@ list(
   freetype2
   harfbuzz
   graphengine
+  libzimg
   fontconfig
   libunibreak
   libass
