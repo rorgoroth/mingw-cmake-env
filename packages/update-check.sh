@@ -57,6 +57,18 @@ a=$(cat ./packages/libjxl.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(git ls-remote --tags 'https://github.com/libjxl/libjxl.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
 check
 
+# libunibreak
+pkg=libunibreak
+a=$(cat ./packages/libunibreak.cmake | sed -n 's,.*libunibreak_\([0-9][^"]*\)\.tar.*,\1,p' | tr '_' '.')
+b=$(git ls-remote --tags 'https://github.com/adah1972/libunibreak.git' | sed -n 's,.*refs/tags/libunibreak_\([0-9_]*\)$,\1,p' | tr '_' '.' | sort -Vr | head -1)
+check
+
+# llvm (llvm-mingw-toolchain)
+pkg=llvm
+a=$(cat ./packages/llvm.cmake | sed -n 's,.*releases/download/\([0-9][^/]*\)/.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/rorgoroth/llvm-mingw-toolchain.git' | sed -n 's,.*refs/tags/\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
+check
+
 # sdl2
 pkg=sdl2
 a=$(cat ./packages/sdl2.cmake | grep 'release-' | sed -n 's,.*release-\([0-9][^>]*\)\.tar.*,\1,p')
@@ -91,6 +103,12 @@ check
 pkg=rubberband
 a=$(cat ./packages/rubberband.cmake | sed -n 's,.*v\([0-9][^"]*\)\.tar.*,\1,p')
 b=$(git ls-remote --tags 'https://github.com/breakfastquay/rubberband.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
+check
+
+# sqlite
+pkg=sqlite
+a=$(cat ./packages/sqlite.cmake | sed -n 's,.*sqlite-autoconf-\([0-9]*\)\.tar.*,\1,p')
+b=$(wget -q -O- 'https://www.sqlite.org/download.html' | sed -n 's,.*sqlite-autoconf-\([0-9]*\)\.tar.*,\1,p' | sort -Vr | head -1)
 check
 
 # vulkan-headers
