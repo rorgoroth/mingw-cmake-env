@@ -71,7 +71,7 @@ check
 
 # sdl3
 pkg=sdl3
-a=$(cat ./packages/sdl3.cmake | grep 'release-' | sed -n 's,.*release-\([0-9][^>]*\)\.tar.*,\1,p')
+a=$(cat ./packages/sdl3.cmake | grep 'release-' | sed -n 's,.*release-\([0-9.]*\)/.*,\1,p')
 b=$(wget -q -O- 'https://github.com/libsdl-org/SDL/tags' | grep 'href="/libsdl-org/SDL/archive/refs/tags' | grep 'release-3' | sed -n 's,.*href="/libsdl-org/SDL/archive/refs/tags/release-\([0-9][^"_]*\)\.tar.*,\1,p' | sort -Vr | head -1)
 check
 
