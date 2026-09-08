@@ -3,7 +3,6 @@ project(mingw-env LANGUAGES C ASM CXX)
 
 include(ExternalProject)
 include(ProcessorCount)
-include(CheckCCompilerFlag)
 
 # Generator Check
 if(NOT CMAKE_GENERATOR STREQUAL "Ninja")

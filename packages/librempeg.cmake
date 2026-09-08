@@ -35,7 +35,7 @@ ExternalProject_Add(
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
-    --cc='ccache x86_64-w64-mingw32-gcc' --cxx='ccache x86_64-w64-mingw32-gcc'
+    --cc='ccache x86_64-w64-mingw32-gcc' --cxx='ccache x86_64-w64-mingw32-g++'
     --cross-prefix=x86_64-w64-mingw32-
     --prefix=${MINGW_INSTALL_PREFIX}
     --arch=x86_64
