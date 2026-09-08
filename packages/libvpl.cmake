@@ -21,3 +21,4 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 force_rebuild_git(libvpl)
+force_git_patch(libvpl)
