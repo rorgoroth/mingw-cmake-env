@@ -80,6 +80,7 @@ list(
   APPEND
   ep
   llvm
+  rustup
   winrt-headers
   uchardet
   libsamplerate

@@ -1,0 +1,11 @@
+[net]
+git-fetch-with-cli = true
+
+[target.x86_64-pc-windows-gnullvm]
+linker = "@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-clang++"
+ar = "@CMAKE_INSTALL_PREFIX@/bin/x86_64-w64-mingw32-ar"
+rustflags = ["-Ctarget-cpu=@CPUTUNE@"]
+
+[profile.release]
+panic = "abort"
+strip = true

@@ -31,12 +31,14 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
     set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install" CACHE PATH "Default install path" FORCE)
 endif()
 set(MINGW_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX}/x86_64-w64-mingw32)
+set(RUSTUP_LOCATION "${CMAKE_CURRENT_BINARY_DIR}/install_rustup" CACHE STRING "Rust toolchain path")
 
 # Configuration Files
 set(CONFIG_FILES
     packages/ccache.conf.in
     packages/toolchain.cmake.in
     packages/meson_cross.txt.in
+    packages/cargo_config.in
     packages/exec.in
     packages/exec-nolto.in
 )
@@ -58,6 +60,9 @@ set(TOOLCHAIN_FILE ${CMAKE_CURRENT_BINARY_DIR}/toolchain.cmake)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/meson_cross.txt.in
                ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt @ONLY)
 set(MESON_CROSS ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/cargo_config.in
+               ${RUSTUP_LOCATION}/.cargo/config @ONLY)
 
 # Generate exec scripts
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec.in
