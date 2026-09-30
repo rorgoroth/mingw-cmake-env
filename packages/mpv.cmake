@@ -23,6 +23,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
+    -Db_lto=true
     -Db_lto_mode=thin
     -Db_ndebug=true
     -Dd3d11=enabled
