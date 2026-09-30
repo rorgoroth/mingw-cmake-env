@@ -8,4 +8,6 @@ rustflags = ["-Ctarget-cpu=@CPUTUNE@"]
 
 [profile.release]
 panic = "abort"
+lto = "fat"
+codegen-units = 1
 strip = true
