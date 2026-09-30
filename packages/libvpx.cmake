@@ -18,6 +18,7 @@ ExternalProject_Add(
     --disable-examples
     --disable-tools
     --disable-unit-tests
+    --enable-debug
     --enable-postproc
     --enable-runtime-cpu-detect
     --enable-vp8
