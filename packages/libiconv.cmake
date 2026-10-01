@@ -1,6 +1,6 @@
 ExternalProject_Add(
   libiconv
-  URL https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.19.tar.gz
+  URL https://cdimage.debian.org/mirror/gnu.org/gnu/libiconv/libiconv-1.19.tar.gz
   URL_HASH SHA256=88dd96a8c0464eca144fc791ae60cd31cd8ee78321e67397e25fc095c4a19aa6
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
