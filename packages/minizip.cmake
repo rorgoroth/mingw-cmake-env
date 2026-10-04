@@ -27,7 +27,6 @@ ExternalProject_Add(
     -DMZ_LZMA=OFF
     -DMZ_OPENSSL=OFF
     -DMZ_PKCRYPT=ON
-    -DMZ_SIGNING=ON
     -DMZ_WZAES=ON
     -DMZ_ZLIB=ON
     -DMZ_ZSTD=ON
