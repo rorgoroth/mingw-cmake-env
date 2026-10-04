@@ -51,11 +51,9 @@ ExternalProject_Add(
     --disable-manpages
     --disable-podpages
     --disable-txtpages
-    --disable-unstable
     --disable-vaapi
     --disable-vdpau
     --disable-videotoolbox
-    --disable-vulkan
     --enable-amf
     --enable-cross-compile
     --enable-ffmpeg
@@ -88,6 +86,7 @@ ExternalProject_Add(
     --enable-runtime-cpudetect
     --enable-schannel
     --enable-sdl2
+    --enable-vulkan
     "--extra-libs='-lstdc++ -lpthread'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}
   INSTALL_COMMAND ${MAKE} install
