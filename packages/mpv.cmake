@@ -36,7 +36,7 @@ ExternalProject_Add(
     -Dmanpage-build=disabled
     -Drubberband=enabled
     -Dsdl2-audio=disabled
-    -Dsdl2-gamepad=enabled
+    -Dsdl2-gamepad=disabled
     -Dsdl2-video=disabled
     -Dshaderc=enabled
     -Dspirv-cross=enabled
