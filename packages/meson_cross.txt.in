@@ -13,7 +13,7 @@ nasm = 'nasm'
 [host_machine]
 system = 'windows'
 cpu_family = 'x86_64'
-cpu = 'x86_64-w64-mingw32'
+cpu = 'x86_64'
 endian = 'little'
 
 [built-in options]
@@ -21,6 +21,8 @@ endian = 'little'
 # the environment when cross compiling (buildtype=plain adds no -O level).
 c_args = ['-march=@CPUTUNE@', '-@OPTIM@', '-fdata-sections', '-ffunction-sections', '-fvisibility=hidden', '-fno-math-errno']
 cpp_args = ['-march=@CPUTUNE@', '-@OPTIM@', '-fdata-sections', '-ffunction-sections', '-fvisibility=hidden', '-fno-math-errno']
-c_link_args = ['-fuse-ld=lld', '-@OPTIM@', '-Wl,--gc-sections']
-cpp_link_args = ['-fuse-ld=lld', '-@OPTIM@', '-Wl,--gc-sections']
+c_link_args = ['-fuse-ld=lld', '-@OPTIM@', '-flto-jobs=@CPU_COUNT@', '-Wl,--lto-@OPTIM@', '-Wl,--gc-sections', '-Wl,--icf=safe', '-Wl,--thinlto-cache-dir=@MINGW_INSTALL_PREFIX@/ltocache', '-Wl,--thinlto-cache-policy=cache_size_bytes=500M:prune_interval=1m']
+cpp_link_args = ['-fuse-ld=lld', '-@OPTIM@', '-flto-jobs=@CPU_COUNT@', '-Wl,--lto-@OPTIM@', '-Wl,--gc-sections', '-Wl,--icf=safe', '-Wl,--thinlto-cache-dir=@MINGW_INSTALL_PREFIX@/ltocache', '-Wl,--thinlto-cache-policy=cache_size_bytes=500M:prune_interval=1m']
 b_ndebug = 'true'
+b_lto = true
+b_lto_mode = 'thin'
