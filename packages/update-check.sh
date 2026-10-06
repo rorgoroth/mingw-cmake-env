@@ -17,12 +17,27 @@ case "$1" in
     -h|--help) echo "Usage: $0 [-n|--check-only]"; exit 0 ;;
 esac
 
+# finish the line left open by check()
+endline() {
+    printf '%s\n' "$*"
+    open=0
+}
+
+# check [noupdate]: print the version line. For a [NEW] package that
+# update() will handle, the line is left open so update() can append its
+# result ([UPDATED], [FAILED ...]) to the same line.
 check() {
     new=0
     updated=0
+    open=0
     if ! printf "%s\n%s\n" "$b" "$a" | sort -cV >/dev/null 2>&1; then
         new=1
-        echo "$pkg: $a -> $b [NEW]"
+        printf '%s: %s -> %s [NEW]' "$pkg" "$a" "$b"
+        if [ "$UPDATE" = 1 ] && [ "$1" != noupdate ]; then
+            open=1
+        else
+            echo
+        fi
     else
         echo "$pkg: $a -> $b"
     fi
@@ -52,7 +67,10 @@ subst() {
 # untouched if anything goes wrong.
 update() {
     updated=0
-    [ "$new" = 1 ] && [ "$UPDATE" = 1 ] && [ -n "$a" ] && [ -n "$b" ] || return 0
+    if [ "$new" != 1 ] || [ "$UPDATE" != 1 ] || [ -z "$a" ] || [ -z "$b" ]; then
+        [ "$open" = 1 ] && endline
+        return 0
+    fi
 
     file=./packages/$pkg.cmake
     old_url=$(sed -n 's,^[[:space:]]*URL[[:space:]][[:space:]]*\([^[:space:]]*\).*,\1,p' "$file" | head -1)
@@ -62,14 +80,14 @@ update() {
         shift 2
     done
     if [ -z "$old_url" ] || [ "$new_url" = "$old_url" ]; then
-        echo "$pkg: could not work out the new URL, not updated [FAILED]"
+        endline " [FAILED: could not work out the new URL]"
         return 1
     fi
 
     tmp=$(mktemp)
     if ! wget -q -O "$tmp" "$new_url" || [ ! -s "$tmp" ]; then
         rm -f "$tmp"
-        echo "$pkg: download failed, not updated [FAILED] $new_url"
+        endline " [FAILED: download failed] $new_url"
         return 1
     fi
     hash=$(sha256sum "$tmp" | cut -d' ' -f1)
@@ -86,11 +104,11 @@ update() {
     rm -f "$file.new"
 
     updated=1
-    echo "$pkg: $pkg.cmake updated, sha256 $hash [UPDATED]"
-
+    status=" [UPDATED]"
     for p in ./packages/$pkg-*.patch; do
-        [ -e "$p" ] && echo "$pkg: has patches, make sure they still apply [CHECK]" && break
+        [ -e "$p" ] && status="$status [CHECK PATCHES]" && break
     done
+    endline "$status"
     return 0
 }
 
@@ -221,13 +239,13 @@ update "$old_year/sqlite-autoconf-$a" "$new_year/sqlite-autoconf-$b"
 pkg=vulkan-headers
 a=$(cat ./packages/vulkan-headers.cmake | grep 'Vulkan-Headers' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
 b=$(git ls-remote --tags 'https://github.com/KhronosGroup/Vulkan-Headers.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
-check
+check noupdate
 
 # vulkan-loader (check only, updated separately)
 pkg=vulkan-loader
 a=$(cat ./packages/vulkan-loader.cmake | grep 'Vulkan-Loader' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
 b=$(git ls-remote --tags 'https://github.com/KhronosGroup/Vulkan-Loader.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
-check
+check noupdate
 
 # zlib
 pkg=zlib
