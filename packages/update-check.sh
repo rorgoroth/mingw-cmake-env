@@ -2,20 +2,30 @@
 # Checks upstream for new releases of the packages listed below. When a newer
 # version is found, the URL and URL_HASH in the package's .cmake file are
 # rewritten in place (the new tarball is downloaded to work out the SHA256).
+# Each updated package is then committed on its own, e.g.
+#   packages/curl: 8.22.0 -> 8.23.0
+# Only that package's .cmake file is committed, anything else that is staged or
+# modified in the working tree is left alone.
 #
 # Usage (from the repository root):
-#   sh ./packages/update-check.sh      check and update
-#   sh ./packages/update-check.sh -n   check only, don't touch any files
+#   sh ./packages/update-check.sh                check, update and commit
+#   sh ./packages/update-check.sh --no-commit    check and update, don't commit
+#   sh ./packages/update-check.sh -n             check only, don't touch any files
 #
-# vulkan-headers and vulkan-loader are checked but never updated, they are
-# handled separately.
+# vulkan-headers and vulkan-loader are checked but never updated or committed,
+# they are handled separately.
 export LC_NUMERIC="C"
 
 UPDATE=1
-case "$1" in
-    -n|--check-only) UPDATE=0 ;;
-    -h|--help) echo "Usage: $0 [-n|--check-only]"; exit 0 ;;
-esac
+COMMIT=1
+for arg in "$@"; do
+    case "$arg" in
+        -n|--check-only) UPDATE=0 ;;
+        --no-commit) COMMIT=0 ;;
+        -h|--help) echo "Usage: $0 [-n|--check-only] [--no-commit]"; exit 0 ;;
+        *) echo "Unknown option: $arg" >&2; exit 1 ;;
+    esac
+done
 
 # finish the line left open by check()
 endline() {
@@ -60,13 +70,46 @@ subst() {
     }'
 }
 
-# update <old> <new> [<old> <new> ...]
+# commit_update: commit packages/$pkg.cmake as "packages/$pkg: $a -> $b".
+# Sets commit_status (text to append to the status line) and commit_err.
+# $1 is "dirty" if the file already had uncommitted changes before the update,
+# in which case nothing is committed so those changes don't end up in the
+# commit.
+commit_update() {
+    commit_status=""
+    commit_err=""
+    [ "$COMMIT" = 1 ] || return 0
+    git rev-parse --is-inside-work-tree >/dev/null 2>&1 || return 0
+
+    if [ "$1" = dirty ]; then
+        commit_status=" [NOT COMMITTED: file had uncommitted changes]"
+        return 0
+    fi
+
+    # "-- <file>" makes git commit only that file, whatever else is staged
+    if commit_err=$(git add -- "$file" 2>&1 &&
+                    git commit -q -m "packages/$pkg: $a -> $b" -- "$file" 2>&1); then
+        commit_err=""
+        commit_status=" [COMMITTED]"
+    else
+        commit_status=" [COMMIT FAILED]"
+    fi
+}
+
+# update [-s <sed expr>] <old> <new> [<old> <new> ...]
 # Applies the literal substitutions to the URL in packages/$pkg.cmake,
-# downloads the new tarball and rewrites URL and URL_HASH in the file.
+# downloads the new tarball and rewrites URL and URL_HASH in the file, then
+# commits the change. -s runs an extra sed expression on the file before the
+# commit, for packages that mention the version somewhere other than the URL.
 # Does nothing unless check() flagged the package as [NEW]. The file is left
 # untouched if anything goes wrong.
 update() {
     updated=0
+    sed_expr=
+    if [ "$1" = -s ]; then
+        sed_expr=$2
+        shift 2
+    fi
     if [ "$new" != 1 ] || [ "$UPDATE" != 1 ] || [ -z "$a" ] || [ -z "$b" ]; then
         [ "$open" = 1 ] && endline
         return 0
@@ -83,6 +126,10 @@ update() {
         endline " [FAILED: could not work out the new URL]"
         return 1
     fi
+
+    # remember whether the file has uncommitted changes of its own
+    dirty=clean
+    git diff --quiet HEAD -- "$file" >/dev/null 2>&1 || dirty=dirty
 
     tmp=$(mktemp)
     if ! wget -q -O "$tmp" "$new_url" || [ ! -s "$tmp" ]; then
@@ -102,13 +149,16 @@ update() {
         { print }
     ' "$file" > "$file.new" && cat "$file.new" > "$file"
     rm -f "$file.new"
+    [ -n "$sed_expr" ] && sed -i "$sed_expr" "$file"
 
     updated=1
-    status=" [UPDATED]"
+    commit_update "$dirty"
+    status=" [UPDATED]$commit_status"
     for p in ./packages/$pkg-*.patch; do
         [ -e "$p" ] && status="$status [CHECK PATCHES]" && break
     done
     endline "$status"
+    [ -n "$commit_err" ] && printf '%s: %s\n' "$pkg" "$commit_err" >&2
     return 0
 }
 
@@ -208,8 +258,7 @@ pkg=mujs
 a=$(cat ./packages/mujs.cmake | grep 'mujs' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*,\1,p')
 b=$(wget -q -O- 'https://codeberg.org/ccxvii/mujs/tags' | grep 'href="/ccxvii/mujs/archive/' | sed -n 's,.*href="/ccxvii/mujs/archive/\([0-9][^"_]*\)\.tar.*,\1,p' | sort -Vr | head -1)
 check
-update "/$a.tar" "/$b.tar"
-[ "$updated" = 1 ] && sed -i "s/VERSION=$a\"/VERSION=$b\"/" ./packages/mujs.cmake
+update -s "s/VERSION=$a\"/VERSION=$b\"/" "/$a.tar" "/$b.tar"
 
 # opus
 pkg=opus
