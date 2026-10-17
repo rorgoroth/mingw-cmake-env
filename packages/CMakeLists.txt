@@ -172,6 +172,5 @@ add_custom_target(
   update
   USES_TERMINAL
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-  COMMAND chmod 755 ${UPDATE_SCRIPT}
-  COMMAND ${EXEC} ${UPDATE_SCRIPT}
+  COMMAND ${EXEC} bash ${UPDATE_SCRIPT}
   COMMENT "Updating Git Repositories...")
