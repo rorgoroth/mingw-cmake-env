@@ -28,23 +28,32 @@ gitupdate() {
     local stamp_dir=$3
     local old new
 
+    if ! old=$(git -C "$src_dir" rev-parse --verify --quiet '@{u}'); then
+        echo "WARNING: $name: no upstream branch, skipped" >&2
+        return 1
+    fi
+
+    # Fetch first and leave the checkout alone unless upstream really moved.
+    # Resetting before knowing that would throw away the patches applied with
+    # "git am" (spirv-cross, libvpl) while the stamps still claim they are
+    # applied, and a failed fetch (network error, rate limit) would do the
+    # same for nothing.
+    if ! git -C "$src_dir" fetch --quiet >/dev/null 2>&1; then
+        echo "WARNING: $name: fetch failed, keeping current checkout" >&2
+        return 1
+    fi
+
+    if ! new=$(git -C "$src_dir" rev-parse --verify --quiet '@{u}'); then
+        echo "WARNING: $name: upstream branch vanished, keeping current checkout" >&2
+        return 1
+    fi
+    [[ "$old" == "$new" ]] && return 0
+
     git -C "$src_dir" am --abort >/dev/null 2>&1 || true
-    if ! git -C "$src_dir" reset --hard "@{u}" >/dev/null 2>&1; then
+    if ! git -C "$src_dir" reset --hard "$new" >/dev/null 2>&1; then
         echo "WARNING: $name: could not reset to upstream, skipped" >&2
         return 1
     fi
-
-    old=$(git -C "$src_dir" rev-parse HEAD)
-
-    # A failed pull (network error, rate limit, rewritten history) must not be
-    # mistaken for "up to date" nor trigger a rebuild.
-    if ! git -C "$src_dir" pull --ff-only --quiet >/dev/null 2>&1; then
-        echo "WARNING: $name: pull failed, keeping current checkout" >&2
-        return 1
-    fi
-
-    new=$(git -C "$src_dir" rev-parse HEAD)
-    [[ "$old" == "$new" ]] && return 0
 
     echo "Updating $name"
     rm -f "$stamp_dir/$name-patch" \
