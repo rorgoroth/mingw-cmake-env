@@ -46,12 +46,20 @@ function(force_meson_configure _name)
     LOG 1)
 endfunction()
 
+# CFLAGS/CXXFLAGS from the exec scripts are picked up by CMake automatically,
+# but the Release configuration appends "-O3 -DNDEBUG" after them, so OPTIM
+# would never take effect. Set it explicitly (the single quotes survive the
+# "eval" in exec/exec-nolto). Packages that need extra flags must use
+# -DCMAKE_<LANG>_FLAGS_INIT, an explicit -DCMAKE_<LANG>_FLAGS replaces the
+# environment flags instead of extending them.
 set(cmake_conf_args
   -GNinja
   -DCMAKE_C_COMPILER_LAUNCHER=ccache
   -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
   -DCMAKE_ASM_COMPILER_LAUNCHER=ccache
   -DCMAKE_BUILD_TYPE=Release
+  -DCMAKE_C_FLAGS_RELEASE='-${OPTIM} -DNDEBUG'
+  -DCMAKE_CXX_FLAGS_RELEASE='-${OPTIM} -DNDEBUG'
   -DCMAKE_TOOLCHAIN_FILE=${TOOLCHAIN_FILE}
   -DCMAKE_INSTALL_PREFIX=${MINGW_INSTALL_PREFIX}
   -DBUILD_SHARED_LIBS=OFF
