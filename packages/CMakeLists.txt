@@ -71,6 +71,7 @@ set(cmake_conf_args
   -DENABLE_STATIC_LIB=ON
   -DENABLE_STATIC=ON
   -DENABLE_TESTS=OFF
+  -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 )
 set(meson_conf_args
   --prefix=${MINGW_INSTALL_PREFIX}
