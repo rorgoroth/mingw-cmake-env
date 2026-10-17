@@ -66,42 +66,47 @@ diff -ruN a/src/fcdir.c b/src/fcdir.c
 diff -ruN a/src/fcinit.c b/src/fcinit.c
 --- a/src/fcinit.c	2026-05-21 14:29:58.000000000 +0100
 +++ b/src/fcinit.c	2026-05-22 19:59:48.604842603 +0100
-@@ -36,6 +36,12 @@
+@@ -36,6 +36,11 @@
  #  pragma message("To suppress these warnings, define FC_NO_MT.")
  #endif
  
 +#ifdef _WIN32
 +#define _WIN32_IE 0x0500
 +#include <shlobj.h>
-+#include <malloc.h>
 +#endif
 +
  static FcConfig *
  FcInitFallbackConfig (const FcChar8 *sysroot)
  {
-@@ -56,12 +62,41 @@
+@@ -56,12 +61,40 @@
      config = FcConfigCreate();
      if (!config)
  	goto bail0;
 +
 +#ifdef _WIN32
-+    char *buf = malloc (MAX_PATH+1);
-+    if (!buf) goto bail1;
-+    if (SHGetFolderPathA (NULL, CSIDL_FONTS|CSIDL_FLAG_CREATE, NULL,
-+	SHGFP_TYPE_CURRENT, buf) == S_OK) {
-+	if (!FcConfigAddConfigDir (config, (FcChar8 *) buf))
-+	    goto bail2;
-+    }
++    {
++	wchar_t wpath[MAX_PATH];
++	/* UTF-8, the ANSI API mangles non-ASCII user names */
++	char    path[MAX_PATH * 4];
++	size_t  len;
 +
-+    char *buf2 = malloc (MAX_PATH+1);
-+    if (!buf) goto bail2;
-+    if (SHGetFolderPathA (NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL,
-+	SHGFP_TYPE_CURRENT, buf2) == S_OK) {
-+	if (buf2[strlen(buf2)-1] != '\\')
-+	    strcat (buf2, "\\");
-+	strcat (buf2, "fontconfig");
-+	if (!FcConfigAddCacheDir (config, (FcChar8 *) buf2))
-+	    goto bail3;
++	if (SHGetFolderPathW (NULL, CSIDL_FONTS|CSIDL_FLAG_CREATE, NULL,
++			      SHGFP_TYPE_CURRENT, wpath) == S_OK &&
++	    WideCharToMultiByte (CP_UTF8, 0, wpath, -1, path, sizeof (path), NULL, NULL) > 0) {
++	    if (!FcConfigAddConfigDir (config, (FcChar8 *) path))
++		goto bail1;
++	}
++
++	if (SHGetFolderPathW (NULL, CSIDL_LOCAL_APPDATA|CSIDL_FLAG_CREATE, NULL,
++			      SHGFP_TYPE_CURRENT, wpath) == S_OK &&
++	    WideCharToMultiByte (CP_UTF8, 0, wpath, -1, path, sizeof (path), NULL, NULL) > 0) {
++	    len = strlen (path);
++	    if (len > 0 && path[len - 1] != '\\')
++		path[len++] = '\\';
++	    strcpy (path + len, "fontconfig");
++	    if (!FcConfigAddCacheDir (config, (FcChar8 *) path))
++		goto bail1;
++	}
 +    }
 +#else
      FcConfigSetSysRoot (config, sysroot);
@@ -111,13 +116,6 @@ diff -ruN a/src/fcinit.c b/src/fcinit.c
  
      return config;
  
-+#ifdef _WIN32
-+bail3:
-+    free(buf2);
-+bail2:
-+    free(buf);
-+#endif
-+
  bail1:
      FcConfigDestroy (config);
  bail0:
