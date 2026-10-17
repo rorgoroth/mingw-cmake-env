@@ -2,6 +2,7 @@ ExternalProject_Add(
   libopusenc
   DEPENDS opus
   GIT_REPOSITORY https://github.com/xiph/libopusenc.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/autogen.sh && <SOURCE_DIR>/configure

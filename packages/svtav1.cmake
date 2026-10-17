@@ -1,6 +1,7 @@
 ExternalProject_Add(
   svtav1
   GIT_REPOSITORY https://gitlab.com/AOMediaCodec/SVT-AV1.git
+  GIT_SHALLOW 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
     ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
