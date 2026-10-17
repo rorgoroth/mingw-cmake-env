@@ -61,8 +61,10 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/meson_cross.txt.in
                ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt @ONLY)
 set(MESON_CROSS ${CMAKE_CURRENT_BINARY_DIR}/meson_cross.txt)
 
+# Cargo configuration
+file(REMOVE ${RUSTUP_LOCATION}/.cargo/config)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/cargo_config.in
-               ${RUSTUP_LOCATION}/.cargo/config @ONLY)
+               ${RUSTUP_LOCATION}/.cargo/config.toml @ONLY)
 
 # Generate exec scripts
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/packages/exec.in
