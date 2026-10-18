@@ -74,9 +74,17 @@ rmpkg() {
   rm -rfv "build/packages/${pkg_name}-"* || error "Failed to rmpkg $pkg_name"
 }
 
-# Run update checking script
+# Run update checking script. The version rows are aligned with column, the
+# status lines ([UPDATED], [FAILED ...]) that follow after an empty line are
+# printed as they are so they can't disturb the columns.
 checkupdates() {
-  sh ./packages/update-check.sh | column -t || error "Update check script failed"
+  out=$(mktemp) || error "Cannot create a temporary file"
+  rc=0
+  sh ./packages/update-check.sh > "$out" || rc=$?
+  sed '/^$/,$d' "$out" | column -t
+  sed -n '/^$/,$p' "$out"
+  rm -f "$out"
+  return "$rc"
 }
 
 # Menu

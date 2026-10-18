@@ -14,6 +14,12 @@
 #
 # vulkan-headers and vulkan-loader are checked but never updated or committed,
 # they are handled separately.
+#
+# Output: one "pkg: old -> new" row per package, so it can be piped through
+# "column -t". Everything else ([UPDATED], [FAILED ...], commit errors) is
+# printed after the rows, separated by an empty line, so it can't disturb the
+# columns. run.sh checkupdates formats the two parts separately.
+# The exit status is 1 if a version lookup, download or commit failed.
 export LC_NUMERIC="C"
 
 UPDATE=1
@@ -27,27 +33,37 @@ for arg in "$@"; do
     esac
 done
 
-# finish the line left open by check()
-endline() {
-    printf '%s\n' "$*"
-    open=0
+# Status messages are collected here and printed after the version rows.
+STATUS_FILE=$(mktemp) || exit 1
+trap 'rm -f "$STATUS_FILE"' EXIT
+trap 'exit 1' INT TERM
+FAILURES=0
+
+# report <message>: add a status line for the current package
+report() {
+    printf '%s: %s\n' "$pkg" "$*" >> "$STATUS_FILE"
 }
 
-# check [noupdate]: print the version line. For a [NEW] package that
-# update() will handle, the line is left open so update() can append its
-# result ([UPDATED], [FAILED ...]) to the same line.
+# fail <message>: like report, and make the exit status non-zero
+fail() {
+    FAILURES=$((FAILURES + 1))
+    report "$*"
+}
+
+# check: print the version row for $pkg ($a is the current version, $b the
+# latest upstream one) and set $new if upstream is newer. A missing version
+# means the lookup broke (network error, upstream page changed), say so
+# instead of pretending the package is up to date.
 check() {
     new=0
-    updated=0
-    open=0
+    if [ -z "$a" ] || [ -z "$b" ]; then
+        echo "$pkg: ${a:-?} -> ${b:-?} [LOOKUP FAILED]"
+        FAILURES=$((FAILURES + 1))
+        return 0
+    fi
     if ! printf "%s\n%s\n" "$b" "$a" | sort -cV >/dev/null 2>&1; then
         new=1
-        printf '%s: %s -> %s [NEW]' "$pkg" "$a" "$b"
-        if [ "$UPDATE" = 1 ] && [ "$1" != noupdate ]; then
-            open=1
-        else
-            echo
-        fi
+        echo "$pkg: $a -> $b [NEW]"
     else
         echo "$pkg: $a -> $b"
     fi
@@ -104,14 +120,12 @@ commit_update() {
 # Does nothing unless check() flagged the package as [NEW]. The file is left
 # untouched if anything goes wrong.
 update() {
-    updated=0
     sed_expr=
     if [ "$1" = -s ]; then
         sed_expr=$2
         shift 2
     fi
-    if [ "$new" != 1 ] || [ "$UPDATE" != 1 ] || [ -z "$a" ] || [ -z "$b" ]; then
-        [ "$open" = 1 ] && endline
+    if [ "$new" != 1 ] || [ "$UPDATE" != 1 ]; then
         return 0
     fi
 
@@ -123,7 +137,7 @@ update() {
         shift 2
     done
     if [ -z "$old_url" ] || [ "$new_url" = "$old_url" ]; then
-        endline " [FAILED: could not work out the new URL]"
+        fail "[FAILED: could not work out the new URL]"
         return 1
     fi
 
@@ -134,7 +148,7 @@ update() {
     tmp=$(mktemp)
     if ! wget -q -O "$tmp" "$new_url" || [ ! -s "$tmp" ]; then
         rm -f "$tmp"
-        endline " [FAILED: download failed] $new_url"
+        fail "[FAILED: download failed] $new_url"
         return 1
     fi
     hash=$(sha256sum "$tmp" | cut -d' ' -f1)
@@ -151,14 +165,17 @@ update() {
     rm -f "$file.new"
     [ -n "$sed_expr" ] && sed -i "$sed_expr" "$file"
 
-    updated=1
     commit_update "$dirty"
     status=" [UPDATED]$commit_status"
-    for p in ./packages/$pkg-*.patch; do
+    for p in ./packages/"$pkg"-*.patch; do
         [ -e "$p" ] && status="$status [CHECK PATCHES]" && break
     done
-    endline "$status"
-    [ -n "$commit_err" ] && printf '%s: %s\n' "$pkg" "$commit_err" >&2
+    if [ "$commit_status" = " [COMMIT FAILED]" ]; then
+        fail "${status# }"
+        [ -n "$commit_err" ] && report "$(printf '%s' "$commit_err" | tr '\n' ' ')"
+    else
+        report "${status# }"
+    fi
     return 0
 }
 
@@ -186,7 +203,8 @@ update "R_$(us "$a")" "R_$(us "$b")" "expat-$a" "expat-$b"
 # fontconfig
 pkg=fontconfig
 a=$(cat ./packages/fontconfig.cmake | sed -n 's,.*fontconfig-\([0-9][^"]*\)\.tar.*,\1,p')
-b=$(wget -q -O- 'https://gitlab.freedesktop.org/fontconfig/fontconfig/-/tags' | sed -n 's,.*/\([0-9][^"]*\)\.tar.*,\1,p' | sed 's:/[^/]*$::' | sort -Vr | head -1)
+# x.y.9z tags are development snapshots
+b=$(git ls-remote --tags 'https://gitlab.freedesktop.org/fontconfig/fontconfig.git' | sed -n 's,.*refs/tags/\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\)$,\1,p' | awk -F. '$3 < 90' | sort -Vr | head -1)
 check
 update "$a" "$b"
 
@@ -235,7 +253,7 @@ update "$a" "$b"
 # sdl2
 pkg=sdl2
 a=$(cat ./packages/sdl2.cmake | grep 'release-' | sed -n 's,.*release-\([0-9][^>]*\)\.tar.*,\1,p')
-b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL.git' | sed -n 's,.*refs/tags/release-\([0-9][^^]*\)$,\1,p' | grep '^2\.' | sort -Vr | head -1)
+b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL.git' | sed -n 's,.*refs/tags/release-\(2\.[0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
 check
 update "release-$a" "release-$b"
 
@@ -256,7 +274,7 @@ update "v$a" "v$b"
 # mujs
 pkg=mujs
 a=$(cat ./packages/mujs.cmake | grep 'mujs' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*,\1,p')
-b=$(wget -q -O- 'https://codeberg.org/ccxvii/mujs/tags' | grep 'href="/ccxvii/mujs/archive/' | sed -n 's,.*href="/ccxvii/mujs/archive/\([0-9][^"_]*\)\.tar.*,\1,p' | sort -Vr | head -1)
+b=$(git ls-remote --tags 'https://codeberg.org/ccxvii/mujs.git' | sed -n 's,.*refs/tags/\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
 check
 update -s "s/VERSION=$a\"/VERSION=$b\"/" "/$a.tar" "/$b.tar"
 
@@ -284,17 +302,18 @@ check
 old_year=$(sed -n 's,.*/\([0-9]\{4\}\)/sqlite-autoconf-.*,\1,p' ./packages/sqlite.cmake | head -1)
 new_year=$(printf '%s\n' "$page" | grep -o "[0-9]\{4\}/sqlite-autoconf-$b\.tar" | head -1 | cut -c1-4)
 update "$old_year/sqlite-autoconf-$a" "$new_year/sqlite-autoconf-$b"
+
 # vulkan-headers (check only, updated separately)
 pkg=vulkan-headers
 a=$(cat ./packages/vulkan-headers.cmake | grep 'Vulkan-Headers' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
 b=$(git ls-remote --tags 'https://github.com/KhronosGroup/Vulkan-Headers.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
-check noupdate
+check
 
 # vulkan-loader (check only, updated separately)
 pkg=vulkan-loader
 a=$(cat ./packages/vulkan-loader.cmake | grep 'Vulkan-Loader' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
 b=$(git ls-remote --tags 'https://github.com/KhronosGroup/Vulkan-Loader.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
-check noupdate
+check
 
 # zlib
 pkg=zlib
@@ -309,3 +328,10 @@ a=$(cat ./packages/zstd.cmake | grep 'zstd' | sed -n 's,.*zstd-\([0-9][^>]*\)\.t
 b=$(git ls-remote --tags 'https://github.com/facebook/zstd.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
 check
 update "$a" "$b"
+
+# status lines after the version rows
+if [ -s "$STATUS_FILE" ]; then
+    echo
+    cat "$STATUS_FILE"
+fi
+[ "$FAILURES" -eq 0 ]
