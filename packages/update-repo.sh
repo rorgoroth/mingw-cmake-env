@@ -38,8 +38,14 @@ gitupdate() {
     # "git am" (spirv-cross, libvpl) while the stamps still claim they are
     # applied, and a failed fetch (network error, rate limit) would do the
     # same for nothing.
-    if ! git -C "$src_dir" fetch --quiet >/dev/null 2>&1; then
+    # --no-recurse-submodules: some packages (libplacebo, libzimg) replace
+    # their submodule paths with symlinks to our own checkouts. Git's default
+    # on-demand submodule fetch follows those symlinks and fails the whole
+    # fetch ("expected submodule path ... not to be a symbolic link").
+    local err
+    if ! err=$(git -C "$src_dir" fetch --quiet --no-recurse-submodules 2>&1); then
         echo "WARNING: $name: fetch failed, keeping current checkout" >&2
+        [[ -n "$err" ]] && sed "s/^/    $name: /" <<<"$err" >&2
         return 1
     fi
 
@@ -50,7 +56,7 @@ gitupdate() {
     [[ "$old" == "$new" ]] && return 0
 
     git -C "$src_dir" am --abort >/dev/null 2>&1 || true
-    if ! git -C "$src_dir" reset --hard "$new" >/dev/null 2>&1; then
+    if ! git -C "$src_dir" reset --hard --no-recurse-submodules "$new" >/dev/null 2>&1; then
         echo "WARNING: $name: could not reset to upstream, skipped" >&2
         return 1
     fi
