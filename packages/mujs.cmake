@@ -3,12 +3,12 @@ set(flags
 OUT=<BINARY_DIR>
 host=mingw
 HAVE_READLINE=no
-VERSION=1.3.8")
+VERSION=1.3.11")
 
 ExternalProject_Add(
   mujs
-  URL https://codeberg.org/ccxvii/mujs/archive/1.3.8.tar.gz
-  URL_HASH SHA256=b28288394e40fed41ed38840d4c2de399c5a7476d6e264660b0c189cda72037d
+  URL https://codeberg.org/ccxvii/mujs/archive/1.3.11.tar.gz
+  URL_HASH SHA256=91528b3f324b7015859fac278aa3a7684ca070d9bdc588b6ddc55297b264c237
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   PATCH_COMMAND patch -p1 < ${CMAKE_CURRENT_SOURCE_DIR}/mujs-0001.patch
   UPDATE_COMMAND ""
