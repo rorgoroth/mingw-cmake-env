@@ -12,8 +12,6 @@ jobs:
 
       - name: Setup Alpine
         uses: rorgoroth/setup-alpine@develop
-        with:
-          branch: edge
 
       - name: Install Packages
         run: |

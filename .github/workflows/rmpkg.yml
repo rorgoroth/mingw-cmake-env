@@ -13,8 +13,6 @@ jobs:
 
       - name: setup_alpine
         uses: rorgoroth/setup-alpine@develop
-        with:
-          branch: edge
 
       - name: load_cache_build
         uses: actions/cache/restore@main
