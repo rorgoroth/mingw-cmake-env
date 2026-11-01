@@ -44,6 +44,7 @@ ExternalProject_Add(
     --disable-debug
     --disable-decoder=libaom_av1
     --disable-doc
+    --disable-encoder=opus
     --disable-ffplay
     --disable-htmlpages
     --disable-manpages

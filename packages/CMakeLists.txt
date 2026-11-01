@@ -138,6 +138,7 @@ list(
   flac
   opus
   libopusenc
+  opusfile
   vorbis
   theora
   x264

@@ -2,6 +2,8 @@ ExternalProject_Add(
   sdl3-mixer
   DEPENDS flac
           ogg
+          opus
+          opusfile
           sdl3
           vorbis
   URL https://github.com/libsdl-org/SDL_mixer/releases/download/release-3.2.4/SDL3_mixer-3.2.4.tar.gz
@@ -26,7 +28,7 @@ ExternalProject_Add(
     -DSDLMIXER_MP3=ON
     -DSDLMIXER_MP3_DRMP3=ON
     -DSDLMIXER_MP3_MPG123=OFF
-    -DSDLMIXER_OPUS=OFF
+    -DSDLMIXER_OPUS=ON
     -DSDLMIXER_STRICT=ON
     -DSDLMIXER_TESTS=OFF
     -DSDLMIXER_VENDORED=OFF
