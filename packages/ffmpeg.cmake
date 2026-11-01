@@ -15,7 +15,6 @@ ExternalProject_Add(
           libopusenc
           libplacebo
           libpng
-          sdl2
           libvpl
           libvpx
           libwebp
@@ -85,7 +84,6 @@ ExternalProject_Add(
     --enable-nvenc
     --enable-runtime-cpudetect
     --enable-schannel
-    --enable-sdl2
     --enable-vulkan
     "--extra-libs='-lstdc++ -lpthread'" # libplacebo/shaderc
   BUILD_COMMAND ${MAKE}

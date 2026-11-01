@@ -250,12 +250,12 @@ b=$(git ls-remote --tags 'https://github.com/rorgoroth/llvm-mingw-toolchain.git'
 check
 update "$a" "$b"
 
-# sdl2
-pkg=sdl2
-a=$(cat ./packages/sdl2.cmake | grep 'release-' | sed -n 's,.*release-\([0-9][^>]*\)\.tar.*,\1,p')
-b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL.git' | sed -n 's,.*refs/tags/release-\(2\.[0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
+# sdl2-compat
+pkg=sdl2-compat
+a=$(cat ./packages/sdl2-compat.cmake | grep 'release-' | sed -n 's,.*release-\([0-9.]*\)/.*,\1,p' | head -1)
+b=$(git ls-remote --tags 'https://github.com/libsdl-org/sdl2-compat.git' | sed -n 's,.*refs/tags/release-\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
 check
-update "release-$a" "release-$b"
+update "$a" "$b"
 
 # sdl3
 pkg=sdl3

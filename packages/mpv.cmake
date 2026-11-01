@@ -9,7 +9,6 @@ ExternalProject_Add(
           libjpeg
           libplacebo
           libpng
-          sdl2
           luajit
           mujs
           rubberband

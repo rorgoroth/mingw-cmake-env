@@ -63,7 +63,7 @@ ExternalProject_Add(
     -DSDL_RENDER=ON
     -DSDL_RPATH=OFF
     -DSDL_SENSOR=ON
-    -DSDL_SHARED=OFF
+    -DSDL_SHARED=ON
     -DSDL_SNDIO=OFF
     -DSDL_SSE=ON
     -DSDL_SSE2=ON
