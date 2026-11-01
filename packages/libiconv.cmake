@@ -1,7 +1,7 @@
 ExternalProject_Add(
   libiconv
-  URL https://cdimage.debian.org/mirror/gnu.org/gnu/libiconv/libiconv-1.19.tar.gz
-  URL_HASH SHA256=88dd96a8c0464eca144fc791ae60cd31cd8ee78321e67397e25fc095c4a19aa6
+  URL https://cdimage.debian.org/mirror/gnu.org/gnu/libiconv/libiconv-1.19.1.tar.gz
+  URL_HASH SHA256=9a06844846d664d7122161700c10a64480d7c7bcead3091925a785b38c91edab
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   CONFIGURE_COMMAND
     ${EXEC} <SOURCE_DIR>/configure
