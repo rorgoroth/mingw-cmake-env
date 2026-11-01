@@ -157,6 +157,8 @@ list(
   cjson
   minizip
   glew
+  sdl3-image
+  sdl3-mixer
   sqlite
   quake3e
   quake3e-urbanterror

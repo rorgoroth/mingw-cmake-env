@@ -264,6 +264,20 @@ b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL.git' | sed -n 's,.*r
 check
 update "$a" "$b"
 
+# sdl3-image
+pkg=sdl3-image
+a=$(cat ./packages/sdl3-image.cmake | grep 'release-' | sed -n 's,.*release-\([0-9.]*\)/.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL_image.git' | sed -n 's,.*refs/tags/release-\([0-9][0-9.]*\)$,\1,p' | grep '^3\.' | sort -Vr | head -1)
+check
+update "$a" "$b"
+
+# sdl3-mixer
+pkg=sdl3-mixer
+a=$(cat ./packages/sdl3-mixer.cmake | grep 'release-' | sed -n 's,.*release-\([0-9.]*\)/.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL_mixer.git' | sed -n 's,.*refs/tags/release-\([0-9][0-9.]*\)$,\1,p' | grep '^3\.' | sort -Vr | head -1)
+check
+update "$a" "$b"
+
 # libxml2
 pkg=libxml2
 a=$(cat ./packages/libxml2.cmake | grep 'libxml2' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
