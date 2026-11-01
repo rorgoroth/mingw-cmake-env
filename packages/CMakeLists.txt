@@ -160,6 +160,7 @@ list(
   glew
   sdl3-image
   sdl3-mixer
+  sdl3-ttf
   sqlite
   quake3e
   quake3e-urbanterror

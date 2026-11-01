@@ -278,6 +278,13 @@ b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL_mixer.git' | sed -n 
 check
 update "$a" "$b"
 
+# sdl3-ttf
+pkg=sdl3-ttf
+a=$(cat ./packages/sdl3-ttf.cmake | grep 'release-' | sed -n 's,.*release-\([0-9.]*\)/.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/libsdl-org/SDL_ttf.git' | sed -n 's,.*refs/tags/release-\([0-9][0-9.]*\)$,\1,p' | grep '^3\.' | sort -Vr | head -1)
+check
+update "$a" "$b"
+
 # libxml2
 pkg=libxml2
 a=$(cat ./packages/libxml2.cmake | grep 'libxml2' | sed -n 's,.*v\([0-9][^>]*\)\.tar.*,\1,p')
