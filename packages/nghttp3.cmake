@@ -1,0 +1,17 @@
+ExternalProject_Add(
+  nghttp3
+  URL https://github.com/ngtcp2/nghttp3/releases/download/v1.19.0/nghttp3-1.19.0.tar.xz
+  URL_HASH SHA256=228e17f5cc3d4de7bfced9912bd09de30e7f45741cc47503cf88d3fa9209e155
+  DOWNLOAD_EXTRACT_TIMESTAMP 1
+  UPDATE_COMMAND ""
+  CONFIGURE_COMMAND
+    ${EXEC} cmake -H<SOURCE_DIR> -B<BINARY_DIR>
+    ${cmake_conf_args}
+    -DENABLE_LIB_ONLY=ON
+  BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
+  INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
+  LOG_DOWNLOAD 1
+  LOG_UPDATE 1
+  LOG_CONFIGURE 1
+  LOG_BUILD 1
+  LOG_INSTALL 1)

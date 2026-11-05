@@ -109,6 +109,11 @@ list(
   brotli
   zstd
   libpsl
+  openssl
+  c-ares
+  nghttp2
+  nghttp3
+  ngtcp2
   curl
   freetype2
   harfbuzz

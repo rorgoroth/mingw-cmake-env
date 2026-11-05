@@ -186,6 +186,13 @@ b=$(git ls-remote --tags 'https://github.com/google/brotli.git' | sed -n 's,.*re
 check
 update "v$a" "v$b"
 
+# c-ares
+pkg=c-ares
+a=$(cat ./packages/c-ares.cmake | sed -n 's,.*c-ares-\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/c-ares/c-ares.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
+check
+update "v$a" "v$b" "c-ares-$a" "c-ares-$b"
+
 # curl
 pkg=curl
 a=$(cat ./packages/curl.cmake | sed -n 's,.*curl-\([0-9][^"]*\)\.tar.*,\1,p')
@@ -298,6 +305,34 @@ a=$(cat ./packages/mujs.cmake | grep 'mujs' | sed -n 's,.*/\([0-9][^>]*\)\.tar.*
 b=$(git ls-remote --tags 'https://codeberg.org/ccxvii/mujs.git' | sed -n 's,.*refs/tags/\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
 check
 update -s "s/VERSION=$a\"/VERSION=$b\"/" "/$a.tar" "/$b.tar"
+
+# nghttp2
+pkg=nghttp2
+a=$(cat ./packages/nghttp2.cmake | sed -n 's,.*nghttp2-\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/nghttp2/nghttp2.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
+check
+update "v$a" "v$b" "nghttp2-$a" "nghttp2-$b"
+
+# nghttp3
+pkg=nghttp3
+a=$(cat ./packages/nghttp3.cmake | sed -n 's,.*nghttp3-\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/ngtcp2/nghttp3.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
+check
+update "v$a" "v$b" "nghttp3-$a" "nghttp3-$b"
+
+# ngtcp2
+pkg=ngtcp2
+a=$(cat ./packages/ngtcp2.cmake | sed -n 's,.*ngtcp2-\([0-9][^"]*\)\.tar.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/ngtcp2/ngtcp2.git' | sed -n 's,.*refs/tags/v\([0-9][0-9.]*\)$,\1,p' | sort -Vr | head -1)
+check
+update "v$a" "v$b" "ngtcp2-$a" "ngtcp2-$b"
+
+# openssl
+pkg=openssl
+a=$(cat ./packages/openssl.cmake | sed -n 's,.*openssl-\([0-9][^"/]*\)\.tar.*,\1,p')
+b=$(git ls-remote --tags 'https://github.com/openssl/openssl.git' | sed -n 's,.*refs/tags/openssl-\([0-9][0-9.]*\)$,\1,p' | grep '^4\.' | sort -Vr | head -1)
+check
+update "openssl-$a" "openssl-$b"
 
 # opus
 pkg=opus
