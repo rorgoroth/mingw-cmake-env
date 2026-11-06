@@ -10,7 +10,7 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
-    -Dbzip2=disabled
+    -Dbzip2=enabled
     -Dharfbuzz=disabled
     -Dbrotli=enabled
     -Dmmap=enabled

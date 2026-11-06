@@ -1,6 +1,7 @@
 ExternalProject_Add(
   minizip
   DEPENDS bzip2
+          libiconv
           zlib
           zstd
   GIT_REPOSITORY https://github.com/zlib-ng/minizip-ng.git

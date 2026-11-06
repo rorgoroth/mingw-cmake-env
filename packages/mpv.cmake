@@ -9,6 +9,7 @@ ExternalProject_Add(
           libjpeg
           libplacebo
           libpng
+          libzimg
           luajit
           mujs
           rubberband

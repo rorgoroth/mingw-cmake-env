@@ -12,7 +12,6 @@ ExternalProject_Add(
           lame
           libass
           libjxl
-          libopusenc
           libplacebo
           libpng
           libvpl
@@ -22,6 +21,7 @@ ExternalProject_Add(
           libzimg
           nvcodec-headers
           openssl
+          opus
           rubberband
           spirv-cross
           spirv-headers
