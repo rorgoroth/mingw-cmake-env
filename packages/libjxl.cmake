@@ -3,8 +3,6 @@ ExternalProject_Add(
   DEPENDS brotli
           highway
           lcms2
-          libjpeg
-          libpng
           zlib
   URL https://github.com/libjxl/libjxl/archive/refs/tags/v0.12.0.tar.gz
   URL_HASH SHA256=03e9be69a30be4011f559da75328b6d7cea8ad921fabfbd551ce10bf45cdc992
@@ -36,7 +34,6 @@ ExternalProject_Add(
     -DJPEGXL_ENABLE_VIEWERS=OFF
     -DJPEGXL_FORCE_NEON=OFF
     -DJPEGXL_FORCE_SYSTEM_BROTLI=ON
-    -DJPEGXL_FORCE_SYSTEM_GTEST=ON
     -DJPEGXL_FORCE_SYSTEM_HWY=ON
     -DJPEGXL_FORCE_SYSTEM_LCMS2=ON
     -DJPEGXL_STATIC=ON

@@ -8,8 +8,14 @@ ExternalProject_Add(
   CONFIGURE_COMMAND
     ${EXEC} meson setup --reconfigure <BINARY_DIR> <SOURCE_DIR>
     ${meson_conf_args}
+    -Dcmdline=disabled
     -Dfft=builtin
+    -Djni=disabled
+    -Dladspa=disabled
+    -Dlv2=disabled
     -Dresampler=libsamplerate
+    -Dtests=disabled
+    -Dvamp=disabled
   BUILD_COMMAND ${NINJA} -C <BINARY_DIR>
   INSTALL_COMMAND ${NINJA} -C <BINARY_DIR> install
   LOG_DOWNLOAD 1
