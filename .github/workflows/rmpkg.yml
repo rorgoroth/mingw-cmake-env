@@ -11,6 +11,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      - name: check_pkgname
+        env:
+          PKGNAME: ${{ github.event.inputs.pkgname }}
+        run: |
+          case "$PKGNAME" in
+            ''|*[!A-Za-z0-9._+-]*) echo "Invalid package name" >&2; exit 1 ;;
+          esac
+          printf '%s\n' "$PKGNAME" > .rmpkg-name
+
       - name: setup_alpine
         uses: rorgoroth/setup-alpine@develop
 
@@ -33,8 +42,7 @@ jobs:
           key: ccache
 
       - name: run_clean_dist
-        run: |
-          rm -rfv build/packages/${{ github.event.inputs.pkgname }}*
+        run: sh run.sh rmpkg "$(cat .rmpkg-name)"
         shell: alpine.sh {0}
 
       - name: clear_cache

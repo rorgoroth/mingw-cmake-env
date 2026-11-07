@@ -68,10 +68,15 @@ archive() {
   echo "Archives created in bin/."
 }
 
-# Clean a specific package
+# Clean a specific package.
 rmpkg() {
-  pkg_name="$1"
-  rm -rfv "build/packages/${pkg_name}-"* || error "Failed to rmpkg $pkg_name"
+  pkg_name="${1:-}"
+  [ -n "$pkg_name" ] || error "rmpkg needs a package name"
+  case "$pkg_name" in
+    *[!A-Za-z0-9._+-]*) error "Invalid package name: $pkg_name" ;;
+  esac
+  [ -d "build/packages/${pkg_name}-prefix" ] || error "No such package: $pkg_name"
+  rm -rfv "build/packages/${pkg_name}-prefix" || error "Failed to rmpkg $pkg_name"
 }
 
 # Run update checking script. The version rows are aligned with column, the
@@ -102,7 +107,7 @@ case "${1:-}" in
     archive
     ;;
   "rmpkg")
-    rmpkg "$2"
+    rmpkg "${2:-}"
     ;;
   "checkupdates")
     checkupdates
