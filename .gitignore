@@ -5,6 +5,7 @@ build
 
 # Package bins/archives
 bin/*.7z
+bin/SHA256SUMS
 bin/*/*.exe
 bin/*/*.com
 bin/*/*.dll

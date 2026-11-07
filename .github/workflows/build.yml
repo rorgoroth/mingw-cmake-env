@@ -167,7 +167,7 @@ jobs:
         uses: svenstaro/upload-release-action@latest
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: bin/*.7z
+          file: bin/{*.7z,SHA256SUMS}
           tag: latest
           release_name: latest
           overwrite: true

@@ -38,7 +38,7 @@ package() {
   echo "Packaging contents..."
   (
     cd bin || error "Cannot enter bin directory"
-    rm -f ./*.7z || true # Ignore if no files match
+    rm -f ./*.7z ./SHA256SUMS || true # Ignore if no files match
     find . -type f \( -name '*.exe' -o -name '*.com' -o -name '*.dll' \) -delete
     cp -r ../build/packages/*-package . || error "Failed to copy packages"
   ) || error "Packaging failed"
@@ -62,10 +62,18 @@ archive() {
 
     (
       cd "bin/$pkg_dir" || error "Cannot enter $pkg_dir"
-      7z a -mx=1 "../$archive_name" -- ./* || error "Failed to create $archive_name"
+      7z a -mx=9 "../$archive_name" -- ./* || error "Failed to create $archive_name"
     ) || error "Failed to archive $pkg"
   done
-  echo "Archives created in bin/."
+
+  (
+    cd bin || error "Cannot enter bin directory"
+    rm -f SHA256SUMS
+    set -- ./*.7z
+    [ -e "$1" ] || error "No archives found to checksum"
+    sha256sum -- *.7z > SHA256SUMS || error "Failed to create SHA256SUMS"
+  ) || error "Failed to checksum archives"
+  echo "Archives and SHA256SUMS created in bin/."
 }
 
 # Clean a specific package.
