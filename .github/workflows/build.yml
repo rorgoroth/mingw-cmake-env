@@ -51,6 +51,7 @@ jobs:
       - name: Run Update
         run: |
           ninja -C build update
+          ninja -j 10 -C build fetch
         shell: alpine.sh {0}
 
       - name: Run Build

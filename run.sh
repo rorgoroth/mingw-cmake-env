@@ -14,14 +14,17 @@ error() {
 # Standard build
 build() {
   echo "Starting standard build..."
-  ninja -C build update || error "Failed to update build"
-  ninja -C build quake3e || error "Failed to build quake3e"
-  ninja -C build quake3e-urbanterror || error "Failed to build quake3e-urbanterror"
-  ninja -C build xonotic || error "Failed to build xonotic"
-  ninja -C build librempeg || error "Failed to build librempeg"
-  ninja -C build ffmpeg || error "Failed to build ffmpeg"
-  ninja -C build mpv || error "Failed to build mpv"
-  echo "Standard build complete."
+  ninja -C build update || error "Update Failed"
+  ninja -C build fetch || error "Fetch Failed"
+  ninja -C build || error "Build Failed"
+  echo "Build Complete."
+}
+
+# Download, update and patch the sources of all packages in parallel
+fetch() {
+  echo "Fetching and patching package sources..."
+  ninja -C build fetch || error "Failed to fetch sources"
+  echo "Fetch Complete."
 }
 
 # Clean build
@@ -30,7 +33,7 @@ cleanbuild() {
   ninja -C build clean || error "Failed to clean build"
   ninja -C build llvm || error "Failed to build llvm"
   build
-  echo "Full build complete."
+  echo "Build Complete."
 }
 
 # Copy package contents in place.
@@ -42,7 +45,7 @@ package() {
     find . -type f \( -name '*.exe' -o -name '*.com' -o -name '*.dll' \) -delete
     cp -r ../build/packages/*-package . || error "Failed to copy packages"
   ) || error "Packaging failed"
-  echo "Packaging complete."
+  echo "Packaging Complete."
 }
 
 # Create package archives
@@ -87,9 +90,7 @@ rmpkg() {
   rm -rfv "build/packages/${pkg_name}-prefix" || error "Failed to rmpkg $pkg_name"
 }
 
-# Run update checking script. The version rows are aligned with column, the
-# status lines ([UPDATED], [FAILED ...]) that follow after an empty line are
-# printed as they are so they can't disturb the columns.
+# Run update checking script.
 checkupdates() {
   out=$(mktemp) || error "Cannot create a temporary file"
   rc=0
@@ -102,6 +103,9 @@ checkupdates() {
 
 # Menu
 case "${1:-}" in
+  "fetch")
+    fetch
+    ;;
   "build")
     build
     ;;
@@ -121,7 +125,7 @@ case "${1:-}" in
     checkupdates
     ;;
   *)
-    echo "Usage: $0 {build|cleanbuild|package|archive|rmpkg <pkg>|checkupdates}"
+    echo "Usage: $0 {fetch|build|cleanbuild|package|archive|rmpkg <pkg>|checkupdates}"
     exit 1
     ;;
 esac

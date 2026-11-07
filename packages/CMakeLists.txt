@@ -1,3 +1,42 @@
+# download/update/patch steps of all packages run up front and in parallel, see "run.sh fetch".
+function(ExternalProject_Add _ep_name)
+  set(_deps "")
+  set(_code "_ExternalProject_Add([==[${_ep_name}]==]")
+  set(_in_deps FALSE)
+  if(ARGC GREATER 1)
+    math(EXPR _last "${ARGC} - 1")
+    foreach(_i RANGE 1 ${_last})
+      set(_arg "${ARGV${_i}}")
+      if(_arg STREQUAL "DEPENDS")
+        set(_in_deps TRUE)
+      elseif(_in_deps AND NOT _arg MATCHES "^[A-Z][A-Z0-9_]*$")
+        list(APPEND _deps "${_arg}")
+      else()
+        set(_in_deps FALSE)
+        string(APPEND _code " [==[${_arg}]==]")
+      endif()
+    endforeach()
+  endif()
+  string(APPEND _code ")")
+  cmake_language(EVAL CODE "${_code}")
+
+  set(_dep_stamps "")
+  foreach(_dep IN LISTS _deps)
+    set_property(GLOBAL APPEND PROPERTY _EP_DEPENDENCY_PAIRS "${_ep_name}:${_dep}")
+    list(APPEND _dep_stamps
+      "${CMAKE_CURRENT_BINARY_DIR}/${_dep}-prefix/src/${_dep}-stamp/${_dep}-done")
+  endforeach()
+  if(_dep_stamps)
+    ExternalProject_Add_StepDependencies(${_ep_name} configure ${_dep_stamps})
+  endif()
+
+  # The toolchain and rustup are only downloaded when they are built on purpose.
+  if(NOT _ep_name STREQUAL "llvm" AND NOT _ep_name STREQUAL "rustup")
+    set_property(GLOBAL APPEND PROPERTY _EP_FETCH_STAMPS
+      "${CMAKE_CURRENT_BINARY_DIR}/${_ep_name}-prefix/src/${_ep_name}-stamp/${_ep_name}-patch")
+  endif()
+endfunction()
+
 function(force_rebuild_git _name)
   get_property(
     git_tag
@@ -28,6 +67,8 @@ function(force_rebuild_git _name)
 endfunction()
 
 function(force_git_patch _name)
+  set_property(GLOBAL APPEND PROPERTY _EP_FETCH_STAMPS
+    "${CMAKE_CURRENT_BINARY_DIR}/${_name}-prefix/src/${_name}-stamp/${_name}-force-git-patch")
   ExternalProject_Add_Step(
     ${_name} force-git-patch
     DEPENDEES force-update patch
@@ -176,6 +217,27 @@ foreach(package IN LISTS ep)
   include(${CMAKE_CURRENT_SOURCE_DIR}/${package}.cmake)
 #  message(STATUS "Parsing package ${package}")
 endforeach()
+
+# DEPENDS on a package that does not exist would otherwise only show up as a
+# missing stamp file when building.
+get_property(dependency_pairs GLOBAL PROPERTY _EP_DEPENDENCY_PAIRS)
+foreach(pair IN LISTS dependency_pairs)
+  string(REPLACE ":" ";" pair "${pair}")
+  list(GET pair 0 dependent)
+  list(GET pair 1 dependency)
+  if(NOT TARGET ${dependency})
+    message(FATAL_ERROR "${dependent}: unknown package in DEPENDS: ${dependency}")
+  endif()
+endforeach()
+
+# Download, update and patch the sources of all packages, nothing is
+# configured or built. Run it with a high -j before the actual build, see
+# "run.sh fetch".
+get_property(fetch_stamps GLOBAL PROPERTY _EP_FETCH_STAMPS)
+add_custom_target(
+  fetch
+  DEPENDS ${fetch_stamps}
+  COMMENT "Fetched and patched all package sources")
 
 set(UPDATE_SCRIPT ${CMAKE_SOURCE_DIR}/packages/update-repo.sh)
 add_custom_target(
