@@ -45,6 +45,6 @@ ninja -C build $package
 
 Where `$package` is, for example, `mpv` -  by default all packages are built which is probably not what you want so specify the package you want, it also accepts multiple targets. The llvm toolchain and rust are excluded by default, so if there are updates to toolchain you need to manually run `ninja -C build llvm`.
 
-If you build one package at a time (for example with `ninja -j 1`), run `ninja -C build -j 8 fetch` (or `sh run.sh fetch`) first. It downloads, updates and patches the sources of all packages in parallel without building anything.
+If you build one package at a time (for example with `ninja -C build -j 1`), run `ninja -C build -j 10 fetch` first. It downloads, updates and patches the sources of all packages in parallel without building anything.
 
 The toolchain now uses precompiled clang/llvm from [rorgoroth/llvm-mingw-toolchain](https://github.com/rorgoroth/llvm-mingw-toolchain). The precompiled toolchain only works on Alpine, it will not work on Ubuntu or anything else. You'll need to build it yourself outside of Alpine. You should set up an Alpine container for this project.
