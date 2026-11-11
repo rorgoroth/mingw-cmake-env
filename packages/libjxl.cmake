@@ -4,8 +4,8 @@ ExternalProject_Add(
           highway
           lcms2
           zlib
-  URL https://github.com/libjxl/libjxl/archive/refs/tags/v0.12.0.tar.gz
-  URL_HASH SHA256=03e9be69a30be4011f559da75328b6d7cea8ad921fabfbd551ce10bf45cdc992
+  URL https://github.com/libjxl/libjxl/archive/refs/tags/v0.13.0.tar.gz
+  URL_HASH SHA256=24d18c9af2d1f5a17730b3f8d3f70a5c16e5ac303f5d9d5fe9dc00cf7ca82af2
   DOWNLOAD_EXTRACT_TIMESTAMP 1
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND
