@@ -97,6 +97,14 @@ ExternalProject_Add(
   LOG_INSTALL 1)
 
 ExternalProject_Add_Step(
+  ffmpeg purge-libplacebo
+  DEPENDEES configure
+  DEPENDERS build
+  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/libplacebo-prefix/src/libplacebo-stamp/libplacebo-install
+  WORKING_DIRECTORY <BINARY_DIR>
+  COMMAND find . -name "*libplacebo*.o" -delete)
+
+ExternalProject_Add_Step(
   ffmpeg copy-binary
   DEPENDEES install
   COMMAND
