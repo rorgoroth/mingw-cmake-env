@@ -1,18 +1,18 @@
-diff -ruN c/loader/CMakeLists.txt d/loader/CMakeLists.txt
---- c/loader/CMakeLists.txt	2026-11-10 15:54:19.884464833 +0000
-+++ d/loader/CMakeLists.txt	2026-11-10 15:54:19.950029855 +0000
+diff -ruN a/loader/CMakeLists.txt b/loader/CMakeLists.txt
+--- a/loader/CMakeLists.txt	2026-11-20 03:29:05.000000000 +0000
++++ b/loader/CMakeLists.txt	2026-11-20 08:53:50.432308523 +0000
 @@ -22,6 +22,7 @@
  add_library(loader_specific_options INTERFACE)
  target_link_libraries(loader_specific_options INTERFACE loader_common_options Vulkan::Headers)
  target_include_directories(loader_specific_options INTERFACE ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/generated ${CMAKE_CURRENT_BINARY_DIR})
 +configure_file("vulkan_own.pc.in" "vulkan_own.pc" @ONLY)
-
+ 
  if(WIN32)
-
-@@ -378,7 +379,13 @@
+ 
+@@ -384,7 +385,13 @@
      list(APPEND NORMAL_LOADER_SRCS ${OPT_LOADER_SRCS})
  endif()
-
+ 
 -if(WIN32)
 +if(MINGW)
 +    # Static loader for MinGW. A static library has no DllMain, so the loader initializes itself on the first API call
@@ -24,10 +24,10 @@ diff -ruN c/loader/CMakeLists.txt d/loader/CMakeLists.txt
      # If BUILD_DLL_VERSIONINFO was set, use the loader.rc in the build dir, otherwise use the checked in file
      set(RC_FILE_LOCATION ${CMAKE_CURRENT_SOURCE_DIR}/loader.rc)
      if (NOT "$CACHE{BUILD_DLL_VERSIONINFO}" STREQUAL "")
-@@ -549,6 +556,11 @@
+@@ -555,6 +562,11 @@
      return()
  endif()
-
+ 
 +if (MINGW)
 +    # Static library: nothing to install or export, libvulkan.a and vulkan_own.pc are installed manually
 +    return()
@@ -36,9 +36,9 @@ diff -ruN c/loader/CMakeLists.txt d/loader/CMakeLists.txt
  # Generate CMake Configuration File (IE: VulkanLoaderConfig.cmake)
  install(TARGETS vulkan EXPORT VulkanLoaderConfig)
  set_target_properties(vulkan PROPERTIES EXPORT_NAME "Loader")
-diff -ruN c/loader/loader.c d/loader/loader.c
---- c/loader/loader.c	2026-11-10 15:54:19.888944404 +0000
-+++ d/loader/loader.c	2026-11-10 15:54:19.950742871 +0000
+diff -ruN a/loader/loader.c b/loader/loader.c
+--- a/loader/loader.c	2026-11-20 03:29:05.000000000 +0000
++++ b/loader/loader.c	2026-11-20 08:53:50.434934460 +0000
 @@ -2070,6 +2070,12 @@
      (void)InitOnce;
      (void)Parameter;
@@ -52,13 +52,13 @@ diff -ruN c/loader/loader.c d/loader/loader.c
  #else
  void loader_initialize(void) {
      loader_platform_thread_create_mutex(&loader_lock);
-diff -ruN c/loader/loader_windows.c d/loader/loader_windows.c
---- c/loader/loader_windows.c	2026-11-10 15:54:19.890665806 +0000
-+++ d/loader/loader_windows.c	2026-11-10 15:54:19.951167343 +0000
+diff -ruN a/loader/loader_windows.c b/loader/loader_windows.c
+--- a/loader/loader_windows.c	2026-11-20 03:29:05.000000000 +0000
++++ b/loader/loader_windows.c	2026-11-20 08:53:50.436764742 +0000
 @@ -98,6 +98,7 @@
  #endif
  }
-
+ 
 +#if !defined(BUILD_STATIC_LOADER)
  BOOL WINAPI DllMain(HINSTANCE hinstance, DWORD reason, LPVOID reserved) {
      (void)hinstance;
@@ -68,12 +68,12 @@ diff -ruN c/loader/loader_windows.c d/loader/loader_windows.c
      return TRUE;
  }
 +#endif  // !defined(BUILD_STATIC_LOADER)
-
+ 
  static wchar_t* loader_get_next_path_wide(wchar_t* path) {
      uint32_t len;
-diff -ruN c/loader/vulkan_own.pc.in d/loader/vulkan_own.pc.in
---- c/loader/vulkan_own.pc.in	1970-01-01 01:00:00.000000000 +0100
-+++ d/loader/vulkan_own.pc.in	2026-11-10 15:54:19.957063047 +0000
+diff -ruN a/loader/vulkan_own.pc.in b/loader/vulkan_own.pc.in
+--- a/loader/vulkan_own.pc.in	1970-01-01 01:00:00.000000000 +0100
++++ b/loader/vulkan_own.pc.in	2026-11-20 08:53:50.439279645 +0000
 @@ -0,0 +1,11 @@
 +prefix=@CMAKE_INSTALL_PREFIX@
 +exec_prefix=${prefix}
