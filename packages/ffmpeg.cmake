@@ -105,6 +105,14 @@ ExternalProject_Add_Step(
   COMMAND find . -name "*libplacebo*.o" -delete)
 
 ExternalProject_Add_Step(
+  ffmpeg purge-x265
+  DEPENDEES configure
+  DEPENDERS build
+  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/x265-prefix/src/x265-stamp/x265-install
+  WORKING_DIRECTORY <BINARY_DIR>
+  COMMAND find . -name "libx265*.o" -delete)
+
+ExternalProject_Add_Step(
   ffmpeg copy-binary
   DEPENDEES install
   COMMAND
